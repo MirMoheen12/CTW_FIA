@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\CTW_FIA.props" />
+</Project>

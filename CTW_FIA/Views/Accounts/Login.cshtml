@@ -1,0 +1,163 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>NCDB</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="~/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="~/css/util.css">
+	<link rel="stylesheet" type="text/css" href="~/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body style="background-color: #666666;">
+	<div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title font-weight-bold" style="margin-left:7rem" >Federal Investigation Agency</h6>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="text-center">COUNTER TERRORISM WING</h6>
+					<br />
+					<p>Counter Terrorism Wing (CTW) established in May 2003. CTW is working hard with the primary objective to strengthen the internal as well as external National Security environment of the country. </p>
+					<br />
+					<p><b>Vision: </b> To become a center of excellence for specialized counter terrorist investigations, to combat espionage, terrorist financing, cyber terrorism as well as blasphemy throughout Pakistan.</p>	
+					<br />
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form" id="account" method="post">
+					
+					<div class="form-group "> 
+						<div class="col-xs-12">
+						<img src="~/images/ctw.png" asp-append-version="true" class="logo">
+						<h4 class="text-center heading" style="color:#1477b5">NATIONAL CRIMINAL DATABASE PORTAL</h4>
+						</div>
+					</div>
+					<span class="login100-form-title p-b-30" style="color:#1477b5">
+						Login to continue
+					</span>
+					
+					
+					<div class="wrap-input100" >
+						<input @*asp-for="Input.Username"*@ class="input100" name="Input.Username">
+						<span @*asp-validation-for="Input.Username"*@ class="focus-input100"></span>
+						<span class="label-input100">Username</span>
+					</div>
+					
+					
+					<div class="wrap-input100" >
+						<input class="input100">
+						<span @*asp-validation-for="Input.Password"*@ class="focus-input100"></span>
+						<span class="label-input100">Password</span>
+					</div>
+
+					<div class="flex-sb-m w-full p-t-3 p-b-32">
+						<div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" >
+							<label class="label-checkbox100" for="ckb1" >
+								
+							</label>
+						</div>
+
+						<div>
+							<a href="#" class="txt1">
+								Forgot Password?
+							</a>
+						</div>
+					</div>
+			
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit">
+							Login
+						</button>
+					</div>
+					<br />
+					<p class="text-danger text-center">This computer system is the property of the FIA CTW. It is for authorized use only. Unauthorized or improper use of this system may result in administrative disciplinary action, civil charges/criminal penalties, and/or other sanctions as set forth in the FIA. By continuing to use this system you indicate your awareness of and consent to these terms and conditions of use.</p>
+					<div asp-validation-summary="All" class="text-danger text-center"></div>
+				</form>
+
+				<div class="login100-more" style="background-image: url(/images/f.jpg);">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<!--===============================================================================================-->
+	<script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="~/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="~/vendor/bootstrap/js/popper.js"></script>
+	<script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="~/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="~/vendor/daterangepicker/moment.min.js"></script>
+	<script src="~/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="~/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="~/js/main.js"></script>
+	 
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $("#myModal").modal('show');
+        });
+
+		// Login Spinner
+		
+		$(document).ready(function() {
+  /*----------------------------------------------------------------------
+				add spinner icon to submit button
+			----------------------------------------------------------------------*/
+		  $('button[type="submit"], button.submit').on("click", function(e) {
+
+			if ($(this).find("span.submit-now").length !== 0) {
+			  e.preventDefault();
+			  e.stopPropagation();
+			  // $(this).find('span.submit-now').remove()
+			} else {
+			  $(this).prepend(
+				'<span class="submit-now"><i class="fa fa-refresh fa-spin fa-fw"></i>&nbsp;</span>'
+			  );
+			}
+		  });
+		});
+
+    </script>
+</body>
+</html>
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}
+
