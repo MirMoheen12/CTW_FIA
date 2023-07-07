@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using CTW_FIA.Models.DatabaseModels;
+using CTW_FIA.Interface;
+using CTW_FIA.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -32,6 +34,20 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.AccessDeniedPath = new PathString("/Home/Accessdenied");
 });
+
+
+
+
+
+builder.Services.AddTransient<IDashboard, DashboardReopsitories>();
+
+
+
+
+
+
+
+
 
 builder.Services.AddRazorPages()
     .AddRazorRuntimeCompilation();
