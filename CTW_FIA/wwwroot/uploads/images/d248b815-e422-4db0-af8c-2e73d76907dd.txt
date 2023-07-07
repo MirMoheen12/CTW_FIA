@@ -1,0 +1,9 @@
+
+        //PassportNo (1 person can have more than 1 PassportNumber)
+        public List<PersonPassportNo> PersonPassportList { get; set; } = new List<PersonPassportNo>();
+
+        //Social Media (1 person can have more than 1 social media accounts)
+        public List<SocialMedia> PersonSocialMedia { get; set; } = new List<SocialMedia>();
+
+        //Address (1 person can have more than 1 Addresses)
+        public List<PersonAddress> PersonAddressList { get; set; } = new List<PersonAddress>();
