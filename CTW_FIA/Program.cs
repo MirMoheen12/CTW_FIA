@@ -32,10 +32,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.AccessDeniedPath = new PathString("/Home/Accessdenied");
 });
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    options.AccessDeniedPath = new PathString("/Home/Accessdenied");
-});
+
 builder.Services.AddRazorPages()
     .AddRazorRuntimeCompilation();
 
