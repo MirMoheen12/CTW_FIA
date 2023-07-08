@@ -43,6 +43,20 @@ namespace CTW_FIA.Repositories
             }
         }
 
+        public List<GraphDto> getCtwdashboardsIncidentwise()
+        {
+            try
+            {
+                var data = getIncidnetwise();
+                return data;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
         private GraphCount AlldashboardRecord()
         {
             string connectionString = configuration.GetConnectionString("DefaultConnection");
@@ -191,5 +205,68 @@ namespace CTW_FIA.Repositories
 
             return graphDtos;
         }
+        private List<GraphDto> getIncidnetwise()
+        {
+            string connectionString = configuration.GetConnectionString("DefaultConnection");
+            List<GraphDto> graphDtos = new List<GraphDto>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("sp_Terroristgroup_web", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataSet dataSet = new DataSet();
+
+                    adapter.Fill(dataSet);
+
+                    // Access the first table
+                    DataTable firstTable = dataSet.Tables[0];
+                    if (firstTable.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in firstTable.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "FG";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = (string)row["Name"];
+                            graphDtos.Add(dto);
+                        }
+                    }
+
+
+                    DataTable thirdTable = dataSet.Tables[1];
+                    if (thirdTable.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in thirdTable.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "PKG";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = (string)row["Name"];
+                            graphDtos.Add(dto);
+                        }
+                    }
+                    DataTable fourTable = dataSet.Tables[2];
+                    if (fourTable.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in fourTable.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "TopG";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = (string)row["Name"];
+                            graphDtos.Add(dto);
+                        }
+                    }
+
+                }
+            }
+
+            return graphDtos;
+        }
+
     }
 }
+

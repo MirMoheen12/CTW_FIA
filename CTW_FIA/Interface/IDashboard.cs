@@ -6,5 +6,6 @@ namespace CTW_FIA.Interface
     {
         public GraphCount getCtwdashboard();
         public List<GraphDto> getCtwdashboardsGraphwise();
+        public List<GraphDto> getCtwdashboardsIncidentwise();
     }
 }
