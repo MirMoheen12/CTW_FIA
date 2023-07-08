@@ -19,18 +19,10 @@ builder.Services.AddControllersWithViews(opt => {
     var policy = new AuthorizationPolicyBuilder()
                .RequireAuthenticatedUser().Build();
     opt.Filters.Add(new AuthorizeFilter(policy));
-    opt.Filters.Add(new RequestSizeLimitAttribute(100 * 1024 * 1024)); // 100MB
+    
 
 });
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-    sqlServerOptionsAction: sqlOptions =>
-    {
-        sqlOptions.EnableRetryOnFailure(maxRetryCount: 10);
-    });
 
-});
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.AccessDeniedPath = new PathString("/Home/Accessdenied");
@@ -53,12 +45,7 @@ builder.Services.AddTransient<IDashboard, DashboardReopsitories>();
 builder.Services.AddRazorPages()
     .AddRazorRuntimeCompilation();
 
-
 // Add services to the container.
-builder.Services.AddTransient<IDashboard, DashboardReopsitories>();
-builder.Services.AddTransient<IUser, UserReopsitorie>();
-
-
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -86,6 +73,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
 
 app.Run();
