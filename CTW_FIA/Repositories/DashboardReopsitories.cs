@@ -229,7 +229,7 @@ namespace CTW_FIA.Repositories
                         foreach (DataRow row in firstTable.Rows)
                         {
                             GraphDto dto = new GraphDto();
-                            dto.tablename = "FG";
+                            dto.tablename = "PW";
                             dto.TotalRecord = (int)row["TotalRecord"];
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
@@ -243,7 +243,7 @@ namespace CTW_FIA.Repositories
                         foreach (DataRow row in thirdTable.Rows)
                         {
                             GraphDto dto = new GraphDto();
-                            dto.tablename = "PKG";
+                            dto.tablename = "T10";
                             dto.TotalRecord = (int)row["TotalRecord"];
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
@@ -255,13 +255,36 @@ namespace CTW_FIA.Repositories
                         foreach (DataRow row in fourTable.Rows)
                         {
                             GraphDto dto = new GraphDto();
-                            dto.tablename = "TopG";
+                            dto.tablename = "WW";
                             dto.TotalRecord = (int)row["TotalRecord"];
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
                         }
                     }
-
+                    DataTable targetwise = dataSet.Tables[3];
+                    if (targetwise.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in targetwise.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "TW";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = (string)row["Name"];
+                            graphDtos.Add(dto);
+                        }
+                    }
+                    DataTable Motiw = dataSet.Tables[4];
+                    if (Motiw.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in Motiw.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "TW";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = (string)row["Name"];
+                            graphDtos.Add(dto);
+                        }
+                    }
                 }
             }
 
