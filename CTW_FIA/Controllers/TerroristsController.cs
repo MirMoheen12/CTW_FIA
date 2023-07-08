@@ -20,7 +20,7 @@ namespace CTW_FIA.Controllers
         }
         public JsonResult Getdashboard()
         {
-            var data = dashboard.getCtwdashboardsGraphwise();
+            var data = dashboard.getCtwdashboardsterroristtwise();
             return Json(data);
         }
     }
