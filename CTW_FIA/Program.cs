@@ -27,8 +27,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
     sqlServerOptionsAction: sqlOptions =>
     {
-        sqlOptions.EnableRetryOnFailure();
+        sqlOptions.EnableRetryOnFailure(maxRetryCount: 10);
     });
+
 });
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -52,7 +53,12 @@ builder.Services.AddTransient<IDashboard, DashboardReopsitories>();
 builder.Services.AddRazorPages()
     .AddRazorRuntimeCompilation();
 
+
 // Add services to the container.
+builder.Services.AddTransient<IDashboard, DashboardReopsitories>();
+builder.Services.AddTransient<IUser, UserReopsitorie>();
+
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
