@@ -278,12 +278,12 @@
                         if (response[j].tablename == "PKG") {
                             // alert(j);
                             pak.push(response[j].name);
-                            count_pak.push(response[j].totalrecord);
+                            count_pak.push(response[j].totalRecord);
                         }
                         if (response[j].tablename == "TopG") {
                             // alert(j);
                             strength.push(response[j].name);
-                            count_strength.push(response[j].totalrecord);
+                            count_strength.push(response[j].totalRecord);
                         }
 
                     }
@@ -306,7 +306,7 @@
                     });
 
 
-
+                    
                     const myChart_pak = new Chart(ctx_pak, {
                         type: 'bar',
                         data: {
