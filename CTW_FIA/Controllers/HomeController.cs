@@ -17,6 +17,8 @@ namespace CTW_FIA.Controllers
 
         public IActionResult Index()
         {
+            return RedirectToAction("Login", "Accounts");
+
             return View();
         }
 

@@ -11,6 +11,10 @@ namespace CTW_FIA.Models.DatabaseModels
         {
 
         }
+
+        public DbSet<MacAddress> MacAddress { get; set; }
+        public DbSet<IpLogs> IpLogs { get; set; }
+
         //public DbSet<Paymencategory> Paymencategory { get; set; }
 
     }
