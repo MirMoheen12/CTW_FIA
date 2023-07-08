@@ -279,9 +279,9 @@ namespace CTW_FIA.Repositories
                         foreach (DataRow row in Motiw.Rows)
                         {
                             GraphDto dto = new GraphDto();
-                            dto.tablename = "TW";
+                            dto.tablename = "MW";
                             dto.TotalRecord = (int)row["TotalRecord"];
-                            dto.Name = (string)row["Name"];
+                            dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
                     }

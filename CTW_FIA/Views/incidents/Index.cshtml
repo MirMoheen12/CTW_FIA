@@ -343,9 +343,9 @@
 
                     const count_motive = [];
 
+                    const ctx_weapon = document.getElementById('weaponChart');
 
-
-                    console.log(response);
+                    //console.log(response);
 
                     for (let j = 0; j < response.length; j++) {
                         if (response[j].tablename == "PW") {
@@ -361,34 +361,34 @@
                         if (response[j].tablename == "WW") {
                             // alert(j);
                             weapon.push(response[j].name);
-                            count_weapon.push(response[j].totalrecord);
+                            count_weapon.push(response[j].totalRecord);
                         }
                         if (response[j].tablename == "TW") {
                             // alert(j);
                             target.push(response[j].name);
-                            count_target.push(response[j].totalrecord);
+                            count_target.push(response[j].totalRecord);
                         }
                         if (response[j].tablename == "MW") {
                             // alert(j);
                             motive.push(response[j].name);
-                            count_motive.push(response[j].totalrecord);
+                            count_motive.push(response[j].totalRecord);
                         }
 
                     }
 
 
 
-                    console.log (response)
-                    console.log(province);
-                    console.log(count_province);
-                    console.log(years);
-                    console.log(count_years);
-                    console.log(weapon);
-                    console.log(count_weapon);
+                    //console.log (response)
+                    //console.log(province);
+                    //console.log(count_province);
+                    //console.log(years);
+                    //console.log(count_years);
+                    //console.log(weapon);
+                    //console.log(count_weapon);
                     console.log(target);
                     console.log(count_target);
-                    console.log(motive);
-                    console.log(count_motive);
+                    //console.log(motive);
+                    //console.log(count_motive);
 
 
 
