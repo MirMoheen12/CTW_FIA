@@ -1,6 +1,5 @@
-﻿
-@{
-   
+﻿@{
+
 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -37,7 +36,7 @@
         </div>
     </div>
 
-   @* @section Scripts{
+    @* @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -184,50 +183,178 @@
         });</script>*@
 
 
-
+    @section Scripts{
     <script type="text/javascript">
 
         $(document).ready(function () {
+            const ctx_foreign = document.getElementById('foreignChart');
+            const ctx_pak = document.getElementById('pakChart');
+            const ctx_strength = document.getElementById('strengthChart');
+            Chart.register(ChartDataLabels);
+            Chart.defaults.set('plugins.datalabels', {
+                color: '#000000'
+            });
+            const c_options = {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    x: {
+                        stacked: true
+                    }
+                },
+                legend: {
+                    labels: {
+                        // This more specific font property overrides the global property
+                        font: {
+                            size: 22
+                        }
+                    }
+                },
+                tooltips: {
+                    enabled: false
+                },
+                plugins: {
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        labels: {
+                            value: {
+                                color: 'black'
+                            },
+                            font: {
+                                size: 22
+                            }
+                        }
+                    }
+                }
+            };
+            const c_background_colors =
+                [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235,1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192,1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64,1)',
+                    'rgba(9, 113, 7, 0.94)',
+                    'rgba(10, 73, 231, 0.94)',
+                    'rgba(73, 49, 226, 1)',
+                    'rgba(138, 38, 64, 1)',
+
+                ];
+
+
+
+
+
+
+
             $.ajax({
                 type: "GET",
                 url: "/TerroristsGroups/Getdashboard",
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 success: function (response) {
-                   
+
                     //  alert(response.length);
-                   
-                    const foreign=[];
-                    const count_foreign=[];
+
+                    const foreign = [];
+                    const count_foreign = [];
                     const pak = [];
-                    const count_pak= [];
+                    const count_pak = [];
                     const strength = [];
                     const count_strength = [];
 
                     console.log(response);
-                    
-                    //for (let j = 0; j < response.graphDtos.length; j++) {
-                    //    if (response.graphDtos[j].tablename == "provincewise") {
-                    //        // alert(j);
-                    //        province.push(response.graphDtos[j].name);
-                    //        count_province.push(response.graphDtos[j].totalRecord);
-                    //    }
-                        
-                    //}
-                    },
+
+                    for (let j = 0; j < response.length; j++) {
+                        if (response[j].tablename == "FG") {
+                            // alert(j);
+                            foreign.push(response[j].name);
+                            count_foreign.push(response[j].totalRecord);
+                        }
+                        if (response[j].tablename == "PKG") {
+                            // alert(j);
+                            pak.push(response[j].name);
+                            count_pak.push(response[j].totalrecord);
+                        }
+                        if (response[j].tablename == "TopG") {
+                            // alert(j);
+                            strength.push(response[j].name);
+                            count_strength.push(response[j].totalrecord);
+                        }
+
+                    }
+                    console.log(foreign)
+                    console.log(count_foreign)
+                    const myChart_foreign = new Chart(ctx_foreign, {
+                        type: 'bar',
+                        data: {
+                            labels: foreign,
+                            datasets: [{
+                                label: '# of Groups in Foreign Countries',
+                                data: count_foreign,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 2
+
+                            }]
+                        },
+                        options: c_options
                     });
+
+
+
+                    const myChart_pak = new Chart(ctx_pak, {
+                        type: 'bar',
+                        data: {
+                            labels: pak,
+                            datasets: [{
+                                label: '# of Groups in Pakistan',
+                                data: count_pak,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 2
+
+                            }]
+                        },
+                        options: c_options
+                    });
+
+                    const myChart_strength = new Chart(ctx_strength, {
+                        type: 'bar',
+                        data: {
+                            labels: strength,
+                            datasets: [{
+                                label: '# Top Groups with Strength',
+                                data: count_strength,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 2
+
+                            }]
+                        },
+                        options: c_options
                     });
 
 
+                },
+            });
+        });
 
 
 
 
 
 
-                    
+
+
+
+
 
     </script>
 
 
-
+}
