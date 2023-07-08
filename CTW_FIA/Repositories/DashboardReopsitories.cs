@@ -1,6 +1,7 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.LocalModels;
 using Microsoft.Data.SqlClient;
+using NuGet.Packaging.Signing;
 using System.Configuration;
 using System.Data;
 
@@ -327,12 +328,62 @@ namespace CTW_FIA.Repositories
 
             return graphDtos;
         }
+        private List<GraphDto> getExplosivewise()
+        {
+            string connectionString = configuration.GetConnectionString("DefaultConnection");
+            List<GraphDto> graphDtos = new List<GraphDto>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("sp_explosive_web", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataSet dataSet = new DataSet();
+
+                    adapter.Fill(dataSet);
+
+                    // Access the first table
+                    DataTable firstTable = dataSet.Tables[0];
+                    if (firstTable.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in firstTable.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "Exp";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = (string)row["Name"];
+                            graphDtos.Add(dto);
+                        }
+                    }
+
+
+                     }
+            }
+
+            return graphDtos;
+        }
 
         public List<GraphDto> getCtwdashboardsterroristtwise()
         {
             try
             {
                 var data = getterroristwise();
+                return data;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
+        public List<GraphDto> getCtwdashboardsExplosivetwise()
+        {
+            try
+            {
+                var data = getExplosivewise();
                 return data;
             }
             catch (Exception)
