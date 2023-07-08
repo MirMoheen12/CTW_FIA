@@ -245,7 +245,7 @@ namespace CTW_FIA.Repositories
                             GraphDto dto = new GraphDto();
                             dto.tablename = "T10";
                             dto.TotalRecord = (int)row["TotalRecord"];
-                            dto.Name = (string)row["Name"];
+                            dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
                     }
