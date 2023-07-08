@@ -12,12 +12,12 @@ namespace CTW_FIA.Controllers
         }
         public IActionResult Index()
         {
-            //var data = dashboard.getCtwdashboard();
+            
             return View();
         }
         public JsonResult Getdashboard()
         {
-            var data = dashboard.getCtwdashboard();
+            var data = dashboard.getCtwdashboardsGraphwise();
             return Json(data);
         }
 
