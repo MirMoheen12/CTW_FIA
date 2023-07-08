@@ -98,6 +98,18 @@ namespace CTW_FIA.Repositories
                             graphDtos.Add(dto);
                         }
                     }
+                    DataTable fivetable = dataSet.Tables[4];
+                    if (fivetable.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in fivetable.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "Groupwise";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = (string)row["Name"];
+                            graphDtos.Add(dto);
+                        }
+                    }
                 }
             }
             graph.graphDtos = graphDtos;
