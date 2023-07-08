@@ -22,7 +22,14 @@ builder.Services.AddControllersWithViews(opt => {
     
 
 });
-
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+    sqlServerOptionsAction: sqlOptions =>
+    {
+        sqlOptions.EnableRetryOnFailure();
+    });
+});
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.AccessDeniedPath = new PathString("/Home/Accessdenied");
@@ -45,7 +52,12 @@ builder.Services.AddTransient<IDashboard, DashboardReopsitories>();
 builder.Services.AddRazorPages()
     .AddRazorRuntimeCompilation();
 
+
 // Add services to the container.
+builder.Services.AddTransient<IDashboard, DashboardReopsitories>();
+builder.Services.AddTransient<IUser, UserReopsitorie>();
+
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
