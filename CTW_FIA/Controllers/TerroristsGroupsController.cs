@@ -5,24 +5,23 @@ using Microsoft.AspNetCore.Mvc;
 namespace CTW_FIA.Controllers
 {
     [AllowAnonymous]
-    public class DashboardController : Controller
+    public class TerroristsGroupsController : Controller
     {
         private readonly IDashboard dashboard;
-        public DashboardController(IDashboard dashboard)
+        public TerroristsGroupsController(IDashboard dashboard)
         {
             this.dashboard = dashboard;
         }
         public IActionResult Index()
         {
-            //var data = dashboard.getCtwdashboard();
+            
             return View();
         }
         public JsonResult Getdashboard()
         {
-            var data = dashboard.getCtwdashboard();
+            var data = dashboard.getCtwdashboardsGraphwise();
             return Json(data);
         }
-
 
 
     }
