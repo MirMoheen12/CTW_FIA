@@ -160,8 +160,8 @@
                                 </p>
                             </a>
                         </li>
-                 @*       <li class="nav-item @(ViewBag.ParentTitle == ParentTitle.GrapghDashBoard?" menu-open" : "")">
-                            <a href="#" class="nav-link @(ViewBag.ParentTitle == ParentTitle.GrapghDashBoard?"active" : "")">
+                        <li class="nav-item"" >
+                            <a href="#" class="nav-link">
                                 <i class="fa-solid fa-chart-bar"></i>
                                 <p>
                                     Graph Dashboard
@@ -169,43 +169,42 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview ">
-                                @if (ViewBag.UserAccess[0].ReadAccess)
-                                {
+                             
                                     <li class="nav-item">
-                                        <a class="nav-link @(ViewBag.Title == PageTitle.IncidentDashboard?"active" : "")" href="/admin/Home/Incidents">
+                                        <a class="nav-link" href="/admin/Home/Incidents">
                                             <i class="fa fa-fire" aria-hidden="true"></i>
                                             <p>
                                                 Incidents
-                                                <span class="badge badge-info right" id="incidents_count">@ViewBag.inc_count</span>
+                                                <span class="badge badge-info right" id="incidents_count">4</span>
                                             </p>
                                         </a>
                                     </li>
-                                }
+                                
 
                                 <li class="nav-item">
-                                    <a class="nav-link @(ViewBag.Title == PageTitle.TerroristDashboard?"active" : "")" href="/admin/Home/Terrorists">
+                                    <a class="nav-link " href="/admin/Home/Terrorists">
                                         <i class="fas fa-users" aria-hidden="true"></i>
                                         <p>
                                             Terrorists
-                                            <span class="badge badge-info right" id="terrorists_count">@ViewBag.personCount</span>
+                                            <span class="badge badge-info right" id="terrorists_count">4</span>
                                         </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link @(ViewBag.Title == PageTitle.TerroristGroupsDashboard?"active" : "")" href="/admin/Home/TerroristGroup">
+                                    <a class="nav-link" href="/admin/Home/TerroristGroup">
                                         <i class="fas fa-users" aria-hidden="true"></i>
                                         <p>
                                             Terrorist Groups
-                                            <span class="badge badge-info right" id="terroristgroup_count">@ViewBag.groupCount</span>
+                                            <span class="badge badge-info right" id="terroristgroup_count">4</span>
                                         </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link @(ViewBag.Title == PageTitle.ExplosivesDashboard?"active" : "")" href="/admin/Home/Explosives">
+                                    <a class="nav-link" href="/admin/Home/Explosives">
                                         <i class="fa fa-bomb" aria-hidden="true"></i>
                                         <p>
                                             Explosives
-                                            <span class="badge badge-info right" id="explosives_menu_count">@ViewBag.exp_count</span>
+                                            <span class="badge badge-info right" id="explosives_menu_count"></span>
                                         </p>
                                     </a>
                                 </li>
@@ -213,6 +212,7 @@
 
                             </ul>
                         </li>
+                 @*       
                         <li class="nav-item @(ViewBag.ParentTitle == ParentTitle.DatabasePreview?" menu-open" : "")" id="dbpreview">
                             <a href="#" class="nav-link @(ViewBag.ParentTitle == ParentTitle.DatabasePreview?"active" : "")">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
