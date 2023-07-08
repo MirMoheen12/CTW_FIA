@@ -22,5 +22,8 @@ namespace CTW_FIA.Controllers
             var data = dashboard.getCtwdashboard();
             return Json(data);
         }
+
+
+
     }
 }
