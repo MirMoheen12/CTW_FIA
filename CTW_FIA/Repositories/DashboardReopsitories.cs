@@ -289,7 +289,7 @@ namespace CTW_FIA.Repositories
                         foreach (DataRow row in firstTable.Rows)
                         {
                             GraphDto dto = new GraphDto();
-                            dto.tablename = "FG";
+                            dto.tablename = "TP";
                             dto.TotalRecord = (int)row["TotalRecord"];
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
@@ -303,7 +303,7 @@ namespace CTW_FIA.Repositories
                         foreach (DataRow row in thirdTable.Rows)
                         {
                             GraphDto dto = new GraphDto();
-                            dto.tablename = "PKG";
+                            dto.tablename = "HM";
                             dto.TotalRecord = (int)row["TotalRecord"];
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
@@ -315,7 +315,7 @@ namespace CTW_FIA.Repositories
                         foreach (DataRow row in fourTable.Rows)
                         {
                             GraphDto dto = new GraphDto();
-                            dto.tablename = "TopG";
+                            dto.tablename = "AS";
                             dto.TotalRecord = (int)row["TotalRecord"];
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
@@ -330,7 +330,16 @@ namespace CTW_FIA.Repositories
 
         public List<GraphDto> getCtwdashboardsterroristtwise()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var data = getterroristwise();
+                return data;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
     }
 }
