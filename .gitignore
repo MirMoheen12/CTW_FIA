@@ -374,3 +374,5 @@ FodyWeavers.xsd
 /.vs/CTW_FIA/v17/.suo
 /CTW_FIA/bin/Debug/net6.0/refs/Microsoft.AspNetCore.Antiforgery.dll
 /CTW_FIA/bin/Debug/net6.0/refs/Microsoft.AspNetCore.Authentication.Abstractions.dll
+/CTW_FIA/bin/Debug/net6.0/refs/Microsoft.AspNetCore.Session.dll
+/CTW_FIA/bin/Debug/net6.0/refs/Microsoft.AspNetCore.SignalR.Common.dll

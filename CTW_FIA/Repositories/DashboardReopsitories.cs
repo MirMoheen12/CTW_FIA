@@ -214,7 +214,7 @@ namespace CTW_FIA.Repositories
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand("sp_Terroristgroup_web", connection))
+                using (SqlCommand command = new SqlCommand("sp_Incidentwisegraph_web", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
