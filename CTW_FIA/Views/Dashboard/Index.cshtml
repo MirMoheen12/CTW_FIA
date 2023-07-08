@@ -152,6 +152,8 @@
 
                     var provincet = [];
                     var count_provincet = [];
+                    var provinegroup = [];
+                    var count_provincegroupt = [];
                     for (let j = 0; j < response.graphDtos.length; j++) {
                         if (response.graphDtos[j].tablename == "provincewise")
                         {
@@ -168,6 +170,11 @@
                             // alert(j);
                             provincet.push(response.graphDtos[j].name);
                             count_provincet.push(response.graphDtos[j].totalRecord);
+                        }
+                        if (response.graphDtos[j].tablename == "Groupwise") {
+                            // alert(j);
+                            provinegroup.push(response.graphDtos[j].name);
+                            count_provincegroupt.push(response.graphDtos[j].totalRecord);
                         }
                     }
 
@@ -199,7 +206,7 @@
                     });
 
 
-
+                    //Explosive
 
                     const ctx_explosives = document.getElementById('barChart2');
 
@@ -218,82 +225,65 @@
                         },
                         options: c_options
                     });
-                    //const ctx_groupprovinces = document.getElementById('pieChart');
-                    //$.ajax({
-                    //    type: "GET",
-                    //    url: "/api/Group/GetGroupsByProvince",
-                    //    dataType: 'json',
-                    //    contentType: 'application/json; charset=utf-8',
-                    //    success: function (response) {
+                    
 
-                    //       
+                    
+                    ///Grouwise
+                    
+                    const ctx_groupprovinces = document.getElementById('pieChart');
+              
+                    const pieChart = new Chart(ctx_groupprovinces, {
+                        type: 'pie',
+                        data: {
+                            labels: provinegroup,
+                            datasets: [{
+                                label: '# of Groups Order by Province',
+                                data: count_provincegroupt,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 1
 
-                    //        const province = response.provices_res.map(i => `${i.province}`);
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    ticks: {
+                                        // Include a dollar sign in the ticks
 
-                    //        const count_province = response.provices_res.map(i => `${i.noGroup}`);
-
-
-                    //        // console.log(province);
-                    //        // console.log(count_province);
-
-
-                    //        //console.log(arr);
-                    //        const pieChart = new Chart(ctx_groupprovinces, {
-                    //            type: 'pie',
-                    //            data: {
-                    //                labels: province,
-                    //                datasets: [{
-                    //                    label: '# of Groups Order by Province',
-                    //                    data: count_province,
-                    //                    backgroundColor: c_background_colors,
-                    //                    borderColor: c_background_colors,
-                    //                    borderWidth: 1
-
-                    //                }]
-                    //            },
-                    //            options: {
-                    //                responsive: true,
-                    //                scales: {
-                    //                    y: {
-                    //                        ticks: {
-                    //                            // Include a dollar sign in the ticks
-
-                    //                            fixedStepSize: 1
-                    //                        }
-                    //                    }
-                    //                },
-                    //                legend: {
-                    //                    labels: {
-                    //                        // This more specific font property overrides the global property
-                    //                        font: {
-                    //                            size: 22
-                    //                        }
-                    //                    }
-                    //                },
-                    //                tooltips: {
-                    //                    enabled: false
-                    //                },
-                    //                plugins: {
-                    //                    datalabels: {
-                    //                        anchor: 'end',
-                    //                        align: 'end',
-                    //                        labels: {
-                    //                            value: {
-                    //                                color: 'black'
-                    //                            },
-                    //                            font: {
-                    //                                size: 22
-                    //                            }
-                    //                        }
-                    //                    }
-                    //                }
-                    //            }
-                    //        });
-                    //    },
-                    //    error: function (response) {
-                    //        alert("error");
-                    //    }
-                    //});
+                                        fixedStepSize: 1
+                                    }
+                                }
+                            },
+                            legend: {
+                                labels: {
+                                    // This more specific font property overrides the global property
+                                    font: {
+                                        size: 22
+                                    }
+                                }
+                            },
+                            tooltips: {
+                                enabled: false
+                            },
+                            plugins: {
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'end',
+                                    labels: {
+                                        value: {
+                                            color: 'black'
+                                        },
+                                        font: {
+                                            size: 22
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                   
                    
     
                     const ctx_terroristprovinces = document.getElementById('barChart1');
@@ -378,229 +368,10 @@
                     'rgba(138, 38, 64, 1)',
 
                 ];
-            // console.log("ready!");
-            //$.ajax({
-            //    type: "GET",
-            //    url: "/Dashboard/Getdashboard",
-            //    dataType: 'json',
-            //    contentType: 'application/json; charset=utf-8',
-            //    success: function (response) {
-            //        //console.log(response);
-            //      //  console.log(response);
-            //        //$("#incident_count").html(response.totalCount);
-
-            //        //const province = response.provices_res.map(i => `${i.province}`);
-
-            //        //const count_province = response.provices_res.map(i => `${i.noIncident}`);
-
-
-            //        //console.log(province);
-            //        // console.log(count_province);
-            //        //const myChart = new Chart(ctx_provinces, {
-            //        //    type: 'bar',
-
-            //        //    data: {
-            //        //        labels: province,
-            //        //        datasets: [{
-            //        //            label: '# of Incidents Order by Provinces',
-            //        //            data: count_province,
-            //        //            backgroundColor: c_background_colors,
-            //        //            borderColor: c_background_colors,
-            //        //            borderWidth: 1
-
-            //        //        }
-            //        //        ]
-            //        //    },
-            //        //    options: c_options
-
-            //        //});
-            //        //const ctx_groupprovinces = document.getElementById('pieChart');
-            //        //$.ajax({
-            //        //    type: "GET",
-            //        //    url: "/api/Group/GetGroupsByProvince",
-            //        //    dataType: 'json',
-            //        //    contentType: 'application/json; charset=utf-8',
-            //        //    success: function (response) {
-
-            //        //        $("#group_count").html(response.totalCount);
-
-            //        //        const province = response.provices_res.map(i => `${i.province}`);
-
-            //        //        const count_province = response.provices_res.map(i => `${i.noGroup}`);
-
-
-            //        //        // console.log(province);
-            //        //        // console.log(count_province);
-
-
-            //        //        //console.log(arr);
-            //        //        const pieChart = new Chart(ctx_groupprovinces, {
-            //        //            type: 'pie',
-            //        //            data: {
-            //        //                labels: province,
-            //        //                datasets: [{
-            //        //                    label: '# of Groups Order by Province',
-            //        //                    data: count_province,
-            //        //                    backgroundColor: c_background_colors,
-            //        //                    borderColor: c_background_colors,
-            //        //                    borderWidth: 1
-
-            //        //                }]
-            //        //            },
-            //        //            options: {
-            //        //                responsive: true,
-            //        //                scales: {
-            //        //                    y: {
-            //        //                        ticks: {
-            //        //                            // Include a dollar sign in the ticks
-
-            //        //                            fixedStepSize: 1
-            //        //                        }
-            //        //                    }
-            //        //                },
-            //        //                legend: {
-            //        //                    labels: {
-            //        //                        // This more specific font property overrides the global property
-            //        //                        font: {
-            //        //                            size: 22
-            //        //                        }
-            //        //                    }
-            //        //                },
-            //        //                tooltips: {
-            //        //                    enabled: false
-            //        //                },
-            //        //                plugins: {
-            //        //                    datalabels: {
-            //        //                        anchor: 'end',
-            //        //                        align: 'end',
-            //        //                        labels: {
-            //        //                            value: {
-            //        //                                color: 'black'
-            //        //                            },
-            //        //                            font: {
-            //        //                                size: 22
-            //        //                            }
-            //        //                        }
-            //        //                    }
-            //        //                }
-            //        //            }
-            //        //        });
-            //        //    },
-            //        //    error: function (response) {
-            //        //        alert("error");
-            //        //    }
-            //        //});
-            //        //const ctx_explosives = document.getElementById('barChart2');
-            //        ////console.log("ready!");
-            //        //$.ajax({
-            //        //    type: "GET",
-            //        //    url: "/api/Explosives/GetExplosiveByProvince",
-            //        //    dataType: 'json',
-            //        //    contentType: 'application/json; charset=utf-8',
-            //        //    success: function (response) {
-
-            //        //        
-
-            //        //        const type = response.types_res.map(i => `${i.type}`);
-
-            //        //        const count_type = response.types_res.map(i => `${i.noExplosive}`);
-
-
-            //        //        //console.log(type);
-            //        //        //  console.log(count_type);
-
-            //        //        const barChart2 = new Chart(ctx_explosives, {
-            //        //            type: 'bar',
-            //        //            data: {
-            //        //                labels: type,
-            //        //                datasets: [{
-            //        //                    label: '# of Explosives Order by Types',
-            //        //                    data: count_type,
-            //        //                    backgroundColor: c_background_colors,
-            //        //                    borderColor: c_background_colors,
-            //        //                    borderWidth: 1
-
-            //        //                }]
-            //        //            },
-            //        //            options: c_options
-            //        //        });
-            //        //    },
-            //        //    error: function (response) {
-            //        //        alert("error");
-            //        //    }
-            //        //});
-            //        //const ctx_terroristprovinces = document.getElementById('barChart1');
-
-            //        //$.ajax({
-            //        //    type: "GET",
-            //        //    url: "/AllRcord/getTerroristprovicewise",
-            //        //    dataType: 'json',
-            //        //    success: function (result) {
-            //        //        var tocount = 0;
-            //        //        var province = [];
-            //        //        var count_province = [];
-            //        //        for (let i = 0; i < result.length; i++) {
-
-            //        //            province.push(result[i].provinceName)
-            //        //            count_province.push(result[i].totalNum)
-            //        //            tocount = tocount + result[i].totalNum;
-            //        //        }
-
-            //        //        $("#person_count").html(tocount);
-
-            //        //        //console.log(province);
-            //        //        //console.log(count_province);
-
-            //        //        const barChart1 = new Chart(ctx_terroristprovinces, {
-            //        //            type: 'bar',
-            //        //            data: {
-            //        //                labels: province,
-            //        //                datasets: [{
-            //        //                    label: '# of Terrorists Order By Provinces',
-            //        //                    data: count_province,
-            //        //                    backgroundColor: c_background_colors,
-            //        //                    borderColor: c_background_colors,
-            //        //                    borderWidth: 2,
-
-
-            //        //                }]
-            //        //            },
-            //        //            options: c_options
-            //        //        });
-            //        //    },
-            //        //    error: function (response) {
-            //        //        alert("error province");
-            //        //    }
-            //        //});
-            //    },
-            //    error: function (response) {
-            //        alert("error");
-            //    }
-            //});
+         
 
 
         });
-        //function getprRepo() {
-        //    $("#personprovince option").remove();
-        //    $("#SelectDistrict option").remove();
-        //    var personprovince = $('#personprovince');
-        //    $.ajax({
-        //        url: '/AllRcord/getProvinceList'
-        //        , type: 'GET'
-        //        , data: { country: country }
-        //        , contentType: 'application/json'
-        //        , success: function (response) {
-
-        //            var Prlist = "";
-        //            Prlist = "<option>Select Province</option>";
-        //            for (var m = 0; m < response.length; m++) {
-        //                Prlist += "<option value='" + response[m] + "'>" + response[m] + "</option>";
-
-        //            }
-        //            personprovince.append(Prlist);
-
-        //        }
-        //    });
-        //}
+        
     </script>
 }
