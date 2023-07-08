@@ -21,8 +21,6 @@ namespace CTW_FIA.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-<<<<<<< HEAD
             modelBuilder.Entity("CTW_FIA.Models.IpLogs", b =>
                 {
                     b.Property<int>("Id")
@@ -119,8 +117,7 @@ namespace CTW_FIA.Migrations
                     b.ToTable("MacAddress");
                 });
 
-=======
->>>>>>> MIR
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
