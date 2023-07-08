@@ -1,7 +1,5 @@
 ﻿@{
-  
-
-    Layout = "~/Views/Shared/_Layout.cshtml";
+   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Styles{
 
@@ -51,7 +49,7 @@
             </div>
         </div>
     </div>
-  @*  @section Scripts{
+    @*  @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
             const ctx_provinces = document.getElementById('myChart');
@@ -253,49 +251,75 @@
             });
         });</script>
 }*@
-
+ @section Scripts{
     <script type="text/javascript">
-          $.ajax({
-                type: "GET",
-                url: "/incidents/Getdashboard",
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                success: function (response) {
+        $.ajax({
+            type: "GET",
+            url: "/incidents/Getdashboard",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
 
-                    //  alert(response.length);
+                //  alert(response.length);
+                const count_province=[];
 
-                    const foreign = [];
-                    const count_foreign = [];
-                    const pak = [];
-                    const count_pak = [];
-                    const strength = [];
-                    const count_strength = [];
+                const province=[];
+                const years = [];
 
-                    console.log(response);
+                const count_years = [];
 
-                    for (let j = 0; j < response.length; j++) {
-                        if (response[j].tablename == "FG") {
-                            // alert(j);
-                            foreign.push(response[j].name);
-                            count_foreign.push(response[j].totalRecord);
-                        }
-                        if (response[j].tablename == "PKG") {
-                            // alert(j);
-                            pak.push(response[j].name);
-                            count_pak.push(response[j].totalrecord);
-                        }
-                        if (response[j].tablename == "TopG") {
-                            // alert(j);
-                            strength.push(response[j].name);
-                            count_strength.push(response[j].totalrecord);
-                        }
+                const weapon = [];
 
+                const count_weapon = [];
+
+                const target = [];
+
+                const count_target = [];
+
+                const motive = [];
+
+                const count_motive = [];
+
+              
+
+                console.log(response);
+
+                for (let j = 0; j < response.length; j++) {
+                    if (response[j].tablename == "provincewise") {
+                        // alert(j);
+                        province.push(response[j].name);
+                        count_province.push(response[j].totalRecord);
                     }
-                   
+                    if (response[j].tablename == "FG") {
+                        // alert(j);
+                        years.push(response[j].name);
+                        count_years.push(response[j].totalRecord);
+                    }
+                    if (response[j].tablename == "PKG") {
+                        // alert(j);
+                        weapon.push(response[j].name);
+                        count_weapon.push(response[j].totalrecord);
+                    }
+                    if (response[j].tablename == "TopG") {
+                        // alert(j);
+                       target.push(response[j].name);
+                       count_target.push(response[j].totalrecord);
+                    }
+                    if (response[j].tablename == "TopG") {
+                        // alert(j);
+                        motive.push(response[j].name);
+                        count_motive.push(response[j].totalrecord);
+                    }
 
-                },
-            });
+                }
+
+
+            
+
+            },
+
         });
+            
 
 
 
@@ -313,3 +337,4 @@
 
 
 
+}
