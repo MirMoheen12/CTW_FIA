@@ -2,6 +2,10 @@
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
+using System.Data;
 using System.Net;
 using System.Net.Mail;
 using System.Net.NetworkInformation;
@@ -10,56 +14,107 @@ namespace CTW_FIA.Repositories
 {
     public class UserReopsitorie:IUser
     {
-        private readonly AppDbContext context;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        public UserReopsitorie(AppDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<IdentityUser> signInManager)
+		private readonly IConfiguration configuration;
+
+		private readonly AppDbContext context;
+        public UserReopsitorie(IConfiguration configuration,AppDbContext context)
         {
 
+            this.configuration = configuration;
             this.context = context;
-            this._userManager = userManager;
-            this._roleManager = roleManager;
-            this._signInManager = signInManager;
-        }
-
-        public bool Login(string userName, string Password)
-        {
-            var data = VerifyLogin(userName, Password).GetAwaiter().GetResult();
-            return data;
         }
 
 
-        private async Task<bool>  VerifyLogin(string userName, string Password)
-        {
+		private UserDto GetUserByCredentials(string userName, string password)
+		{
             try
             {
-                var UserData = await _userManager.FindByNameAsync(userName);
-                if (UserData != null && await _userManager.CheckPasswordAsync(UserData, Password))
-                {
-                    //UserData.LastLoginTimestamp = DateTime.UtcNow;
-                    String localIpAddress = GetLocalIPAddress();
-                    String localMacAddress = GetLocalIPAddress();
-                    var macmatch = context.MacAddress.Where(x => x.MAC_Address == localMacAddress).FirstOrDefault();
-                    if(macmatch != null)
-                    {
-                        var ipmatch = context.IpLogs.Where(x => x.IsDeleted == false && x.IP == localIpAddress).FirstOrDefault();
-                        if(ipmatch != null)
-                        {
+				string connectionString = configuration.GetConnectionString("DefaultConnection");
 
-                            await _signInManager.SignInAsync(UserData, isPersistent: false);
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }
+				using (SqlConnection connection = new SqlConnection(connectionString))
+				{
+					connection.Open();
+
+					using (SqlCommand command = new SqlCommand("GetUserByCredentials", connection))
+					{
+						command.CommandType = CommandType.StoredProcedure;
+
+						command.Parameters.AddWithValue("@UserName", userName);
+						command.Parameters.AddWithValue("@Password", password);
+
+						using (SqlDataReader reader = command.ExecuteReader())
+						{
+							if (reader.HasRows)
+							{
+								reader.Read();
+
+								UserDto user = new UserDto
+								{
+									UserID = Convert.ToInt32(reader["UserID"]),
+									UserName = reader["UserName"].ToString(),
+									Password = reader["Password"].ToString(),
+									DepartmentID = Convert.ToInt32(reader["DepartmentID"]),
+									OfficeID = Convert.ToInt32(reader["OfficeID"]),
+									Designation = reader["Designation"].ToString(),
+									ActiveUser = Convert.ToBoolean(reader["ActiveUser"]),
+									AccountLock = Convert.ToBoolean(reader["AccountLock"]),
+									UserRole = reader["UserRole"].ToString(),
+								};
+								return user;
+
+							}
+						}
+					}
+
+				}
+
+				return null;
+			}
             catch (Exception)
             {
 
                 throw;
             }
-        }
+			
+		}
+
+
+		public bool Login(string userName, string Password)
+        {
+            UserDto User = GetUserByCredentials(userName, Password);
+
+            if (User == null)
+                return false;
+            else return true;
+            //try
+            //{
+            //    if (UserData != null)
+            //	{
+            //		//UserData.LastLoginTimestamp = DateTime.UtcNow;
+            //		String localIpAddress = GetLocalIPAddress();
+            //		String localMacAddress = GetLocalIPAddress();
+            //		var macmatch = context.MacAddress.Where(x => x.MAC_Address == localMacAddress).FirstOrDefault();
+            //		if (macmatch != null)
+            //		{
+            //			var ipmatch = context.IpLogs.Where(x => x.IsDeleted == false && x.IP == localIpAddress).FirstOrDefault();
+            //			if (ipmatch != null)
+            //			{
+            //                         //signinTrue
+            //				return true;
+            //			}
+            //		}
+            //	}
+            //	return false;
+            //}
+            //catch (Exception)
+            //{
+
+            //	throw;
+            //}
+		}
+
+
+    
         public string GetLocalIPAddress()
         {
             String ipAddress = "";
