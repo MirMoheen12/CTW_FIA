@@ -19,13 +19,13 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="font-weight-normal">Explosives Type wise</h6>
-                    <canvas id="explosiveChart" style="position: relative; height:60vh; width:80vw"></canvas>
+                    <canvas id="explosiveChart" style="position: relative; height:40vh; width:80vw"></canvas>
                 </div>
             </div>
         </div>
     </div>
 
-@*    @section Scripts{
+   @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
             const ctx_explosives = document.getElementById('explosiveChart');
@@ -86,16 +86,16 @@
             console.log("ready!");
             $.ajax({
                 type: "GET",
-                url: "/api/Explosives/GetExplosiveByProvince",
+                url: "/Explosives/Getdashboard",
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 success: function (response) {
 
                     console.log(response);
 
-                    const type = response.types_res.map(i => `${i.type}`);
+                    const type = response.map(i => `${i.name}`);
 
-                    const count_type = response.types_res.map(i => `${i.noExplosive}`);
+                    const count_type = response.map(i => `${i.totalRecord}`);
 
 
                     console.log(type);
@@ -159,11 +159,8 @@
                     alert("error");
                 }
             });
-        });</script>
+        });
+        </script>
 }
-*@
-    @section Scripts{
-    <script type="text/javascript">
-    </script>
- }
+
 

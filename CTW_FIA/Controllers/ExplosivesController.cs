@@ -19,7 +19,8 @@ namespace CTW_FIA.Controllers
         }
         public JsonResult Getdashboard()
         {
-            var data = dashboard.getCtwdashboardsGraphwise();
+            var data = dashboard.getCtwdashboardsExplosivetwise();
+            var dt = data.ToList().Count();
             return Json(data);
         }
 
