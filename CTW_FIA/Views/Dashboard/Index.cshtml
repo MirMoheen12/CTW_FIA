@@ -1,0 +1,606 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Main content -->
+
+<div class="row no-gutters text-dark">
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0" id="incident_count"></h3>
+                        </div>
+                    </div>
+                    @*<div class="col-3">
+                    <div class="icon icon-box-success ">
+                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                    </div>
+                    </div>*@
+                </div>
+                <h6 class="text-muted font-weight-normal">Terrorist Incidents</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0" id="group_count"></h3>
+                        </div>
+                    </div>
+                    @*<div class="col-3">
+                    <div class="icon icon-box-success">
+                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                    </div>
+                    </div>*@
+                </div>
+                <h6 class="text-muted font-weight-normal">Terrorist Groups</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0" id="person_count"></h3>
+                        </div>
+                    </div>
+                    @*<div class="col-3">
+                    <div class="icon icon-box-danger">
+                    <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+                    </div>
+                    </div>*@
+                </div>
+                <h6 class="text-muted font-weight-normal">Terrorists Information</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0" id="explosives_count"></h3>
+                        </div>
+                    </div>
+                    @*<div class="col-3">
+                    <div class="icon icon-box-success ">
+                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                    </div>
+                    </div>*@
+                </div>
+                <h6 class="text-muted font-weight-normal">Explosives</h6>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row no-gutters">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-normal">Terrorist Incidents Province Wise</h6>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-normal">Terrorists Information</h6>
+                <canvas id="barChart1"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row no-gutters">
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-normal">Explosives Type Wise</h6>
+                <canvas id="barChart2"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-normal">Terrorists Group Province Wise</h6>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+
+            $.ajax({
+                type: "GET",
+                url: "/Dashboard/Getdashboard",
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+                    console.log(response.graphDtos.length);
+                  //  alert(response.length);
+                    $("#incident_count").html(response.incidentcount);
+                    $("#group_count").html(response.groupcount);
+                    $("#person_count").html(response.personcount);
+                    $("#explosives_count").html(response.explosivecount);
+
+
+                   const province=[];
+                    const count_province=[];
+                    const type = []
+
+                    const count_type =[];
+
+                    var provincet = [];
+                    var count_provincet = [];
+                    for (let j = 0; j < response.graphDtos.length; j++) {
+                        if (response.graphDtos[j].tablename == "provincewise")
+                        {
+                           // alert(j);
+                           province.push(response.graphDtos[j].name);
+                           count_province.push(response.graphDtos[j].totalRecord);
+                        }
+                        if (response.graphDtos[j].tablename == "Exwise") {
+                            // alert(j);
+                            type.push(response.graphDtos[j].name);
+                            count_type.push(response.graphDtos[j].totalRecord);
+                        }
+                        if (response.graphDtos[j].tablename == "pprovince") {
+                            // alert(j);
+                            provincet.push(response.graphDtos[j].name);
+                            count_provincet.push(response.graphDtos[j].totalRecord);
+                        }
+                    }
+
+
+
+
+               
+
+
+                   console.log(province);
+                    console.log(count_province);
+                    const myChart = new Chart(ctx_provinces, {
+                        type: 'bar',
+
+                        data: {
+                            labels: province,
+                            datasets: [{
+                                label: '',
+                                data: count_province,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 1
+
+                            }
+                            ]
+                        },
+                        options: c_options
+
+                    });
+
+
+
+
+                    const ctx_explosives = document.getElementById('barChart2');
+
+                    const barChart2 = new Chart(ctx_explosives, {
+                        type: 'bar',
+                        data: {
+                            labels: type,
+                            datasets: [{
+                                label: '# of Explosives Order by Types',
+                                data: count_type,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 1
+
+                            }]
+                        },
+                        options: c_options
+                    });
+                    //const ctx_groupprovinces = document.getElementById('pieChart');
+                    //$.ajax({
+                    //    type: "GET",
+                    //    url: "/api/Group/GetGroupsByProvince",
+                    //    dataType: 'json',
+                    //    contentType: 'application/json; charset=utf-8',
+                    //    success: function (response) {
+
+                    //       
+
+                    //        const province = response.provices_res.map(i => `${i.province}`);
+
+                    //        const count_province = response.provices_res.map(i => `${i.noGroup}`);
+
+
+                    //        // console.log(province);
+                    //        // console.log(count_province);
+
+
+                    //        //console.log(arr);
+                    //        const pieChart = new Chart(ctx_groupprovinces, {
+                    //            type: 'pie',
+                    //            data: {
+                    //                labels: province,
+                    //                datasets: [{
+                    //                    label: '# of Groups Order by Province',
+                    //                    data: count_province,
+                    //                    backgroundColor: c_background_colors,
+                    //                    borderColor: c_background_colors,
+                    //                    borderWidth: 1
+
+                    //                }]
+                    //            },
+                    //            options: {
+                    //                responsive: true,
+                    //                scales: {
+                    //                    y: {
+                    //                        ticks: {
+                    //                            // Include a dollar sign in the ticks
+
+                    //                            fixedStepSize: 1
+                    //                        }
+                    //                    }
+                    //                },
+                    //                legend: {
+                    //                    labels: {
+                    //                        // This more specific font property overrides the global property
+                    //                        font: {
+                    //                            size: 22
+                    //                        }
+                    //                    }
+                    //                },
+                    //                tooltips: {
+                    //                    enabled: false
+                    //                },
+                    //                plugins: {
+                    //                    datalabels: {
+                    //                        anchor: 'end',
+                    //                        align: 'end',
+                    //                        labels: {
+                    //                            value: {
+                    //                                color: 'black'
+                    //                            },
+                    //                            font: {
+                    //                                size: 22
+                    //                            }
+                    //                        }
+                    //                    }
+                    //                }
+                    //            }
+                    //        });
+                    //    },
+                    //    error: function (response) {
+                    //        alert("error");
+                    //    }
+                    //});
+                   
+    
+                    const ctx_terroristprovinces = document.getElementById('barChart1');
+
+               
+
+                            const barChart1 = new Chart(ctx_terroristprovinces, {
+                                type: 'bar',
+                                data: {
+                                    labels: provincet,
+                                    datasets: [{
+                                        label: '# of Terrorists Order By Provinces',
+                                        data: count_provincet,
+                                        backgroundColor: c_background_colors,
+                                        borderColor: c_background_colors,
+                                        borderWidth: 2,
+
+
+                                    }]
+                                },
+                                options: c_options
+                            });
+             
+                },
+                error: function (response) {
+                    alert("error");
+                }
+            });
+
+            const ctx_provinces = document.getElementById('myChart');
+            Chart.register(ChartDataLabels);
+            Chart.defaults.set('plugins.datalabels', {
+                color: '#000000'
+            });
+            const c_options = {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    x: {
+                        stacked: true
+                    }
+                },
+                legend: {
+                    labels: {
+                        // This more specific font property overrides the global property
+                        font: {
+                            size: 22
+                        }
+                    }
+                },
+                tooltips: {
+                    enabled: false
+                },
+                plugins: {
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        labels: {
+                            value: {
+                                color: 'black'
+                            },
+                            font: {
+                                size: 22
+                            }
+                        }
+                    }
+                }
+            };
+            const c_background_colors =
+                [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235,1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192,1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64,1)',
+                    'rgba(9, 113, 7, 0.94)',
+                    'rgba(10, 73, 231, 0.94)',
+                    'rgba(73, 49, 226, 1)',
+                    'rgba(138, 38, 64, 1)',
+
+                ];
+            // console.log("ready!");
+            //$.ajax({
+            //    type: "GET",
+            //    url: "/Dashboard/Getdashboard",
+            //    dataType: 'json',
+            //    contentType: 'application/json; charset=utf-8',
+            //    success: function (response) {
+            //        //console.log(response);
+            //      //  console.log(response);
+            //        //$("#incident_count").html(response.totalCount);
+
+            //        //const province = response.provices_res.map(i => `${i.province}`);
+
+            //        //const count_province = response.provices_res.map(i => `${i.noIncident}`);
+
+
+            //        //console.log(province);
+            //        // console.log(count_province);
+            //        //const myChart = new Chart(ctx_provinces, {
+            //        //    type: 'bar',
+
+            //        //    data: {
+            //        //        labels: province,
+            //        //        datasets: [{
+            //        //            label: '# of Incidents Order by Provinces',
+            //        //            data: count_province,
+            //        //            backgroundColor: c_background_colors,
+            //        //            borderColor: c_background_colors,
+            //        //            borderWidth: 1
+
+            //        //        }
+            //        //        ]
+            //        //    },
+            //        //    options: c_options
+
+            //        //});
+            //        //const ctx_groupprovinces = document.getElementById('pieChart');
+            //        //$.ajax({
+            //        //    type: "GET",
+            //        //    url: "/api/Group/GetGroupsByProvince",
+            //        //    dataType: 'json',
+            //        //    contentType: 'application/json; charset=utf-8',
+            //        //    success: function (response) {
+
+            //        //        $("#group_count").html(response.totalCount);
+
+            //        //        const province = response.provices_res.map(i => `${i.province}`);
+
+            //        //        const count_province = response.provices_res.map(i => `${i.noGroup}`);
+
+
+            //        //        // console.log(province);
+            //        //        // console.log(count_province);
+
+
+            //        //        //console.log(arr);
+            //        //        const pieChart = new Chart(ctx_groupprovinces, {
+            //        //            type: 'pie',
+            //        //            data: {
+            //        //                labels: province,
+            //        //                datasets: [{
+            //        //                    label: '# of Groups Order by Province',
+            //        //                    data: count_province,
+            //        //                    backgroundColor: c_background_colors,
+            //        //                    borderColor: c_background_colors,
+            //        //                    borderWidth: 1
+
+            //        //                }]
+            //        //            },
+            //        //            options: {
+            //        //                responsive: true,
+            //        //                scales: {
+            //        //                    y: {
+            //        //                        ticks: {
+            //        //                            // Include a dollar sign in the ticks
+
+            //        //                            fixedStepSize: 1
+            //        //                        }
+            //        //                    }
+            //        //                },
+            //        //                legend: {
+            //        //                    labels: {
+            //        //                        // This more specific font property overrides the global property
+            //        //                        font: {
+            //        //                            size: 22
+            //        //                        }
+            //        //                    }
+            //        //                },
+            //        //                tooltips: {
+            //        //                    enabled: false
+            //        //                },
+            //        //                plugins: {
+            //        //                    datalabels: {
+            //        //                        anchor: 'end',
+            //        //                        align: 'end',
+            //        //                        labels: {
+            //        //                            value: {
+            //        //                                color: 'black'
+            //        //                            },
+            //        //                            font: {
+            //        //                                size: 22
+            //        //                            }
+            //        //                        }
+            //        //                    }
+            //        //                }
+            //        //            }
+            //        //        });
+            //        //    },
+            //        //    error: function (response) {
+            //        //        alert("error");
+            //        //    }
+            //        //});
+            //        //const ctx_explosives = document.getElementById('barChart2');
+            //        ////console.log("ready!");
+            //        //$.ajax({
+            //        //    type: "GET",
+            //        //    url: "/api/Explosives/GetExplosiveByProvince",
+            //        //    dataType: 'json',
+            //        //    contentType: 'application/json; charset=utf-8',
+            //        //    success: function (response) {
+
+            //        //        
+
+            //        //        const type = response.types_res.map(i => `${i.type}`);
+
+            //        //        const count_type = response.types_res.map(i => `${i.noExplosive}`);
+
+
+            //        //        //console.log(type);
+            //        //        //  console.log(count_type);
+
+            //        //        const barChart2 = new Chart(ctx_explosives, {
+            //        //            type: 'bar',
+            //        //            data: {
+            //        //                labels: type,
+            //        //                datasets: [{
+            //        //                    label: '# of Explosives Order by Types',
+            //        //                    data: count_type,
+            //        //                    backgroundColor: c_background_colors,
+            //        //                    borderColor: c_background_colors,
+            //        //                    borderWidth: 1
+
+            //        //                }]
+            //        //            },
+            //        //            options: c_options
+            //        //        });
+            //        //    },
+            //        //    error: function (response) {
+            //        //        alert("error");
+            //        //    }
+            //        //});
+            //        //const ctx_terroristprovinces = document.getElementById('barChart1');
+
+            //        //$.ajax({
+            //        //    type: "GET",
+            //        //    url: "/AllRcord/getTerroristprovicewise",
+            //        //    dataType: 'json',
+            //        //    success: function (result) {
+            //        //        var tocount = 0;
+            //        //        var province = [];
+            //        //        var count_province = [];
+            //        //        for (let i = 0; i < result.length; i++) {
+
+            //        //            province.push(result[i].provinceName)
+            //        //            count_province.push(result[i].totalNum)
+            //        //            tocount = tocount + result[i].totalNum;
+            //        //        }
+
+            //        //        $("#person_count").html(tocount);
+
+            //        //        //console.log(province);
+            //        //        //console.log(count_province);
+
+            //        //        const barChart1 = new Chart(ctx_terroristprovinces, {
+            //        //            type: 'bar',
+            //        //            data: {
+            //        //                labels: province,
+            //        //                datasets: [{
+            //        //                    label: '# of Terrorists Order By Provinces',
+            //        //                    data: count_province,
+            //        //                    backgroundColor: c_background_colors,
+            //        //                    borderColor: c_background_colors,
+            //        //                    borderWidth: 2,
+
+
+            //        //                }]
+            //        //            },
+            //        //            options: c_options
+            //        //        });
+            //        //    },
+            //        //    error: function (response) {
+            //        //        alert("error province");
+            //        //    }
+            //        //});
+            //    },
+            //    error: function (response) {
+            //        alert("error");
+            //    }
+            //});
+
+
+        });
+        //function getprRepo() {
+        //    $("#personprovince option").remove();
+        //    $("#SelectDistrict option").remove();
+        //    var personprovince = $('#personprovince');
+        //    $.ajax({
+        //        url: '/AllRcord/getProvinceList'
+        //        , type: 'GET'
+        //        , data: { country: country }
+        //        , contentType: 'application/json'
+        //        , success: function (response) {
+
+        //            var Prlist = "";
+        //            Prlist = "<option>Select Province</option>";
+        //            for (var m = 0; m < response.length; m++) {
+        //                Prlist += "<option value='" + response[m] + "'>" + response[m] + "</option>";
+
+        //            }
+        //            personprovince.append(Prlist);
+
+        //        }
+        //    });
+        //}
+    </script>
+}
