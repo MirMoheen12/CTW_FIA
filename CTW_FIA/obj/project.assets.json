@@ -11033,19 +11033,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mir Moheen Imtiaz\\.nuget\\packages\\": {}
+    "C:\\Users\\Muhammad Abdullah\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CTW_FIA\\CTW_FIA\\CTW_FIA.csproj",
+      "projectUniqueName": "C:\\Users\\Muhammad Abdullah\\source\\repos\\CTW_FIA\\CTW_FIA\\CTW_FIA.csproj",
       "projectName": "CTW_FIA",
-      "projectPath": "D:\\CTW_FIA\\CTW_FIA\\CTW_FIA.csproj",
-      "packagesPath": "C:\\Users\\Mir Moheen Imtiaz\\.nuget\\packages\\",
-      "outputPath": "D:\\CTW_FIA\\CTW_FIA\\obj\\",
+      "projectPath": "C:\\Users\\Muhammad Abdullah\\source\\repos\\CTW_FIA\\CTW_FIA\\CTW_FIA.csproj",
+      "packagesPath": "C:\\Users\\Muhammad Abdullah\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Muhammad Abdullah\\source\\repos\\CTW_FIA\\CTW_FIA\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Mir Moheen Imtiaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Muhammad Abdullah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 D:\CTW_FIA\CTW_FIA\bin\Debug\net6.0\appsettings.Development.json
 D:\CTW_FIA\CTW_FIA\bin\Debug\net6.0\appsettings.json
 D:\CTW_FIA\CTW_FIA\bin\Debug\net6.0\CTW_FIA.staticwebassets.runtime.json
@@ -1612,4 +1611,3 @@ C:\Users\ADMIN\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\refint\CTW_FIA.dll
 C:\Users\ADMIN\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.pdb
 C:\Users\ADMIN\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.genruntimeconfig.cache
 C:\Users\ADMIN\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\ref\CTW_FIA.dll
->>>>>>> MIR
