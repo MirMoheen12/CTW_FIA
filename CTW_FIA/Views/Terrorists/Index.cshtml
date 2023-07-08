@@ -1,0 +1,205 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles{
+
+}
+
+    <div class="row no-gutters">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="font-weight-normal">Terrorist Province Wise</h6>
+                    <canvas id="tprovinceChart" style="position: relative; height:60vh; width:80vw"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="font-weight-normal">Head Headmoney</h6>
+                    <canvas id="headmoneyChart" style="position: relative; height:60vh; width:80vw"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="font-weight-normal">Accusation Status Wise</h6>
+                    <canvas id="accusationChart" style="position: relative; height:40vh; width:80vw"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+@*    @section Scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            const ctx_accusation = document.getElementById('accusationChart');
+            const ctx_headmoney = document.getElementById('headmoneyChart');
+            Chart.register(ChartDataLabels);
+            Chart.defaults.set('plugins.datalabels', {
+                color: '#000000'
+            });
+            const c_options = {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    x: {
+                        stacked: true
+                    }
+                },
+                legend: {
+                    labels: {
+                        // This more specific font property overrides the global property
+                        font: {
+                            size: 22
+                        }
+                    }
+                },
+                tooltips: {
+                    enabled: false
+                },
+                plugins: {
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        labels: {
+                            value: {
+                                color: 'black'
+                            },
+                            font: {
+                                size: 22
+                            }
+                        }
+                    }
+                }
+            };
+            const c_background_colors =
+                [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235,1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192,1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64,1)',
+                    'rgba(9, 113, 7, 0.94)',
+                    'rgba(10, 73, 231, 0.94)',
+                    'rgba(73, 49, 226, 1)',
+                    'rgba(138, 38, 64, 1)',
+
+                ];
+
+            $.ajax({
+                type: "GET",
+                url: "/api/People/GetTerroristByProvince",
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+
+                    const accusation = response.accusation_res.map(i => `${i.accusation}`);
+
+                    const count_accusation = response.accusation_res.map(i => `${i.noTerrorist}`);
+
+                    const headmoney = response.headmoney_res.map(i => `${i.headmoney}`);
+
+                    const count_headmoney = response.headmoney_res.map(i => `${i.noTerrorist}`);
+
+                    console.log(accusation);
+                    console.log(count_accusation);
+                    console.log(headmoney);
+                    console.log(count_headmoney);
+
+                    const myChart_accuation = new Chart(ctx_accusation, {
+                        type: 'bar',
+                        data: {
+                            labels: accusation,
+                            datasets: [{
+                                label: '# of Terrorist Order by Accusation',
+                                data: count_accusation,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 2
+
+                            }]
+                        },
+                        options: c_options
+                    });
+
+                    const myChart_headmoney = new Chart(ctx_headmoney, {
+                        type: 'bar',
+                        data: {
+                            labels: headmoney,
+                            datasets: [{
+                                label: '# of Terrorist Order by Head Money',
+                                data: count_headmoney,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 2
+
+                            }]
+                        },
+                        options: c_options
+                    });
+
+                    const ctx_terroristprovinces = document.getElementById('tprovinceChart');
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/api/Address/GetPersonAddressByProvince",
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (response) {
+                            console.log(response);
+                            $("#person_count").html(response.totalCount);
+
+
+                            const province = response.provices_res.map(i => `${i.province}`);
+
+                            const count_province = response.provices_res.map(i => `${i.noAddress}`);
+
+
+                            console.log(province);
+                            console.log(count_province);
+
+                            const barChart1 = new Chart(ctx_terroristprovinces, {
+                                type: 'bar',
+                                data: {
+                                    labels: province,
+                                    datasets: [{
+                                        label: '# of Terrorists Order By Provinces',
+                                        data: count_province,
+                                        backgroundColor: c_background_colors,
+                                        borderColor: c_background_colors,
+                                        borderWidth: 2
+
+                                    }]
+                                },
+                                options: c_options
+                            });
+                        },
+                        error: function (response) {
+                            alert("error");
+                        }
+                    });
+                    //alert(arr);
+                },
+                error: function (response) {
+                    alert("error");
+                }
+            });
+        });
+
+    </script>
+}
+*@
+
+ @section Scripts{
+    <script type="text/javascript">
+    </script>
+ }
