@@ -379,3 +379,7 @@ FodyWeavers.xsd
 /.vs/CTW_FIA/v17/.suo
 /CTW_FIA/bin/Debug/net6.0/CTW_FIA.dll
 /CTW_FIA/obj/Debug/net6.0/staticwebassets.development.json
+/.vs/CTW_FIA/DesignTimeBuild/.dtbcache.v2
+/.vs/ProjectEvaluation/ctw_fia.metadata.v6.1
+/.vs/ProjectEvaluation/ctw_fia.projects.v6.1
+/.vs/CTW_FIA/v17/.futdcache.v2
