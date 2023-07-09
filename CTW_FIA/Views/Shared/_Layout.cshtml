@@ -212,6 +212,29 @@
 
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa-solid fa-database"></i>
+                                <p>
+
+                                    Data Entry
+                                    <i class="fas fa-angle-left right" aria-hidden="true"></i>
+
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview ">
+                                <li class="nav-item">
+                                    <a class="nav-link " href="/Record/AddRecord">
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                        <p>   Add Record</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Admin/Records/Addmediafile">
+                                        <i class="fa-solid fa-photo-film"></i>
+                                        <p> Add Media</p>
+                                    </a>
+                                </li>
                  @*       
                         <li class="nav-item @(ViewBag.ParentTitle == ParentTitle.DatabasePreview?" menu-open" : "")" id="dbpreview">
                             <a href="#" class="nav-link @(ViewBag.ParentTitle == ParentTitle.DatabasePreview?"active" : "")">
@@ -497,29 +520,7 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item @(ViewBag.ParentTitle == ParentTitle.DataEntry?" menu-open" : "")">
-                            <a href="#" class="nav-link @(ViewBag.ParentTitle == ParentTitle.DataEntry?"active" : "")">
-                                <i class="fa-solid fa-database"></i>
-                                <p>
-
-                                    Data Entry
-                                    <i class="fas fa-angle-left right" aria-hidden="true"></i>
-
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview ">
-                                <li class="nav-item">
-                                    <a class="nav-link @(ViewBag.Title == PageTitle.AddRecord?"active" : "")" href="/Admin/Records/AddRecord">
-                                        <i class="fa-solid fa-circle-plus"></i>
-                                        <p>   Add Record</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link @(ViewBag.Title == PageTitle.AddMediaFile?"active" : "")" href="/Admin/Records/Addmediafile">
-                                        <i class="fa-solid fa-photo-film"></i>
-                                        <p> Add Media</p>
-                                    </a>
-                                </li>
+                
 
 
                             </ul>
