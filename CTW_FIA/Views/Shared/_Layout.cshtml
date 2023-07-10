@@ -54,6 +54,10 @@
             -webkit-animation: spin 2s linear infinite;
             animation: spin 2s linear infinite;
         }
+        .card
+        {
+            margin-left:10PX;
+        }
 
         .inner-div {
             background-color: white;
@@ -117,8 +121,8 @@
 
             <!-- Brand Logo -->
             <a class="brand-link ml-4" href="#">
-                <img src="/Content/assets/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-2 ml-5" style="opacity: .8">
-                <span class="brand-text font-weight-light">CTW</span>
+                <img src="/Content/assets/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-2 ml-5" style="opacity: .8;max-height:46Px !important;">
+                <span class="brand-text font-weight-light">&nbsp</span>
 
             </a>
 
@@ -129,7 +133,7 @@
                     <div class="image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Admin</a>
+                        <a href="#" class="d-block"></a>
                     </div>
                 </div>
 
@@ -160,11 +164,11 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item"" >
+                        <li class="nav-item" >
                             <a href="#" class="nav-link">
                                 <i class="fa-solid fa-chart-bar"></i>
                                 <p>
-                                    Graph Dashboard
+                                    Graphs
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -174,7 +178,8 @@
                                         <a class="nav-link" href="/incidents/index">
                                             <i class="fa fa-fire" aria-hidden="true"></i>
                                             <p>
-                                                Incidents
+                                            Terrorist
+                                            Incidents
                                                 <span class="badge badge-info right" id="incidents_count"></span>
                                             </p>
                                         </a>
@@ -185,7 +190,7 @@
                                     <a class="nav-link " href="/Terrorists/index">
                                         <i class="fas fa-users" aria-hidden="true"></i>
                                         <p>
-                                            Terrorists
+                                            Person Involved
                                             <span class="badge badge-info right" id="terrorists_count"></span>
                                         </p>
                                     </a>
