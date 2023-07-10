@@ -11,7 +11,16 @@ namespace CTW_FIA.Models.DatabaseModels
         {
 
         }
-        //public DbSet<Paymencategory> Paymencategory { get; set; }
 
-    }
+        public DbSet<MacAddress> MacAddress { get; set; }
+		public DbSet<IpLogs> IpLogs { get; set; }
+
+		//public DbSet<Paymencategory> Paymencategory { get; set; }
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			// Other configurations...
+
+			base.OnModelCreating(modelBuilder);
+		}
+	}
 }

@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewData["Title"] = "AddRecord";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row no-gutters text-dark">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+
+                @* <h4 class="card-title">Add Record</h4>*@
+
+                <form class="forms-sample">
+                    <div class="form-group row">
+                        <label for="ForwardLocking" class="col-sm-3 col-form-label">Select Databases</label>
+                        <div class="col-sm-5">
+                            <select class="form-control" id="database">
+                      @*          @if (ViewBag.data.Count != 0)
+                                {
+                                    <option value="Select">Select</option>
+                                }
+
+                                @for (var i = 0; i < ViewBag.data.Count; i++)
+                                {
+                                    <option value="@ViewBag.data[i].TableName">@ViewBag.data[i].TableName</option>
+                                }
+                                @if (ViewBag.data.Count == 0)
+                                {
+                                    <option selected value="Select">You have no access to Add Record</option>
+                                }*@
+
+                                      <option value="Select">Select</option>
+                                <option value="MainIncident">Terrorist Incident</option>
+                                <option value="PersonInvolved">Terrorist Involved</option>
+                                <option value="Addresses">Addresses</option>
+                                <option value="Groups">Terrorist Groups</option>
+                                <option value="Vehicle">Vehicles</option>
+                                <option value="Communication">Communications</option>
+                                <option value="Detonators">Detonators</option>
+                                <option value="Explosives">Explosives</option>
+                                <option value="Ordinance">Ordnance</option>
+                                <option value="Evidence">Evidence</option>
+                                <option value="Equipment">Equipment</option>
+                                <option value="InitiationSystem">Initiation System</option>
+                                <option value="Components">Components</option>
+                                <option value="CBRN">CBRN</option>
+                                <option value="Firearms">Firearms</option>
+                                <option value="BankAccount">Bank Account</option>
+                                <option value="Property">Properties</option>
+                                <option value="Chemical"> Chemical</option>
+                                <option value="PowerSource"> Power Source</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    @*<div class="col-md-3 grid-margin stretch-card">
+    <div class="card">
+    <div class="card-body">
+    <h4 class="card-title">Matched Records</h4>
+    <p class="card-description" style="font-size: 12px;">No data to display</p>
+
+    </div>
+    </div>
+    </div>*@
+</div>
+
+<div id="DivContainerForCustForm">
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" integrity="sha512-FOhq9HThdn7ltbK8abmGn60A/EMtEzIzv1rvuh+DqzJtSGq8BRdEN0U+j0iKEIffiw/yEtVuladk6rsG4X6Uqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#database").change(function () {
+                var selectedValue = $("#database").val();
+
+                switch (selectedValue) {
+                    case "PersonInvolved":
+                        $("#DivContainerForCustForm").load("@Url.Action("AddPerson","RecordFormViews")");
+                        break;
+
+
+
+                        if (val == "Terrorist Incident") {
+                            $("#DivContainerForCustForm").load("@Url.Action("NewIncident","RecordFormViews")");
+                        }
+
+
+
+
+
+                        else if (val == "Terrorist Group") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Groups","Records")");
+                        }
+                        else if (val == "Addresses") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Add_Person_Address","Records")");
+                        }
+
+                        else if (val == "Vehicles") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Vehicles","Records")");
+                        }
+                        else if (val == "Communications") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Communications","Records")");
+                        }
+                        else if (val == "Detonators") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Detonators","Records")");
+                        }
+                        else if (val == "Explosive") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Explosives","Records")");
+                        }
+                        else if (val == "Ordinance") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Ordinance","Records")");
+                        }
+
+                        else if (val == "Evidence") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Evidence","Records")");
+                        }
+                        else if (val == "Equipments") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Equipment","Records")");
+                        }
+                        else if (val == "intiation System") {
+                            $("#DivContainerForCustForm").load("@Url.Action("InitiationSystem","Records")");
+                        }
+                        else if (val == "Components") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Components","Records")");
+                        }
+
+                        else if (val == "CBRN") {
+                            $("#DivContainerForCustForm").load("@Url.Action("CBRN","Records")");
+                        }
+                        else if (val == "Properties") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Property","Records")");
+                        }
+                        else if (val == "Bank Account") {
+                            $("#DivContainerForCustForm").load("@Url.Action("BankAccount","Records")");
+                        }
+                        else if (val == "Firearms") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Firearms","Records")");
+                        }
+
+                        else if (val == "Chemicals") {
+                            $("#DivContainerForCustForm").load("@Url.Action("Chemical","Records")");
+                        }
+                        else if (val == "Power Source") {
+                            $("#DivContainerForCustForm").load("@Url.Action("PowerSource","Records")");
+                        }
+                        else {
+                            $("#DivContainerForCustForm").empty();
+                        }
+
+
+
+            });
+        
+        });
+
+    </script>
+}
