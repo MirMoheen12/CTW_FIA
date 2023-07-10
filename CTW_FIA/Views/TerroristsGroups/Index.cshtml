@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Foreign Terrorits Groups</h6>
+                    <h6 class="font-weight-normal text-center">Foreign </h6>
                     <canvas id="foreignChart" style="position: relative; height:28vh; width:40vw"></canvas>
                 </div>
             </div>
@@ -19,7 +19,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">With in Pakistan</h6>
+                    <h6 class="font-weight-normal text-center"> Pakistani</h6>
                     <canvas id="pakChart" style="position: relative; height:28vh; width:40vw"></canvas>
                 </div>
             </div>
@@ -29,7 +29,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Most Effective Top 10 with Strength</h6>
+                    <h6 class="font-weight-normal text-center"> Top 10</h6>
                     <canvas id="strengthChart" style="position: relative; height:50vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -198,24 +198,26 @@
                 responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        grace: '70%',
+                        ticks: {
+                            callback: function (value) {
+                                if (value === this.max) {
+                                    return value + ' (' + this.getLabelForValue(value) + ')'; // Display the count of the highest bar
+                                } else {
+                                    return value;
+                                }
+                            }
+                        }
                     },
                     x: {
                         stacked: true
                     }
                 },
-                legend: {
-                    labels: {
-                        // This more specific font property overrides the global property
-                        font: {
-                            size: 22
-                        }
-                    }
-                },
-                tooltips: {
-                    enabled: false
-                },
                 plugins: {
+                    legend: {
+                        display: false // Remove the legend
+                    },
                     datalabels: {
                         anchor: 'end',
                         align: 'end',
@@ -230,6 +232,8 @@
                     }
                 }
             };
+
+
             const c_background_colors =
                 [
                     'rgba(255, 99, 132, 1)',

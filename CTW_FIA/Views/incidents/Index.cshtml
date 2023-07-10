@@ -6,10 +6,14 @@
 }
 
     <div class="row no-gutters">
+         <div class="col-md-12"><h2 class="font-weight-normal text-center">Terrorist Incidents Analysis – Graphs </h2></div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Province Wise</h6>
+                    <h6 class="font-weight-normal text-center">
+                        Terrorist Incident Analysis
+                        (Province Wise)
+                    </h6>
                     <canvas id="myChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -17,7 +21,10 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Year Wise</h6>
+                    <h6 class="font-weight-normal text-center">
+                        Terrorist Incident Analysis
+                        (Year Wise)
+                    </h6>
                     <canvas id="yearChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -27,7 +34,10 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Weapon Wise</h6>
+                    <h6 class="font-weight-normal text-center">
+                        Terrorist Incident Analysis
+                        (Weapon Wise)
+                    </h6>
                     <canvas id="weaponChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -35,7 +45,10 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Target Wise</h6>
+                    <h6 class="font-weight-normal text-center">
+                        errorist Incident Analysis
+                        (Target Wise)
+                    </h6>
                     <canvas id="targetChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -44,7 +57,10 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h6 class="font-weight-normal">Motive Wise</h6>
+                <h6 class="font-weight-normal text-center text-center">
+                    errorist Incident Analysis
+                    (Motive Wise)
+                </h6>
                 <canvas id="motiveChart" style="position: relative; height:60vh; width:80vw"></canvas>
             </div>
         </div>
@@ -267,24 +283,26 @@
                 responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        grace: '70%', 
+                        ticks: {
+                            callback: function (value) {
+                                if (value === this.max) {
+                                    return value + ' (' + this.getLabelForValue(value) + ')'; // Display the count of the highest bar
+                                } else {
+                                    return value;
+                                }
+                            }
+                        }
                     },
                     x: {
                         stacked: true
                     }
                 },
-                legend: {
-                    labels: {
-                        // This more specific font property overrides the global property
-                        font: {
-                            size: 22
-                        }
-                    }
-                },
-                tooltips: {
-                    enabled: false
-                },
                 plugins: {
+                    legend: {
+                        display: false // Remove the legend
+                    },
                     datalabels: {
                         anchor: 'end',
                         align: 'end',
@@ -299,6 +317,9 @@
                     }
                 }
             };
+
+
+
             const c_background_colors =
                 [
                     'rgba(255, 99, 132, 1)',
