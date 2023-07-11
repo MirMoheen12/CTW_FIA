@@ -1,0 +1,399 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="row no-gutters">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h5>Equipment Form</h5>
+
+        <form class="forms-sample">
+          <fieldset class="border p-3">
+            <legend class="float-none w-auto p-2" style="font-size: 11px">
+              Equipment Details
+            </legend>
+            <div class="form-group row">
+              <label
+                for="Other"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Category</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eqCategory"
+                  placeholder=""
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label
+                for="Make"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Name
+              </label>
+              <div class="col-sm-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eqName"
+                  placeholder=""
+                />
+              </div>
+
+              <label
+                for="QuantityMeasurement"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Manufacturer</label
+              >
+              <div class="col-sm-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eqManufacturer"
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="Time"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Type</label
+              >
+              <div class="col-sm-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eqType"
+                  placeholder=""
+                />
+              </div>
+
+              <label
+                for="Seizedby"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Serial No.</label>
+              <div class="col-sm-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eqSerial"
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="Time"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Quantity</label>
+              <div class="col-sm-4">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eqQuantity"
+                  placeholder=""
+                />
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="border p-3">
+            <br />
+            <div class="form-group row">
+              <label
+                for="Remarks"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px">Remarks</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="eqRemarks" rows="4"></textarea>
+              </div>
+            </div>
+          </fieldset>
+          <br />
+          <button type="button" class="btn btn-primary mr-2" onclick="ISClick()">Save</button>
+          <button class="btn btn-dark">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  @*<div class="col-md-3 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Matched Records</h4>
+        <p class="card-description">No data to display</p>
+      </div>
+    </div>
+  </div>*@
+</div>
+
+   <script type="text/javascript">
+         var vpage_name ="";
+         var vparam_x ="";
+         var vpage_status = "";
+         $(document).ready(function () {
+         const urlParams = new URLSearchParams(window.location.search);
+         const param_x = urlParams.get('id');
+         const page_status = urlParams.get('pageStatus');
+         const page_name= urlParams.get('pageName');
+         vpage_name=page_name;
+         vparam_x=param_x;
+         vpage_status=page_status;
+         if(page_status == "u" && param_x != "" && page_name == "PreviewEquipmentRecord")
+            {
+                 // alert(page_status +" " +param_x +" " +page_name);
+                  ViewEquipments(param_x)
+            } 
+         });
+
+        function ISClick()
+         {
+            if(vpage_status == "u" && vparam_x != "" && vpage_name == "PreviewEquipmentRecord")
+            {
+                updateEquipment(vparam_x);
+            } 
+            else
+            {
+               addEquipment();
+            }
+            
+        }
+  
+    function addEquipment() {
+      var eqCategory = $("#eqCategory").val();
+      var eqName = $("#eqName").val();
+      var eqManufacturer = $("#eqManufacturer").val();
+      var eqType = $("#eqType").val();
+      var eqSerial = $("#eqSerial").val();
+      var eqQuantity = $("#eqQuantity").val();
+      var eqRemarks = $("#eqRemarks").val();
+     
+
+      var settings = {
+  "url": "/api/Equipments",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+    "intID": 0,
+    "strURN": "string",
+    "category": eqCategory,
+    "type": eqType,
+    "name": eqName,
+    "quantity": eqQuantity,
+    "serialNumber": eqSerial,
+    "manufacturer": eqManufacturer,
+    "memRemarks": eqRemarks,
+    "createdBy": "Admin",
+    "dteCreated": "2022-04-03T20:11:50.797Z",
+    "dteSent": "2022-04-03T20:11:50.797Z",
+    "lastModifiedBy": "Admin",
+    "lastModified": "2022-04-03T20:11:50.797Z"
+  }),
+};
+
+$.ajax(settings).done(function (response) {
+      console.log(response);
+       alert("Equipment has been Added Successfully");
+        if (confirm('Do you want to add Media File ?')) {
+                 
+                   console.log("Media File.");
+                   localStorage.setItem("strURN", response.strURN);
+                   localStorage.setItem("tableName", "Equipment");
+                   window.location.href = "/Admin/Records/AddMedia";
+                  }
+                  else
+                  {
+                       localStorage.setItem("strURN", response.strURN);
+                   localStorage.setItem("tableName", "Equipment");
+                     var id=response.strURN;
+                   //  window.location.href = "/Admin/Records/PreviewEquipmentRecord?id="+id
+                     window.location.href = "/Admin/Records/PreviewRecord?controller=Equipments&id="+id;
+                  }
+
+       
+    });
+    }
+      function updateEquipment(std) {
+      var strid=std;
+      var eqCategory = $("#eqCategory").val();
+      var eqName = $("#eqName").val();
+      var eqManufacturer = $("#eqManufacturer").val();
+      var eqType = $("#eqType").val();
+      var eqSerial = $("#eqSerial").val();
+      var eqQuantity = $("#eqQuantity").val();
+      var eqRemarks = $("#eqRemarks").val();
+     
+      var settings = {
+          "url": "/api/Equipments/"+strid,
+          "method": "Put",
+          "timeout": 0,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "data": JSON.stringify({
+            "intID": 0,
+            "strURN": strid,
+            "category": eqCategory,
+            "type": eqType,
+            "name": eqName,
+            "quantity": eqQuantity,
+            "serialNumber": eqSerial,
+            "manufacturer": eqManufacturer,
+            "memRemarks": eqRemarks,
+            "createdBy": "Admin",
+            "dteCreated": "2022-04-03T20:11:50.797Z",
+            "dteSent": "2022-04-03T20:11:50.797Z",
+            "lastModifiedBy": "Admin",
+            "lastModified": "2022-04-03T20:11:50.797Z"
+          }),
+        };
+
+        $.ajax(settings).done(function (response) {
+          console.log(response);
+           alert("Equipment has been updated Successfully");
+              var id=response.strURN;
+                   //  window.location.href = "/Admin/Records/PreviewEquipmentRecord?id="+id;
+                 window.location.href = "/Admin/Records/PreviewRecord?controller=Equipments&id="+strid;
+        });
+    }
+//     function updateEquipment() {
+//      var eqCategory = $("#eqCategory").val();
+//      var eqName = $("#eqName").val();
+//      var eqManufacturer = $("#eqManufacturer").val();
+//      var eqType = $("#eqType").val();
+//      var eqSerial = $("#eqSerial").val();
+//      var eqQuantity = $("#eqQuantity").val();
+//      var eqRemarks = $("#eqRemarks").val();
+//      var strid="172CD22E00EQP1";
+
+//      var settings = {
+//              "url": "/api/Equipments",
+//              "method": "Put",
+//              "timeout": 0,
+//              "headers": {
+//                "Content-Type": "application/json"
+//              },
+//              "data": JSON.stringify({
+//                "intID": 0,
+//                "strURN": ,
+//                "category": eqCategory,
+//                "type": eqType,
+//                "name": eqName,
+//                "quantity": eqQuantity,
+//                "serialNumber": eqSerial,
+//                "manufacturer": eqManufacturer,
+//                "memRemarks": eqRemarks,
+//                "createdBy": "Admin",
+//                "dteCreated": "2022-04-03T20:11:50.797Z",
+//                "dteSent": "2022-04-03T20:11:50.797Z",
+//                "lastModifiedBy": "Admin",
+//                "lastModified": "2022-04-03T20:11:50.797Z"
+//              }),
+//            };
+
+//$.ajax(settings).done(function (response) {
+//  console.log(response);
+//   alert("Equipment has been updated Successfully");
+//});
+//    }
+
+      function ViewEquipments(strid)
+      {
+           
+            var url = "/api/Equipments/"+strid;
+           // alert(url);
+
+            $.ajax({  
+            type: "GET",  
+            url: url,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {  
+              //alert(JSON.stringify(response));
+              //    alert((response.strURN.toString()));
+                     if(response.category != "")
+                     {
+                           $("#eqCategory").val(response.category);
+                     }
+                     if(response.Category != "")
+                     {
+                           $("#eqCategory").val(response.Category);
+                     }
+                      if(response.name != "")
+                     {
+                           $("#eqName").val(response.name);
+                     }
+                     if(response.Name != "")
+                     {
+                             $("#eqName").val(response.Name);
+                     }
+                       if(response.manufacturer != "")
+                     {
+                           $("#eqManufacturer").val(response.manufacturer);
+                     }
+                     if(response.Manufacturer != "")
+                     {
+                             $("#eqManufacturer").val(response.Manufacturer);
+                     }
+                        if(response.type != "")
+                     {
+                             $("#eqType").val(response.type);
+                     }
+                     if(response.Type != "")
+                     {
+                               $("#eqType").val(response.Type);
+                     }
+                     if(response.serialNumber != "")
+                     {
+                            $("#eqSerial").val(response.serialNumber);
+                     }
+                     if(response.SerialNumber != "")
+                     {
+                             $("#eqSerial").val(response.SerialNumber);
+                     }
+                     if(response.quantity != "")
+                     {
+                              $("#eqQuantity").val(response.quantity);
+                     }
+                     if(response.Quantity != "")
+                     {
+                                $("#eqQuantity").val(response.Quantity);
+                     }
+                      if(response.memRemarks != "")
+                     {
+                             $("#eqRemarks").html(response.memRemarks);
+                     }
+                     if(response.MemRemarks != "")
+                     {
+                              $("#eqRemarks").html(response.MemRemarks);
+                     }
+                     //$("#eqCategory").val(response.category);
+                     //$("#eqName").val(response.name);
+                     //$("#eqManufacturer").val(response.manufacturer);
+                     //$("#eqType").val(response.type);
+                     //$("#eqSerial").val(response.serialNumber);
+                     //$("#eqQuantity").val(response.quantity);
+                     //$("#eqRemarks").html(response.memRemarks);
+                      
+          },
+            error: function (response) {  
+             //   alert("error");  
+            }
+        });         
+            
+  }
+
+</script>

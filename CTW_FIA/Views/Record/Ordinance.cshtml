@@ -1,0 +1,494 @@
+﻿@model CTW_FIA.Models.DatabaseModels.Ordinance
+@{
+    Layout = null;
+}
+
+<div class="row no-gutters">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="float-none w-auto p-2">Ordnance Form</h5>
+
+                <form class="forms-sample" method="post" asp-action="Ordinance" asp-controller="Records">
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px">
+                            Ordnance Details
+                        </legend>
+
+                        <div class="form-group row">
+                            <label for="Category"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Category
+                            </label>
+                            <div class="col-sm-4">
+                                <select asp-for="Category" id="orCategory" class="form-control">
+                                    <option>
+                                        Select
+                                    </option>
+                                    <option>Commercial</option>
+                                    <option>Military</option>
+                                    <option>Unknown</option>
+                                </select>
+                            </div>
+                            <label for="Type"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Type
+                            </label>
+                            <div class="col-sm-4">
+                                <select id="orType"  asp-for="Type" class="form-control">
+                                    <option>
+                                        Select
+                                    </option>
+                                    <option>Mortar</option>
+                                    <option>Grenade</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Other"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Other</label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                asp-for="Other"
+                                       class="form-control"
+                                       id="orOther"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Manufacturer"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Manufacturer</label>
+                            <div class="col-sm-4">
+                                <input type="text"    asp-for="Manufacturer"
+                                       class="form-control"
+                                       id="orManufacturer"
+                                       placeholder="" />
+                            </div>
+                            <label for="BrandName"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Brand Name
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="text"    asp-for="BrandName"
+                                       class="form-control"
+                                       id="orBrandName"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Country"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Country of Origin</label>
+                            <div class="col-sm-4">
+                                <select  id="orCountryOrigin" asp-for="CountryOrigin" class="form-control"> 
+                                <option>Select country</option>
+                                  @for (var i = 0; i < ViewBag.country.Count; i++)
+                                    {
+                                        <option>@ViewBag.country[i].Country</option>
+                                    }
+                                    </select>
+                            </div>
+                            <label for="Country"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Country of Recovery</label>
+                            <div class="col-sm-4">
+                                <select id="orCountryRecovery" asp-for="CountryRecovered" class="form-control"> 
+                                     <option>Select country</option>
+                                  @for (var i = 0; i < ViewBag.country.Count; i++)
+                                    {
+                                        <option>@ViewBag.country[i].Country</option>
+                                    }
+                                    </select>
+
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="ExplosiveWeight"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Explosive Weight</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="ExplosiveWeight"
+                                       class="form-control"
+                                       id="orExplosiveWeight"
+                                       placeholder="" />
+                            </div>
+                            <label for="Markings"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Markings</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="memMarkings"
+                                       class="form-control"
+                                       id="orMarkings"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="BatchCode"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Batch Code</label>
+                            <div class="col-sm-4">
+                                <input type="text"  asp-for="BatchCode"
+                                       class="form-control"
+                                       id="orBatchCode"
+                                       placeholder="" />
+                            </div>
+                            <label for="SerialNumber"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Serial Number</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="SerialNumbers"
+                                       class="form-control"
+                                       id="orSerialNumber"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Colour"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Color</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="Colour"
+                                       class="form-control"
+                                       id="orColour"
+                                       placeholder="" />
+                            </div>
+                            <label for="Calibre"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Calibre</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="Calibre"
+                                       class="form-control"
+                                       id="orCalibre"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="HeadStamp"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Head Stamp</label>
+                            <div class="col-sm-4">
+                                <div class="form-check form-check-flat form-check-primary">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" id="headStamp"  name="headstamp" class="form-check-input" />
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                     <div class="form-group row">
+                            <label for="Length"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Length</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       class="form-control"
+                                       id="orLength"  asp-for="Length"
+                                       placeholder="" />
+                            </div>
+                            <label for="Width"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Width</label>
+                            <div class="col-sm-4">
+                                <input type="text"  asp-for="Width"
+                                       class="form-control"
+                                       id="orWidth"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Depth"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Depth</label>
+                            <div class="col-sm-4">
+                                <input type="text"  asp-for="Depth"
+                                       class="form-control"
+                                       id="orDepth"
+                                       placeholder="" />
+                            </div>
+                            <label for="Diameter"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Diameter</label>
+                            <div class="col-sm-4">
+                                <input type="text"  asp-for="Diameter"
+                                       class="form-control"
+                                       id="orDiameter"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="NumberRecovered"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Number Recovered</label>
+                            <div class="col-sm-10">
+                                <input type="text"  asp-for="NumberRecovered"
+                                       class="form-control"
+                                       id="orNumberRecovered"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="border p-3">
+                        <br />
+                        <div class="form-group row">
+                            <label for="Remarks"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Remarks</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="orRemarks"  asp-for="Remarks" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                    <button type="submit" class="btn btn-primary mr-2" >Save</button>
+                    <button class="btn btn-dark">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    @*<div class="col-md-3 grid-margin stretch-card">
+    <div class="card">
+    <div class="card-body">
+    <h4 class="card-title">Matched Records</h4>
+    <p class="card-description">No data to display</p>
+    </div>
+    </div>
+    </div>*@
+</div>
+
+<script src="~/Content/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    var vpage_name = "";
+    var vparam_x = "";
+    var vpage_status = "";
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const param_x = urlParams.get('id');
+        const page_status = urlParams.get('pageStatus');
+        const page_name = urlParams.get('pageName');
+        vpage_name = page_name;
+        vparam_x = param_x;
+        vpage_status = page_status;
+   
+        if (page_status == "u" && param_x != "" && page_name == "Ordinancepreview") {
+          //  alert(page_status + " " + param_x + " " + page_name);
+            ViewOrdnanceById(param_x);
+            ViewLinks(param_x);
+        }
+    });
+    function OrdnanceClick() {
+        if (vpage_status == "u" && vparam_x != "" && vpage_name == "Ordinancepreview") {
+            OrdnanceUpdation();
+        }
+        else {
+            OrdnancePost();
+        }
+
+    }
+    function OrdnancePost() {
+        var orCategory = $("#orCategory").val();
+        var orType = $("#orType").val();
+        var orOther = $("#orOther").val();
+        var orManufacturer = $("#orManufacturer").val();
+        var orBrandName = $("#orBrandName").val();
+        var orCountryOrigin = $("#orCountryOrigin").val();
+        var orCountryRecovery = $("#orCountryRecovery").val();
+        var orExplosiveWeight = $("#orExplosiveWeight").val();
+        var orMarkings = $("#orMarkings").val();
+        var orBatchCode = $("#orBatchCode").val();
+        var orSerialNumber = $("#orSerialNumber").val();
+        var orColour = $("#orColour").val();
+        var orCalibre = $("#orCalibre").val();
+        var headStamp = $("#headStamp").val();
+        var orLength = $("#orLength").val();
+        var orWidth = $("#orWidth").val();
+        var orDepth = $("#orDepth").val();
+        var orDiameter = $("#orDiameter").val();
+        var orNumberRecovered = $("#orNumberRecovered").val();
+        var orRemarks = $("#orRemarks").val();
+    
+        var headStampstatus=false;
+        if(headStamp =="on")
+        {
+        headStampstatus= true;
+        }
+        var settings = {
+            "url": "/api/Ordinances",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "intID": 0,
+                "strURN": "string",
+                "category": orCategory,
+                "type": orType,
+                "other": orOther,
+                "manufacturer": orManufacturer,
+                "brandName": orBrandName,
+                "countryRecovered": orCountryRecovery,
+                "countryOrigin": orCountryOrigin,
+                "explosiveWeight": orExplosiveWeight,
+                "memMarkings": orMarkings,
+                "batchCode": orBatchCode,
+                "serialNumbers": orSerialNumber,
+                "colour": orColour,
+                "calibre": orCalibre,
+                "headStamp": headStampstatus,
+                "length": orLength,
+                "width": orWidth,
+                "depth": orDepth,
+                "diameter": orDiameter,
+                "numberRecovered": orNumberRecovered,
+                "remarks": orRemarks,
+                "strCreatedBy": "Admin",
+                "dateCreated": "2022-04-03T19:49:46.940Z",
+                "dateLastModified": "2022-04-03T19:49:46.940Z",
+                "strLastModifiedBy": "Admin"
+
+            }),
+        };
+
+        $.ajax(settings).done(function(response) {
+            alert("Ordinance has been added successfully");
+            if (confirm('Do you want to add Media File ?')) {
+                console.log("Media File.");
+                localStorage.setItem("strURN", response.strURN);
+                localStorage.setItem("tableName", "Ordinance");
+                window.location.href = "/Admin/Records/AddMedia";
+            }
+            else {
+                  localStorage.setItem("strURN", response.strURN);
+                localStorage.setItem("tableName", "Ordinance");
+                var id = response.strURN;
+               // window.location.href = "/Admin/Records/Ordinancepreview?id=" + id;
+                window.location.href = "/Admin/Records/PreviewRecord?controller=Ordinances&id="+id;
+         
+            }
+
+        });
+
+    }
+    function ViewOrdnanceById(x) {
+       
+        var url = "/api/Ordinances/GetOrdinanceById?id=" +x;
+        //alert(url)
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function(response) {
+                //alert(JSON.stringify(response));
+               // alert((response.strURN.toString()));
+                $("#orCategory").val(response.category);
+                
+                  $("#orType").val(response.type);
+                $("#orOther").val(response.other);
+                $("#orMarkings").val(response.manufacturer);
+                $("#orBrandName").val(response.brandName);
+                $("#orCountryRecovery").val(response.countryRecovered);
+                $("#orExplosiveWeight").val(response.explosiveWeight);
+                $("#orMarkings").val(response.memMarkings);
+                $("#orBatchCode").val(response.batchCode);
+                $("#orSerialNumber").val(response.serialNumbers);
+                $("#orColour").val(response.colour);
+                $("#orCalibre").val(response.calibre);
+                $("#orCountryOrigin").val(response.countryOrigin);
+               
+               $("#headStamp").val(response.headStamp);
+                $("#orLength").val(response.length);
+                $("#orWidth").val(response.width);
+                $("#orDepth").val(response.depth);
+                $("#orDiameter").val(response.diameter);
+                $("#orNumberRecovered").val(response.numberRecovered);
+                $("#orRemarks").val(response.memRemarks);
+            }, 
+            error: function(response) {
+               // alert("error");
+            }
+        });
+    }
+    function OrdinanceUpdation() {
+        var strid = vparam_x;
+        var Category = $("#category").val();
+        var Other = $("#other").val();
+        var Manufacturer = $("#manufacturer").val();
+        var BrandName = $("#brandName").val();
+        var CountryRecovered = $("#countryRecovered").val();
+        var ExplosiveWeight = $("#vexplosiveWeight").val();
+        var memMarkings = $("#memMarkings").val();
+        var BatchCode = $("#batchCode").val();
+        var SerialNumbers = $("#serialNumbers").val();
+        var Colour = $("#colour").val();
+        var Calibre = $("#calibre").val();
+        var HeadStamp = $("#headStamp").val();
+        var Length = $("#length").val();
+        var Depth = $("#depth").val();
+        var Diameter = $("#diameter").val();
+        var NumberRecovered = $("#numberRecovered").val();
+        var proRemarks = $("#proRemarks").val();
+         var headStampstatus=false;
+        if(headStamp =="on")
+        {
+        headStampstatus= true;
+        }
+        var settings = {
+            "url": "/api/Ordinances/" + strid,
+            "method": "PUT",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "intID": 0,
+                "strURN": strid,
+                "Category": category,
+                "Other": other,
+                "Manufacturer": manufacturer,
+                "BrandName": brandName,
+                "CountryRecovered": countryRecovered,
+                "ExplosiveWeight": explosiveWeight,
+                "memMarkings": memMarkings,
+                "BatchCode": batchCode,
+                "SerialNumbers": serialNumbers,
+                "Colour": colour,
+                "Calibre": calibre,
+                "HeadStamp": headStampstatus,
+                "Length": length,
+                "Depth": depth,
+                "Diameter": diameter,
+                "NumberRecovered": numberRecovered,
+                "memRemarks": proRemarks,
+                "strCreatedBy": "string",
+                "dateCreated": "2022-04-05T06:16:48.067Z",
+                "dateLastModified": "2022-04-05T06:16:48.067Z",
+                "strLastModifiedBy": "string",
+            }),
+        };
+        $.ajax(settings).done(function(response) {
+            alert("Ordinance has been Updated successfully");
+           // window.location.href = "/Admin/Records/Ordinancepreview?id=" + strid;
+             window.location.href = "/Admin/Records/PreviewRecord?controller=Ordinances&id="+strid;
+         
+        });
+    }
+  
+
+</script>

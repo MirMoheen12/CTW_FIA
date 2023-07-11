@@ -33,7 +33,7 @@
         public string CaseStatus { get; set; }
         public string strCaseProgress { get; set; }
         public string Weapon { get; set; }
-        public string ModusofOperandi { get; set; }
+        public string ModusofOperand { get; set; }
         public DateTime dteSent { get; set; }
         public int intID { get; set; }
         public DateTime CreatedOn { get; set; }

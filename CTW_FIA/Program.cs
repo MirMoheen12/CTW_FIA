@@ -39,16 +39,6 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 
 
-builder.Services.AddTransient<IDashboard, DashboardReopsitories>();
-builder.Services.AddTransient<IUser, UserReopsitorie>();
-
-
-
-
-
-
-
-
 
 
 builder.Services.AddRazorPages()
@@ -56,8 +46,11 @@ builder.Services.AddRazorPages()
 
 
 // Add services to the container.
+builder.Services.AddTransient<IStoredProcedure, StoredProcedureRepo>();
 builder.Services.AddTransient<IDashboard, DashboardReopsitories>();
+builder.Services.AddTransient<IRecord, RecordReopsitorie>();
 builder.Services.AddTransient<IUser, UserReopsitorie>();
+builder.Services.AddTransient<IIncident, IncidentRepo>();
 
 
 builder.Services.AddControllersWithViews();
