@@ -147,7 +147,7 @@
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 success: function (response) {
-                    console.log(response.graphDtos.length);
+                    //console.log(response.graphDtos.length);
                   //  alert(response.length);
                     $("#incident_count").html(response.incidentcount);
                     $("#group_count").html(response.groupcount);
@@ -195,8 +195,8 @@
                
 
 
-                   console.log(province);
-                    console.log(count_province);
+                   //console.log(province);
+                   // console.log(count_province);
                     const myChart = new Chart(ctx_provinces, {
                         type: 'bar',
 
