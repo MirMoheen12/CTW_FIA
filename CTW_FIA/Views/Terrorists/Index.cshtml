@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Terrorist Province Wise</h6>
+                    <h6 class="font-weight-normal text-center">Terrorist Province Wise</h6>
                     <canvas id="tprovinceChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -18,7 +18,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Head Headmoney</h6>
+                    <h6 class="font-weight-normal text-center">Head Headmoney</h6>
                     <canvas id="headmoneyChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -28,7 +28,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Accusation Status Wise</h6>
+                    <h6 class="font-weight-normal text-center">Accusation Status Wise</h6>
                     <canvas id="accusationChart" style="position: relative; height:40vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -48,24 +48,26 @@
                 responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        grace: '70%',
+                        ticks: {
+                            callback: function (value) {
+                                if (value === this.max) {
+                                    return value + ' (' + this.getLabelForValue(value) + ')'; // Display the count of the highest bar
+                                } else {
+                                    return value;
+                                }
+                            }
+                        }
                     },
                     x: {
                         stacked: true
                     }
                 },
-                legend: {
-                    labels: {
-                        // This more specific font property overrides the global property
-                        font: {
-                            size: 22
-                        }
-                    }
-                },
-                tooltips: {
-                    enabled: false
-                },
                 plugins: {
+                    legend: {
+                        display: false // Remove the legend
+                    },
                     datalabels: {
                         anchor: 'end',
                         align: 'end',
@@ -80,6 +82,10 @@
                     }
                 }
             };
+
+
+
+
             const c_background_colors =
                 [
                     'rgba(255, 99, 132, 1)',
@@ -141,10 +147,10 @@
                         data: {
                             labels: province,
                             datasets: [{
-                                label: '# of Terrorists Order By Provinces',
+                                label: 'abc',
                                 data: count_province,
                                 backgroundColor: c_background_colors,
-                                borderColor: c_background_colors,
+                                borderColor: c_background_colors,   
                                 borderWidth: 2,
 
 

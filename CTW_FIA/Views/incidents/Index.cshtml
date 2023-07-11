@@ -6,10 +6,14 @@
 }
 
     <div class="row no-gutters">
+         <div class="col-md-12"><h2 class="font-weight-normal text-center">Terrorist Incidents Analysis – Graphs </h2></div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Province Wise</h6>
+                    <h6 class="font-weight-normal text-center">
+                        Terrorist Incident Analysis
+                        (Province Wise)
+                    </h6>
                     <canvas id="myChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -17,7 +21,10 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Year Wise</h6>
+                    <h6 class="font-weight-normal text-center">
+                        Terrorist Incident Analysis
+                        (Year Wise)
+                    </h6>
                     <canvas id="yearChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -27,7 +34,10 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Weapon Wise</h6>
+                    <h6 class="font-weight-normal text-center">
+                        Terrorist Incident Analysis
+                        (Weapon Wise)
+                    </h6>
                     <canvas id="weaponChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -35,222 +45,40 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal">Target Wise</h6>
+                    <h6 class="font-weight-normal text-center">
+                        errorist Incident Analysis
+                        (Target Wise)
+                    </h6>
                     <canvas id="targetChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row">
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h6 class="font-weight-normal">Motive Wise</h6>
+                <h6 class="font-weight-normal text-center text-center">
+                    Terrorist Incident Analysis
+                    (Motive Wise)
+                </h6>
                 <canvas id="motiveChart" style="position: relative; height:60vh; width:80vw"></canvas>
             </div>
         </div>
     </div>
-    @*  @section Scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            const ctx_provinces = document.getElementById('myChart');
-            const ctx_years = document.getElementById('yearChart');
-            const ctx_weapon = document.getElementById('weaponChart');
-            const ctx_target = document.getElementById('targetChart');
-            const ctx_motive = document.getElementById('motiveChart');
-            Chart.register(ChartDataLabels);
-            Chart.defaults.set('plugins.datalabels', {
-                color: '#000000'
-            });
-            const c_options = {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    },
-                    x: {
-                        stacked: true
-                    }
-                },
-                legend: {
-                    labels: {
-                        // This more specific font property overrides the global property
-                        font: {
-                            size: 22
-                        }
-                    }
-                },
-                tooltips: {
-                    enabled: false
-                },
-                plugins: {
-                    datalabels: {
-                        anchor: 'end',
-                        align: 'end',
-                        labels: {
-                            value: {
-                                color: 'black'
-                            },
-                            font: {
-                                size: 22
-                            }
-                        }
-                    }
-                }
-            };
-            const c_background_colors =
-                [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235,1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192,1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64,1)',
-                    'rgba(9, 113, 7, 0.94)',
-                    'rgba(10, 73, 231, 0.94)',
-                    'rgba(73, 49, 226, 1)',
-                    'rgba(138, 38, 64, 1)',
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <h6 class="font-weight-normal text-center text-center">
+                Terrorist Incidents Analysis
+                (Group Wise)
+            </h6>
+            <canvas id="GWChart" style="position: relative; height:60vh; width:80vw"></canvas>
+        </div>
+    </div>
+</div>
+</div>
 
-                ];
-
-
-            console.log("ready!");
-            $.ajax({
-                type: "GET",
-                url: "/api/Incidents/GetIncidentsByProvince",
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                success: function (response) {
-
-                    console.log(response);
-                    // $("#incident_count").html(response.count);
-
-                    const province = response.provices_res.map(i => `${i.province}`)
-
-                    const count_province = response.provices_res.map(i => `${i.noIncident}`);
-                    const sortedYears = response.years_res.sort(function (a, b) {
-                        var a1 = a.years, b1 = b.years;
-                        if (a1 == b1) return 0;
-                        return a1 > b1 ? 1 : -1;
-                    });
-                    const years = sortedYears.map(i => `${i.years}`);
-
-                    const count_years = sortedYears.map(i => `${i.noIncident}`);
-
-                    const weapon = response.weapon_res.map(i => `${i.weapon}`);
-
-                    const count_weapon = response.weapon_res.map(i => `${i.noIncident}`);
-
-                    const target = response.target_res.map(i => `${i.target}`);
-
-                    const count_target = response.target_res.map(i => `${i.noIncident}`);
-
-                    const motive = response.motive_res.map(i => `${i.motive}`);
-
-                    const count_motive = response.motive_res.map(i => `${i.noIncident}`);
-
-
-
-                    console.log(province);
-                    console.log(count_province);
-                    console.log(years);
-                    console.log(count_years);
-                    console.log(weapon);
-                    console.log(count_weapon);
-                    console.log(target);
-                    console.log(count_target);
-                    console.log(motive);
-                    console.log(count_motive);
-
-
-                    const myChart = new Chart(ctx_provinces, {
-                        type: 'bar',
-                        data: {
-                            labels: province,
-                            datasets: [{
-                                label: '# of Incidents Order By Provinces',
-                                data: count_province,
-                                backgroundColor: c_background_colors,
-                                borderColor: c_background_colors,
-                                borderWidth: 2
-
-                            }]
-                        },
-                        options: c_options
-                    });
-
-                    const myChart_year = new Chart(ctx_years, {
-                        type: 'bar',
-                        data: {
-                            labels: years,
-                            datasets: [{
-                                label: '# of Incidents Order By Years',
-                                data: count_years,
-                                backgroundColor: c_background_colors,
-                                borderColor: c_background_colors,
-                                borderWidth: 2
-
-                            }]
-                        },
-                        options: c_options,
-                    });
-
-                    const myChart_weapon = new Chart(ctx_weapon, {
-                        type: 'bar',
-                        data: {
-                            labels: weapon,
-                            datasets: [{
-                                label: '# of Incidents Order By Weapons',
-                                data: count_weapon,
-                                backgroundColor: c_background_colors,
-                                borderColor: c_background_colors,
-                                borderWidth: 1
-
-                            }]
-                        },
-                        options: c_options,
-                    });
-
-                    const myChart_target = new Chart(ctx_target, {
-                        type: 'bar',
-                        data: {
-                            labels: target,
-                            datasets: [{
-                                label: '# of Incidents Order By Targets',
-                                data: count_target,
-                                backgroundColor: c_background_colors,
-                                borderColor: c_background_colors,
-                                borderWidth: 2
-
-                            }]
-                        },
-                        options: c_options,
-                    });
-
-                    const myChart_motive = new Chart(ctx_motive, {
-                        type: 'bar',
-                        data: {
-                            labels: motive,
-                            datasets: [{
-                                label: '# of Incidents Order By Motives',
-                                data: count_motive,
-                                backgroundColor: c_background_colors,
-                                borderColor: c_background_colors,
-                                borderWidth: 2
-
-                            }]
-                        },
-                        options: c_options,
-                    });
-
-
-                    //alert(arr);
-                },
-                error: function (response) {
-                    alert("error");
-                }
-            });
-        });</script>
-}*@
     @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
@@ -259,6 +87,7 @@
             const ctx_weapon = document.getElementById('weaponChart');
             const ctx_target = document.getElementById('targetChart');
             const ctx_motive = document.getElementById('motiveChart');
+            const ctx_gw = document.getElementById('GWChart');
             Chart.register(ChartDataLabels);
             Chart.defaults.set('plugins.datalabels', {
                 color: '#000000'
@@ -267,24 +96,26 @@
                 responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        grace: '70%', 
+                        ticks: {
+                            callback: function (value) {
+                                if (value === this.max) {
+                                    return value + ' (' + this.getLabelForValue(value) + ')'; // Display the count of the highest bar
+                                } else {
+                                    return value;
+                                }
+                            }
+                        }
                     },
                     x: {
                         stacked: true
                     }
                 },
-                legend: {
-                    labels: {
-                        // This more specific font property overrides the global property
-                        font: {
-                            size: 22
-                        }
-                    }
-                },
-                tooltips: {
-                    enabled: false
-                },
                 plugins: {
+                    legend: {
+                        display: false // Remove the legend
+                    },
                     datalabels: {
                         anchor: 'end',
                         align: 'end',
@@ -299,6 +130,9 @@
                     }
                 }
             };
+
+
+
             const c_background_colors =
                 [
                     'rgba(255, 99, 132, 1)',
@@ -343,6 +177,10 @@
 
                     const count_motive = [];
 
+                    const gwname = [];
+                    const gwcount = [];
+
+
                     const ctx_weapon = document.getElementById('weaponChart');
 
                     //console.log(response);
@@ -373,6 +211,11 @@
                             motive.push(response[j].name);
                             count_motive.push(response[j].totalRecord);
                         }
+                        if (response[j].tablename == "GW") {
+                            // alert(j);
+                            gwname.push(response[j].name);
+                            gwcount.push(response[j].totalRecord);
+                        }
 
                     }
 
@@ -400,6 +243,21 @@
                             datasets: [{
                                 label: '# of Incidents Order By Provinces',
                                 data: count_province,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 2
+
+                            }]
+                        },
+                        options: c_options
+                    });
+                    const myChart2 = new Chart(ctx_gw, {
+                        type: 'bar',
+                        data: {
+                            labels: gwname,
+                            datasets: [{
+                                label: '# errorist Incidents Analysis (Group Wise)',
+                                data: gwcount,
                                 backgroundColor: c_background_colors,
                                 borderColor: c_background_colors,
                                 borderWidth: 2

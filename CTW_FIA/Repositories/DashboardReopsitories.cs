@@ -285,6 +285,18 @@ namespace CTW_FIA.Repositories
                             graphDtos.Add(dto);
                         }
                     }
+                    DataTable Gw = dataSet.Tables[5];
+                    if (Gw.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in Gw.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "GW";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = row["Name"].ToString();
+                            graphDtos.Add(dto);
+                        }
+                    }
                 }
             }
 
