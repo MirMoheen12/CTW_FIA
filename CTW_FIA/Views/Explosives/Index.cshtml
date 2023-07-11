@@ -6,7 +6,9 @@
 
 }
 
-    <div class="row no-gutters">
+    <div class="row no-gutters" >
+
+       @*  <div class="row no-gutters" style="justify-content: center;">*@
         @*<div class="col-md-6">
     <div class="card">
     <div class="card-body">
@@ -15,14 +17,17 @@
     </div>
     </div>
     </div>*@
+      <div class="col-md-12"><h2 class="font-weight-normal text-center">Explosive Data Analysis – Graph </h2></div>
         <div class="row no-gutters">
-          <div class="col-md-12">
+          
+
+            <div class="col-md-12">
               
                     <div class="card">
                     
                         <div class="card-body">
-                        <h6 class="font-weight-normal text-center">Explosives Reported</h6>
-                        <canvas id="explosiveChart" style="position: relative; height:180px; width:400px"></canvas>
+                        <h6 class="font-weight-normal text-center">Explosive Analysis <br/>(Incident Wise)</h6>
+                        <canvas id="explosiveChart" style="position: relative; height:300px; width:280px"></canvas>
                     </div>
                     
                 </div>
@@ -123,7 +128,9 @@
                         options: {
                             responsive: true,
                             scales: {
+                                    
                                 y: {
+                                      
                                     ticks: {
                                         // Include a dollar sign in the ticks
 
