@@ -41,6 +41,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 builder.Services.AddTransient<IDashboard, DashboardReopsitories>();
 builder.Services.AddTransient<IUser, UserReopsitorie>();
+builder.Services.AddTransient<IRecord, RecordReopsitorie>();
 
 
 

@@ -73,93 +73,79 @@
 <div id="DivContainerForCustForm">
 </div>
 
+
 @section Scripts {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" integrity="sha512-FOhq9HThdn7ltbK8abmGn60A/EMtEzIzv1rvuh+DqzJtSGq8BRdEN0U+j0iKEIffiw/yEtVuladk6rsG4X6Uqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             $("#database").change(function () {
                 var selectedValue = $("#database").val();
-
                 switch (selectedValue) {
-                    case "PersonInvolved":
-                        $("#DivContainerForCustForm").load("@Url.Action("AddPerson","RecordFormViews")");
+
+                    case "MainIncident":
+                        $("#DivContainerForCustForm").load("@Url.Action("NewIncident","Record")");
                         break;
-
-
-
-                        if (val == "Terrorist Incident") {
-                            $("#DivContainerForCustForm").load("@Url.Action("NewIncident","RecordFormViews")");
-                        }
-
-
-
-
-
-                        else if (val == "Terrorist Group") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Groups","Records")");
-                        }
-                        else if (val == "Addresses") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Add_Person_Address","Records")");
-                        }
-
-                        else if (val == "Vehicles") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Vehicles","Records")");
-                        }
-                        else if (val == "Communications") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Communications","Records")");
-                        }
-                        else if (val == "Detonators") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Detonators","Records")");
-                        }
-                        else if (val == "Explosive") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Explosives","Records")");
-                        }
-                        else if (val == "Ordinance") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Ordinance","Records")");
-                        }
-
-                        else if (val == "Evidence") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Evidence","Records")");
-                        }
-                        else if (val == "Equipments") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Equipment","Records")");
-                        }
-                        else if (val == "intiation System") {
-                            $("#DivContainerForCustForm").load("@Url.Action("InitiationSystem","Records")");
-                        }
-                        else if (val == "Components") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Components","Records")");
-                        }
-
-                        else if (val == "CBRN") {
-                            $("#DivContainerForCustForm").load("@Url.Action("CBRN","Records")");
-                        }
-                        else if (val == "Properties") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Property","Records")");
-                        }
-                        else if (val == "Bank Account") {
-                            $("#DivContainerForCustForm").load("@Url.Action("BankAccount","Records")");
-                        }
-                        else if (val == "Firearms") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Firearms","Records")");
-                        }
-
-                        else if (val == "Chemicals") {
-                            $("#DivContainerForCustForm").load("@Url.Action("Chemical","Records")");
-                        }
-                        else if (val == "Power Source") {
-                            $("#DivContainerForCustForm").load("@Url.Action("PowerSource","Records")");
-                        }
-                        else {
-                            $("#DivContainerForCustForm").empty();
-                        }
-
-
-
+                    
+                    case "PersonInvolved":
+                        $("#DivContainerForCustForm").load("@Url.Action("Groups","Record")");
+                        break;
+                    case "Groups":
+                        $("#DivContainerForCustForm").load("@Url.Action("PersonInvolved","Record")");
+                        break;
+                    case "Addresses":
+                        $("#DivContainerForCustForm").load("@Url.Action("Add_Person_Address","Record")");
+                        break;
+                    case "Vehicle":
+                        $("#DivContainerForCustForm").load("@Url.Action("Vehicles","Record")");
+                        break;
+                    case "Communication":
+                        $("#DivContainerForCustForm").load("@Url.Action("Communications","Record")");
+                        break;
+                    case "Detonators":
+                        $("#DivContainerForCustForm").load("@Url.Action("Detonators","Record")");
+                        break;
+                    case "Explosives":
+                        $("#DivContainerForCustForm").load("@Url.Action("Explosives","Record")");
+                        break;
+                    case "Ordinance":
+                        $("#DivContainerForCustForm").load("@Url.Action("Ordinance","Record")");
+                        break;
+                    case "Evidence":
+                        $("#DivContainerForCustForm").load("@Url.Action("Evidence","Record")");
+                        break;
+                    case "Equipment":
+                        $("#DivContainerForCustForm").load("@Url.Action("Equipment","Record")");
+                        break;
+                    case "InitiationSystem":
+                        $("#DivContainerForCustForm").load("@Url.Action("InitiationSystem","Record")");
+                        break;
+                    case "Components":
+                        $("#DivContainerForCustForm").load("@Url.Action("Components","Record")");
+                        break;
+                    case "CBRN":
+                        $("#DivContainerForCustForm").load("@Url.Action("CBRN","Record")");
+                        break;
+                    case "Property":
+                        $("#DivContainerForCustForm").load("@Url.Action("Property","Record")");
+                        break;
+                    case "BankAccount":
+                        $("#DivContainerForCustForm").load("@Url.Action("BankAccount","Record")");
+                        break;
+                    case "Firearms":
+                        $("#DivContainerForCustForm").load("@Url.Action("Firearms","Record")");
+                        break;
+                    case "Chemical":
+                        $("#DivContainerForCustForm").load("@Url.Action("Chemical","Record")");
+                        break;
+                    case "PowerSource":
+                        $("#DivContainerForCustForm").load("@Url.Action("PowerSource","Record")");
+                        break;
+                    default:
+                        $("#DivContainerForCustForm").empty();
+                        break;
+                }
             });
-        
         });
-
     </script>
 }

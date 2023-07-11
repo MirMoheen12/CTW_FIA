@@ -1,4 +1,4 @@
-@model CTW_FIA.Models.Incident
+@model CTW_FIA.Models.DatabaseModels.Incident
 @{
     Layout = null;
 }
@@ -16,7 +16,7 @@
 
                                 <label for="OperationName" class="col-sm-2 col-form-label" style="font-size: 13px;">Subject</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="OperationName" asp-for="OperationName" name="OperationName" >
+                            <input type="text" class="form-control" id="OperationName" asp-for="strOperationName" name="OperationName">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -34,7 +34,7 @@
 
                                     <label for="FirNo" class="col-sm-2 col-form-label" style="font-size: 13px;">FIR No </label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" asp-for="FirNO" id="FirNo"/>
+                                <input type="text" class="form-control" asp-for="FirNo" id="FirNo" />
                                     </div>
                                 </div>
 
@@ -114,12 +114,12 @@
                                 <label for="IncidentPostalZip" class="col-sm-2 col-form-label" style="font-size: 13px;">Longitude</label>
                                      
                                     <div class="col-sm-4">
-                                          <input type="text"  id="IncidentLongitude" asp-for="IncidentLongitude" class="form-control" />
+                                <input type="text" id="IncidentLongitude" asp-for="Longitude" class="form-control" />
                                     </div>
                                      <label for="IncidentPostalZip" class="col-sm-2 col-form-label" style="font-size: 13px;">Latitude</label>
                                      
                                     <div class="col-sm-4">
-                                          <input type="text"  asp-for="IncidentLatitude" id="IncidentLatitude" class="form-control" />
+                                <input type="text" asp-for="Latitude" id="IncidentLatitude" class="form-control" />
                                     </div>
                                 </div>
                               
@@ -129,7 +129,7 @@
 
                                     <label for="IncidentAddress" class="col-sm-2 col-form-label" style="font-size: 13px;">Address</label>
                                     <div class="col-sm-10">
-                                        <textarea  class="form-control" asp-for="IncidentAddress" id="IncidentAddress" rows="4"></textarea>
+                                <textarea class="form-control" asp-for="Address" id="IncidentAddress" rows="4"></textarea>
 
                                     </div>
                                 </div>
@@ -153,13 +153,13 @@
 
                                 <div class="col-sm-4">
 
-                                     <input type="time"  asp-for="Incidenttime" class="form-control" id="IncidentTime"/>
+                                <input type="time" asp-for="IncidentTime" class="form-control" id="IncidentTime" />
 
                                 </div>
                                 <label for="IncidentTimeEnd" class="col-sm-2 col-form-label" style="font-size: 13px;">Incident End Time</label>
                                 
                             <div class="col-sm-4">
-                                 <input type="time" asp-for="IncidenttimeEnd" class="form-control" id="IncidentTimeEnd"/>
+                                <input type="time" asp-for="IncidentTimeEnd" class="form-control" id="IncidentTimeEnd" />
 
                                
                             </div>
@@ -190,7 +190,7 @@
 
                                 <div class="col-sm-4">
 
-                                    <input type="number" asp-for="Numberkilled"  class="form-control" id="NumberKilled" />
+                                <input type="number" asp-for="NumberKilled" class="form-control" id="NumberKilled" />
 
                                 </div>
                                
@@ -205,7 +205,7 @@
                                 <label for="KilledNames" class="col-sm-2 col-form-label" style="font-size: 13px;">Names of Killed Person</label>
                                 <div class="col-sm-10">
                                      @*<input type="text"  class="form-control"  id="KilledNames"/>*@
-                                       <textarea  class="form-control"asp-for="KillNames" id="KilledNames" rows="4"></textarea>
+                                <textarea class="form-control" asp-for="CasualtiesNames" id="KilledNames" rows="4"></textarea>
 
                                 </div>
                             </div>
@@ -214,7 +214,7 @@
                                
                                 <label for="NumberInjured" class="col-sm-2 col-form-label" style="font-size: 13px;">Number Injured</label>
                                 <div class="col-sm-4">
-                                     <input type="number" asp-for="InjuredNumber"  class="form-control"  id="NumberInjured"/>
+                                <input type="number" asp-for="NumberInjured" class="form-control" id="NumberInjured" />
 
                                 </div>
                             </div>
@@ -235,7 +235,7 @@
                             <div class="form-group row">
                                 <label for="Weapon" class="col-sm-2 col-form-label" style="font-size: 13px;">Weapon</label>
                                  <div class="col-sm-2">
-                                    <select class="form-control" asp-for="Weapens"  id="Weapon">
+                                <select class="form-control" asp-for="Weapon" id="Weapon">
                                         <option value="" disabled selected>Select</option>
                                         <option>Automatic Weapon</option>
                                         <option>Hand Grenade</option>
@@ -261,7 +261,7 @@
                                   <label for="IncidentTarget" class="col-sm-1 col-form-label" style="font-size: 13px;">Target</label>
                                
                                  <div class="col-sm-2">
-                                    <select class="form-control" asp-for="IncidentTarget" id="IncidentTarget">
+                                <select class="form-control" asp-for="Target" id="IncidentTarget">
                                         <option value="" disabled selected>Select</option>
                                         <option>Airport/Aeroplane</option>
                                         <option>Bridge/Road</option>
@@ -321,7 +321,7 @@
                                 <label for="ModusofOperandi" class="col-sm-2 col-form-label" style="font-size: 13px;">Modus operandi</label>
                                 <div class="col-sm-10">
                                    
-                                    <textarea  class="form-control" asp-for="ModusOfOperand" id="ModusofOperandi" rows="4"></textarea>
+                                    <textarea  class="form-control" asp-for="ModusofOperand" id="ModusofOperandi" rows="4"></textarea>
 
                                 </div>
                             </div>
@@ -357,7 +357,7 @@
                                 
                                 <label for="CaseProgress" class="col-sm-2 col-form-label" style="font-size: 13px;">Case Progress</label>
                                 <div class="col-sm-10">
-                                    <input type="text" asp-for="CaseProgress" id="CaseProgress" class="form-control" />
+                                <input type="text" asp-for="strCaseProgress" id="CaseProgress" class="form-control" />
                                 </div>
                             </div>
 
@@ -370,8 +370,8 @@
                                  <label for="Reportedby" class="col-sm-2 col-form-label" style="font-size: 13px;">Reported by </label>
                                 
                                 <div class="col-sm-4">
-                                
-                                   <select class="form-control" asp-for="ReportedBy"  id="Reportedby">
+
+                                <select class="form-control" asp-for="Reportedby" id="Reportedby">
                                      
                                         
                                     </select>
@@ -402,7 +402,7 @@
                                 
                                 <label for="IncidentmemRemarks" class="col-sm-2 col-form-label" style="font-size: 13px">CTW Remarks</label>
                                 <div class="col-sm-10">
-                                    <textarea asp-for="IncidentmemRemarks"  class="form-control" id="IncidentmemRemarks" rows="4"></textarea>
+                                <textarea asp-for="CTWRemarks" class="form-control" id="IncidentmemRemarks" rows="4"></textarea>
 
                                 </div>
                             </div>
@@ -410,7 +410,7 @@
                         </fieldset>
 
                         <br>
-                        <input type="text" id="asgstr" hidden asp-for="Strurn" />
+                    <input type="text" id="asgstr" hidden asp-for="strURN" />
                         <input type="submit" id="IncidentBtn"  class="btn btn-primary mr-2" value="Save">
                         <button class="btn btn-dark">Cancel</button>
                         </form>
