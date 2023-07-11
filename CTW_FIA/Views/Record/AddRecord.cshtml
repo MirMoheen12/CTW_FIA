@@ -88,10 +88,10 @@
                         break;
                     
                     case "PersonInvolved":
-                        $("#DivContainerForCustForm").load("@Url.Action("Groups","Record")");
+                        $("#DivContainerForCustForm").load("@Url.Action("PersonInvolved","Record")");
                         break;
                     case "Groups":
-                        $("#DivContainerForCustForm").load("@Url.Action("PersonInvolved","Record")");
+                        $("#DivContainerForCustForm").load("@Url.Action("Groups","Record")");
                         break;
                     case "Addresses":
                         $("#DivContainerForCustForm").load("@Url.Action("Add_Person_Address","Record")");

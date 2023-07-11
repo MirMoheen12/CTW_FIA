@@ -41,6 +41,8 @@ namespace CTW_FIA.Controllers
 
         public ActionResult Add_Person_Address()
         {
+            var data = record.GetFirstDistrictDataPerCountry();
+            ViewBag.country = data;
             return View(new Address());
         }
 
