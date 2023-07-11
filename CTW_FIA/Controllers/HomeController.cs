@@ -19,7 +19,6 @@ namespace CTW_FIA.Controllers
         {
             return RedirectToAction("Login", "Accounts");
 
-            return View();
         }
 
         public IActionResult Privacy()

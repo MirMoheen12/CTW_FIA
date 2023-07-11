@@ -14,13 +14,13 @@ namespace CTW_FIA.Repositories
 {
     public class UserReopsitorie:IUser
     {
-        private readonly StoredProcedureRepo StoredProcedureRepo;
+        private readonly IStoredProcedure storedProcedure;
 		private readonly AppDbContext context;
 
-        public UserReopsitorie(StoredProcedureRepo StoredProcedureRepo, AppDbContext context)
+        public UserReopsitorie(IStoredProcedure storedProcedure, AppDbContext context)
         {
 
-            this.StoredProcedureRepo = StoredProcedureRepo;
+            this.storedProcedure = storedProcedure;
             this.context = context;
         }
 
@@ -30,8 +30,7 @@ namespace CTW_FIA.Repositories
 
             try
             {
-                String StoreProcedureCmd = "GetUserByCredentials";
-                DataTable dataTable = StoredProcedureRepo.ExecuteStoredProcedure(StoreProcedureCmd);
+                DataTable dataTable = storedProcedure.GetUserByCredentials(userName, Password);
                 if (dataTable.Rows.Count > 0)
                 {
                     DataRow row = dataTable.Rows[0];
