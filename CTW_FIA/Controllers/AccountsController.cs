@@ -23,7 +23,8 @@ namespace CTW_FIA.Controllers
         [HttpPost]
         public IActionResult Login(UserDto user)
         {
-           if(userRepo.Login(user.UserName, user.Password))
+            UserDto UserData = userRepo.Login(user.UserName, user.Password);
+           if (UserData!=null)
                 return RedirectToAction("Index", "Home");
            else 
                 return View();

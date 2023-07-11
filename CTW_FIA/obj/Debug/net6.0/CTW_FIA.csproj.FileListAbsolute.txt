@@ -1072,15 +1072,6 @@ C:\Users\ADMIN\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\refint\CTW_FIA.dll
 C:\Users\ADMIN\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.pdb
 C:\Users\ADMIN\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.genruntimeconfig.cache
 C:\Users\ADMIN\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\ref\CTW_FIA.dll
-C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.csproj.AssemblyReference.cache
-C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.AssemblyInfoInputs.cache
-C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.AssemblyInfo.cs
-C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.csproj.CoreCompileInputs.cache
-C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.RazorAssemblyInfo.cache
-C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.RazorAssemblyInfo.cs
 C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\bin\Debug\net6.0\appsettings.json
 C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\bin\Debug\net6.0\CTW_FIA.staticwebassets.runtime.json
@@ -1595,6 +1586,15 @@ C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\bin\Debug\net6.0\runtime
 C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.csproj.AssemblyReference.cache
+C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.AssemblyInfoInputs.cache
+C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.AssemblyInfo.cs
+C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.csproj.CoreCompileInputs.cache
+C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.RazorAssemblyInfo.cache
+C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\CTW_FIA.RazorAssemblyInfo.cs
 C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\staticwebassets\msbuild.CTW_FIA.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\staticwebassets\msbuild.build.CTW_FIA.props
 C:\Users\Muhammad Abdullah\source\repos\CTW_FIA\CTW_FIA\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.CTW_FIA.props
