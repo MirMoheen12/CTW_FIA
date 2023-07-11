@@ -44,42 +44,7 @@
             Chart.defaults.set('plugins.datalabels', {
                 color: '#000000'
             });
-            const c_options = {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    },
-                    x: {
-                        stacked: true
-                    }
-                },
-                legend: {
-                    labels: {
-                        // This more specific font property overrides the global property
-                        font: {
-                            size: 22
-                        }
-                    }
-                },
-                tooltips: {
-                    enabled: false
-                },
-                plugins: {
-                    datalabels: {
-                        anchor: 'end',
-                        align: 'end',
-                        labels: {
-                            value: {
-                                color: 'black'
-                            },
-                            font: {
-                                size: 22
-                            }
-                        }
-                    }
-                }
-            };
+          
             const c_background_colors =
                 [
                     'rgba(255, 99, 132, 1)',
