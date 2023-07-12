@@ -15,6 +15,8 @@ namespace CTW_FIA.Controllers
         
             this.record = record;
         }
+
+
         public IActionResult AddRecord()
         {
             return View();

@@ -8,12 +8,15 @@ namespace CTW_FIA.Controllers
     [AllowAnonymous]
     public class incidentsController : Controller
     {
+
+        private readonly IRecord record;
         private readonly IDashboard dashboard;
         private readonly IIncident incident;
-        public incidentsController(IDashboard dashboard, IIncident incident)
+        public incidentsController(IDashboard dashboard, IIncident incident, IRecord record)
         {
             this.dashboard = dashboard;
             this.incident = incident;
+            this.record = record;
         }
         public IActionResult Index()
         {
@@ -34,6 +37,13 @@ namespace CTW_FIA.Controllers
         {
             var data = (PreviewIncidentByStrUrn)(incident.getIncidentID(strurn));
             return View(data);
+        }
+
+        public ActionResult NewIncident()
+        {
+            var data = record.GetFirstDistrictDataPerCountry();
+            ViewBag.country = data;
+            return View();
         }
     }
 }

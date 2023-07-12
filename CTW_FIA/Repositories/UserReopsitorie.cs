@@ -31,24 +31,27 @@ namespace CTW_FIA.Repositories
             try
             {
                 DataTable dataTable = storedProcedure.GetUserByCredentials(userName, Password);
-                if (dataTable.Rows.Count > 0)
+                if (dataTable != null)
                 {
-                    DataRow row = dataTable.Rows[0];
-
-                    UserDto user = new UserDto
+                    if (dataTable.Rows.Count > 0)
                     {
-                        UserID = Convert.ToInt32(row["UserID"]),
-                        UserName = row["UserName"].ToString(),
-                        Password = row["Password"].ToString(),
-                        DepartmentID = Convert.ToInt32(row["DepartmentID"]),
-                        OfficeID = Convert.ToInt32(row["OfficeID"]),
-                        Designation = row["Designation"].ToString(),
-                        ActiveUser = Convert.ToBoolean(row["ActiveUser"]),
-                        AccountLock = Convert.ToBoolean(row["AccountLock"]),
-                        UserRole = row["UserRole"].ToString(),
-                    };
+                        DataRow row = dataTable.Rows[0];
 
-                    return user;
+                        UserDto user = new UserDto
+                        {
+                            UserID = Convert.ToInt32(row["UserID"]),
+                            UserName = row["UserName"].ToString(),
+                            Password = row["Password"].ToString(),
+                            DepartmentID = Convert.ToInt32(row["DepartmentID"]),
+                            OfficeID = Convert.ToInt32(row["OfficeID"]),
+                            Designation = row["Designation"].ToString(),
+                            ActiveUser = Convert.ToBoolean(row["ActiveUser"]),
+                            AccountLock = Convert.ToBoolean(row["AccountLock"]),
+                            UserRole = row["UserRole"].ToString(),
+                        };
+
+                        return user;
+                    }
                 }
                 return null;
             }

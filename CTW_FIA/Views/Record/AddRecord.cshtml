@@ -82,16 +82,15 @@
             $("#database").change(function () {
                 var selectedValue = $("#database").val();
                 switch (selectedValue) {
-
                     case "MainIncident":
-                        $("#DivContainerForCustForm").load("@Url.Action("NewIncident","Record")");
+                        $("#DivContainerForCustForm").load("@Url.Action("NewIncident","incidents")");
                         break;
-                    
+
                     case "PersonInvolved":
-                        $("#DivContainerForCustForm").load("@Url.Action("PersonInvolved","Record")");
+                        $("#DivContainerForCustForm").load("@Url.Action("PersonInvolved","Person")");
                         break;
                     case "Groups":
-                        $("#DivContainerForCustForm").load("@Url.Action("Groups","Record")");
+                        $("#DivContainerForCustForm").load("@Url.Action("Groups","Terrorists")");
                         break;
                     case "Addresses":
                         $("#DivContainerForCustForm").load("@Url.Action("Add_Person_Address","Record")");
@@ -106,7 +105,7 @@
                         $("#DivContainerForCustForm").load("@Url.Action("Detonators","Record")");
                         break;
                     case "Explosives":
-                        $("#DivContainerForCustForm").load("@Url.Action("Explosives","Record")");
+                        $("#DivContainerForCustForm").load("@Url.Action("Explosives","Explosives")");
                         break;
                     case "Ordinance":
                         $("#DivContainerForCustForm").load("@Url.Action("Ordinance","Record")");
