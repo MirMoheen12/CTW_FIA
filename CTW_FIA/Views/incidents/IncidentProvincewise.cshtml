@@ -23,9 +23,9 @@
                         <th>S.No</th>
                         <th>Subject</th>
                         <th>Fir.No</th>
-                        <th>No Of Killed </th>
-                        <th>N.Of Injured </th>
-                        <th>Incidenet Date</th>
+                        <th>Killed </th>
+                        <th>Injured </th>
+                        <th>Date</th>
                         <th>Province </th>
                         <th>District </th>
                         <th>Option</th>
@@ -61,7 +61,9 @@
                             @item.District
                         </td>
                         <td>
-                            
+                                <a href="~/incidents/IncidentDetails?strurn=@item.strURN"class="btn btn-sm btn-primary">
+                               Details
+                           </a> 
                         </td>
                         </tr>
                     }

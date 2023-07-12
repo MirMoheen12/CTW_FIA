@@ -1,4 +1,5 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,11 @@ namespace CTW_FIA.Controllers
         public IActionResult IncidentProvincewise(string Provinsewise)
         {
             var data = incident.getIncidentProvincewiese(Provinsewise);
+            return View(data);
+        }
+        public IActionResult IncidentDetails(string strurn)
+        {
+            var data = (PreviewIncidentByStrUrn)(incident.getIncidentID(strurn));
             return View(data);
         }
     }
