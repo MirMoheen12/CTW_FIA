@@ -1,0 +1,156 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = CTW_FIA
+build_property.RootNamespace = CTW_FIA
+build_property.ProjectDir = C:\Users\ADMIN\source\repos\CTW_FIA\CTW_FIA\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\ADMIN\source\repos\CTW_FIA\CTW_FIA
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Accounts/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Dashboard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Explosives/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwbG9zaXZlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/incidents/IncidentProvincewise.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcaW5jaWRlbnRzXEluY2lkZW50UHJvdmluY2V3aXNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/incidents/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcaW5jaWRlbnRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Person/AddPerson.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uXEFkZFBlcnNvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/AddRecord.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXEFkZFJlY29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Add_Person_Address.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXEFkZF9QZXJzb25fQWRkcmVzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/BankAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXEJhbmtBY2NvdW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/CBRN.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXENCUk4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Chemical.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXENoZW1pY2FsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Communications.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXENvbW11bmljYXRpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Components.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXENvbXBvbmVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Detonators.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXERldG9uYXRvcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Equipment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXEVxdWlwbWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Evidence.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXEV2aWRlbmNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Explosives.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXEV4cGxvc2l2ZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Firearms.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXEZpcmVhcm1zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Groups.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXEdyb3Vwcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/InitiationSystem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXEluaXRpYXRpb25TeXN0ZW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/NewIncident.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXE5ld0luY2lkZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Ordinance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXE9yZGluYW5jZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/PersonInvolved.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXFBlcnNvbkludm9sdmVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/PowerSource.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXFBvd2VyU291cmNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Property.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXFByb3BlcnR5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Vehicles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXFZlaGljbGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/TerroristsGroups/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVycm9yaXN0c0dyb3Vwc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Terrorists/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVycm9yaXN0c1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-80o2gf97gb
