@@ -1,0 +1,1203 @@
+﻿@model CTW_FIA.Models.Dto.NewPersonModel
+@{
+    Layout = null;
+}
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-dark">Add Reporting Agency</h4>
+      </div>
+      <div class="modal-body">
+         <input type="text" id="txtReportingAgency" class="form-control" placeholder="">
+      </div>
+      <div class="modal-footer">
+           <button type="button" class="btn btn-default text-dark" onclick="AddReportingAgency()">Add</button>
+        <button type="button" class="btn btn-default text-dark" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<form method="post" asp-action="PersonInvolved" asp-controller="Records" enctype="multipart/form-data">
+<div class="row no-gutters">
+ 
+            <div class="col-md-12 grid-margin stretch-card">
+
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Person Involved / Terrorist</h5>
+                 <label class="card-description" style="font-size: 13px;"> Please fill Person Involved Form </label>
+                    <fieldset class="border p-3">
+
+                            <div class="form-group row">
+                                <label for="personcategory" class="col-sm-2 col-form-label" style="font-size: 13px;">Insert Media</label>
+                                <div class="col-sm-4">
+                                <input name="File" type="file" onchange="readURL(this);" class="form-control" />
+                                </div>
+                                 <div class="col-sm-4" id="imgttag" style="display:none;">
+                                 <img id="blah" src="#" alt="your image" style="width:150PX;height:auto; margin-left: 150PX;" />
+                                </div>
+   
+
+
+                                 </div>
+                               </fieldset> 
+                               <br />
+                    <fieldset class="border p-3">
+
+                            <div class="form-group row">
+                                <label for="personcategory" class="col-sm-2 col-form-label" style="font-size: 13px;">Category</label>
+                                <div class="col-sm-4">
+                                    <select asp-for="Category" id="personcategory" class="form-control">
+                                        <option>Select</option>
+                                        <option>ACCUSED/SUSPECT</option>
+                                        <option>FRIEND / RELATIVE</option>
+                                        <option>VICTIM</option>
+                                        <option>WITNESS</option>
+                                        <option>OTHER</option>
+                                    </select>
+                                </div>
+                                <label for="Personcurrentstatus" class="col-sm-2 col-form-label" style="font-size: 13px;">Current Status</label>
+                                <div class="col-sm-4">
+                                    <select asp-for="CurrentStatus" id="Personcurrentstatus" class="form-control">
+                                        <option>Select</option>
+                                        <option>Arrested</option>
+                                        <option>On Bail</option>
+                                        <option>Convicted</option>
+                                        <option>Released</option>
+                                        <option>POs</option>
+                                        <option>CAs</option>
+                                        <option>Died</option>
+                                        <option>Red Notice</option>
+                                        <option>Blue Notice</option>
+                                        <option>Other</option>
+                                    </select>
+
+                            </div>
+
+
+                                 </div>
+                               </fieldset> 
+                        <br>
+                        <fieldset class="border p-3">
+
+                            <div class="form-group row">
+                                <label for="Personpreportingagency" class="col-sm-2 col-form-label" style="font-size: 13px;">Reporting Agency</label>
+                                <div class="col-sm-4">
+                                    <select asp-for="ReportingAgency" id="Personpreportingagency" class="form-control">
+
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+
+                                    <button id="new-item" type="button" class="btn btn-primary mr-2" style="font-size: 11px" data-toggle="modal" data-target="#myModal">Add</button>
+
+                                </div>
+                                <div class="col-sm-4">
+                                  <div class="custom-control custom-switch customSwitch1" style="display:none">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                    <label class="custom-control-label" for="customSwitch1">Head Money/ Not Head Money</label>
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="Personaccusationstatus" class="col-sm-2 col-form-label" style="font-size: 13px;">Current Accusation Status</label>
+                                <div class="col-sm-4">
+                                    <select asp-for="AccusationStatus" id="Personaccusationstatus" class="form-control" onchange="addPersonaccusation()">
+                                        <option>Select</option>
+                                        <option value="Red Book">Red Book</option>
+                                <option>4th Schedule</option>
+                                        <option value="4th Schedule of ATA">List under 4th Schedule of ATA</option>
+                                        <option value="UN Consolidated List">UN Consolidated List</option>
+                                        <option value="Foreign Terrorist Fighter">Foreign Terrorist Fighter</option>
+                                        <option value="NCB_Interpol">NCB_Interpol</option>
+                                        <option value="ATBs-Afghan">ATBs-Afghan Trained Boys</option>
+                                        <option value="RAPs-Returnee">RAPs-Returnee from Afghan Prisons</option>
+                                        <option value="RPPs-Released">RPPs-Released from Pakistan Prisons</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <label id="headmoneyCol" class="col-sm-2 col-form-label headmoney" style="font-size: 13px; display:none">Reward / Headmoney</label>
+                                <div class="col-sm-4 headmoney">
+                                    <input type="number" asp-for="NHeadMoney"   class="form-control headmoney"  style=" display:none"/>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                     <fieldset class="border p-3">
+                            <legend class="float-none w-auto p-2" style="font-size: 12px">Basic Information</legend>
+                         
+                                <div class="form-group row">
+                                    <label for="Name" class="col-sm-2 col-form-label" style="font-size: 13px;">Name</label>
+
+                                    <div class="col-sm-4">
+                                       <input type="text" required="required" asp-for="Name" class="form-control" />
+                                    </div>
+
+
+                                    <label for="Aliases" class="col-sm-2 col-form-label" style="font-size: 13px;">Aliases</label>
+                                    <div class="col-sm-4">
+                                          <input type="text"  asp-for="Aliases" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+
+                                    <label for="FatherName" class="col-sm-2 col-form-label" style="font-size: 13px;">Father Name</label>
+
+                                    <div class="col-sm-4">
+                                       <input type="text"  asp-for="FatherName" class="form-control" />
+                                    </div>
+
+                                    <label for="FamilyName" class="col-sm-2 col-form-label" style="font-size: 13px;">Family Name</label>
+                                    <div class="col-sm-4">
+                                         <input type="text"  asp-for="FamilyName" class="form-control" />
+                                    </div>
+                                </div>
+                                  <div class="form-group row">
+                                 <label for="Personcurrentstatus" class="col-sm-2 col-form-label" style="font-size: 13px;">Fir No</label>
+                                <div class="col-sm-4">
+                                    <textarea class="form-control" asp-for="FirNo" rows="4"></textarea>
+                                </div>
+                                  </div>
+                                <div class="form-group row">
+                                    <label for="pgender" class="col-sm-2 col-form-label" style="font-size: 13px;">Gender</label>
+                                    <div class="col-sm-4">
+                                        <select asp-for="Gender" class="form-control">
+                                            <option>Select</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                             <option>Transgender </option>
+                                        </select>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <label for="DOB" class="col-sm-2 col-form-label" style="font-size: 13px;">DOB</label>
+                                    <div class="col-sm-4">
+                                        <input type="date"  asp-for="DOB" class="form-control" />
+                                    </div>
+                                            <label for="Age" class="col-sm-2 col-form-label" style="font-size: 13px;">Age</label>
+                                    <div class="col-sm-4">
+                                        <input type="number"  class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                  
+                                    <label for="PlaceofBirth" class="col-sm-2 col-form-label" style="font-size: 13px;">Place of Birth</label>
+                                    <div class="col-sm-4">
+                                         <input type="text"  asp-for="PlaceOfBirth" class="form-control" />
+                                    </div>
+
+                                    <label  class="col-sm-2 col-form-label" style="font-size: 13px;">Tribe</label>
+                                    <div class="col-sm-4">
+                                         <input type="text"  asp-for="Tribe" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="CnicNo" class="col-sm-2 col-form-label" style="font-size: 13px;">CNIC</label>
+                                    <div class="col-sm-4">
+                                        <input type="text"  asp-for="CNIC" class="form-control" maxlength="13" />
+                                    </div>
+
+                                    <label for="Passport No" class="col-sm-2 col-form-label" style="font-size: 13px;">Passport No</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" asp-for="PassportNo" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="MaritalStatus" class="col-sm-2 col-form-label" style="font-size: 13px;">Marital Status</label>
+                                    <div class="col-sm-4">
+                                  
+                                           <select asp-for="MaritalStatus" class="form-control">
+                                            <option>Select</option>
+                                            <option value="Single">Single</option>
+                                            <option value="Married">Married</option>
+                                             <option value="Divorced">Divorced</option>
+                                             <option value="Widow">Widow</option>
+                                               <option value="Other">Other </option>
+                                        </select>
+                                    </div>
+
+                                    <label for="Religion" class="col-sm-2 col-form-label" style="font-size: 13px;">Religion</label>
+                                    <div class="col-sm-4">
+                                                       <select asp-for="Religion" class="form-control">
+                                            <option>Select</option>
+                                      <option value="">Sikhism</option>
+                                            <option value="Islam">Islam</option>
+                                             <option value="Christianity">Christianity</option>
+                                            <option value="Hinduism">Hinduism</option>
+                                             <option value="Sikhism">Sikhism</option>
+                                              <option value="Buddhism">Buddhism</option>
+                                               <option value="Other">Other </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="Occupation" class="col-sm-2 col-form-label" style="font-size: 13px;">Occupation</label>
+                                    <div class="col-sm-4">
+                                        <input type="text"  asp-for="Occupation" class="form-control" />
+                                    </div>
+
+                                    <label for="Education" class="col-sm-2 col-form-label" style="font-size: 13px;">Education / Academic</label>
+                                    <div class="col-sm-4">
+                                        <input type="text"  asp-for="Education" class="form-control" />
+
+                                    </div>
+                                </div>
+                     
+                        </fieldset>
+
+                     <fieldset class="border p-3">
+                            <legend class="float-none w-auto p-2" style="font-size: 12px">Addresses</legend>
+
+                            <div class="form-group row">
+
+                                <label for="pcountry" class="col-sm-2 col-form-label" style="font-size: 13px;">Country</label>
+
+                                <div class="col-sm-4">
+                                <select  asp-for="Country" id="selectedcountry" class="form-control">
+                                    <option>Select Country</option>
+                                    @for (var i = 0; i < ViewBag.country.Count; i++)
+                                    {
+                                        <option>@ViewBag.country[i].Country</option>
+                                    }
+                                        </select>
+                                </div>
+
+                                <label for="personprovince" class="col-sm-2 col-form-label" style="font-size: 13px;">Province</label>
+                                <div class="col-sm-4">
+                                    <select id="personprovince" asp-for="Province" class="form-control">
+                                           <option>Select the Province</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="pdistrict" class="col-sm-2 col-form-label" style="font-size: 13px;">District</label>
+
+                                <div class="col-sm-4">
+
+                                    <select asp-for="District" id="SelectDistrict" class="form-control">
+                                        <option>Select the District</option>
+                                           
+                                        </select>
+                                </div>
+
+
+                                <label for="PostalCode" class="col-sm-2 col-form-label" style="font-size: 13px;">Postal Code</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" asp-for="PostalCode" placeholder="">
+
+                                </div>
+                            </div>
+
+                             <div class="form-group row">
+
+                                                
+
+
+                         <label for="PostalCode" class="col-sm-2 col-form-label" style="font-size: 13px;">Police Station</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="PostalCode" placeholder="">
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="paddress" class="col-sm-2 col-form-label" style="font-size: 13px;">Address</label>
+
+
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" asp-for="Address" rows="4"></textarea>
+                                </div>
+                          <div class="col-sm-1">
+                                    <button type="submit" class="btn btn-primary mr-2" style="font-size: 13px;">
+                                        +
+                                    </button>
+
+                                </div>
+                            </div>
+
+                        </fieldset>
+                          <fieldset class="border p-3">
+                            <legend class="float-none w-auto p-2" style="font-size: 12px">Contact Details</legend>
+
+                            <div class="form-group row">
+
+                            <label for="cellno" class="col-sm-2 col-form-label" style="font-size: 13px;">Cell No</label>
+
+                                <div class="col-sm-4">
+                                <input type="text"  name="cellno" class="form-control" maxlength="11"/>
+                                </div>
+
+                                <label for="personprovince" class="col-sm-2 col-form-label" style="font-size: 13px;">Email</label>
+                                <div class="col-sm-4">
+                                    <input type="Email"  asp-for="Email" class="form-control"/>
+                                </div>
+                                <br />
+                                <br />
+                                <label for="personprovince" class="col-sm-2 col-form-label" style="font-size: 13px;">Social Media Account</label>
+                                <div class="col-sm-4">
+                                    <input type="text" asp-for="SocialMediaProfile"  class="form-control"/>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                   
+                        <fieldset class="border p-3">
+                          <legend class="float-none w-auto p-2" style="font-size:12px">Physical Appearance</legend>
+                             <div class="form-group row">
+                                <label for="Body Structure" class="col-sm-2 col-form-label" style="font-size: 13px;">Body Structure</label>
+                                <div class="col-sm-4"> 
+                                    <select class="form-control" asp-for="BodyStructure">
+                                        <option>Select</option>
+                                        <option>Healthy / Heavy</option>
+                                        <option>Healthy / Heavy(Medium)</option>
+                                        <option>Healthy / Heavy(Slightly)</option>
+                                        <option>Healthy / Heavy(with Big Tummy)</option>
+                                        <option>Normal / Medium</option>
+                                        <option>Normal / Medium (Small)</option>
+                                        <option>Smart</option>
+                                        <option>Thin</option>
+                                        <option>UNKOWN</option>
+                                    </select>
+                                </div>
+                                <label for="BaldType" class="col-sm-2 col-form-label" style="font-size: 13px;">Bald Type</label>
+
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="BaldType">
+                                        <option>Select</option>
+                                        <option>Back Bald</option>
+                                        <option>Complete Bald</option>
+                                        <option>Front Bald</option>
+                                        <option>Temples / Receded Bald</option>
+                                        <option>UNKOWN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="BodyBuild" class="col-sm-2 col-form-label" style="font-size: 13px;">Body Build</label>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" asp-for="BodyBuild" placeholder="">
+                                </div>
+
+                                <label for="Beard" class="col-sm-2 col-form-label" style="font-size: 13px;">Beard </label>
+
+                                <div class="col-sm-4">
+                            <select class="form-control" asp-for="BeardColor">
+                                        <option>Select </option>
+                                        <option>As per Sunnat</option>
+                                        <option>Complete</option>
+                                        <option>Curly Hair</option>
+                                        <option> Fair </option>
+                                        <option> Long (Religious Type) </option>
+                                        <option> Long / Big / Large </option>
+                                        <option> Near Mouth & Chin </option>
+                                        <option>No (Almost)</option>
+                                        <option> No (Shaves) </option>
+                                        <option> Normal </option>
+                                        <option> Normal (Curly Hair) </option>
+                                        <option> Not grown yet </option>
+                                        <option> Now Growing </option>
+                                        <option> Small </option>
+                                        <option> Some times large Some times Small </option>
+                                        <option> Thick </option>
+                                        <option> Thick (Religious Type) </option>
+                                        <option> Thick (Small) </option>
+                                        <option> Thin </option>
+                                        <option> Thin (Religious Type) </option>
+                                        <option> Thin (Small) </option>
+                                        <option> Thin (Wide) </option>
+                                        <option> UNKOWN </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
+                                <label for="Height" class="col-sm-2 col-form-label" style="font-size: 13px;"> Height</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="Height">
+                                        <option>Select</option>
+                                        <option>Normal</option>
+                                        <option>Small</option>
+                                        <option>Tall</option>
+                                        <option>UNKOWN</option>
+                                    </select>
+                                </div>
+
+                                <label for="HeightInFeet" class="col-sm-2 col-form-label" style="font-size: 13px;">Height in Feets</label>
+                                <div class="col-sm-4">
+                                     <input type="text" asp-for="HeightInFeet" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Complexion" class="col-sm-2 col-form-label" style="font-size: 13px;">Complexion</label>
+
+                                <div class="col-sm-4">
+                                     <input type="text"  asp-for="Complexion" class="form-control" />
+                                </div>
+                                <label for="Identification Mark" class="col-sm-2 col-form-label" style="font-size: 13px;">identification Mark</label>
+
+                                <div class="col-sm-4">
+                                      <input type="text"  asp-for="IdentificationMark" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Permanent Identification Mark" class="col-sm-2 col-form-label" style="font-size: 13px;">
+                                    Permanent
+                                    Identification Mark
+                                </label>
+
+                                <div class="col-sm-4">
+                                      <input type="text"  asp-for="PermanentIdentificationMark" class="form-control" />
+                                </div>
+
+                                <label for="DistinguishingMarks" class="col-sm-2 col-form-label" style="font-size: 13px;">Distinguishing Marks</label>
+
+                                <div class="col-sm-4">
+                                      <input type="text"  asp-for="DistinguishingMarks" class="form-control" />
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="WalkingStyle" class="col-sm-2 col-form-label" style="font-size: 13px;">Walking Style</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="WalkingStyle">
+                                        <option>Select </option>
+                                        <option>Walks like rogue</option>
+                                        <option>Walks Slow</option>
+                                        <option>Walks Sluggish 3</option>
+                                        <option>Walks Squatingly</option>
+                                        <option>Walks Straight</option>
+                                        <option>Walks with belly wide open</option>
+                                        <option>Walks with chest wide open</option>
+                                        <option>Walks with Face Down</option>
+                                    </select>
+                                </div>
+                                <label for="OvertAppearance" class="col-sm-2 col-form-label" style="font-size: 13px;">Overt Appearance</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="OvertAppearance">
+                                        <option>Select </option>
+                                        <option>Baritone</option>
+                                        <option>High</option>
+                                        <option>Low</option>
+                                        <option>UNKNOWN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="TalkingStyle" class="col-sm-2 col-form-label" style="font-size: 13px;">Talking Style</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="TalkingStyle">
+                                        <option>Select</option>
+                                        <option>Stutters</option>
+                                        <option>Loud</option>
+                                        <option>Speaks carefully</option>
+                                        <option>Loud (& Harsh)</option>
+                                        <option>Normal</option>
+                                        <option>Slow</option>
+                                        <option>Talks like Behari</option>
+                                        <option>NULL</option>
+                                        <option>Soft (& Heavy)</option>
+                                        <option>Talkative</option>
+                                        <option>Serious</option>
+                                        <option>Jolly / Sense of Humour</option>
+                                        <option>UNKOWN</option>
+                                        <option>Fast</option>
+                                        <option>Cunning</option>
+                                        <option>Talks like Bangali</option>
+                                        <option>Talks like educated people</option>
+                                        <option>Aggressive / Harsh</option>
+                                    </select>
+                                </div>
+                                <label for="VoicePitch" class="col-sm-2 col-form-label" style="font-size: 13px;">Voice Pitch</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="VoicePitch">
+                                        <option>Select</option>
+                                        <option>Low</option>
+                                        <option>Medium</option>
+                                        <option>High</option>
+                                        <option>UNKOWN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="NormalDress" class="col-sm-2 col-form-label" style="font-size: 13px;">Normal Dress</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="NormalDress">
+                                        <option>Select</option>
+                                        <option>Kameez Dhoti</option>
+                                        <option>Kurta and Shalwar (White)</option>
+                                        <option>Pant / Shirt</option>
+                                        <option>Shalwar Kameez</option>
+                                        <option>Shalwar Kameez (& Pant Shirt)</option>
+                                        <option>Shalwar Kameez (with Hand Kerchief on Shoulders)</option>
+                                        <option>Shalwar Kameez (with Shawl)</option>
+                                        <option>UNKOWN</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+
+                    <fieldset class="border p-3">
+                            <legend class="float-none w-auto p-2" style="font-size:12px">Hair Appearance</legend>
+
+                            <div class="form-group row">
+                                <label for="Hair" class="col-sm-2 col-form-label" style="font-size: 13px;">Hair Cut Style</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="HairCutStyle">
+                                        <option>Select </option>
+                                        <option>Fashoinable Cut</option>
+                                        <option>Long Hair</option>
+                                        <option>Long Hair (Ladies Style)</option>
+                                        <option>Long Hair upto Shoulders</option>
+                                        <option>Military Cut</option>
+                                        <option>Normal / Medium</option>
+                                        <option>Shaves Hair / Remain Bald</option>
+                                        <option>Small / Short</option>
+                                        <option>UNKNOWN</option>
+                                    </select>
+                                </div>
+
+                                <label for="HairType" class="col-sm-2 col-form-label" style="font-size: 13px;">Hair Type </label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="HairType">
+                                        <option>Select</option>
+                                        <option>Bald</option>
+                                        <option>Curly</option>
+                                        <option>Curly (in front of forehead)</option>
+                                        <option>Hard</option>
+                                        <option>Straight</option>
+                                        <option>Thick / Densive</option>
+                                        <option>Thin / Light</option>
+                                        <option>UNKOWN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="HairColor" class="col-sm-2 col-form-label" style="font-size: 13px;">Hair Color </label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="HairColor">
+                                        <option>Select</option>
+                                        <option>Black and White</option>
+                                        <option>Black (Shining)</option>
+                                        <option>Blackish</option>
+                                        <option>Blue</option>
+                                        <option>Brown</option>
+                                        <option>Brownish</option>
+                                        <option>Brownish / Black</option>
+                                        <option>Dark Brown</option>
+                                        <option>Fair Color</option>
+                                        <option>Golden</option>
+                                        <option>Green</option>
+                                        <option>None</option>
+                                        <option>Olive</option>
+                                        <option>Pink</option>
+                                        <option>Red</option>
+                                        <option>UNKNOWN</option>
+                                        <option>Wheatish</option>
+                                        <option>Wheatish Fair</option>
+                                        <option>White</option>
+                                        <option>White Redish</option>
+                                    </select>
+                                </div>
+
+                                <label for="HairImplants" class="col-sm-2 col-form-label" style="font-size: 13px;">Hair Implants</label>
+                                <div class="col-sm-4">
+                                    <div class="">
+                                         <label class="">
+                                             <input type="checkbox"   class="form-control"/>
+                                     </label>
+                                    </div>
+                                    </div>
+                                </div>
+
+                            <div class="form-group row">
+                                <label for="Wig" class="col-sm-2 col-form-label" style="font-size: 13px;">Wig</label>
+                            <div class="col-sm-4">
+                                    <div class="">
+                                        <label class="">
+                                            <input  class="form-control" type="checkbox"> 
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                      
+                        <fieldset class="border p-3">
+                            <legend class="float-none w-auto p-2" style="font-size:12px">Face Appearance</legend>
+                            <div class="form-group row">
+                                <label for="CheekStructure" class="col-sm-2 col-form-label" style="font-size: 13px;">Cheek Structure</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="CheekStructure">
+                                        <option>Select</option>
+                                        <option>Frackles</option>
+                                        <option>Healthy / Filled Outside</option>
+                                        <option>Healthy / Filled Outside (Slightly)</option>
+                                        <option>Normal Medium</option>
+                                        <option>Pressed Inside</option>
+                                        <option>Round</option>
+                                        <option>Round (Slightly)</option>
+                                        <option>Thin</option>
+                                    </select>
+                                </div>
+
+                                <label for="Contact" class="col-sm-2 col-form-label" style="font-size: 13px;">Contact Lenses</label>
+                                <div class="col-sm-4">
+                                    <div class="">
+                                        <label class="">
+                                          <input type="checkbox" class="form-control"  />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="FaceShape" class="col-sm-2 col-form-label" style="font-size: 13px;">Face Shape</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="VFaceShape">
+                                        <option>Select</option>
+                                        <option>Healthy / Heavy</option>
+                                        <option>Large</option>
+                                        <option>Long</option>
+                                        <option>Long (SLightly) / Longish</option>
+                                        <option>Long (Thin)</option>
+                                        <option>Normal / Medium</option>
+                                        <option>Oval</option>
+                                        <option>Pressed</option>
+                                    </select>
+                                </div>
+
+                                <label for="EyeStructureShape" class="col-sm-2 col-form-label" style="font-size: 13px;">Eye Structure Shape</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="EyeColor">
+                                        <option>Select</option>
+                                        <option>Big / Long</option>
+                                        <option>Big / Large</option>
+                                        <option>Roundish</option>
+                                        <option>Normal</option>
+                                        <option>Normal / Medium</option>
+                                        <option>Thin</option>
+                                        <option>Sharp</option>
+                                        <option>Narrow</option>
+                                        <option>Small</option>
+                                        <option>UNKOWN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="EyeLook" class="col-sm-2 col-form-label" style="font-size: 13px;">Eye Look</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="EyeLook">
+                                        <option>Select</option>
+                                        <option>Big / Large</option>
+                                        <option>Drooping</option>
+                                        <option>Narrow</option>
+                                        <option>Normal</option>
+                                        <option>Normal / Medium</option>
+                                        <option>Roundish</option>
+                                        <option>Small</option>
+                                        <option>Thick / Healthy</option>
+                                        <option>Thick / Healthy (Slightly)</option>
+                                        <option>UNKOWN</option>
+                                    </select>
+                                </div>
+
+                                <label for="EyeColor" class="col-sm-2 col-form-label" style="font-size: 13px;">Eye Color</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="EyeColor">
+                                        <option>Select </option>
+                                        <option>Black</option>
+                                        <option>Black & White</option>
+                                        <option>Black (Shining)</option>
+                                        <option>Blackish</option>
+                                        <option>Blue</option>
+                                        <option>Brown</option>
+                                        <option>Brownish</option>
+                                        <option>Brownish / Black</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Eyebrows" class="col-sm-2 col-form-label" style="font-size: 13px;">Eyebrows</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="Eyebrows">
+                                        <option>Select</option>
+                                        <option>Broad</option>
+                                        <option>Joining Eyebrows</option>
+                                        <option>Thick</option>
+                                        <option>Thin</option>
+                                        <option>UNKNOWN</option>
+                                    </select>
+                                </div>
+
+                                <label for="EyeGlasses" class="col-sm-2 col-form-label" style="font-size: 13px;">Eye Glasses</label>
+                                <div class="col-sm-4">
+                                    <div class="">
+                                        <label class="">
+                                            <input type="checkbox" class="form-control" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="form-group row">
+                                <label for="NoseStructure" class="col-sm-2 col-form-label" style="font-size: 13px;">Nose Structure</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="NoseStructure">
+                                        <option>Select</option>
+                                        <option>Long (Slightly)</option>
+                                        <option>Long / Large</option>
+                                        <option>Normal / Medium</option>
+                                        <option>Round (Like Bangalis)</option>
+                                        <option>Sharp</option>
+                                        <option>Small</option>
+                                        <option>Small (Slightly)</option>
+                                        <option>Standing</option>
+                                        <option>Thick / Healthy</option>
+                                        <option>Thick / Healthy (Long)</option>
+                                        <option>Thick / Healthy (Slightly)</option>
+                                        <option>Thin</option>
+                                        <option>Thin (Long)</option>
+                                        <option>Thin (Slightly)</option>
+                                        <option>UNKNOWN</option>
+                                        <option>Wide (Long)</option>
+                                        <option>Wide (Slightly)</option>
+                                        <option>Wide / Broad</option>
+                                    </select>
+                                </div>
+
+                                <label for="LipStucture" class="col-sm-2 col-form-label" style="font-size: 13px;">Lip Stucture </label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="LipStucture">
+                                        <option>Select </option>
+                                        <option>Large</option>
+                                        <option>Thin (Slightly)</option>
+                                        <option>Healthy / Fat / Thick</option>
+                                        <option>Lower Lip Healthy / Fat</option>
+                                        <option>Normal / Medium</option>
+                                        <option>Medium</option>
+                                        <option>Thin</option>
+                                        <option>Fat / Healthy (Slightly)</option>
+                                        <option>Small</option>
+                                        <option>UNKOWN</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Mustache" class="col-sm-2 col-form-label" style="font-size: 13px;">Mustache</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" asp-for="Mustaches">
+                                        <option>Select </option>
+                                        <option>Back Bald</option>
+                                        <option>Wide / Long</option>
+                                        <option>Thick / Healthy (Slightly)</option>
+                                        <option>Thick / Healthy</option>
+                                        <option>Thin (Slightly)</option>
+                                        <option>Normal Beard & Mustaches</option>
+                                        <option>Normal</option>
+                                        <option>No (Shaves)</option>
+                                        <option>Normal (downward)</option>
+                                        <option>Long Beard & Small Mustaches</option>
+                                        <option>NULL</option>
+                                        <option>Thick (Small)</option>
+                                        <option>Thin (Small)</option>
+                                        <option>Thin (Large)</option>
+                                        <option>Wide / Long (downward)</option>
+                                        <option>Fair</option>
+                                        <option>Upward</option>
+                                        <option>Normal / Medium</option>
+                                        <option>As per Sunnat</option>
+                                        <option>Thin</option>
+                                        <option>Thick (Large)</option>
+                                        <option>Now Growing</option>
+                                        <option>Small</option>
+                                        <option>UNKOWN</option>
+                                    </select>
+                                </div>
+
+                                <label for="MustacheColor" class="col-sm-2 col-form-label" style="font-size: 13px;"> Mustache Color</label>
+                                <div class="col-sm-4" asp-for="MustacheColor">
+                                    <select class="form-control">
+                                        <option>Select</option>
+                                        <option>Brown</option>
+                                        <option>Brownish</option>
+                                        <option>Blackish</option>
+                                        <option>Black & White</option>
+                                        <option>Black</option>
+                                        <option>White</option>
+                                        <option>UNKOWN</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
+                       
+                         <fieldset class="border p-3">
+
+                            <br>
+                            <div class="form-group row">
+                               <label for="Remarks" class="col-sm-2 col-form-label" style="font-size: 13px">Remarks</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" asp-for="memRemarks" rows="4"></textarea>
+
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br>
+                        <button type="submit" class="btn btn-primary mr-2">Save</button>
+                        <button class="btn btn-dark">Cancel</button>
+                    </div>
+                </div>
+            </div>
+    
+            </div>
+            </form>
+    <script type="text/javascript">
+           LoadReportingAgency();
+         var cellArr=[];
+         var socialMediaArr=[];
+         var vpage_name ="";
+         var vparam_x ="";
+         var vpage_status = "";
+
+        $(document).ready(function () {
+
+
+              $(":checkbox").click(function(event) {
+                if ($(this).is(":checked"))
+                  $(".headmoney").show();
+                else
+                  $(".headmoney").hide();
+              });
+            const urlParams = new URLSearchParams(window.location.search);
+            const param_x = urlParams.get('id');
+            const page_status = urlParams.get('pageStatus');
+            const page_name= urlParams.get('pageName');
+            vpage_name=page_name;
+            vparam_x=param_x;
+         
+         //   LoadCountryProvince();
+           // LoadPersonCountry();
+         
+            vpage_status=page_status;
+            if(page_status == "u" && param_x != "" && page_name == "personPreview")
+            {
+                  alert(page_status +" " +param_x +" " +page_name);
+                  ViewPersonById(param_x);
+            } 
+        });
+
+//      function PersonClick()
+//         {
+//            if(vpage_status == "u" && vparam_x != "" && vpage_name == "personPreview")
+//            {
+//                UpdatePerson();
+//            } 
+//            else
+//            {
+//               PersonInsertion();
+//            }
+
+//        }
+
+//    function addCell()
+//    {
+//        //var cellArr=[];
+//        var cell = $('#cellno').val();
+//        if(cell != null || cell != "" || cell.length ==11 )
+//        {
+
+//             var CellTable = $('#CellTable');
+//             CellTable.append("<tr><td> Cell Number </td><td>" + cell + "</td></option>");
+//             cellArr.push(cell);
+
+//        }
+
+//    }
+//    //function createSocialArr()
+//    // {
+//    //     [
+//    //     { "SocialMediaProfile": cellArr[v]}
+//    //     ]
+
+//    //  }
+    function ViewPersonById(param_x)
+    {
+         var url = "/api/People/"+param_x;
+            alert(url);
+            $.ajax({  
+            type: "GET",  
+            url: url,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {  
+                  alert(JSON.stringify(response));
+                  alert((response.strURN.toString()));
+                   //   alert(JSON.stringify(response));
+                //   alert((response.groupName.toString()))
+                    //alert((response.groupName));
+                    $("#personcategory").val(response.category);
+                    $("#Name").val(response.name);
+                    $("#FatherName").val(response.fatherName);
+                    $("#Aliases").val(response.aliases);
+                    $("#FamilyName").val(response.familyName);
+                    $("#PersonRemarks").val(response.memRemarks);
+                     if(response.NHeadMoney !="" && response.NHeadMoney !=null)
+                    {
+                        document.getElementById("headmoneyCol").style.display = "block";
+                        document.getElementById("headmoney").style.display = "block";
+
+                        $('#headmoney').val(response.NHeadMoney);
+                    }
+             },
+            error: function (response) {  
+                //alert("error");  
+            }
+        });    
+    }
+//    function addsocialMedia()
+//    {    
+//        //var cellArr=[];
+//        var socialmedia = $('#socialmedia').val();
+//        if(socialmedia != null || socialmedia != "")
+//        { 
+//             var MediaTable = $('#socialmediaTable');
+//             MediaTable.append("<tr><td> Social Media Id </td><td>" + socialmedia + "</td></option>");
+//             socialMediaArr.push(socialmedia);
+//        }
+//         socialmedia="";
+//    } 
+
+//    function LoadPersonCountry()
+//    {
+//      var PcountryList = $('#pcountry');
+//        try {
+//        $.ajax({
+//            url: '/api/Countries/',
+//              method: 'Get',
+//            //headers: {
+//              //  'Content-Type': 'application/x-www-form-urlencoded'
+//            //},
+//            dataType: 'json',
+
+//            success: function ( data) {
+
+//           var v = JSON.stringify(data);
+//             var selOpts = "";
+//             selOpts += "<option value='' disabled selected>--Select--</option>";
+//              $.each(data, function (k, v) {
+//                   var id = data[k].strCountry;
+//                   var val = data[k].strCountry;
+//                   selOpts += "<option value='" + id + "'>" + val + "</option>";
+//                    });
+//                     PcountryList.append(selOpts); 
+
+//              },
+//            error: function (request, status, error) {
+
+//                alert("Error.");
+//            }
+//        });
+//    }
+//    catch (err) {
+//        exceptionHandeld(err);
+//    }
+//    }
+
+    function addPersonaccusation()
+    {
+         var Personpreportingagency = $('#Personaccusationstatus').val(); 
+        if(Personpreportingagency =="Red Book")
+        {
+            $(".customSwitch1").show();
+        }
+        else
+        {
+            $(".customSwitch1").hide();
+        }
+    }
+
+    function LoadPersonProvince()
+    {
+        var provincelist = $('#personprovince');   
+      
+       try {
+        $.ajax({
+            url: '/api/ProvinceLists',
+              method: 'Get',
+            //headers: {
+              //  'Content-Type': 'application/x-www-form-urlencoded'
+            //},
+            dataType: 'json',
+            beforeSend: function () {
+
+                //$("#loader").show();
+            },
+            complete: function () {
+
+                //$("#loader").hide();
+            },
+            success: function ( data) {
+
+           var v = JSON.stringify(data);
+             var selProvince = "";
+             selProvince += "<option value='' disabled selected>--Select--</option>";
+              $.each(data, function (k, v) {
+                   var id1 = data[k].strProvince;
+                   var val1 = data[k].strProvince;
+
+                   selProvince += "<option value='" + id1 + "'>" + val1 + "</option>";
+                    });
+                   provincelist.append(selProvince);
+             },
+            error: function (request, status, error) {
+           
+                //alert("Error.");
+            }
+        });
+    }
+    catch (err) {
+        exceptionHandeld(err);
+    }
+    }
+   
+  
+  
+     function AddReportingAgency()
+    {
+    var ReportingAgency =$('#txtReportingAgency').val(); 
+ // alert(ReportingAgency);
+        var settings = {
+              "url": "/api/ReportingAgencies",
+              "method": "POST",
+              "timeout": 0,
+              "headers": {
+                "Content-Type": "application/json"
+              },
+              "data": JSON.stringify({
+                "ReportingAgencyTitle": ReportingAgency
+              }),
+            };
+
+            $.ajax(settings).done(function (response) {
+              console.log(response);
+             alert("data hase been added successfully" );
+            //$("#myModal").hide();
+              LoadReportingAgency();
+            });
+
+    }
+
+     function LoadReportingAgency()
+    {
+      var ReportingAgencyList = $('#Personpreportingagency');
+  
+        try {
+        $.ajax({
+            url: '/api/ReportingAgencies',
+              method: 'Get',
+            //headers: {
+              //  'Content-Type': 'application/x-www-form-urlencoded'
+            //},
+            dataType: 'json',
+
+            success: function ( data) {
+
+           var v = JSON.stringify(data);
+             var selIncAgency = "";
+              selIncAgency += "<option value='' disabled selected>--Select--</option>";
+              $.each(data, function (k, v) {
+                   var id1  = data[k].reportingAgencyTitle;
+                  // var val1 =  JSON.stringify(data[k].ReportingAgencyTitle);
+                   selIncAgency += "<option value='" + id1 + "'>" + id1 + "</option>";
+                    });
+                     ReportingAgencyList.append(selIncAgency); 
+
+              },
+            error: function (request, status, error) {
+
+                //alert("Error.");
+            }
+        });
+    }
+    catch (err) {
+        exceptionHandeld(err)
+    }
+    }
+
+    function LoadCountryProvince(country)
+    {
+         $("#personprovince option").remove();
+        $("#SelectDistrict option").remove();
+        var personprovince = $('#personprovince');
+        $.ajax({
+            url: '/AllRcord/getProvinceList'
+        , type: 'GET'
+        , data: {country:country}
+        , contentType: 'application/json'
+        , success: function (response) {
+         
+                 var Prlist = "";
+                 Prlist="<option value='Others'>Select Province</option>";
+                for (var m = 0; m < response.length; m++) {
+                     Prlist += "<option value='" + response[m] + "'>" + response[m] + "</option>";
+                    
+                }
+                personprovince.append(Prlist);
+         
+        }
+    });
+    }
+    function getDistrictlist(Province)
+    {
+      
+         $("#SelectDistrict option").remove();
+
+        var Districlist = $('#SelectDistrict');
+        $.ajax({
+            url: '/AllRcord/getDistrictlist'
+        , type: 'GET'
+        , data: {Province:Province}
+        , contentType: 'application/json'
+        , success: function (response) {
+         
+                 var Dslist = "";
+                 Dslist=null;
+
+                for (var d = 0; d < response.length; d++) {
+                     Dslist += "<option value='" + response[d] + "'>" + response[d] + "</option>";
+                    
+                }
+                Districlist.append(Dslist);
+         
+        }
+    });
+    }
+    $("#selectedcountry").change(function () {
+        var conceptName = $('#selectedcountry').find(":selected").text();
+        LoadCountryProvince(conceptName);
+    });
+    $("#personprovince").change(function () {
+        var pn = $('#personprovince').find(":selected").text();
+        getDistrictlist(pn);
+    });
+    function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        $('#imgttag').show();
+      $('#blah').attr('src', e.target.result).width(150).height(200);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+     </script>
+

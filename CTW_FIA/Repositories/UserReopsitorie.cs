@@ -14,107 +14,57 @@ namespace CTW_FIA.Repositories
 {
     public class UserReopsitorie:IUser
     {
-		private readonly IConfiguration configuration;
-
+        private readonly IStoredProcedure storedProcedure;
 		private readonly AppDbContext context;
-        public UserReopsitorie(IConfiguration configuration,AppDbContext context)
+
+        public UserReopsitorie(IStoredProcedure storedProcedure, AppDbContext context)
         {
 
-            this.configuration = configuration;
+            this.storedProcedure = storedProcedure;
             this.context = context;
         }
 
 
-		private UserDto GetUserByCredentials(string userName, string password)
-		{
+		public UserDto Login(string userName, string Password)
+        {
+
             try
             {
-				string connectionString = configuration.GetConnectionString("DefaultConnection");
+                DataTable dataTable = storedProcedure.GetUserByCredentials(userName, Password);
+                if (dataTable != null)
+                {
+                    if (dataTable.Rows.Count > 0)
+                    {
+                        DataRow row = dataTable.Rows[0];
 
-				using (SqlConnection connection = new SqlConnection(connectionString))
-				{
-					connection.Open();
+                        UserDto user = new UserDto
+                        {
+                            UserID = Convert.ToInt32(row["UserID"]),
+                            UserName = row["UserName"].ToString(),
+                            Password = row["Password"].ToString(),
+                            DepartmentID = Convert.ToInt32(row["DepartmentID"]),
+                            OfficeID = Convert.ToInt32(row["OfficeID"]),
+                            Designation = row["Designation"].ToString(),
+                            ActiveUser = Convert.ToBoolean(row["ActiveUser"]),
+                            AccountLock = Convert.ToBoolean(row["AccountLock"]),
+                            UserRole = row["UserRole"].ToString(),
+                        };
 
-					using (SqlCommand command = new SqlCommand("GetUserByCredentials", connection))
-					{
-						command.CommandType = CommandType.StoredProcedure;
-
-						command.Parameters.AddWithValue("@UserName", userName);
-						command.Parameters.AddWithValue("@Password", password);
-
-						using (SqlDataReader reader = command.ExecuteReader())
-						{
-							if (reader.HasRows)
-							{
-								reader.Read();
-
-								UserDto user = new UserDto
-								{
-									UserID = Convert.ToInt32(reader["UserID"]),
-									UserName = reader["UserName"].ToString(),
-									Password = reader["Password"].ToString(),
-									DepartmentID = Convert.ToInt32(reader["DepartmentID"]),
-									OfficeID = Convert.ToInt32(reader["OfficeID"]),
-									Designation = reader["Designation"].ToString(),
-									ActiveUser = Convert.ToBoolean(reader["ActiveUser"]),
-									AccountLock = Convert.ToBoolean(reader["AccountLock"]),
-									UserRole = reader["UserRole"].ToString(),
-								};
-								return user;
-
-							}
-						}
-					}
-
-				}
-
-				return null;
-			}
+                        return user;
+                    }
+                }
+                return null;
+            }
             catch (Exception)
             {
 
                 throw;
             }
-			
-		}
+
+        }
 
 
-		public bool Login(string userName, string Password)
-        {
-            UserDto User = GetUserByCredentials(userName, Password);
 
-            if (User == null)
-                return false;
-            else return true;
-            //try
-            //{
-            //    if (UserData != null)
-            //	{
-            //		//UserData.LastLoginTimestamp = DateTime.UtcNow;
-            //		String localIpAddress = GetLocalIPAddress();
-            //		String localMacAddress = GetLocalIPAddress();
-            //		var macmatch = context.MacAddress.Where(x => x.MAC_Address == localMacAddress).FirstOrDefault();
-            //		if (macmatch != null)
-            //		{
-            //			var ipmatch = context.IpLogs.Where(x => x.IsDeleted == false && x.IP == localIpAddress).FirstOrDefault();
-            //			if (ipmatch != null)
-            //			{
-            //                         //signinTrue
-            //				return true;
-            //			}
-            //		}
-            //	}
-            //	return false;
-            //}
-            //catch (Exception)
-            //{
-
-            //	throw;
-            //}
-		}
-
-
-    
         public string GetLocalIPAddress()
         {
             String ipAddress = "";

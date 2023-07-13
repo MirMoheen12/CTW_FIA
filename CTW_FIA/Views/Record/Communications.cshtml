@@ -1,0 +1,399 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row no-gutters" >
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h5>Communication Form</h5>
+
+        <form class="forms-sample">
+          <fieldset class="border p-3">
+            <legend class="float-none w-auto p-2" style="font-size: 12px">
+              Communication Form
+            </legend>
+
+            <div class="form-group row">
+              <label
+                for="CommunicationsType"
+                class="col-sm-3 col-form-label"
+                style="font-size: 13px"
+                >Communications Type
+              </label>
+              <div class="col-sm-9">
+                <select id="commType" class="form-control">
+                  <option value="" disabled selected>
+                    Select the Communications Type
+                  </option>
+                  <option>Mobile</option>
+                  <option>Email Address</option>
+                  <option>Phone</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="Description"
+                class="col-sm-3 col-form-label"
+                style="font-size: 13px"
+                >Description
+              </label>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="commDescription"
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="CommunicationsName"
+                class="col-sm-3 col-form-label"
+                style="font-size: 13px"
+                >Communications Name
+              </label>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="commName"
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="Other"
+                class="col-sm-3 col-form-label"
+                style="font-size: 13px"
+                >Other</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="other"
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="Website / Email"
+                class="col-sm-3 col-form-label"
+                style="font-size: 13px"
+                >Website / Email</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="webValue"
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="Number"
+                class="col-sm-3 col-form-label"
+                style="font-size: 13px"
+                >Number</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="number"
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="ServiceProvider"
+                class="col-sm-3 col-form-label"
+                style="font-size: 13px"
+                >Service Provider</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="serviceProvider"
+                  placeholder=""
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="CountryofOrigin"
+                class="col-sm-3 col-form-label"
+                style="font-size: 13px"
+                >Country of Origin</label
+              >
+              <div class="col-sm-9">
+                <select id="countryOrigin" class="form-control">
+               </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="border p-3">
+            <br />
+            <div class="form-group row">
+              <label
+                for="Remarks"
+                class="col-sm-3 col-form-label"
+                style="font-size: 13px"
+                >Remarks</label
+              >
+              <div class="col-sm-9">
+                <textarea
+                  class="form-control"
+                  id="commRemarks"
+                  rows="4"
+                ></textarea>
+              </div>
+            </div>
+          </fieldset>
+          <br />
+          <button
+            type="button"
+            class="btn btn-primary mr-2"
+            onClick="CommunicationClick()"
+          >
+            Save
+          </button>
+          <button class="btn btn-dark">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  @*<div class="col-md-3 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Selected Records</h4>
+        <p class="card-description">No data to display</p>
+      </div>
+    </div>
+  </div>*@
+</div>
+   <script src="~/Content/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+      var vpage_name ="";
+         var vparam_x ="";
+         var vpage_status = "";
+         $(document).ready(function () {
+         const urlParams = new URLSearchParams(window.location.search);
+         const param_x = urlParams.get('id');
+         const page_status = urlParams.get('pageStatus');
+         const page_name= urlParams.get('pageName');
+         vpage_name=page_name;
+         vparam_x=param_x;
+         vpage_status=page_status;
+         LoadCountry();
+        if(page_status == "u" && param_x != "" && page_name == "PreviewCommnicationRecord")
+            {
+                  //alert(page_status +" " +param_x +" " +page_name);
+                
+                  loadComponents(param_x);
+            } 
+       });
+         function LoadCountry()
+         {
+              var ComponentCountryList = $('#countryOrigin');
+     
+                try {
+                  $.ajax({
+                          url: '/api/Countries',
+                          method: 'Get',
+                        //headers: {
+                          //  'Content-Type': 'application/x-www-form-urlencoded'
+                        //},
+                        dataType: 'json',
+           
+                        success: function ( data) 
+                        {
+                             var v = JSON.stringify(data);
+                             var selOpts = "";
+                             selOpts += "<option value='' disabled selected>--Select--</option>";
+                              $.each(data, function (k, v) {
+                                   var id = data[k].strCountry;
+                                   var val = data[k].strCountry;
+                                   selOpts += "<option value='" + id + "'>" + val + "</option>";
+                                 });
+                                 ComponentCountryList.append(selOpts); 
+                       
+                        },
+                    error: function (request, status, error) {
+           
+                        //alert("Error.");
+                    }
+                });
+            }
+            catch (err) {
+                exceptionHandeld(err)
+            }
+         }
+
+          function CommunicationClick()
+         {
+            if(vpage_status == "u" && vparam_x != "" && vpage_name == "PreviewCommnicationRecord")
+            {
+                CommunicationUpdation();
+            } 
+            else
+            {
+              CommunicationInsertion();
+            }
+            
+         }
+    function CommunicationInsertion() {
+
+      var commType = $("#commType").val();
+      var commDescription = $("#commDescription").val();
+      var commName = $("#commName").val();
+      var other = $("#other").val();
+      var webValue = $("#webValue").val();
+      var number = $("#number").val();
+      var serviceProvider = $("#serviceProvider").val();
+      var countryOrigin = $("#countryOrigin").val();
+      var commRemarks = $("#commRemarks").val();
+ 
+      var settings = {
+      "url": "/api/Communications",
+      "method": "POST",
+      "timeout": 0,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "data": JSON.stringify({
+        "intID": 0,
+        "strURN": "string",
+        "commType": commType,
+        "commDescription": commDescription,
+        "commName": commName,
+        "other": other,
+        "webValue": webValue,
+        "number": number,
+        "serviceProvider": serviceProvider,
+        "countryOrigin": countryOrigin,
+        "memRemarks": commRemarks,
+        "createdBy": "Admin",
+        "dteCreated": "2022-04-04T06:56:24.793Z",
+        "dteSent": "2022-04-04T06:56:24.793Z",
+        "lastModifiedBy": "Admin",
+        "lastModified": "2022-04-04T06:56:24.793Z",
+        "isDeleted": false
+      }),
+    };
+
+   $.ajax(settings).done(function (response) {
+                alert("Communication has been added successfully");
+                if (confirm('Do you want to add Media File ?')) {
+                 
+                   console.log("Media File.");
+                   localStorage.setItem("strURN", response.strURN);
+                   localStorage.setItem("tableName", "Communications");
+                   window.location.href = "/Admin/Records/AddMedia";
+                  }
+                  else
+                  {
+                                 localStorage.setItem("strURN", response.strURN);
+                   localStorage.setItem("tableName", "Communications");
+                     var id=response.strURN;
+                    // window.location.href = "/Admin/Records/PreviewCommunicationsRecord?id="+id;
+                       window.location.href = "/Admin/Records/PreviewRecord?controller=Communications&id="+id;
+         
+                  }
+                });
+
+    
+    }
+           function loadComponents(param_x)
+        {
+               srcindex = 0;
+                 var url = "/api/Communications/"+param_x;
+                   // alert(url);
+                    $.ajax({  
+                    type: "GET",  
+                    url: url,
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (response) {  
+                      //alert(JSON.stringify(response));
+                        $("#commType").val(response.CommType);
+                        $("#commDescription").val(response.CommDescription);
+                        $("#number").val(response.Number);
+                        $("#commName").val(response.CommName);
+                        $("#other").val(response.Other);
+                        $("#webValue").val(response.WebValue);
+                        $("#serviceProvider").val(response.ServiceProvider);
+                        $("#countryOrigin").val(response.CountryOrigin);
+                        $("#commRemarks").val(response.memRemarks);
+                          
+                    },
+                    error: function (response) {  
+                        //alert("error");  
+                    }
+                });         
+     
+        }
+
+      function CommunicationUpdation() {
+          var strid=vparam_x;
+          var commType = $("#commType").val();
+          var commDescription = $("#commDescription").val();
+          var commName = $("#commName").val();
+          var other = $("#other").val();
+          var webValue = $("#webValue").val();
+          var number = $("#number").val();
+          var serviceProvider = $("#serviceProvider").val();
+          var countryOrigin = $("#countryOrigin").val();
+          var commRemarks = $("#commRemarks").val();
+ 
+          var settings = {
+          "url": "/api/Communications/"+strid,
+          "method": "Put",
+          "timeout": 0,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "data": JSON.stringify({
+            "intID": 0,
+            "strURN": strid,
+            "commType": commType,
+            "commDescription": commDescription,
+            "commName": commName,
+            "other": other,
+            "webValue": webValue,
+            "number": number,
+            "serviceProvider": serviceProvider,
+            "countryOrigin": countryOrigin,
+            "memRemarks": commRemarks,
+            "createdBy": "Admin",
+            "dteCreated": "2022-04-04T06:56:24.793Z",
+            "dteSent": "2022-04-04T06:56:24.793Z",
+            "lastModifiedBy": "Admin",
+            "lastModified": "2022-04-04T06:56:24.793Z",
+            "isDeleted": false
+          }),
+        };
+
+        $.ajax(settings).done(function (response) {
+          console.log(response);
+            alert("Data has been updated successfully");
+          //  window.location.href = "/Admin/Records/PreviewCommunicationsRecord?id="+strid;
+              window.location.href = "/Admin/Records/PreviewRecord?controller=Communications&id="+strid;
+         
+        });
+
+    }
+
+</script>
+

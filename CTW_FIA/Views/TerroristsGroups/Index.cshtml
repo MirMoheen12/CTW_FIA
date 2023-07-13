@@ -1,191 +1,51 @@
 ﻿@{
-
-
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @section Styles{
 
 }
 
-    <div class="row no-gutters">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="font-weight-normal">Foreign Terrorits Groups</h6>
-                    <canvas id="foreignChart" style="position: relative; height:28vh; width:40vw"></canvas>
-                </div>
+<div class="row no-gutters">
+    <div class="col-md-12"><h2 class="font-weight-normal text-center">Terrorist Groups Analysis – Graph </h2></div>
+    <div class="col-md-6">
+        <div class="card">
+
+            <div class="card-body">
+                <h6 class="font-weight-normal text-center">Foreign</h6>
+                <canvas id="foreignChart" style="position: relative; height:300px; width:280px"></canvas>
             </div>
+
         </div>
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="font-weight-normal">With in Pakistan</h6>
-                    <canvas id="pakChart" style="position: relative; height:28vh; width:40vw"></canvas>
-                </div>
+   @*     <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-normal text-center">Foreign </h6>
+                <canvas id="foreignChart" style="position: relative; height:0px; width:0px"></canvas>
+            </div>
+        </div>*@
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-normal text-center">Pakistani</h6>
+                <canvas id="pakChart" style="position: relative; height:150px; width:150px"></canvas>
             </div>
         </div>
     </div>
-    <div class="row no-gutters">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="font-weight-normal">Most Effective Top 10 with Strength</h6>
-                    <canvas id="strengthChart" style="position: relative; height:50vh; width:80vw"></canvas>
-                </div>
+</div>
+<div class="row no-gutters">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-normal text-center">Top 10</h6>
+                <canvas id="strengthChart" style="position: relative; height:150px; width:150px"></canvas>
             </div>
         </div>
     </div>
+</div>
 
-    @* @section Scripts{
+@section Scripts{
     <script type="text/javascript">
-        $(document).ready(function () {
-
-            const ctx_foreign = document.getElementById('foreignChart');
-            const ctx_pak = document.getElementById('pakChart');
-            const ctx_strength = document.getElementById('strengthChart');
-            Chart.register(ChartDataLabels);
-            Chart.defaults.set('plugins.datalabels', {
-                color: '#000000'
-            });
-            const c_options = {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    },
-                    x: {
-                        stacked: true
-                    }
-                },
-                legend: {
-                    labels: {
-                        // This more specific font property overrides the global property
-                        font: {
-                            size: 22
-                        }
-                    }
-                },
-                tooltips: {
-                    enabled: false
-                },
-                plugins: {
-                    datalabels: {
-                        anchor: 'end',
-                        align: 'end',
-                        labels: {
-                            value: {
-                                color: 'black'
-                            },
-                            font: {
-                                size: 22
-                            }
-                        }
-                    }
-                }
-            };
-            const c_background_colors =
-                [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235,1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192,1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64,1)',
-                    'rgba(9, 113, 7, 0.94)',
-                    'rgba(10, 73, 231, 0.94)',
-                    'rgba(73, 49, 226, 1)',
-                    'rgba(138, 38, 64, 1)',
-
-                ];
-
-            $.ajax({
-                type: "GET",
-                url: "/api/Group/GetGroupsByProvince",
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                success: function (response) {
-
-                    console.log(response);
-
-                    const foreign = response.foreign_res.map(i => `${i.foreign}`);
-
-                    const count_foreign = response.foreign_res.map(i => `${i.noGroup}`);
-
-                    const pak = response.pak_res.map(i => `${i.pak}`);
-
-                    const count_pak = response.pak_res.map(i => `${i.noGroup}`);
-
-                    const strength = response.strength_res.map(i => `${i.strength}`);
-
-                    const count_strength = response.strength_res.map(i => `${i.noGroup}`);
-
-                    console.log(foreign);
-                    console.log(count_foreign);
-                    console.log(pak);
-                    console.log(count_pak);
-                    console.log(strength);
-                    console.log(count_strength);
-
-                    const myChart_foreign = new Chart(ctx_foreign, {
-                        type: 'bar',
-                        data: {
-                            labels: foreign,
-                            datasets: [{
-                                label: '# of Groups in Foreign Countries',
-                                data: count_foreign,
-                                backgroundColor: c_background_colors,
-                                borderColor: c_background_colors,
-                                borderWidth: 2
-
-                            }]
-                        },
-                        options: c_options
-                    });
-
-                    const myChart_pak = new Chart(ctx_pak, {
-                        type: 'bar',
-                        data: {
-                            labels: pak,
-                            datasets: [{
-                                label: '# of Groups in Pakistan',
-                                data: count_pak,
-                                backgroundColor: c_background_colors,
-                                borderColor: c_background_colors,
-                                borderWidth: 2
-
-                            }]
-                        },
-                        options: c_options
-                    });
-
-                    const myChart_strength = new Chart(ctx_strength, {
-                        type: 'bar',
-                        data: {
-                            labels: strength,
-                            datasets: [{
-                                label: '# Top Groups with Strength',
-                                data: count_strength,
-                                backgroundColor: c_background_colors,
-                                borderColor: c_background_colors,
-                                borderWidth: 2
-
-                            }]
-                        },
-                        options: c_options
-                    });
-
-                    //alert(arr);
-                },
-                error: function (response) {
-                    alert("error");
-                }
-            });
-        });</script>*@
-
-
-    @section Scripts{
-    <script type="text/javascript">
-
         $(document).ready(function () {
             const ctx_foreign = document.getElementById('foreignChart');
             const ctx_pak = document.getElementById('pakChart');
@@ -244,12 +104,6 @@
                     'rgba(138, 38, 64, 1)',
 
                 ];
-
-
-
-
-
-
 
             $.ajax({
                 type: "GET",
@@ -257,9 +111,6 @@
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 success: function (response) {
-
-                    //  alert(response.length);
-
                     const foreign = [];
                     const count_foreign = [];
                     const pak = [];
@@ -267,30 +118,23 @@
                     const strength = [];
                     const count_strength = [];
 
-                    console.log(response);
-
                     for (let j = 0; j < response.length; j++) {
-                        if (response[j].tablename == "FG") {
-                            // alert(j);
+                        if (response[j].tablename === "FG") {
                             foreign.push(response[j].name);
                             count_foreign.push(response[j].totalRecord);
                         }
-                        if (response[j].tablename == "PKG") {
-                            // alert(j);
+                        if (response[j].tablename === "PKG") {
                             pak.push(response[j].name);
                             count_pak.push(response[j].totalRecord);
                         }
-                        if (response[j].tablename == "TopG") {
-                            // alert(j);
+                        if (response[j].tablename === "TopG") {
                             strength.push(response[j].name);
                             count_strength.push(response[j].totalRecord);
                         }
-
                     }
-                    console.log(foreign)
-                    console.log(count_foreign)
+
                     const myChart_foreign = new Chart(ctx_foreign, {
-                        type: 'bar',
+                        type: 'pie',
                         data: {
                             labels: foreign,
                             datasets: [{
@@ -299,16 +143,52 @@
                                 backgroundColor: c_background_colors,
                                 borderColor: c_background_colors,
                                 borderWidth: 2
-
                             }]
                         },
-                        options: c_options
+                        options: {
+                            responsive: true,
+                            scales: {
+                                    
+                                y: {
+                                      
+                                    ticks: {
+                                        // Include a dollar sign in the ticks
+
+                                        fixedStepSize: 1
+                                    }
+                                }
+                            },
+                            legend: {
+                                labels: {
+                                    // This more specific font property overrides the global property
+                                    font: {
+                                        size: 22
+                                    }
+                                }
+                            },
+                            tooltips: {
+                                enabled: false
+                            },
+                            plugins: {
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'end',
+                                    labels: {
+                                        value: {
+                                            color: 'black'
+                                        },
+                                        font: {
+                                            size: 22
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     });
 
 
-                    
                     const myChart_pak = new Chart(ctx_pak, {
-                        type: 'bar',
+                        type: 'pie',
                         data: {
                             labels: pak,
                             datasets: [{
@@ -317,14 +197,52 @@
                                 backgroundColor: c_background_colors,
                                 borderColor: c_background_colors,
                                 borderWidth: 2
-
                             }]
                         },
-                        options: c_options
+                        options: {
+                            responsive: true,
+                            scales: {
+                                    
+                                y: {
+                                      
+                                    ticks: {
+                                        // Include a dollar sign in the ticks
+
+                                        fixedStepSize: 1
+                                    }
+                                }
+                            },
+                            legend: {
+                                labels: {
+                                    // This more specific font property overrides the global property
+                                    font: {
+                                        size: 22
+                                    }
+                                }
+                            },
+                            tooltips: {
+                                enabled: false
+                            },
+                            plugins: {
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'end',
+                                    labels: {
+                                        value: {
+                                            color: 'black'
+                                        },
+                                        font: {
+                                            size: 22
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     });
 
+
                     const myChart_strength = new Chart(ctx_strength, {
-                        type: 'bar',
+                        type: 'pie',
                         data: {
                             labels: strength,
                             datasets: [{
@@ -333,28 +251,51 @@
                                 backgroundColor: c_background_colors,
                                 borderColor: c_background_colors,
                                 borderWidth: 2
-
                             }]
                         },
-                        options: c_options
-                    });
+                        options:{
+                            responsive: true,
+                            scales: {
+                                    
+                                y: {
+                                      
+                                    ticks: {
+                                        // Include a dollar sign in the ticks
 
+                                        fixedStepSize: 1
+                                    }
+                                }
+                            },
+                            legend: {
+                                labels: {
+                                    // This more specific font property overrides the global property
+                                    font: {
+                                        size: 22
+                                    }
+                                }
+                            },
+                            tooltips: {
+                                enabled: false
+                            },
+                            plugins: {
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'end',
+                                    labels: {
+                                        value: {
+                                            color: 'black'
+                                        },
+                                        font: {
+                                            size: 22
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
 
                 },
             });
         });
-
-
-
-
-
-
-
-
-
-
-
     </script>
-
-
 }

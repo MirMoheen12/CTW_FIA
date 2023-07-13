@@ -1,0 +1,777 @@
+﻿@model CTW_FIA.Models.DatabaseModels.Firearms
+@{
+    Layout = null;
+}
+
+<div class="row no-gutters">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h5>Firearms Form</h5>
+         <form class="forms-sample" method="post" asp-action="Firearms" asp-controller="Records">
+   
+          <fieldset class="border p-3">
+            <legend class="float-none w-auto p-2" style="font-size: 12px">
+              Firearms Details
+            </legend>
+            <div class="form-group row">
+              <label
+                for="Other"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Make</label
+              >
+              <div class="col-sm-4">
+                <input
+                asp-for="Make"
+                  type="text"
+                  class="form-control"
+                  id="farmmake"
+                />
+              </div>
+              <label
+                for="Other"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Model</label
+              >
+              <div class="col-sm-4">
+                <input asp-for="Model"
+                  type="text"
+                  class="form-control"
+                  id="farmmodel"
+                  placeholder=""
+                />
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label
+                for="Other"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Logo</label
+              >
+              <div class="col-sm-4">
+                <div class="">
+                  <label class="">
+                    <input id="Farmlogo"  class="form-control" type="checkbox"> 
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="Make"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Country of Origin
+              </label>
+              <div class="col-sm-4">
+                <select class="form-control" asp-for="CountryOrigin" id="FirearmsCountryOri"> 
+                </select>
+              </div>
+              <label
+                for="Make"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px">Country of Recovery
+              </label>
+              <div class="col-sm-4">
+                <select class="form-control" asp-for="CountryRecovered" id="FirearmsCountryRec">
+                
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="SerialNumber"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Serial Number</label
+              >
+              <div class="col-sm-4">
+                <input asp-for="SerialNumber"
+                  type="text"
+                  class="form-control"
+                  id="SerialNumber"
+                  placeholder=""
+                />
+              </div>
+              <label
+                for="Importer"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Importer</label
+              >
+              <div class="col-sm-4">
+                <input asp-for="Impoter"
+                  type="text"
+                  class="form-control"
+                  id="Importer"
+                  placeholder=""
+                />
+              </div>
+            </div>
+           
+            <div class="form-group row">
+              <label
+                for="SerialErased"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Serial Erased</label
+              >
+              <div class="col-sm-4">
+                <div class="">
+                  <label class="">
+                    <input id="SerialErased"  class="form-control" type="checkbox"> 
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="farmType"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Type
+              </label>
+              <div class="col-sm-4">
+                <input asp-for="Type"
+                  type="text"
+                  class="form-control"
+                  id="farmType"
+                  placeholder=""
+                />
+              </div>
+              <label
+                for="farmAction"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Action</label
+              >
+              <div class="col-sm-4">
+                <input asp-for="Action"
+                  type="text"
+                  class="form-control"
+                  id="farmAction"
+                  placeholder=""
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label
+                for="farmCalibre"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Calibre
+              </label>
+              <div class="col-sm-4">
+                <input asp-for="Calibre"
+                  type="text"
+                  class="form-control"
+                  id="farmCalibre"
+                  placeholder=""
+                />
+              </div>
+              <label
+                for="farmQuantity"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Quantity</label
+              >
+              <div class="col-sm-4">
+                <input asp-for="Quantity"
+                  type="text"
+                  class="form-control"
+                  id="farmQuantity"
+                  placeholder=""
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label
+                for="BarrenLength"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Barren Length</label
+              >
+              <div class="col-sm-4">
+                <input asp-for="BarrelLength"
+                  type="text"
+                  class="form-control"
+                  id="BarrenLength"
+                  placeholder=""
+                />
+              </div>
+              <label
+                for="RoundsHeld"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Rounds Held</label
+              >
+              <div class="col-sm-4">
+                <input asp-for="RoundsHeld"
+                  type="text"
+                  class="form-control"
+                  id="RoundsHeld"
+                  placeholder=""
+                />
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <label
+                for="Deactivated"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Deactivated</label
+              >
+              <div class="col-sm-4">
+                 <div class="">
+                  <label class="">
+                    <input id="Deactivated"  class="form-control" type="checkbox"> 
+                  </label>
+                </div>
+              </div>
+              <label
+                for="FarmReactivated"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Reactivated</label
+              >
+              <div class="col-sm-4">
+                <div class="">
+                  <label class="">
+                    <input id="FarmReactivated"  class="form-control" type="checkbox"> 
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label
+                for="FactoryMade"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Factory Made</label
+              >
+              <div class="col-sm-4">
+               <div class="">
+                  <label class="">
+                    <input id="FactoryMade"  class="form-control" type="checkbox"> 
+                  </label>
+                </div>
+              </div>
+              <label
+                for="FarmImitiation"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Imitiation</label
+              >
+              <div class="col-sm-4">
+                 <div class="">
+                  <label class="">
+                    <input id="FarmImitiation"  class="form-control" type="checkbox"> 
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label
+                for="ownerNumber"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Owner Certificate Number</label
+              >
+              <div class="col-sm-10">
+                <input asp-for="OwnersCertificateNumber"
+                  type="text"
+                  class="form-control"
+                  id="ownerNumber"
+                  placeholder=""
+                />
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="border p-3">
+            <br />
+            <div class="form-group row">
+              <label
+                for="Remarks"
+                class="col-sm-2 col-form-label"
+                style="font-size: 13px"
+                >Remarks</label
+              >
+              <div class="col-sm-10">
+                <textarea class="form-control" asp-for="memRemarks" id="FarmRemarks" rows="4"></textarea>
+              </div>
+            </div>
+          </fieldset>
+          <br />
+          <button type="submit" class="btn btn-primary mr-2" >Save</button>
+          <button class="btn btn-dark">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  @*<div class="col-md-3 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Matched Records</h4>
+        <p class="card-description">No data to display</p>
+      </div>
+    </div>
+  </div>*@
+</div>
+
+<script type="text/javascript">
+  
+        var vpage_name ="";
+         var vparam_x ="";
+         var vpage_status = "";
+         $(document).ready(function () {
+         const urlParams = new URLSearchParams(window.location.search);
+         const param_x = urlParams.get('id');
+         const page_status = urlParams.get('pageStatus');
+         const page_name= urlParams.get('pageName');
+         vpage_name=page_name;
+         vparam_x=param_x;
+         vpage_status=page_status;
+         LoadFirearmsCountry();
+
+        if(page_status == "u" && param_x != "" && page_name == "PreviewFirearmRecord")
+            {
+                  //alert(page_status +" " +param_x +" " +page_name);
+                
+                  loadFirearms(param_x);
+                  
+            } 
+       });
+        
+        function LoadFirearmsCountry()
+        {
+        var FirearmsCountryOri = $('#FirearmsCountryOri');
+        var FirearmsCountryRec = $('#FirearmsCountryRec');
+  
+        try {
+        $.ajax({
+            url: '/api/Countries',
+              method: 'Get',
+            //headers: {
+              //  'Content-Type': 'application/x-www-form-urlencoded'
+            //},
+            dataType: 'json',
+           
+            success: function ( data) {
+
+           var v = JSON.stringify(data);
+             var selOpts = "";
+             selOpts += "<option value='' disabled selected>--Select--</option>";
+              $.each(data, function (k, v) {
+                   var id = data[k].strCountry;
+                   var val = data[k].strCountry;
+                   selOpts += "<option value='" + id + "'>" + val + "</option>";
+                    });
+                     FirearmsCountryOri.append(selOpts); 
+                    
+                      FirearmsCountryRec.append(selOpts); 
+                  
+
+              },
+            error: function (request, status, error) {
+           
+                //alert("Error.");
+            }
+        });
+        }
+        catch (err) {
+            exceptionHandeld(err)
+        }
+        }
+        function FirearmsInsertion()
+        {
+        
+           var   farmmake = $('#farmmake').val();
+           var   farmmodel = $('#farmmodel').val();
+           
+           var   farmManufacturer = $('#farmManufacturer').val();   
+           var   firearmsCountryOri = $('#FirearmsCountryOri').val(); 
+           var   firearmsCountryRec = $('#FirearmsCountryRec').val();   
+           var   farmQuantity = $('#farmQuantity').val(); 
+           var    Farmlogo = $('#Farmlogo').val(); 
+           var    RoundsHeld = $('#RoundsHeld').val(); 
+           var    SerialErased = $('#SerialErased').val(); 
+           var   Importer = $('#Importer').val(); 
+           var   FarmReactivated = $('#FarmReactivated').val();    
+           var   SerialNumber = $('#SerialNumber').val(); 
+           var   BarrenLength = $('#BarrenLength').val();  
+           var   ownerNumber = $('#ownerNumber').val(); 
+           var   farmType = $('#farmType').val();  
+           var  FactoryMade = $('#FactoryMade').val();
+           var  farmAction = $('#farmAction').val();
+           var   farmCalibre = $('#farmCalibre').val();
+           var   FarmImitiation = $('#FarmImitiation').val();
+           var   Deactivated = $('#Deactivated').val();
+           var   SerialErased = $('#SerialErased').val();
+           var   FarmRemarks = $('#FarmRemarks').val();
+          
+             if(FactoryMade =="on")
+           {
+               FactoryMade=true;
+           }
+           else
+           {
+               FactoryMade=false;
+           }
+          
+           if(FarmReactivated =="on")
+           {
+               FarmReactivated=true;
+           }
+           else
+           {
+               FarmReactivated=false;
+           }
+             if(SerialErased =="on")
+           {
+               SerialErased=true;
+           }
+           else
+           {
+               SerialErased=false;
+           }
+            if(Farmlogo =="on")
+           {
+               Farmlogo=true;
+           }
+           else
+           {
+               Farmlogo=false;
+           }
+          
+         
+             if(FarmImitiation =="on")
+           {
+               FarmImitiation=true;
+           }
+           else
+           {
+               FarmImitiation=false;
+           }
+          
+           if(Deactivated =="on")
+           {
+               Deactivated=true;
+           }
+           else
+           {
+               Deactivated=false;
+           }
+            
+            
+             var settings = {
+                      "url": "/api/Firearms",
+                      "method": "POST",
+                      "timeout": 0,
+                      "headers": {
+                        "Content-Type": "application/json"
+                      },
+                  "data": JSON.stringify({
+                    "intID": 0,
+                    "strURN": "stri12",
+                    "Make": farmmake, 
+                    "Model": farmmodel,
+                    "SerialErased":SerialErased,
+                    "CountryOrigin": firearmsCountryOri,
+                    "CountryRecovered": firearmsCountryRec,
+                    "Quantity":farmQuantity,
+                    "Logo": Farmlogo,
+                    "Impoter": Importer,
+                    "SerialNumber": SerialNumber,
+                    "BarrelLength": BarrenLength,
+                    "OwnersCertificateNumber": ownerNumber,
+                    "Type": farmType,
+                    "FactoryMade": FactoryMade,
+                    "Reactivated": FarmReactivated,
+                    "RoundsHeld" : RoundsHeld,
+                    "Action": farmAction,
+                    "Calibre": farmCalibre,
+                    "Imitation": FarmImitiation,
+                    "Deactivated": Deactivated,
+                    "memRemarks": FarmRemarks,
+                    "createdBy": "admin",
+                    "lastModifiedBy": "admin"
+                  }), 
+                };
+                $.ajax(settings).done(function (response) {
+                  console.log(response);
+                  alert("Firearm has been added Successfully");
+
+                  if (confirm('Do you want to add Media File ?')) {
+                 
+                      console.log("Media File.");
+                   localStorage.setItem("strURN", response.strURN);
+                   localStorage.setItem("tableName", "Firearms");
+                   window.location.href = "/Admin/Records/AddMedia";
+                  }
+                  else
+                  {
+                  localStorage.setItem("strURN", response.strURN);
+                   localStorage.setItem("tableName", "Firearms");
+                       var id=response.strURN;
+                        window.location.href = "/Admin/Records/PreviewRecord?controller=Firearms&id="+id;
+         
+                       //  window.location.href = "/Admin/Records/PreviewFirearmRecord?id="+id;
+                 //    window.location.href = "/Admin/Records/PreviewIncidentRecord?id="+id;
+                  }
+                     });
+    }
+      function  FirearmsClick()
+         {
+            if(vpage_status == "u" && vparam_x != "" && vpage_name == "PreviewFirearmRecord")
+            {
+                FirearmsUpdation(vparam_x);
+            } 
+            else
+            {
+              FirearmsInsertion();
+            }
+            
+         }
+
+      function FirearmsUpdation(vparam_x)
+        {
+           var std=vparam_x;
+           var   farmmake = $('#farmmake').val();
+           var   farmmodel = $('#farmmodel').val();
+       
+           var   farmManufacturer = $('#farmManufacturer').val();   
+           var   firearmsCountryOri = $('#FirearmsCountryOri').val(); 
+           var   firearmsCountryRec = $('#FirearmsCountryRec').val();   
+           var   farmQuantity = $('#farmQuantity').val(); 
+           var    Farmlogo = $('#Farmlogo').val(); 
+           var    RoundsHeld = $('#RoundsHeld').val(); 
+           var    SerialErased = $('#SerialErased').val(); 
+           var   Importer = $('#Importer').val(); 
+           var   FarmReactivated = $('#FarmReactivated').val();    
+           var   SerialNumber = $('#SerialNumber').val(); 
+           var   BarrenLength = $('#BarrenLength').val();  
+           var   ownerNumber = $('#ownerNumber').val(); 
+           var   farmType = $('#farmType').val();  
+           var  FactoryMade = $('#FactoryMade').val();
+           var  farmAction = $('#farmAction').val();
+           var   farmCalibre = $('#farmCalibre').val();
+           var   FarmImitiation = $('#FarmImitiation').val();
+           var   Deactivated = $('#Deactivated').val();
+           var   SerialErased = $('#SerialErased').val();
+           var   FarmRemarks = $('#FarmRemarks').val();
+          
+             if(FactoryMade =="on")
+           {
+               FactoryMade=true;
+           }
+           else
+           {
+               FactoryMade=false;
+           }
+          
+           if(FarmReactivated =="on")
+           {
+               FarmReactivated=true;
+           }
+           else
+           {
+               FarmReactivated=false;
+           }
+             if(SerialErased =="on")
+           {
+               SerialErased=true;
+           }
+           else
+           {
+               SerialErased=false;
+           }
+            if(Farmlogo =="on")
+           {
+               Farmlogo=true;
+           }
+           else
+           {
+               Farmlogo=false;
+           }
+          
+         
+             if(FarmImitiation =="on")
+           {
+               FarmImitiation=true;
+           }
+           else
+           {
+               FarmImitiation=false;
+           }
+          
+           if(Deactivated =="on")
+           {
+               Deactivated=true;
+           }
+           else
+           {
+               Deactivated=false;
+           }
+            
+            
+             var settings = {
+                      "url": "/api/Firearms/"+std,
+                      "method": "Put",
+                      "timeout": 0,
+                      "headers": {
+                        "Content-Type": "application/json"
+                      },
+                  "data": JSON.stringify({
+                    "intID": 0,
+                    "strURN": std,
+                    "Make": farmmake, 
+                    "Model": farmmodel,
+                    "quantity": farmQuantity,
+                    "SerialErased":SerialErased,
+                    "CountryOrigin": firearmsCountryOri,
+                    "CountryRecovered": firearmsCountryRec,
+                    "Quantity":farmQuantity,
+                    "Logo": Farmlogo,
+                    "Impoter": Importer,
+                    "SerialNumber": SerialNumber,
+                    "BarrelLength": BarrenLength,
+                    "OwnersCertificateNumber": ownerNumber,
+                    "Type": farmType,
+                    "FactoryMade": FactoryMade,
+                    "Reactivated": FarmReactivated,
+                    "RoundsHeld" : RoundsHeld,
+                    "Action": farmAction,
+                    "Calibre": farmCalibre,
+                    "Imitation": FarmImitiation,
+                    "Deactivated": Deactivated,
+                    "memRemarks": FarmRemarks,
+                    "createdBy": "admin",
+                    "lastModifiedBy": "admin"
+                  }), 
+                };
+                $.ajax(settings).done(function (response) {
+                  console.log(response);
+                  alert("Data has been Updated Successfully");
+
+                 
+                       var id=response.strURN;
+                     //    window.location.href = "/Admin/Records/PreviewFirearmRecord?id="+id;
+               window.location.href = "/Admin/Records/PreviewRecord?controller=Firearms&id="+id;
+         
+                     });
+    }
+
+     function loadFirearms(param_x)
+        {
+               
+                 var url = "/api/Firearms/GetFirearmsById?id="+param_x;
+                   // alert(url);
+                    $.ajax({  
+                    type: "GET",  
+                    url: url,
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (response) {  
+                    $("#farmmake").val(response.make); 
+                    $("#farmmodel").val(response.model); 
+                    $("#farmManufacturer").val(response.description); 
+                    $("#FirearmsCountryOri").val(response.countryOrigin);     
+                    $("#FirearmsCountryRec").val(response.countryRecovered);
+                    $("#farmQuantity").val(response.quantity);
+                    var Farmlogo=response.logo;
+                    var SerialErased=response.serialErased;
+                    $("#Importer").val(response.impoter); 
+                    var FarmReactivated=response.specialPrecaution; 
+                    $("#SerialNumber").val(response.serialNumber);
+                    $("#BarrenLength").val(response.barrelLength);
+                    
+                      $("#RoundsHeld").val(response.roundsHeld);
+                  
+                    $("#ownerNumber").val(response.ownersCertificateNumber);
+                    $("#farmType").val(response.type);
+                   var FactoryMade= response.factoryMade;
+                    $("#farmAction").val(response.action);
+                    $("#farmCalibre").val(response.calibre);
+                    var FarmImitiation=response.imitiation;
+                    var Deactivated= response.deactivated; 
+                    $("#SerialErased").val(response.serialErased);
+                    $("#FarmRemarks").val(response.memRemarks);
+                   if(FactoryMade ==true)
+                   {  
+                       document.getElementById("FactoryMade").checked = true;
+                      
+                   }
+                   else
+                   {
+                      
+                       document.getElementById("FactoryMade").checked = false;
+                   }
+          
+                   if(FarmReactivated ==true)
+                   {
+                      document.getElementById("SerialErased").checked = true;
+                   }
+                   else
+                   {
+                        document.getElementById("SerialErased").checked = false;
+                 
+                   }
+                     if(SerialErased ==true)
+                   {
+                      document.getElementById("SerialErased").checked = true;
+                     }
+                   else
+                   {
+                       document.getElementById("SerialErased").checked = false;
+                   }
+                    if(Farmlogo ==true)
+                   {
+                       document.getElementById("Farmlogo").checked = true;
+                      
+                   }
+                   else
+                   {
+                       document.getElementById("Farmlogo").checked = false;
+                      
+                   }
+          
+         
+                    if(FarmImitiation ==true)
+                   {
+                      
+                       document.getElementById("FarmImitiation").checked = true;
+                   }
+                   else
+                   {
+                        document.getElementById("FarmImitiation").checked = false;
+                   }
+          
+                   if(Deactivated ==true)
+                   {
+                      document.getElementById("Deactivated").checked = true;
+                   }
+                   else
+                   {
+                       
+                      document.getElementById("Deactivated").checked = false;
+                   }
+                   },  
+  
+                    error: function (response) {  
+                        //alert("error");  
+                    }
+                });          
+      
+        }
+  
+    
+    </script>

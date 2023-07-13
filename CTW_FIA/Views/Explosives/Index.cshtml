@@ -6,7 +6,9 @@
 
 }
 
-    <div class="row no-gutters">
+    <div class="row no-gutters" >
+
+       @*  <div class="row no-gutters" style="justify-content: center;">*@
         @*<div class="col-md-6">
     <div class="card">
     <div class="card-body">
@@ -15,15 +17,24 @@
     </div>
     </div>
     </div>*@
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="font-weight-normal">Explosives Type wise</h6>
-                    <canvas id="explosiveChart" style="position: relative; height:40vh; width:80vw"></canvas>
+      <div class="col-md-12"><h2 class="font-weight-normal text-center">Explosive Data Analysis – Graph </h2></div>
+        <div class="row no-gutters">
+          
+
+            <div class="col-md-12">
+              
+                    <div class="card">
+                    
+                        <div class="card-body">
+                        <h6 class="font-weight-normal text-center">Explosive Analysis <br/>(Incident Wise)</h6>
+                        <canvas id="explosiveChart" style="position: relative; height:300px; width:280px"></canvas>
+                    </div>
+                    
                 </div>
+              
             </div>
+           
         </div>
-    </div>
 
    @section Scripts{
     <script type="text/javascript">
@@ -33,42 +44,7 @@
             Chart.defaults.set('plugins.datalabels', {
                 color: '#000000'
             });
-            const c_options = {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    },
-                    x: {
-                        stacked: true
-                    }
-                },
-                legend: {
-                    labels: {
-                        // This more specific font property overrides the global property
-                        font: {
-                            size: 22
-                        }
-                    }
-                },
-                tooltips: {
-                    enabled: false
-                },
-                plugins: {
-                    datalabels: {
-                        anchor: 'end',
-                        align: 'end',
-                        labels: {
-                            value: {
-                                color: 'black'
-                            },
-                            font: {
-                                size: 22
-                            }
-                        }
-                    }
-                }
-            };
+          
             const c_background_colors =
                 [
                     'rgba(255, 99, 132, 1)',
@@ -117,7 +93,9 @@
                         options: {
                             responsive: true,
                             scales: {
+                                    
                                 y: {
+                                      
                                     ticks: {
                                         // Include a dollar sign in the ticks
 

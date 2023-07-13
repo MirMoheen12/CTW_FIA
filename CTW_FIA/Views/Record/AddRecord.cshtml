@@ -73,29 +73,78 @@
 <div id="DivContainerForCustForm">
 </div>
 
+
 @section Scripts {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" integrity="sha512-FOhq9HThdn7ltbK8abmGn60A/EMtEzIzv1rvuh+DqzJtSGq8BRdEN0U+j0iKEIffiw/yEtVuladk6rsG4X6Uqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             $("#database").change(function () {
                 var selectedValue = $("#database").val();
-                switch (selectedValue)
-                {
-                    case "PersonInvolved":
-                            $("#DivContainerForCustForm").load("@Url.Action("AddPerson","Person")");
-                            break;
-                    
-                    default:
-                        // Action for all other cases
-                        console.log("Default Case");
+                switch (selectedValue) {
+                    case "MainIncident":
+                        $("#DivContainerForCustForm").load("@Url.Action("NewIncident","incidents")");
                         break;
-                  
-                }
-                
-            });
-        
-        });
 
+                    case "PersonInvolved":
+                        $("#DivContainerForCustForm").load("@Url.Action("PersonInvolved","Person")");
+                        break;
+                    case "Groups":
+                        $("#DivContainerForCustForm").load("@Url.Action("Groups","Terrorists")");
+                        break;
+                    case "Addresses":
+                        $("#DivContainerForCustForm").load("@Url.Action("Add_Person_Address","Record")");
+                        break;
+                    case "Vehicle":
+                        $("#DivContainerForCustForm").load("@Url.Action("Vehicles","Record")");
+                        break;
+                    case "Communication":
+                        $("#DivContainerForCustForm").load("@Url.Action("Communications","Record")");
+                        break;
+                    case "Detonators":
+                        $("#DivContainerForCustForm").load("@Url.Action("Detonators","Record")");
+                        break;
+                    case "Explosives":
+                        $("#DivContainerForCustForm").load("@Url.Action("Explosives","Explosives")");
+                        break;
+                    case "Ordinance":
+                        $("#DivContainerForCustForm").load("@Url.Action("Ordinance","Record")");
+                        break;
+                    case "Evidence":
+                        $("#DivContainerForCustForm").load("@Url.Action("Evidence","Record")");
+                        break;
+                    case "Equipment":
+                        $("#DivContainerForCustForm").load("@Url.Action("Equipment","Record")");
+                        break;
+                    case "InitiationSystem":
+                        $("#DivContainerForCustForm").load("@Url.Action("InitiationSystem","Record")");
+                        break;
+                    case "Components":
+                        $("#DivContainerForCustForm").load("@Url.Action("Components","Record")");
+                        break;
+                    case "CBRN":
+                        $("#DivContainerForCustForm").load("@Url.Action("CBRN","Record")");
+                        break;
+                    case "Property":
+                        $("#DivContainerForCustForm").load("@Url.Action("Property","Record")");
+                        break;
+                    case "BankAccount":
+                        $("#DivContainerForCustForm").load("@Url.Action("BankAccount","Record")");
+                        break;
+                    case "Firearms":
+                        $("#DivContainerForCustForm").load("@Url.Action("Firearms","Record")");
+                        break;
+                    case "Chemical":
+                        $("#DivContainerForCustForm").load("@Url.Action("Chemical","Record")");
+                        break;
+                    case "PowerSource":
+                        $("#DivContainerForCustForm").load("@Url.Action("PowerSource","Record")");
+                        break;
+                    default:
+                        $("#DivContainerForCustForm").empty();
+                        break;
+                }
+            });
+        });
     </script>
 }
