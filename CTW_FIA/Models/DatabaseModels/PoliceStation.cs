@@ -1,4 +1,4 @@
-﻿namespace CTW_FIA.Models
+﻿namespace CTW_FIA.Models.DatabaseModels
 {
     public class PoliceStation
     {

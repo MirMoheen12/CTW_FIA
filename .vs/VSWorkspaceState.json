@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\CTW_FIA"
   ],
-  "SelectedNode": "\\CTW_FIA.sln",
+  "SelectedNode": "\\CTW_FIA\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }
