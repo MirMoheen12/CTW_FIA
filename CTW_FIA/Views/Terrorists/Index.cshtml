@@ -7,29 +7,61 @@
 }
 
     <div class="row no-gutters">
-            <div class="col-md-12"><h2 class="font-weight-normal text-center">Terrorists Analysis – Graph </h2></div>
+            <div class="col-md-12"><h2 class="font-weight-normal text-center">Terrorists Analysis – Graphs </h2></div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal text-center">Terrorist Province Wise</h6>
+                    <h6 class="font-weight-normal text-center"> Person Involved <br />(Province Wise)</h6>
                     <canvas id="tprovinceChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
         </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-normal text-center"> Most Wanted Terrorist <br />(Province Wise)</h6>
+                <canvas id="tmwPWChart" style="position: relative; height:60vh; width:80vw"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-normal text-center"> Most Wanted Terrorist <br />(4th Schedule)</h6>
+                <canvas id="tmwPWChartfor" style="position: relative; height:60vh; width:80vw"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6"></div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal text-center">Head Headmoney</h6>
+                    <h6 class="font-weight-normal text-center">Most wanted <br />
+                        
+                    Terorists (HM & WHM)</h6>
                     <canvas id="headmoneyChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
         </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-normal text-center">
+                    UN - Consolidated
+                    <br />
+                    (Individuals)
+                </h6>
+                <canvas id="UNChart" style="position: relative; height:60vh; width:80vw"></canvas>
+            </div>
+        </div>
+    </div>
     </div>
     <div class="row no-gutters">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal text-center">Accusation Status Wise</h6>
+                    <h6 class="font-weight-normal text-center"> Terrorists Analysis <br />Accusation Status Wise</h6>
                     <canvas id="accusationChart" style="position: relative; height:40vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -41,6 +73,7 @@
         $(document).ready(function () {
             const ctx_accusation = document.getElementById('accusationChart');
             const ctx_headmoney = document.getElementById('headmoneyChart');
+            const UNChart = document.getElementById('UNChart');
             Chart.register(ChartDataLabels);
             Chart.defaults.set('plugins.datalabels', {
                 color: '#000000'
@@ -108,10 +141,16 @@
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 success: function (response) {
-                    console.log(response);
+                 
                     const province = [];
 
                     const count_province = [];
+                    const provincetmw = [];
+
+                    const count_provincetmw = [];
+                    const provinceTMWFor = [];
+
+                    const count_provinceTMWFor = [];
 
                     const headmoney = [];
 
@@ -119,6 +158,12 @@
                     const asname = [];
 
                     const asrecord = [];
+
+
+
+                    const UNName = [];
+
+                    const UNCount = [];
 
                     for (let j = 0; j < response.length; j++) {
                         if (response[j].tablename == "TP") {
@@ -136,10 +181,65 @@
                             asname.push(response[j].name);
                             asrecord.push(response[j].totalRecord);
                         }
+                        if (response[j].tablename == "TMW") {
+                            // alert(j);
+                            provincetmw.push(response[j].name);
+                            count_provincetmw.push(response[j].totalRecord);
+                        }
+                        if (response[j].tablename == "TMWFor") {
+                            // alert(j);
+                            provinceTMWFor.push(response[j].name);
+                            count_provinceTMWFor.push(response[j].totalRecord);
+                        }
+                        if (response[j].tablename == "UN") {
+                            // alert(j);
+                           UNName.push(response[j].name);
+                            UNCount.push(response[j].totalRecord);
+                        }
                     }
+                    console.log(UNName);
+                    const ctx_tmwPWChartfor = document.getElementById('tmwPWChartfor');
+                    const barChart3 = new Chart(ctx_tmwPWChartfor, {
+                        type: 'bar',
+                        data: {
+                            labels: provinceTMWFor,
+                            datasets: [{
+                                label: 'abc',
+                                data: count_provinceTMWFor,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 2,
 
 
-                          const ctx_terroristprovinces = document.getElementById('tprovinceChart');
+                            }]
+                        },
+                        options: c_options
+                    });
+
+
+
+
+               
+                    const ctx_tmwPWChart = document.getElementById('tmwPWChart');
+                    const barChart2 = new Chart(ctx_tmwPWChart, {
+                        type: 'bar',
+                        data: {
+                            labels: provincetmw,
+                            datasets: [{
+                                label: 'abc',
+                                data: count_provincetmw,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 2,
+
+
+                            }]
+                        },
+                        options: c_options
+                    });
+
+
+                    const ctx_terroristprovinces = document.getElementById('tprovinceChart');
 
 
 
@@ -161,15 +261,10 @@
                     });
           
 
-                    //console.log(accusation);
-                    //console.log(count_accusation);
-                    //console.log(headmoney);
-                    //console.log(count_headmoney);
-
                   
 
                     const myChart_headmoney = new Chart(ctx_headmoney, {
-                        type: 'bar',
+                        type: 'pie',
                         data: {
                             labels: headmoney,
                             datasets: [{
@@ -183,8 +278,22 @@
                         },
                         options: c_options
                     });
+                    const Uncahrt = new Chart(UNChart, {
+                        type: 'pie',
+                        data: {
+                            labels: UNName,
+                            datasets: [{
+                                label: '# of Terrorist Order by Head Money',
+                                data: UNCount,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 2
 
-                    console.log(asrecord);
+                            }]
+                        },
+                        options: c_options
+                    });
+
                     const myChart_accuation = new Chart(ctx_accusation, {
                         type: 'bar',
                         data: {

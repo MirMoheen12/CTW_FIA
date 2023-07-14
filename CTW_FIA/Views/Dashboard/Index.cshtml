@@ -182,17 +182,21 @@
                             provincet.push(response.graphDtos[j].name);
                             count_provincet.push(response.graphDtos[j].totalRecord);
                         }
-                        if (response.graphDtos[j].tablename == "Groupwise") {
+                        if (response.graphDtos[j].tablename == "Groupwise" && response.graphDtos[j].name!='UNKNOWN') {
                             // alert(j);
-                            provinegroup.push(response.graphDtos[j].name);
+                            if (response.graphDtos[j].name == '') {
+                                provinegroup.push('NULL');
+                            }
+                            else
+                            {
+                                provinegroup.push(response.graphDtos[j].name);
+                            }
+                            
                             count_provincegroupt.push(response.graphDtos[j].totalRecord);
                         }
                     }
 
-
-
-
-               
+                             
 
 
                    //console.log(province);
