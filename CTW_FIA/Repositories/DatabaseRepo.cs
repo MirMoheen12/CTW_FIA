@@ -30,16 +30,16 @@ namespace CTW_FIA.Repositories
             List<Object> objectList = new List<Object>();
             foreach (DataRow row in data.Rows)
                 {
-            object obj = Activator.CreateInstance(objectType);
-            foreach (DataColumn column in data.Columns)
-            {
-                string propertyName = column.ColumnName;
-                object? propertyValue = row[column];
-                PropertyInfo property = objectType.GetProperty(propertyName);
-                if (property != null && property.CanWrite)
-                {
-                    property.SetValue(obj, propertyValue.ToString());
-                }
+                    object obj = Activator.CreateInstance(objectType);
+                     foreach (DataColumn column in data.Columns)
+                    {
+                        string propertyName = column.ColumnName;
+                        object? propertyValue = row[column];
+                        PropertyInfo property = objectType.GetProperty(propertyName);
+                        if (property != null && property.CanWrite)
+                        {
+                        property.SetValue(obj, propertyValue.ToString());
+                        }
             }
             objectList.Add(obj);
         }
