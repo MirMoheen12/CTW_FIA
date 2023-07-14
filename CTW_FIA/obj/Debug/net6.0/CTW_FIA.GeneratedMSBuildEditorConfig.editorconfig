@@ -35,12 +35,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/incidents/IncidentDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcaW5jaWRlbnRzXEluY2lkZW50RGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/incidents/IncidentProvincewise.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcaW5jaWRlbnRzXEluY2lkZW50UHJvdmluY2V3aXNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/incidents/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcaW5jaWRlbnRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/incidents/NewIncident.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcaW5jaWRlbnRzXE5ld0luY2lkZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Person/AddPerson.cshtml]
@@ -101,10 +109,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/InitiationSystem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXEluaXRpYXRpb25TeXN0ZW0uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/NewIncident.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3JkXE5ld0luY2lkZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ADMIN/source/repos/CTW_FIA/CTW_FIA/Views/Record/Ordinance.cshtml]
