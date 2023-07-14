@@ -136,7 +136,7 @@ namespace CTW_FIA.Repositories
                             GraphDto dto = new GraphDto();
                             dto.tablename = "Groupwise";
                             dto.TotalRecord = (int)row["TotalRecord"];
-                            dto.Name = (string)row["Name"];
+                            dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
                     }
@@ -200,7 +200,31 @@ namespace CTW_FIA.Repositories
                             graphDtos.Add(dto);
                         }
                     }
-              
+                    DataTable Groupwise = dataSet.Tables[3];
+                    if (Groupwise.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in Groupwise.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "GW";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = row["Name"].ToString();
+                            graphDtos.Add(dto);
+                        }
+                    }
+                    DataTable TGroupwise = dataSet.Tables[4];
+                    if (TGroupwise.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in TGroupwise.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "TGW";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = row["Name"].ToString();
+                            graphDtos.Add(dto);
+                        }
+                    }
+
                 }
             }
 
@@ -352,6 +376,42 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "AS";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = row["Name"].ToString();
+                            graphDtos.Add(dto);
+                        }
+                    }
+                    DataTable fiveTable = dataSet.Tables[3];
+                    if (fiveTable.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in fiveTable.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "TMW";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = row["Name"].ToString();
+                            graphDtos.Add(dto);
+                        }
+                    }
+                    DataTable sixtable = dataSet.Tables[4];
+                    if (sixtable.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in sixtable.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "TMWFor";
+                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.Name = row["Name"].ToString();
+                            graphDtos.Add(dto);
+                        }
+                    }
+                    DataTable UN = dataSet.Tables[5];
+                    if (UN.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in UN.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "UN";
                             dto.TotalRecord = (int)row["TotalRecord"];
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);

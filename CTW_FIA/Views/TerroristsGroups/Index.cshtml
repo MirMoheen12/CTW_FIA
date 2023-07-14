@@ -11,6 +11,22 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
+                <h6 class="font-weight-normal text-center">Terrorist Groups</h6>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+
+            <div class="card-body">
+                <h6 class="font-weight-normal text-center">Foreign</h6>
+                <canvas id="foreignChart" style="position: relative; height:300px; width:280px"></canvas>
+            </div>
+
+        </div>
+   @*     <div class="card">
+            <div class="card-body">
                 <h6 class="font-weight-normal text-center">Foreign </h6>
                 <canvas id="foreignChart" style="position: relative; height:0px; width:0px"></canvas>
             </div>
@@ -36,6 +52,7 @@
     </div>
 </div>
 
+
 @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
@@ -46,6 +63,7 @@
             Chart.defaults.set('plugins.datalabels', {
                 color: '#000000'
             });
+
             const c_options = {
                 responsive: true,
                 scales: {
@@ -109,6 +127,11 @@
                     const count_pak = [];
                     const strength = [];
                     const count_strength = [];
+                    var provinegroup = [];
+                    var count_provincegroupt = [];
+                    const gwname = [];
+                    const gwcount = [];
+
 
                     for (let j = 0; j < response.length; j++) {
                         if (response[j].tablename === "FG") {
@@ -123,8 +146,99 @@
                             strength.push(response[j].name);
                             count_strength.push(response[j].totalRecord);
                         }
+                        if (response[j].tablename == "GW" && response[j].name != 'UNKNOWN') {
+                            // alert(j);
+                            if (response[j].name == '') {
+                                provinegroup.push('NULL');
+                            }
+                            else {
+                                provinegroup.push(response[j].name);
+                            }
+
+                            count_provincegroupt.push(response[j].totalRecord);
+                        }
+                        if (response[j].tablename == "TGW") {
+                            // alert(j);
+                            gwname.push(response[j].name);
+                            gwcount.push(response[j].totalRecord);
+                        }
                     }
 
+
+                    const ctx_gw = document.getElementById('GWChart');
+                    const myChart2 = new Chart(ctx_gw, {
+                        type: 'bar',
+                        data: {
+                            labels: gwname,
+                            datasets: [{
+                                label: '# errorist Incidents Analysis (Group Wise)',
+                                data: gwcount,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 2
+
+                            }]
+                        },
+                        options: c_options
+                    });
+
+
+
+
+
+                    const ctx_groupprovinces = document.getElementById('pieChart');
+
+                    const pieChart = new Chart(ctx_groupprovinces, {
+                        type: 'pie',
+                        data: {
+                            labels: provinegroup,
+                            datasets: [{
+                                label: '# of Groups Order by Province',
+                                data: count_provincegroupt,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 1
+
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    ticks: {
+                                        // Include a dollar sign in the ticks
+
+                                        fixedStepSize: 1
+                                    }
+                                }
+                            },
+                            legend: {
+                                labels: {
+                                    // This more specific font property overrides the global property
+                                    font: {
+                                        size: 22
+                                    }
+                                }
+                            },
+                            tooltips: {
+                                enabled: false
+                            },
+                            plugins: {
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'end',
+                                    labels: {
+                                        value: {
+                                            color: 'black'
+                                        },
+                                        font: {
+                                            size: 22
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
                     const myChart_foreign = new Chart(ctx_foreign, {
                         type: 'pie',
                         data: {

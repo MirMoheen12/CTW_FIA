@@ -1,0 +1,349 @@
+﻿
+@model CTW_FIA.Models.Dto.PreviewIncidentByStrUrn
+@{
+    ViewData["Title"] = "Incident";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .table-wrapper {
+            display: flex;
+            height: 100%;
+            width: 100%;
+        }
+
+        .custom-font {
+            font-family: "Your Attractive Font", Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="padding: 20px; margin-top:-70px;">
+        <div class="row">
+            <div class="col-md-8" style="padding: 20px;">
+                <div class="row" style="height: 35px;">
+                    <div class="col">
+                        <h4 class="custom-font">Index</h4>
+                    </div>
+                </div>
+                <div class="row" style="height: 35px;">
+                    <div class="col">
+                        <div class="table-wrapper">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td style="width: 16.67%; padding: 0;">
+                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%;">Button 1</button>
+                                    </td>
+                                    <td style="width: 16.67%; padding: 0;">
+                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%;">Button 2</button>
+                                    </td>
+                                    <td style="width: 16.67%; padding: 0;">
+                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%;">Button 3</button>
+                                    </td>
+                                    <td style="width: 16.67%; padding: 0;">
+                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%;">Button 4</button>
+                                    </td>
+                                    <td style="width: 16.67%; padding: 0;">
+                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%;">Button 5</button>
+                                    </td>
+                                    <td style="width: 16.67%; padding: 0;">
+                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%;">Button 6</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style=" border: 1px solid black; border-radius: 15px;">
+                    <div class="col">
+
+
+
+                        <!-- start-->
+
+
+                        <div class="container">
+                            <div>
+                                <h4>PreviewIncidentByStrUrn</h4>
+                                <hr />
+                                <div class="outer-row">
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.stringid):</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.stringid)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.SerialNo)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.SerialNo)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.strURN)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.strURN)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.strOperationName)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.strOperationName)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.FirNo)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.FirNo)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.NumberKilled)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.NumberKilled)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.NumberInjured)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.NumberInjured)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.Inc_Date)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.Inc_Date)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.RegYear)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.RegYear)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.US)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.US)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.Country)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.Country)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.Province)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.Province)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.City)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.City)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.District)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.District)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.PostalZip)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.PostalZip)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.PoliceStation)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.PoliceStation)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.Address)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.Address)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.IncidentDate)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.IncidentDate)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.IncidentTime)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.IncidentTime)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.IncidentTimeEnd)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.IncidentTimeEnd)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.Latitude)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.Latitude)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.Longitude)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.Longitude)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.InjuredName)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.InjuredName)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.CasualtiesNames)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.CasualtiesNames)</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4" style="width: 40%;">
+                                            <div>@Html.DisplayNameFor(model => model.SuicideBomb)</div>
+                                        </div>
+                                        <div class="col-sm-8" style="width: 60%;">
+                                            <div>@Html.DisplayFor(model => model.SuicideBomb)</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <!--end-->
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <!-- Content for the right column (4 columns wide) -->
+                <div class="row" style="height: 335px; border: 1px solid black; border-radius: 15px;  margin-top:90px; margin-bottom:10px;">
+                    <div class="col" >
+                        <h4 class="custom-font">Content</h4>
+                    </div>
+                </div>
+                <div class="row" style="height: 35px;">
+                    <div class="col">
+                        <div class="table-wrapper">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td style="width: 33.33%; padding: 0;">
+                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%;">Button 1</button>
+                                    </td>
+                                    <td style="width: 33.33%; padding: 0;">
+                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%;">Button 2</button>
+                                    </td>
+                                    <td style="width: 33.33%; padding: 0;">
+                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%;">Button 3</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

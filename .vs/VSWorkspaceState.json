@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\CTW_FIA"
+    "\\CTW_FIA",
+    "\\CTW_FIA\\Views",
+    "\\CTW_FIA\\Views\\Dashboard"
   ],
-  "SelectedNode": "\\CTW_FIA\\appsettings.json",
+  "SelectedNode": "\\CTW_FIA\\Views\\Dashboard\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }
