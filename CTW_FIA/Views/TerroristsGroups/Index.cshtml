@@ -16,40 +16,22 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="card">
 
+    <div class="col-md-6">
+        <div class="card">
             <div class="card-body">
-                <h6 class="font-weight-normal text-center">Foreign</h6>
-                <canvas id="foreignChart" style="position: relative; height:300px; width:280px"></canvas>
-            </div>
+                <h6 class="font-weight-normal text-center text-center">
+                    Terrorist Analysis Group
+                    (Incidents Wise)
 
-        </div>
-       <div class="card">
-            <div class="card-body">
-                <h6 class="font-weight-normal text-center">Foreign </h6>
-                <canvas id="foreignChart" style="position: relative; height:0px; width:0px"></canvas>
+                </h6>
+                <canvas id="GWChart" style="position: relative; height:60vh; width:80vw"></canvas>
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h6 class="font-weight-normal text-center">Pakistani</h6>
-                <canvas id="pakChart" style="position: relative; height:150px; width:150px"></canvas>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row no-gutters">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h6 class="font-weight-normal text-center">Top 10</h6>
-                <canvas id="strengthChart" style="position: relative; height:150px; width:150px"></canvas>
-            </div>
-        </div>
-    </div>
+    <div class="col-md-6"></div>
+
+
 </div>
 
 
@@ -167,11 +149,11 @@
 
                     const ctx_gw = document.getElementById('GWChart');
                     const myChart2 = new Chart(ctx_gw, {
-                        type: 'bar',
+                        type: 'pie',
                         data: {
                             labels: gwname,
                             datasets: [{
-                                label: '# errorist Incidents Analysis (Group Wise)',
+                                label: gwname,
                                 data: gwcount,
                                 backgroundColor: c_background_colors,
                                 borderColor: c_background_colors,
@@ -254,9 +236,9 @@
                         options: {
                             responsive: true,
                             scales: {
-                                    
+
                                 y: {
-                                      
+
                                     ticks: {
                                         // Include a dollar sign in the ticks
 
@@ -308,9 +290,9 @@
                         options: {
                             responsive: true,
                             scales: {
-                                    
+
                                 y: {
-                                      
+
                                     ticks: {
                                         // Include a dollar sign in the ticks
 
@@ -359,12 +341,12 @@
                                 borderWidth: 2
                             }]
                         },
-                        options:{
+                        options: {
                             responsive: true,
                             scales: {
-                                    
+
                                 y: {
-                                      
+
                                     ticks: {
                                         // Include a dollar sign in the ticks
 

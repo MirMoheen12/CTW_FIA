@@ -10,5 +10,6 @@ namespace CTW_FIA.Interface
 
         public List<GraphDto> getCtwdashboardsterroristtwise();
         public List<GraphDto> getCtwdashboardsExplosivetwise();
+        public List<GraphDto> getCtwdashboardsLeftnavigation();
     }
 }

@@ -50,6 +50,7 @@ builder.Services.AddTransient<IRecord, RecordReopsitorie>();
 builder.Services.AddTransient<IUser, UserReopsitorie>();
 builder.Services.AddTransient<IIncident, IncidentRepo>();
 builder.Services.AddTransient<IDatabaseRepo, DatabaseRepo> ();
+builder.Services.AddTransient<ITerrorist, Terroristrepo>();
 
 
 builder.Services.AddControllersWithViews();

@@ -9,14 +9,16 @@ namespace CTW_FIA.Controllers
     {
 
         private readonly IDashboard dashboard;
-        public TerroristsController(IDashboard dashboard)
+        private readonly ITerrorist terrorist;
+        public TerroristsController(IDashboard dashboard, ITerrorist terrorist)
         {
             this.dashboard = dashboard;
+            this.terrorist = terrorist;
         }
-        public IActionResult Index()
+        public IActionResult Index(string Province)
         {
-
-            return View();
+            var data = terrorist.GetPeronProvincewise(Province);
+            return View(data);
         }
         public JsonResult Getdashboard()
         {
