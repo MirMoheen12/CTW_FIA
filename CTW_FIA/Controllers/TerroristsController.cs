@@ -15,7 +15,12 @@ namespace CTW_FIA.Controllers
             this.dashboard = dashboard;
             this.terrorist = terrorist;
         }
-        public IActionResult Index(string Province)
+        public IActionResult Index()
+        {
+           
+            return View();
+        }
+        public IActionResult PersonprovinseWise(string Province)
         {
             var data = terrorist.GetPeronProvincewise(Province);
             return View(data);

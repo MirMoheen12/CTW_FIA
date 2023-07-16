@@ -340,53 +340,53 @@
                                     </a>
                                     <ul class="nav nav-treeview" role="button">
                                         <li class="nav-item">
-                                            <a class="nav-link" data-href="KHYBER-PAKHTUNKHWA People" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Khyber Pakhtunkhwa">
                                                 <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                 <p>KPK</p>
                                                 <span class="badge badge-info right" id="kpkterprov">0</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-href="Punjab People" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Punjab">
                                                 <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                 <p>Punjab</p>
                                                 <span class="badge badge-info right" id="punjabterprov">0</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-href="Sindh People" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Sindh">
                                                 <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                 <p>Sindh</p>
                                                 <span class="badge badge-info right" id="sindhterprov">0</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-href="Balochistan People" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Balochistan">
                                                 <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                 <p>Balochistan</p><span class="badge badge-info right" id="blchterprov">0</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-href="GB People" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Gilgit - Baltistan">
                                                 <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                 <p>GB</p><span class="badge badge-info right" id="gbterprov">0</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-href="ICT People" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Islamabad Capital Territory">
                                                 <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                 <p>ICT</p><span class="badge badge-info right" id="ictterprov">0</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-href="AJK People" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Azad Jammu and Kashmir">
                                                 <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                 <p>AJK</p>
                                                 <span class="badge badge-info right" id="ajkterprov">0</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-href="AJK People" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Others">
                                                 <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                 <p>Others</p>
                                                 <span class="badge badge-info right" id="othersterprov">0</span>
@@ -394,21 +394,20 @@
                                         </li>
                                     </ul>
                                 </li>
-
-
-                            @*
-                                    *@
-                                
-                          @*      <li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link" data-href="All Group" onclick="ClickIncPreview(this.data-href)">
                                         <i class="fas fa-users" aria-hidden="true"></i>
                                         <p role="button">
                                             Terrorist Groups
 
                                         </p>
-                                        <span class="badge badge-info right" id="terroristgroup_count">@ViewBag.groupCount</span>
+                                        <span class="badge badge-info right" id="terroristgroup_countdata">0</span>
                                     </a>
                                 </li>
+
+
+                                
+                          @*    
                                 <li class="nav-item">
 
                                     <a href="#" class="nav-link">
@@ -1129,6 +1128,7 @@
                         }
 
                     }
+                    
                     else if (response[j].name == "Others") {
                         if (response[j].tablename == "PW") {
                             $("#othersterprov").html(response[j].totalRecord);
@@ -1139,6 +1139,9 @@
                         }
 
                     }
+                    else if (response[j].tablename == "Groups") {
+                        $("#terroristgroup_countdata").html(response[j].totalRecord);
+                      }
                 
                 }
          

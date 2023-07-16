@@ -5,6 +5,6 @@ namespace CTW_FIA.Interface
 {
     public interface ITerrorist
     {
-        public List<Person> GetPeronProvincewise(string Province);
+        public List<NewPerson_Provinces_Result> GetPeronProvincewise(string Province);
     }
 }

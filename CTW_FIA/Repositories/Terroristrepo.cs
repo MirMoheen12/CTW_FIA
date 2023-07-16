@@ -15,7 +15,7 @@ namespace CTW_FIA.Repositories
             this.configuration = configuration;
 
         }
-        public List<Person> GetPeronProvincewise(string Province)
+        public List<NewPerson_Provinces_Result> GetPeronProvincewise(string Province)
         {
             string con = configuration.GetConnectionString("DefaultConnection");
             var dat = new
@@ -23,14 +23,14 @@ namespace CTW_FIA.Repositories
                 provinceName = Province
             };
             var dbres = databaseRepo.ExecuteProc(con, "NewPerson_Provinces", databaseRepo.returnSppram(dat));
-            var dt = databaseRepo.ConverttoObject(dbres, typeof(Person));
-            var list = new List<Person>();
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(NewPerson_Provinces_Result));
+            var list = new List<NewPerson_Provinces_Result>();
             foreach (var item in dt)
             {
-                list.Add((Person)item);
+                list.Add((NewPerson_Provinces_Result)item);
             }
             return (list);
-            throw new NotImplementedException();
+           
         }
     }
 }
