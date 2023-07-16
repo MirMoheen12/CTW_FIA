@@ -395,7 +395,7 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-href="All Group" onclick="ClickIncPreview(this.data-href)">
+                                    <a class="nav-link" href="~/TerroristsGroups/AllGroups">
                                         <i class="fas fa-users" aria-hidden="true"></i>
                                         <p role="button">
                                             Terrorist Groups
@@ -407,7 +407,7 @@
 
 
                                 
-                          @*    
+                              
                                 <li class="nav-item">
 
                                     <a href="#" class="nav-link">
@@ -421,117 +421,94 @@
                                         </p>
                                     </a>
 
-                                   @* <ul class="nav nav-treeview" role="button">
-                                        @if (ViewBag.UserAccess[7].ReadAccess)
-                                        {
+                                    <ul class="nav nav-treeview" role="button">
+                                
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Explosives" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Explosives</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.exp_count</span>
+                                                    <p>Explosives</p><span class="badge badge-info right" id="explosive">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[4].ReadAccess)
-                                        {
+                                 
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Vehicles" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Vehicles</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.vehicle_count</span>
+                                                    <p>Vehicles</p><span class="badge badge-info right" id="Vehicles">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[18].ReadAccess)
-                                        {
+                                   
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All PowerSources" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Power Source</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.powerS_count</span>
+                                                    <p>Power Source</p><span class="badge badge-info right" id="Powersource">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[5].ReadAccess)
-                                        {
+                              
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Communications" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Communication</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.comm_count</span>
+                                                    <p>Communication</p><span class="badge badge-info right" id="comm">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[8].ReadAccess)
-                                        {
+                                  
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Ordinances" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Ordinance</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.Ord_count</span>
+                                                    <p>Ordinance</p><span class="badge badge-info right" id="ord">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[10].ReadAccess)
-                                        {
+                       
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Equipments" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Equipment</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.equipment_count</span>
+                                                    <p>Equipment</p><span class="badge badge-info right" id="equ">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[11].ReadAccess)
-                                        {
+                          
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All InitiationSystems" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Initiation System</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.initSys_count</span>
+                                                    <p>Initiation System</p><span class="badge badge-info right" id="isys">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[12].ReadAccess)
-                                        {
+                             
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Components" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Components</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.comp_count</span>
+                                                    <p>Components</p><span class="badge badge-info right" id="comp">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[13].ReadAccess)
-                                        {
+                  
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All CBRNs" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>CBRN</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.cBRN_count</span>
+                                                    <p>CBRN</p><span class="badge badge-info right" id="cbrn">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[14].ReadAccess)
-                                        {
+                              
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Firearms" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Firearms</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.firearms_count</span>
+                                                    <p>Firearms</p><span class="badge badge-info right" id="fir">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[17].ReadAccess)
-                                        {
+                         
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Chemicals" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Chemicals</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.chemical_count</span>
+                                                    <p>Chemicals</p><span class="badge badge-info right" id="chem">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[6].ReadAccess)
-                                        {
+                  
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Detonators" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Detonators</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.det_count</span>
+                                                    <p>Detonators</p><span class="badge badge-info right" id="det">0</span>
                                                 </a>
                                             </li>
-                                        }
+                                        
 
-                                    </ul>*@
+                                    </ul>
                                 </li>
 
 
@@ -1142,6 +1119,42 @@
                     else if (response[j].tablename == "Groups") {
                         $("#terroristgroup_countdata").html(response[j].totalRecord);
                       }
+                    else if (response[j].tablename == "Explosive") {
+                        $("#explosive").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Vehicle") {
+                        $("#Vehicles").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "PowerSource") {
+                        $("#Powersource").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Communications") {
+                        $("#comm").html(response[j].totalRecord);
+                    }
+                        else if (response[j].tablename == "Ordinance") {
+                        $("#ord").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Equipment") {
+                        $("#equ").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "InitiationSystem") {
+                        $("#isys").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Components") {
+                        $("#comp").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Firearms") {
+                        $("#fir").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Chemical") {
+                        $("#chem").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Detonator") {
+                        $("#det").html(response[j].totalRecord);
+                    }
+                        else if (response[j].tablename == "CBRN") {
+                        $("#cbrn").html(response[j].totalRecord);
+                    }
                 
                 }
          
