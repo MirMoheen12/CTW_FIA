@@ -8,8 +8,11 @@ namespace CTW_FIA.Controllers
     public class ExplosivesController : Controller
     {
         private readonly IDashboard dashboard;
-        public ExplosivesController(IDashboard dashboard)
+        private readonly IExplosive explosive;
+
+        public ExplosivesController(IDashboard dashboard,IExplosive explosive)
         {
+            this.explosive = explosive;
             this.dashboard = dashboard;
         }
         public IActionResult Index()
@@ -22,6 +25,11 @@ namespace CTW_FIA.Controllers
             var data = dashboard.getCtwdashboardsExplosivetwise();
             var dt = data.ToList().Count();
             return Json(data);
+        }
+        public IActionResult AllExplosive()
+        {
+            var data = explosive.AllExplosive();
+            return View(data);
         }
 
     }

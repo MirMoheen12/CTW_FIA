@@ -10,10 +10,12 @@ namespace CTW_FIA.Repositories
     public class DashboardReopsitories : IDashboard
     {
         private readonly IConfiguration configuration;
+        private readonly IDatabaseRepo databaseRepo;
 
-        public DashboardReopsitories(IConfiguration configuration)
+        public DashboardReopsitories(IConfiguration configuration, IDatabaseRepo databaseRepo)
         {
             this.configuration = configuration;
+            this.databaseRepo = databaseRepo;
         }
         public GraphCount getCtwdashboard()
         {
@@ -82,7 +84,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "provincewise";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
                         }
@@ -111,7 +113,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "pprovince";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
                         }
@@ -123,7 +125,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "Exwise";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
                         }
@@ -135,7 +137,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "Groupwise";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
@@ -169,7 +171,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "FG";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
                         }
@@ -183,7 +185,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "PKG";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
                         }
@@ -195,7 +197,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "TopG";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
                         }
@@ -207,7 +209,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "GW";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
@@ -219,7 +221,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "TGW";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
@@ -254,7 +256,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "PW";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
                         }
@@ -268,7 +270,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "T10";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
@@ -280,7 +282,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "WW";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
                         }
@@ -292,7 +294,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "TW";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
                         }
@@ -304,7 +306,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "MW";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
@@ -316,7 +318,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "GW";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
@@ -350,7 +352,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "TP";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
@@ -364,7 +366,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "HM";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
@@ -376,7 +378,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "AS";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
@@ -388,7 +390,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "TMW";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
@@ -400,7 +402,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "TMWFor";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
@@ -412,7 +414,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "UN";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = row["Name"].ToString();
                             graphDtos.Add(dto);
                         }
@@ -447,7 +449,7 @@ namespace CTW_FIA.Repositories
                         {
                             GraphDto dto = new GraphDto();
                             dto.tablename = "Exp";
-                            dto.TotalRecord = (int)row["TotalRecord"];
+                            dto.TotalRecord = row["TotalRecord"].ToString();
                             dto.Name = (string)row["Name"];
                             graphDtos.Add(dto);
                         }
@@ -488,9 +490,19 @@ namespace CTW_FIA.Repositories
             }
         }
 
-
-
-       
+        public List<GraphDto> getCtwdashboardsLeftnavigation()
+        {
+            string connectionString = configuration.GetConnectionString("DefaultConnection");
+            var dat = databaseRepo.ExecuteProc(connectionString, "sp_leftnavigation_web", null);
+            var res = databaseRepo.ConverttoObject(dat, typeof(GraphDto));
+            var list = new List<GraphDto>();
+            foreach (var item in res)
+            {
+                list.Add((GraphDto)item);
+            }
+            return list;
+            
+        }
     }
 }
 

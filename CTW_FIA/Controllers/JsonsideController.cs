@@ -16,9 +16,10 @@ namespace CTW_FIA.Controllers
         {
             return View();
         }
-        public JsonResult IncidentWise()
+        public JsonResult GetLeftsidesCounts()
         {
-            var data = dashboard.getCtwdashboardsIncidentwise();
+            //var data = dashboard.getCtwdashboardsIncidentwise().Where(X => X.tablename == "PW").ToList(); 
+            var data = dashboard.getCtwdashboardsLeftnavigation();
             return Json(data);
         }
     }

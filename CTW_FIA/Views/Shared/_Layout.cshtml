@@ -327,80 +327,87 @@
                                     
 
                                 </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-users" aria-hidden="true"></i>
+                                        <p>
 
+                                            Terrorists
 
-                            @*
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="fas fa-users" aria-hidden="true"></i>
-                                            <p>
+                                            <i class="fas fa-angle-left right" aria-hidden="true"></i>
 
-                                                Terrorists
-
-                                                <i class="fas fa-angle-left right" aria-hidden="true"></i>
-
-                                            </p>
-                                        </a>
-                                        <ul class="nav nav-treeview" role="button">
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="KHYBER-PAKHTUNKHWA People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>KPK</p>
-                                                    <span class="badge badge-info right" id="terroristgroup_count">@ViewBag.terror_pro_kpk_count</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="Punjab People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Punjab</p>
-                                                    <span class="badge badge-info right" id="terroristgroup_count">@ViewBag.terror_pro_Pun_count</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="Sindh People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Sindh</p>
-                                                    <span class="badge badge-info right" id="terroristgroup_count">@ViewBag.terror_pro_Sindh_count</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="Balochistan People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Balochistan</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.terror_pro_Bal_count</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="GB People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>GB</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.terror_pro_gb_count</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="ICT People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>ICT</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.terror_pro_ICT_count</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="AJK People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>AJK</p>
-                                                    <span class="badge badge-info right" id="stgroup_count">@ViewBag.terror_pro_AJK_count</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>*@
-                                
-                          @*      <li class="nav-item">
-                                    <a class="nav-link" data-href="All Group" onclick="ClickIncPreview(this.data-href)">
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview" role="button">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Khyber Pakhtunkhwa">
+                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                <p>KPK</p>
+                                                <span class="badge badge-info right" id="kpkterprov">0</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Punjab">
+                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                <p>Punjab</p>
+                                                <span class="badge badge-info right" id="punjabterprov">0</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Sindh">
+                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                <p>Sindh</p>
+                                                <span class="badge badge-info right" id="sindhterprov">0</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Balochistan">
+                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                <p>Balochistan</p><span class="badge badge-info right" id="blchterprov">0</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Gilgit - Baltistan">
+                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                <p>GB</p><span class="badge badge-info right" id="gbterprov">0</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Islamabad Capital Territory">
+                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                <p>ICT</p><span class="badge badge-info right" id="ictterprov">0</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Azad Jammu and Kashmir">
+                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                <p>AJK</p>
+                                                <span class="badge badge-info right" id="ajkterprov">0</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Others">
+                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                <p>Others</p>
+                                                <span class="badge badge-info right" id="othersterprov">0</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="~/TerroristsGroups/AllGroups">
                                         <i class="fas fa-users" aria-hidden="true"></i>
                                         <p role="button">
                                             Terrorist Groups
 
                                         </p>
-                                        <span class="badge badge-info right" id="terroristgroup_count">@ViewBag.groupCount</span>
+                                        <span class="badge badge-info right" id="terroristgroup_countdata">0</span>
                                     </a>
                                 </li>
+
+
+                                
+                              
                                 <li class="nav-item">
 
                                     <a href="#" class="nav-link">
@@ -414,117 +421,94 @@
                                         </p>
                                     </a>
 
-                                   @* <ul class="nav nav-treeview" role="button">
-                                        @if (ViewBag.UserAccess[7].ReadAccess)
-                                        {
+                                    <ul class="nav nav-treeview" role="button">
+                                
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Explosives" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Explosives</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.exp_count</span>
+                                                    <p>Explosives</p><span class="badge badge-info right" id="explosive">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[4].ReadAccess)
-                                        {
+                                 
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Vehicles" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Vehicles</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.vehicle_count</span>
+                                                    <p>Vehicles</p><span class="badge badge-info right" id="Vehicles">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[18].ReadAccess)
-                                        {
+                                   
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All PowerSources" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Power Source</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.powerS_count</span>
+                                                    <p>Power Source</p><span class="badge badge-info right" id="Powersource">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[5].ReadAccess)
-                                        {
+                              
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Communications" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Communication</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.comm_count</span>
+                                                    <p>Communication</p><span class="badge badge-info right" id="comm">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[8].ReadAccess)
-                                        {
+                                  
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Ordinances" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Ordinance</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.Ord_count</span>
+                                                    <p>Ordinance</p><span class="badge badge-info right" id="ord">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[10].ReadAccess)
-                                        {
+                       
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Equipments" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Equipment</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.equipment_count</span>
+                                                    <p>Equipment</p><span class="badge badge-info right" id="equ">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[11].ReadAccess)
-                                        {
+                          
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All InitiationSystems" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Initiation System</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.initSys_count</span>
+                                                    <p>Initiation System</p><span class="badge badge-info right" id="isys">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[12].ReadAccess)
-                                        {
+                             
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Components" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Components</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.comp_count</span>
+                                                    <p>Components</p><span class="badge badge-info right" id="comp">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[13].ReadAccess)
-                                        {
+                  
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All CBRNs" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>CBRN</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.cBRN_count</span>
+                                                    <p>CBRN</p><span class="badge badge-info right" id="cbrn">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[14].ReadAccess)
-                                        {
+                              
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Firearms" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Firearms</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.firearms_count</span>
+                                                    <p>Firearms</p><span class="badge badge-info right" id="fir">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[17].ReadAccess)
-                                        {
+                         
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Chemicals" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Chemicals</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.chemical_count</span>
+                                                    <p>Chemicals</p><span class="badge badge-info right" id="chem">0</span>
                                                 </a>
                                             </li>
-                                        }
-                                        @if (ViewBag.UserAccess[6].ReadAccess)
-                                        {
+                  
                                             <li class="nav-item">
                                                 <a class="nav-link" data-href="All Detonators" onclick="ClickIncPreview(this.data-href)">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Detonators</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.det_count</span>
+                                                    <p>Detonators</p><span class="badge badge-info right" id="det">0</span>
                                                 </a>
                                             </li>
-                                        }
+                                        
 
-                                    </ul>*@
+                                    </ul>
                                 </li>
 
 
@@ -1043,66 +1027,135 @@
     {
         $.ajax({
             type: "GET",
-            url: "/Jsonside/IncidentWise",
+            url: "/Jsonside/GetLeftsidesCounts",
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             success: function (response) {
-        
+                console.log(response);
                 for (let j = 0; j < response.length; j++) {
-                    if (response[j].tablename == "PW" && response[j].name == "Sindh") {
-                        // alert(j);
-                        
-                        $("#sindhcount").html(response[j].totalRecord);
+                    if (response[j].name == "Sindh") {
+                        if(response[j].tablename == "PW")
+                        {
+                            $("#sindhterprov").html(response[j].totalRecord);
+                        }
+                        else if(response[j].tablename == "IW")
+                        {
+                            $("#sindhcount").html(response[j].totalRecord);
+                           
+                        }
 
                     }
-                    else if (response[j].tablename == "PW" && response[j].name == "Sindh") {
-                        // alert(j);
-                        
-                        $("#sindhcount").html(response[j].totalRecord);
+                    else if (response[j].name == "Punjab") {
+                        if (response[j].tablename == "PW") {
+                            $("#punjabterprov").html(response[j].totalRecord);
+                        }
+                        else if (response[j].tablename == "IW") {
+                            $("#Punjabcount").html(response[j].totalRecord);
+
+                        }
 
                     }
-                  else if (response[j].tablename == "PW" && response[j].name == "Punjab") {
-                        // alert(j);
-                        
-                        $("#Punjabcount").html(response[j].totalRecord);
+                    else if (response[j].name == "Balochistan") {
+                        if (response[j].tablename == "PW") {
+                            $("#blchterprov").html(response[j].totalRecord);
+                        }
+                        else if (response[j].tablename == "IW") {
+                            $("#BIcount").html(response[j].totalRecord);
+
+                        }
 
                     }
-                  else if (response[j].tablename == "PW" && response[j].name == "Khyber Pakhtunkhwa") {
-                        // alert(j);
-                        
-                        $("#KPKcount").html(response[j].totalRecord);
+                    else if (response[j].name == "Khyber Pakhtunkhwa") {
+                        if (response[j].tablename == "PW") {
+                            $("#kpkterprov").html(response[j].totalRecord);
+                        }
+                        else if (response[j].tablename == "IW") {
+                            $("#KPKcount").html(response[j].totalRecord);
+
+                        }
 
                     }
-                 else if (response[j].tablename == "PW" && response[j].name == "Balochistan") {
-                        // alert(j);
+                    else if (response[j].name == "Gilgit - Baltistan") {
+                        if (response[j].tablename == "PW") {
+                            $("#gbterprov").html(response[j].totalRecord);
+                        }
+                        else if (response[j].tablename == "IW") {
+                            $("#GBcount").html(response[j].totalRecord);
 
-                        $("#BIcount").html(response[j].totalRecord);
-
-                    }
-                         else if (response[j].tablename == "PW" && response[j].name == "Gilgit - Baltistan") {
-                        // alert(j);
-
-                        $("#GBcount").html(response[j].totalRecord);
+                        }
 
                     }
-                        else if (response[j].tablename == "PW" && response[j].name == "Islamabad Capital Territory") {
-                        // alert(j);
+                    else if (response[j].name == "Islamabad Capital Territory") {
+                        if (response[j].tablename == "PW") {
+                            $("#ictterprov").html(response[j].totalRecord);
+                        }
+                        else if (response[j].tablename == "IW") {
+                            $("#ISBcount").html(response[j].totalRecord);
 
-                        $("#ISBcount").html(response[j].totalRecord);
-
-                    }
-                        else if (response[j].tablename == "PW" && response[j].name == "Azad Jammu and Kashmir") {
-                        // alert(j);
-
-                        $("#AJKcount").html(response[j].totalRecord);
+                        }
 
                     }
-                    else if (response[j].tablename == "PW" && response[j].name == "Others") {
-                        // alert(j);
+                    else if (response[j].name == "Azad Jammu and Kashmir") {
+                        if (response[j].tablename == "PW") {
+                            $("#ajkterprov").html(response[j].totalRecord);
+                        }
+                        else if (response[j].tablename == "IW") {
+                            $("#AJKcount").html(response[j].totalRecord);
 
-                        $("#Otherscount").html(response[j].totalRecord);
+                        }
 
                     }
+                    
+                    else if (response[j].name == "Others") {
+                        if (response[j].tablename == "PW") {
+                            $("#othersterprov").html(response[j].totalRecord);
+                        }
+                        else if (response[j].tablename == "IW") {
+                            $("#Otherscount").html(response[j].totalRecord);
+
+                        }
+
+                    }
+                    else if (response[j].tablename == "Groups") {
+                        $("#terroristgroup_countdata").html(response[j].totalRecord);
+                      }
+                    else if (response[j].tablename == "Explosive") {
+                        $("#explosive").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Vehicle") {
+                        $("#Vehicles").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "PowerSource") {
+                        $("#Powersource").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Communications") {
+                        $("#comm").html(response[j].totalRecord);
+                    }
+                        else if (response[j].tablename == "Ordinance") {
+                        $("#ord").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Equipment") {
+                        $("#equ").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "InitiationSystem") {
+                        $("#isys").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Components") {
+                        $("#comp").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Firearms") {
+                        $("#fir").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Chemical") {
+                        $("#chem").html(response[j].totalRecord);
+                    }
+                    else if (response[j].tablename == "Detonator") {
+                        $("#det").html(response[j].totalRecord);
+                    }
+                        else if (response[j].tablename == "CBRN") {
+                        $("#cbrn").html(response[j].totalRecord);
+                    }
+                
                 }
          
 
@@ -1119,6 +1172,7 @@
                 alert("error");
             }
         });
+
     }
     //function ViewLinks(param_x) {
     //    var strURN = "";

@@ -8,9 +8,11 @@ namespace CTW_FIA.Controllers
     public class TerroristsGroupsController : Controller
     {
         private readonly IDashboard dashboard;
-        public TerroristsGroupsController(IDashboard dashboard)
+        private readonly ITerrorist terrorist;
+        public TerroristsGroupsController(IDashboard dashboard,ITerrorist terrorist)
         {
             this.dashboard = dashboard;
+            this.terrorist = terrorist;
         }
         public IActionResult Index()
         {
@@ -21,6 +23,11 @@ namespace CTW_FIA.Controllers
         {
             var data = dashboard.getCtwdashboardsGraphwise();
             return Json(data);
+        }
+        public IActionResult AllGroups()
+        {
+            var data = terrorist.GetAllTerrorist();
+            return View(data);
         }
 
 
