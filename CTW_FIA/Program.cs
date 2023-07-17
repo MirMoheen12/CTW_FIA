@@ -54,7 +54,8 @@ builder.Services.AddTransient<ITerrorist, Terroristrepo>();
 builder.Services.AddTransient<IExplosive, ExplosiveRepo>();
 builder.Services.AddTransient<IVehicle, VehicleRepo>();
 builder.Services.AddTransient<IPowerSource, PowerSourceRepo>();
-
+builder.Services.AddTransient<ICommunication, CommunicationRepo>();
+builder.Services.AddTransient<IOrdinance, OrdinanceRepo>();
 
 
 builder.Services.AddControllersWithViews();
