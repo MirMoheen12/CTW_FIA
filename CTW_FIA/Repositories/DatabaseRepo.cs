@@ -5,14 +5,14 @@ using System.Reflection;
 
 namespace CTW_FIA.Repositories
 {
-    public class DatabaseRepo:IDatabaseRepo
+    public class DatabaseRepo : IDatabaseRepo
     {
         private readonly IConfiguration _configuration;
-   
+
         public DatabaseRepo(IConfiguration configuration)
         {
             this._configuration = configuration;
-           
+
         }
         public List<SqlParameter> returnSppram(Object obj)
         {
@@ -21,7 +21,7 @@ namespace CTW_FIA.Repositories
             PropertyInfo[] properties = objectType.GetProperties();
             foreach (PropertyInfo property in properties)
             {
-                parameters.Add(new Microsoft.Data.SqlClient.SqlParameter("@" +property.Name, property.GetValue(obj)));
+                parameters.Add(new Microsoft.Data.SqlClient.SqlParameter("@" + property.Name, property.GetValue(obj)));
             }
             return parameters;
         }
@@ -29,23 +29,23 @@ namespace CTW_FIA.Repositories
         {
             List<Object> objectList = new List<Object>();
             foreach (DataRow row in data.Rows)
+            {
+                object obj = Activator.CreateInstance(objectType);
+                foreach (DataColumn column in data.Columns)
                 {
-                    object obj = Activator.CreateInstance(objectType);
-                     foreach (DataColumn column in data.Columns)
+                    string propertyName = column.ColumnName;
+                    object? propertyValue = row[column];
+                    PropertyInfo property = objectType.GetProperty(propertyName);
+                    if (property != null && property.CanWrite)
                     {
-                        string propertyName = column.ColumnName;
-                        object? propertyValue = row[column];
-                        PropertyInfo property = objectType.GetProperty(propertyName);
-                        if (property != null && property.CanWrite)
-                        {
                         property.SetValue(obj, propertyValue.ToString());
-                        }
+                    }
+                }
+                objectList.Add(obj);
             }
-            objectList.Add(obj);
+            return objectList;
         }
-        return objectList;
-    }
-        public DataTable ExecuteProc(string conn, string pProcedureName,List<SqlParameter> param)
+        public DataTable ExecuteProc(string conn, string pProcedureName, List<SqlParameter> param)
         {
             DataTable data = new DataTable();
             using (SqlConnection mobjConnection = new SqlConnection(conn))
@@ -81,7 +81,7 @@ namespace CTW_FIA.Repositories
                     catch (Exception ex)
                     {
 
-                     }
+                    }
                     finally
                     {
                         mobjCommand.Dispose();

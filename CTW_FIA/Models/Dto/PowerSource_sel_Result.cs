@@ -1,4 +1,6 @@
-﻿namespace CTW_FIA.Models.Dto
+﻿using CTW_FIA.Interface;
+
+namespace CTW_FIA.Models.Dto
 {
     public class PowerSource_sel_Result
     {

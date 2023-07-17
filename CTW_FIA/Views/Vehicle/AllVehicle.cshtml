@@ -1,9 +1,8 @@
-﻿@model IEnumerable<CTW_FIA.Models.Dto.Explosives_sel_Result>
+﻿@model IEnumerable<CTW_FIA.Models.Dto.Vehicles_sel_Result>
 @{
-    ViewData["Title"] = "AllExplosive";
+    ViewData["Title"] = "All Vehicles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <style>
     .table-responsive {
         max-height: 650px;
@@ -12,23 +11,16 @@
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="row" id="GenericTable" style="">
-
-
-
-
     <div class="e-panel card">
         <div class="card-body">
-            <h2>Terrorist Groups</h2>
+            <h2>Vehicles</h2>
             <table id="SearchGenericTable" class="table table-bordered text-dark">
                 <thead>
                     <tr>
                         <th>S.No</th>
-                        <th>Category</th>
-                        <th>Type</th>
-                        <th>Quantity </th>
-
-                        <th>Date Sent </th>
-
+                        <th>StrURN</th>
+                        <th>Remarks</th>
+                        <th>Created On </th>
                         <th>Option</th>
                     </tr>
                 </thead>
@@ -39,20 +31,15 @@
                             <td>
                                 @item.SerialNo
                             </td>
-
                             <td>
-                                @item.dgvCategory
+                                @item.strURN
                             </td>
                             <td>
-                                @item.dgvQuantity
+                                @item.memRemarks
                             </td>
                             <td>
-                                @item.dgvQuantity
+                                @item.CreatedOn
                             </td>
-                            <td>
-                                @item.dteSent
-                            </td>
-
                             <td>
                                 <a href="~/incidents/IncidentDetails?strurn=@item.strURN" class="btn btn-sm btn-primary">
                                     Details
@@ -64,8 +51,6 @@
             </table>
         </div>
     </div>
-
-
 </div>
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
@@ -77,4 +62,3 @@
     }).buttons().container().appendTo('#SearchGenericTable_wrapper .col-md-6:eq(0)');
 
 </script>
-

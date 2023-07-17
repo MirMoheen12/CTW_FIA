@@ -1,5 +1,6 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
+using CTW_FIA.Models.Dto;
 using CTW_FIA.Models.LocalModels;
 
 namespace CTW_FIA.Repositories
@@ -14,15 +15,15 @@ namespace CTW_FIA.Repositories
             this.configuration = configuration;
             this.databaseRepo = databaseRepo;
         }
-        public List<Explosive> AllExplosive()
+        public List<Explosives_sel_Result> AllExplosive()
         {
             string connectionString = configuration.GetConnectionString("DefaultConnection");
             var dat = databaseRepo.ExecuteProc(connectionString, "Explosives_sel", null);
-            var res = databaseRepo.ConverttoObject(dat, typeof(Explosive));
-            var list = new List<Explosive>();
+            var res = databaseRepo.ConverttoObject(dat, typeof(Explosives_sel_Result));
+            var list = new List<Explosives_sel_Result>();
             foreach (var item in res)
             {
-                list.Add((Explosive)item);
+                list.Add((Explosives_sel_Result)item);
             }
             return list;
         }
