@@ -1,8 +1,10 @@
 ﻿using CTW_FIA.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CTW_FIA.Controllers
 {
+    [AllowAnonymous]
     public class ComponentsController : Controller
     {
         private readonly IComponents components;
