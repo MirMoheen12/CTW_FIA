@@ -56,7 +56,7 @@ builder.Services.AddTransient<IVehicle, VehicleRepo>();
 builder.Services.AddTransient<IPowerSource, PowerSourceRepo>();
 builder.Services.AddTransient<ICommunication, CommunicationRepo>();
 builder.Services.AddTransient<IOrdinance, OrdinanceRepo>();
-
+builder.Services.AddTransient<IEquipments, Equipemtsrepo>();
 
 builder.Services.AddControllersWithViews();
 
