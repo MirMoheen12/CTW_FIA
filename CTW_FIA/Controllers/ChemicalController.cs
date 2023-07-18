@@ -1,8 +1,10 @@
 ﻿using CTW_FIA.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CTW_FIA.Controllers
 {
+    [AllowAnonymous]
     public class ChemicalController : Controller
     {
         private readonly Ichemical chemical;
