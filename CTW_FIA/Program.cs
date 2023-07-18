@@ -57,6 +57,12 @@ builder.Services.AddTransient<IPowerSource, PowerSourceRepo>();
 builder.Services.AddTransient<ICommunication, CommunicationRepo>();
 builder.Services.AddTransient<IOrdinance, OrdinanceRepo>();
 builder.Services.AddTransient<IEquipments, Equipemtsrepo>();
+builder.Services.AddTransient<IIntianSystem, IntiasSystemRepo>();
+builder.Services.AddTransient<IComponents, Componentsrepo>();
+builder.Services.AddTransient<ICBRN, CBRNRepo>();
+builder.Services.AddTransient<IFearams, FireamsRepo>();
+builder.Services.AddTransient<Ichemical, chemicalrepo>();
+builder.Services.AddTransient<IDetonators, Detanatorsrepo>();
 
 builder.Services.AddControllersWithViews();
 
