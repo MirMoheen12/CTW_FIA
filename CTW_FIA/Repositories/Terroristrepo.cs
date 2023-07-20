@@ -8,12 +8,18 @@ namespace CTW_FIA.Repositories
     {
         private readonly IDatabaseRepo databaseRepo;
         private readonly IConfiguration configuration;
-        public Terroristrepo(IDatabaseRepo databaseRepo, IConfiguration configuration)
+        private readonly AppDbContext dbContext;
+        public Terroristrepo(IDatabaseRepo databaseRepo, IConfiguration configuration, AppDbContext dbContext)
         {
             this.databaseRepo = databaseRepo;
-
             this.configuration = configuration;
+            this.dbContext = dbContext;
+        }
 
+        public List<ReportingAgency> AllAgencies()
+        {
+            var data = dbContext.ReportingAgency.ToList();
+            return (data);
         }
 
         public List<TerroristGroup_Records> GetAllTerrorist()

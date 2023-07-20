@@ -7,13 +7,11 @@ using System;
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Interface;
 using CTW_FIA.Repositories;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().
+builder.Services.AddDbContext<AppDbContext>(item => item.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-                AddDefaultTokenProviders().
-             AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddControllersWithViews(opt => {
 
     var policy = new AuthorizationPolicyBuilder()
@@ -22,14 +20,14 @@ builder.Services.AddControllersWithViews(opt => {
     
 
 });
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-    sqlServerOptionsAction: sqlOptions =>
-    {
-        sqlOptions.EnableRetryOnFailure();
-    });
-});
+//builder.Services.AddDbContext<AppDbContext>(options =>
+//{
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+//    sqlServerOptionsAction: sqlOptions =>
+//    {
+//        sqlOptions.EnableRetryOnFailure();
+//    });
+//});
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.AccessDeniedPath = new PathString("/Home/Accessdenied");

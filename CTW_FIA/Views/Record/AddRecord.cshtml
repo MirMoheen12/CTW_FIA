@@ -30,7 +30,7 @@
                                     <option selected value="Select">You have no access to Add Record</option>
                                 }*@
 
-                                      <option value="Select">Select</option>
+                                <option value="Select">Select</option>
                                 <option value="MainIncident">Terrorist Incident</option>
                                 <option value="PersonInvolved">Terrorist Involved</option>
                                 <option value="Addresses">Addresses</option>
@@ -87,7 +87,7 @@
                         break;
 
                     case "PersonInvolved":
-                        $("#DivContainerForCustForm").load("@Url.Action("PersonInvolved","Person")");
+                        $("#DivContainerForCustForm").load("@Url.Action("AddPerson","Person")");
                         break;
                     case "Groups":
                         $("#DivContainerForCustForm").load("@Url.Action("Groups","Terrorists")");

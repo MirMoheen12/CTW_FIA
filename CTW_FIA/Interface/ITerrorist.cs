@@ -7,6 +7,7 @@ namespace CTW_FIA.Interface
     {
         public List<NewPerson_Provinces_Result> GetPeronProvincewise(string Province);
         public List<TerroristGroup_Records> GetAllTerrorist();
+        public List<ReportingAgency> AllAgencies();
 
     }
 }
