@@ -46,8 +46,7 @@ namespace CTW_FIA.Repositories
             catch (DbUpdateException)
             {
 
-               return false;
-                
+                throw;                
             }
 
         }
