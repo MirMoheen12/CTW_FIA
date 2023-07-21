@@ -516,8 +516,8 @@ namespace CTW_FIA.Repositories
 
         public List<GraphDto> getCtwdashboardsLeftnavigation()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "sp_leftnavigation_web", null);
+        
+            var dat = databaseRepo.ExecuteProc("sp_leftnavigation_web", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(GraphDto));
             var list = new List<GraphDto>();
             foreach (var item in res)

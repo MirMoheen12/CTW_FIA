@@ -17,8 +17,8 @@ namespace CTW_FIA.Repositories
 
         public List<Chemicals_sel_Result> allChemical()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "Chemicals_sel", null);
+         
+            var dat = databaseRepo.ExecuteProc("Chemicals_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(Chemicals_sel_Result));
             var list = new List<Chemicals_sel_Result>();
             foreach (var item in res)

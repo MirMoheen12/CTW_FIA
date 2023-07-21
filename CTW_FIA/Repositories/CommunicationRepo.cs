@@ -15,8 +15,8 @@ namespace CTW_FIA.Repositories
         }
         public List<Communications_sel> AllCommunication()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "Communications_sel", null);
+            
+            var dat = databaseRepo.ExecuteProc("Communications_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(Communications_sel));
             var list = new List<Communications_sel>();
             foreach (var item in res)

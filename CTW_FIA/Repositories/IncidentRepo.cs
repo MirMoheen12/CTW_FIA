@@ -19,23 +19,23 @@ namespace CTW_FIA.Repositories
 
         public object getIncidentID(string STRURN)
         {
-            string con = configuration.GetConnectionString("DefaultConnection");
+        
             var dat = new {
                 strURN= STRURN
             };
-            var dbres = databaseRepo.ExecuteProc(con,"LinkedRecordIncident_sel", databaseRepo.returnSppram(dat));
+            var dbres = databaseRepo.ExecuteProc("LinkedRecordIncident_sel", databaseRepo.returnSppram(dat));
             return (databaseRepo.ConverttoObject(dbres, typeof(PreviewIncidentByStrUrn)).FirstOrDefault());
         
         }
 
         public List<PreviewIncident> getIncidentProvincewiese(string Province)
         {
-            string con = configuration.GetConnectionString("DefaultConnection");
+            
             var dat = new
             {
                 provinceName = Province
             };
-            var dbres = databaseRepo.ExecuteProc(con,"Incident_Provinces", databaseRepo.returnSppram(dat));
+            var dbres = databaseRepo.ExecuteProc("Incident_Provinces", databaseRepo.returnSppram(dat));
             var dt = databaseRepo.ConverttoObject(dbres, typeof(PreviewIncident));
             var list = new List<PreviewIncident>();
             foreach (var item in dt)

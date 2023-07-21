@@ -27,6 +27,7 @@ namespace CTW_FIA.Repositories
         }
         public List<Object> ConverttoObject(DataTable data, Type objectType)
         {
+
             List<Object> objectList = new List<Object>();
             foreach (DataRow row in data.Rows)
             {
@@ -45,10 +46,10 @@ namespace CTW_FIA.Repositories
             }
             return objectList;
         }
-        public DataTable ExecuteProc(string conn, string pProcedureName, List<SqlParameter> param)
+        public DataTable ExecuteProc(string pProcedureName, List<SqlParameter> param)
         {
             DataTable data = new DataTable();
-            using (SqlConnection mobjConnection = new SqlConnection(conn))
+            using (SqlConnection mobjConnection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 using (SqlCommand mobjCommand = new SqlCommand(pProcedureName,
                mobjConnection))

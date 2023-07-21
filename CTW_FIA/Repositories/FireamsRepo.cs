@@ -16,8 +16,8 @@ namespace CTW_FIA.Repositories
 
         public List<Firearms_sel_Result> allfearms()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "Firearms_sel", null);
+          
+            var dat = databaseRepo.ExecuteProc("Firearms_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(Firearms_sel_Result));
             var list = new List<Firearms_sel_Result>();
             foreach (var item in res)

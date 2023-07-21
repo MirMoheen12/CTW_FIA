@@ -17,8 +17,8 @@ namespace CTW_FIA.Repositories
         }
         public List<Explosives_sel_Result> AllExplosive()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "Explosives_sel", null);
+           
+            var dat = databaseRepo.ExecuteProc("Explosives_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(Explosives_sel_Result));
             var list = new List<Explosives_sel_Result>();
             foreach (var item in res)

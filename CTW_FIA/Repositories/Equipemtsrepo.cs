@@ -16,8 +16,8 @@ namespace CTW_FIA.Repositories
 
         public List<Equipment_sel_Result> AllEquipments()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "Equipment_sel", null);
+         
+            var dat = databaseRepo.ExecuteProc("Equipment_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(Equipment_sel_Result));
             var list = new List<Equipment_sel_Result>();
             foreach (var item in res)
