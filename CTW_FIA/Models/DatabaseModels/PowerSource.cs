@@ -1,4 +1,6 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class PowerSource
     {
@@ -19,6 +21,7 @@
         public string Diameter { get; set; }
         public string Length { get; set; }
         public string MemRemarks { get; set; }
+        [Key]
         public int IntID { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }

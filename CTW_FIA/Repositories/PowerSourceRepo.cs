@@ -20,14 +20,15 @@ namespace CTW_FIA.Repositories
         }
         public bool AddPowerSource(PowerSource powerSource, String WhoCreatedName)
         {
-            var psid = 0;
-            if (appDbContext.PowerSources.Count() == 0)
+            int psid = 0;
+            if (appDbContext.PowerSource.Count() == 0)
             {
                 psid = 1;
             }
             else
             {
-                psid = appDbContext.PowerSources.OrderByDescending(p => p.IntID).FirstOrDefault().IntID;
+                PowerSource powerSourc = appDbContext.PowerSource.OrderByDescending(p => p.IntID).FirstOrDefault();
+                psid = powerSourc != null ? powerSourc.IntID : psid;
                 psid++;
             }
 
@@ -37,7 +38,7 @@ namespace CTW_FIA.Repositories
             powerSource.CreatedBy = WhoCreatedName;
             powerSource.UpdatedBy = WhoCreatedName;
             powerSource.TextSearch = powerSource.MemRemarks + " " + powerSource.StrURN + " " + powerSource.Category + " " + powerSource.Manufacturer + " " + powerSource.Markings + " " + powerSource.BatchCode + " " + powerSource.Diameter + " " + powerSource.NumberRecovered + " " + powerSource.Other + " " + powerSource.SerialNumber + " " + powerSource.Size + " " + powerSource.Colour + " " + powerSource.CountryOrigin + " " + powerSource.CountryRecovered;
-            appDbContext.PowerSources.Add(powerSource);
+            appDbContext.PowerSource.Add(powerSource);
             try
             {
                  appDbContext.SaveChanges();
@@ -53,7 +54,7 @@ namespace CTW_FIA.Repositories
 
         public PowerSource GetpowerSourceById(string id)
         {
-            var powerSource = appDbContext.PowerSources.Where(x => x.StrURN == id && x.IsDeleted == false).FirstOrDefault();
+            var powerSource = appDbContext.PowerSource.Where(x => x.StrURN == id && x.IsDeleted == false).FirstOrDefault();
 
             if (powerSource == null)
             {

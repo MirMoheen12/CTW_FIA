@@ -32,7 +32,7 @@ namespace CTW_FIA.Models.DatabaseModels
         public DbSet<Components> Components { get; set; }
         public DbSet<InitiationSystem> InitiationSystems { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
-        public DbSet<PowerSource> PowerSources { get; set; }
+        public DbSet<PowerSource> PowerSource { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<BankAccount> BankAccounts { get; set; }
         public DbSet<ContactNumber> ContactNumbers { get; set; }
@@ -78,7 +78,7 @@ namespace CTW_FIA.Models.DatabaseModels
             modelBuilder.Entity<Components>().HasNoKey();
             modelBuilder.Entity<InitiationSystem>().HasNoKey();
             modelBuilder.Entity<Vehicle>().HasNoKey();
-            modelBuilder.Entity<PowerSource>().HasNoKey();
+            //modelBuilder.Entity<PowerSource>().HasNoKey();
             modelBuilder.Entity<Person>().HasNoKey();
             modelBuilder.Entity<BankAccount>().HasNoKey();
             modelBuilder.Entity<ContactNumber>().HasNoKey();
