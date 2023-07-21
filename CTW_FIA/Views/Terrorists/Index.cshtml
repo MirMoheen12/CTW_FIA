@@ -28,18 +28,27 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h6 class="font-weight-normal text-center"> Most Wanted Terrorist <br />(4th Schedule)</h6>
+                <h6 class="font-weight-normal text-center"> Individuals Usnder 4th Schedule <br />
+                (Province Wise)    
+                </h6>
                 <canvas id="tmwPWChartfor" style="position: relative; height:60vh; width:80vw"></canvas>
             </div>
         </div>
     </div>
-    <div class="col-md-6"></div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-normal text-center"> Red Book of MWTs <br />(Reporting Agency Wise)</h6>
+                <canvas id="MWT" style="position: relative; height:60vh; width:80vw"></canvas>
+            </div>
+        </div>
+    </div>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="font-weight-normal text-center">Most wanted <br />
+                    <h6 class="font-weight-normal text-center">Most wanted
                         
-                    Terorists (HM & WHM)</h6>
+                    Terorists<br /> (HM & WHM)</h6>
                     <canvas id="headmoneyChart" style="position: relative; height:60vh; width:80vw"></canvas>
                 </div>
             </div>
@@ -48,9 +57,7 @@
         <div class="card">
             <div class="card-body">
                 <h6 class="font-weight-normal text-center">
-                    UN - Consolidated
-                    <br />
-                    (Individuals)
+                    MWTs 4th Schedule <br /> (UN - Consolidated Individuals)
                 </h6>
                 <canvas id="UNChart" style="position: relative; height:60vh; width:80vw"></canvas>
             </div>
@@ -165,6 +172,11 @@
 
                     const UNCount = [];
 
+
+                    const MWTName = [];
+
+                    const MWTCount = [];
+
                     for (let j = 0; j < response.length; j++) {
                         if (response[j].tablename == "TP") {
                             // alert(j);
@@ -196,8 +208,37 @@
                            UNName.push(response[j].name);
                             UNCount.push(response[j].totalRecord);
                         }
+                        if (response[j].tablename == "MWT") {
+                            // alert(j);
+                            MWTName.push(response[j].name);
+                            MWTCount.push(response[j].totalRecord);
+                        }
                     }
-                    console.log(UNName);
+
+
+
+                    const MWT_tmwPWChartfor = document.getElementById('MWT');
+                    const barChart4 = new Chart(MWT_tmwPWChartfor, {
+                        type: 'bar',
+                        data: {
+                            labels: MWTName,
+                            datasets: [{
+                                label: 'abc',
+                                data: MWTCount,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 2,
+
+
+                            }]
+                        },
+                        options: c_options
+                    });
+
+
+
+
+               
                     const ctx_tmwPWChartfor = document.getElementById('tmwPWChartfor');
                     const barChart3 = new Chart(ctx_tmwPWChartfor, {
                         type: 'bar',
