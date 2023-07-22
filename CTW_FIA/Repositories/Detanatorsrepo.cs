@@ -18,8 +18,8 @@ namespace CTW_FIA.Repositories
 
         public List<DetonatorDetails_sel_Result> alldetonators()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "DetonatorDetails_sel", null);
+         
+            var dat = databaseRepo.ExecuteProc("DetonatorDetails_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(DetonatorDetails_sel_Result));
             var list = new List<DetonatorDetails_sel_Result>();
             foreach (var item in res)

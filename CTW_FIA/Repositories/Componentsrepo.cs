@@ -16,8 +16,8 @@ namespace CTW_FIA.Repositories
 
         public List<Components_sel_Result> AllComponents()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "Components_sel", null);
+            
+            var dat = databaseRepo.ExecuteProc( "Components_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(Components_sel_Result));
             var list = new List<Components_sel_Result>();
             foreach (var item in res)

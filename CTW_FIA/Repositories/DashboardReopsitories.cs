@@ -419,6 +419,18 @@ namespace CTW_FIA.Repositories
                             graphDtos.Add(dto);
                         }
                     }
+                    DataTable MWT = dataSet.Tables[6];
+                    if (MWT.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in MWT.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "MWT";
+                            dto.TotalRecord = row["TotalRecord"].ToString();
+                            dto.Name = row["Name"].ToString();
+                            graphDtos.Add(dto);
+                        }
+                    }
 
                 }
             }
@@ -454,9 +466,21 @@ namespace CTW_FIA.Repositories
                             graphDtos.Add(dto);
                         }
                     }
+                    DataTable SecondTable = dataSet.Tables[1];
+                    if (SecondTable.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in SecondTable.Rows)
+                        {
+                            GraphDto dto = new GraphDto();
+                            dto.tablename = "Sec";
+                            dto.TotalRecord = row["TotalRecord"].ToString();
+                            dto.Name = (string)row["Name"];
+                            graphDtos.Add(dto);
+                        }
+                    }
 
 
-                     }
+                }
             }
 
             return graphDtos;
@@ -492,8 +516,8 @@ namespace CTW_FIA.Repositories
 
         public List<GraphDto> getCtwdashboardsLeftnavigation()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "sp_leftnavigation_web", null);
+        
+            var dat = databaseRepo.ExecuteProc("sp_leftnavigation_web", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(GraphDto));
             var list = new List<GraphDto>();
             foreach (var item in res)

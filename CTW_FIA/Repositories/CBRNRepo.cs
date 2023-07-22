@@ -18,8 +18,8 @@ namespace CTW_FIA.Repositories
 
         public List<CBRN_sel_Result> Allcbrn()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "CBRN_sel", null);
+          
+            var dat = databaseRepo.ExecuteProc("CBRN_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(CBRN_sel_Result));
             var list = new List<CBRN_sel_Result>();
             foreach (var item in res)

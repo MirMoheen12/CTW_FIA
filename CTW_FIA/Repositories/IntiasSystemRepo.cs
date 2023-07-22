@@ -15,8 +15,8 @@ namespace CTW_FIA.Repositories
         }
         public List<InitiationSystems_sel_Result> AllSystem()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "InitiationSystems_sel", null);
+           
+            var dat = databaseRepo.ExecuteProc("InitiationSystems_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(InitiationSystems_sel_Result));
             var list = new List<InitiationSystems_sel_Result>();
             foreach (var item in res)

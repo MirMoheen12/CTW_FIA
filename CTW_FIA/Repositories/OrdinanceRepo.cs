@@ -15,8 +15,8 @@ namespace CTW_FIA.Repositories
         }
         public List<Ordinance_sel_Result> AllOrdinance()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "Ordinance_sel", null);
+            
+            var dat = databaseRepo.ExecuteProc("Ordinance_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(Ordinance_sel_Result));
             var list = new List<Ordinance_sel_Result>();
             foreach (var item in res)

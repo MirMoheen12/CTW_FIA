@@ -16,8 +16,8 @@ namespace CTW_FIA.Repositories
         }
         public List<Vehicles_sel_Result> AllVehicle()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
-            var dat = databaseRepo.ExecuteProc(connectionString, "Vehicles_sel", null);
+          
+            var dat = databaseRepo.ExecuteProc("Vehicles_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(Vehicles_sel_Result));
             var list = new List<Vehicles_sel_Result>();
             foreach (var item in res)
