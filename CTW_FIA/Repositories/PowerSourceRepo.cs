@@ -27,14 +27,14 @@ namespace CTW_FIA.Repositories
             }
             else
             {
-                PowerSource powerSourc = appDbContext.PowerSource.OrderByDescending(p => p.IntID).FirstOrDefault();
-                psid = powerSourc != null ? powerSourc.IntID : psid;
+                psid = int.Parse(AllPowerSource().OrderByDescending(p => p.intID).FirstOrDefault().intID);
                 psid++;
             }
 
             string id = "172CD22E00" + "PWS" + psid;
 
             powerSource.StrURN = id;
+            powerSource.CreatedOn = DateTime.Now;
             powerSource.CreatedBy = WhoCreatedName;
             powerSource.UpdatedBy = WhoCreatedName;
             powerSource.TextSearch = powerSource.MemRemarks + " " + powerSource.StrURN + " " + powerSource.Category + " " + powerSource.Manufacturer + " " + powerSource.Markings + " " + powerSource.BatchCode + " " + powerSource.Diameter + " " + powerSource.NumberRecovered + " " + powerSource.Other + " " + powerSource.SerialNumber + " " + powerSource.Size + " " + powerSource.Colour + " " + powerSource.CountryOrigin + " " + powerSource.CountryRecovered;
