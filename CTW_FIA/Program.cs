@@ -20,14 +20,7 @@ builder.Services.AddControllersWithViews(opt => {
     
 
 });
-//builder.Services.AddDbContext<AppDbContext>(options =>
-//{
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-//    sqlServerOptionsAction: sqlOptions =>
-//    {
-//        sqlOptions.EnableRetryOnFailure();
-//    });
-//});
+
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.AccessDeniedPath = new PathString("/Home/Accessdenied");
@@ -61,7 +54,7 @@ builder.Services.AddTransient<ICBRN, CBRNRepo>();
 builder.Services.AddTransient<IFearams, FireamsRepo>();
 builder.Services.AddTransient<Ichemical, chemicalrepo>();
 builder.Services.AddTransient<IDetonators, Detanatorsrepo>();
-
+builder.Services.AddTransient<ICommonlinks, CommonlinksRepo>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

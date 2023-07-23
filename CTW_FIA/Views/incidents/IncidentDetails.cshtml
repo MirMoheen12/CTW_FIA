@@ -3,336 +3,166 @@
     ViewData["Title"] = "Incident";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .table-responsive {
+        max-height: 650px;
+    }
+</style>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <style>
-        .table-wrapper {
-            display: flex;
-            height: 100%;
-            width: 100%;
-        }
+<div class="row no-gutters">
 
-        .custom-font {
-            font-family: "Your Attractive Font", Arial, sans-serif;
-        }
 
-        .outer-row .row:hover {
-            background-color: lightslategray;
-        }
-    </style>
-</head>
-<body>
-    <div class="container" style="padding: 20px; margin-top: -70px;">
-        <div class="row">
-            <div class="col-md-8" style="padding: 20px;">
-                <div class="row" style="height: 35px;">
-                    <div class="col">
-                        <h3>Incidents</h3>
-                    </div>
-                </div>
-                <div class="row" style="height: 35px;">
-                    <div class="col">
-                        <div class="table-wrapper">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <td style="width: 12%; padding: 0;">
-                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%; padding: 0;">Add Media</button>
-                                    </td>
-                                    <td style="width: 12%; padding: 0;">
-                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%; padding: 0;">Edit Record</button>
-                                    </td>
-                                    <td style="width: 12%; padding: 0;">
-                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%; padding: 0;">Create Link</button>
-                                    </td>
-                                    <td style="width: 10%; padding: 0;">
-                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%; padding: 0;">Print</button>
-                                    </td>
-                                    <td style="width: 18%; padding: 0;">
-                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%; padding: 0;">View Linked Record</button>
-                                    </td>
-                                    <td style="width: 18%; padding: 0;">
-                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%; padding: 0;">De-Activate Record</button>
-                                    </td>
-                                </tr>
-                            </table>
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                @*    <h4 class="card-title"> Incident</h4>*@
+
+                <form class="forms-sample">
+                    <div class="form-row text-dark">
+
+                        @* <label class="col-form-label">Enter STRURN</label>
+                        <div class="col-sm-4">
+                        <input type="text" placeholder="Search..." name="search" id="textStrurnid">
+                        <button type="button" onclick="ViewIncident()"><i class="fa fa-search"></i></button>
+                        </div>*@
+                        <div class="col-sm-9">
+                            <button type="button" id="addMedia" class="btn btn-primary btn-md">Add Media</button>
+                            <button type="button" id="editIncident" class="btn btn-primary btn-md">Edit Record</button>
+                            <button type="button" id="deleteIncident" class="btn btn-primary btn-md">Delete Record</button>
+                            <button type="button" id="linkRecord" class="btn btn-primary btn-md">Link Record</button>
+                            <input type="button" class="btn btn-primary btn-md" id="btnExport" value="To PDF" onclick="Export()" />
+                            <button id="csv" onclick="tableToCSV()" class="btn btn-primary btn-md">To CSV</button>
                         </div>
                     </div>
-                </div>
-                <div class="row" style="border: 1px solid black; border-radius: 15px;">
-                    <div class="col">
-                        <!-- start-->
-                        <div class="container">
-                            <div>
-                                <div class="outer-row">
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.stringid):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.stringid)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.SerialNo):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.SerialNo)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.strURN):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.strURN)</div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Repeat the following pattern for other fields -->
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.strOperationName):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.strOperationName)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.FirNo):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.FirNo)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.NumberKilled):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.NumberKilled)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.NumberInjured):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.NumberInjured)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.Inc_Date):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.Inc_Date)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.RegYear):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.RegYear)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.US):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.US)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.Country):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.Country)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.Province):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.Province)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.City):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.City)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.District):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.District)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.PostalZip):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.PostalZip)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.PoliceStation):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.PoliceStation)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.Address):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.Address)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.IncidentDate):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.IncidentDate)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.IncidentTime):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.IncidentTime)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.IncidentTimeEnd):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.IncidentTimeEnd)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.Latitude):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.Latitude)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.Longitude):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.Longitude)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.InjuredName):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.InjuredName)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.CasualtiesNames):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.CasualtiesNames)</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-sm-4 col-md-4" style="width: 40%;">
-                                            <div><b>@Html.DisplayNameFor(model => model.SuicideBomb):</b></div>
-                                        </div>
-                                        <div class="col-sm-8 col-md-8" style="width: 60%;">
-                                            <div>@Html.DisplayFor(model => model.SuicideBomb)</div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!--end-->
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <!-- Content for the right column (4 columns wide) -->
-                <div class="row" style="height: 335px; border-radius: 15px; margin-top: 90px; margin-bottom: 10px;">
-                    <div class="col">
-                        <img src="/Content/assets/images/logo.png" style="width: 100%; height: 90%; display: block; opacity: 100;">
-                    </div>
-                </div>
-                <div class="row" style="height: 35px;">
-                    <div class="col">
-                        <div class="table-wrapper">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <td style="width: 33.33%; padding: 0;">
-                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%; padding: 0;">Link Record</button>
-                                    </td>
-                                    <td style="width: 33.33%; padding: 0;">
-                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%; padding: 0;">Media</button>
-                                    </td>
-                                    <td style="width: 33.33%; padding: 0;">
-                                        <button class="btn btn-dark btn-block btn-sm custom-font" style="width: 100%; height: 100%; padding: 0;">Insert</button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+    <div class="col-md-9 grid-margin stretch-card">
+        <div class="card ">
 
-    <!-- Include Bootstrap JS (optional) -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+            <div id="exptopdf" class="pdfpage" style="background: #FFFFFF;">
+
+                <div class="d-flex p-2 bg-gradient-primary justify-content-center"><b>Incident</b></div>
+
+                <!--Row with two columns divided in 1:3 ratio-->
+
+                <table class="table table-borderless text-dark" id="IncidentPreTable">
+
+                    <tbody id="Incidenttbody">
+                        @* <tr id="strURNcolid">
+                        <td class="col-md-4" style="text-align: right; vertical-align: middle;">strURN: </td>
+                        <td id="strURNid" class="col-md-8"></td>
+                        </tr>*@
+
+                        <tr id="strOperationNamecolid">
+                            <td class="col-md-4" style="text-align: right; vertical-align: middle;">Print Date: </td>
+                            <td id="strOperationNameId">@DateTime.Now.ToShortDateString()</td>
+                        </tr>
+                        <tr id="FirNocolid">
+                            <td style="text-align: right; vertical-align: middle;">Reference ID:</td>
+                            <td id="FirNoid">@Model.FirNo</td>
+                        </tr>
+                        <tr id="RegYearcolid">
+                            <td style="text-align: right; vertical-align: middle;">Subject:</td>
+                            <td id="RegYearid">@Model.strOperationName</td>
+                        </tr>
+                        <tr id="UScolid">
+                            <td style="text-align: right; vertical-align: middle;">FIR No:</td>
+                            <td id="US id">@Model.FirNo</td>
+                        </tr>
+                        <tr id="Countrycolid">
+                            <td style="text-align: right; vertical-align: middle;">Reg Year:</td>
+                            <td id="Countryid">@Model.RegYear</td>
+                        </tr>
+                        <tr id="Provincecolid">
+                            <td style="text-align: right; vertical-align: middle;">US:</td>
+                            <td id="Provinceid">@Model.US</td>
+                        </tr>
+                        <tr id="Citycolid">
+                            <td style="text-align: right; vertical-align: middle;">Country:</td>
+                            <td id="Cityid">@Model.Country</td>
+                        </tr>
+
+                        <tr id="Districtcolid">
+                            <td style="text-align: right; vertical-align: middle;">Province:</td>
+                            <td id="Districtid">@Model.Province</td>
+                        </tr>
+                        <tr id="PostalZipcolid">
+                            <td style="text-align: right; vertical-align: middle;">City:</td>
+                            <td id="PostalZipid">@Model.City</td>
+                        </tr>
+                        <tr id="PoliceStationcolid">
+                            <td style="text-align: right; vertical-align: middle;">District:</td>
+                            <td id="PoliceStationid">@Model.District</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Police Station:</td>
+                            <td id="Addressid">@Model.PoliceStation</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Postal Zip:</td>
+                            <td id="Addressid">@Model.PostalZip</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Latitude:</td>
+                            <td id="Addressid">@Model.Latitude</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Longitude:</td>
+                            <td id="Addressid">@Model.Latitude</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Address:</td>
+                            <td id="Addressid">@Model.Address</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Incident Date:</td>
+                            <td id="Addressid">@Model.IncidentDate</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Incident Start Time:</td>
+                            <td id="Addressid">@Model.IncidentTime</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Incident End Time:</td>
+                            <td id="Addressid">@Model.IncidentTimeEnd</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Pre Incident Threst:</td>
+                            <td id="Addressid">@Model.PreIncidentThread</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Number Killed:</td>
+                            <td id="Addressid">@Model.NumberKilled</td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("DisplayLinksRecord")
+
+ 
+
+</div>
+
+
+
+
+
+
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript">
+    $("#SearchGenericTable").DataTable({
+
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print"]
+    }).buttons().container().appendTo('#SearchGenericTable_wrapper .col-md-6:eq(0)');
+
+</script>
+
+

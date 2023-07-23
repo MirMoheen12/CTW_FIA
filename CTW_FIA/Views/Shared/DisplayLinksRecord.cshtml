@@ -1,0 +1,184 @@
+﻿<div class="row no-gutters col-md-3">
+
+
+
+    <div class="col-md-12">
+        <div class="card card-primary card-tabs">
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-compact" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-center" style="background-color: #1486ff;color: white;margin-top: -8PX;font-weight:bold;">
+
+                            <p>
+                                Link Records   18
+
+                            </p>
+                        </a>
+                        <ul>
+
+                            @foreach (var item in ViewBag.link)
+                            {
+                                switch (item.Name)
+                                {
+                                    case "Explosive":
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/Explosive/index">
+
+                                                    <p>
+                                                        @item.Name &nbsp;&nbsp;&nbsp;
+                                                        <span class="badge badge-info right" id="incidents_count">@item.TotalRecord</span>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            break;
+                                        }
+                                    case "MediaFile":
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/MediaFile/AllMediaByStrUrn">
+
+                                                    <p>
+                                                        @item.Name &nbsp;&nbsp;&nbsp;
+                                                        <span class="badge badge-info right" id="incidents_count">@item.TotalRecord</span>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            break;
+                                        }
+                                    case "Person":
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/Person/index">
+
+                                                    <p>
+                                                        @item.Name &nbsp;&nbsp;&nbsp;
+                                                        <span class="badge badge-info right" id="incidents_count">@item.TotalRecord</span>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            break;
+                                        }
+                                    case "Vehicle":
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/incidents/index">
+
+                                                    <p>
+                                                        @item.Name &nbsp;&nbsp;&nbsp;
+                                                        <span class="badge badge-info right" id="incidents_count">@item.TotalRecord</span>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            break;
+                                        }
+                                    case "Addresses":
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/incidents/index">
+
+                                                    <p>
+                                                        @item.Name &nbsp;&nbsp;&nbsp;
+                                                        <span class="badge badge-info right" id="incidents_count">@item.TotalRecord</span>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            break;
+                                        }
+                                    case "Incident":
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/incidents/index">
+
+                                                    <p>
+                                                        @item.Name &nbsp;&nbsp;&nbsp;
+                                                        <span class="badge badge-info right" id="incidents_count">@item.TotalRecord</span>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            break;
+                                        }
+                                    case "Groups":
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/incidents/index">
+
+                                                    <p>
+                                                        @item.Name &nbsp;&nbsp;&nbsp;
+                                                        <span class="badge badge-info right" id="incidents_count">@item.TotalRecord</span>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            break;
+                                        }
+                                    case "Education":
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/incidents/index">
+
+                                                    <p>
+                                                        @item.Name &nbsp;&nbsp;&nbsp;
+                                                        <span class="badge badge-info right" id="incidents_count">@item.TotalRecord</span>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            break;
+                                        }
+                                    case "Properties":
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/incidents/index">
+
+                                                    <p>
+                                                        @item.Name &nbsp;&nbsp;&nbsp;
+                                                        <span class="badge badge-info right" id="incidents_count">@item.TotalRecord</span>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            break;
+                                        }
+                                    case "Police Stations":
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="/incidents/index">
+
+                                                    <p>
+                                                        @item.Name &nbsp;&nbsp;&nbsp;
+                                                        <span class="badge badge-info right" id="incidents_count">@item.TotalRecord</span>
+                                                    </p>
+                                                </a>
+                                            </li>
+                                            break;
+                                        }
+
+                                }
+
+
+                            }
+
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="card-body">
+                <div class="tab-content" id="custom-tabs-two-tabContent">
+                    <div class="tab-pane fade" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
+                        <ul id="link_ul_id" class="nav flex-column"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="custom-tabs-two-profile" role="tabpanel" aria-labelledby="custom-tabs-two-profile-tab">
+                        <ul id="media_ul_id" class="nav flex-column"></ul>
+                    </div>
+                    <div class="tab-pane fade" id="custom-tabs-two-messages" role="tabpanel" aria-labelledby="custom-tabs-two-messages-tab">
+                        Index
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+

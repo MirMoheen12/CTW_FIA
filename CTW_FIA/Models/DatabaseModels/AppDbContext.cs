@@ -19,7 +19,7 @@ namespace CTW_FIA.Models.DatabaseModels
         public DbSet<BaseLogs> BaseLogs { get; set; }
         public DbSet<IpLogs> IpLogs { get; set; }
         public DbSet<Address> Address { get; set; }
-        //public DbSet<Communications> Communications { get; set; }
+        public DbSet<Communications> Communications { get; set; }
         //public DbSet<Evidence> Evidence { get; set; }
         //public DbSet<Explosive> Explosives { get; set; }
         //public DbSet<Equipment> Equipment { get; set; }
