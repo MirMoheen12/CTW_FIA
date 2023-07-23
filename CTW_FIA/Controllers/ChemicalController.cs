@@ -24,7 +24,7 @@ namespace CTW_FIA.Controllers
         {
             String Name = @User.Identity.Name;
            
-            return RedirectToAction("GetSinglePowerSource", "PowerSource", new { id = ps.StrURN });
+            return RedirectToAction("GetSinglePowerSource", "PowerSource");
 
         }
 

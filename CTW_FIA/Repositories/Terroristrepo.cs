@@ -36,6 +36,11 @@ namespace CTW_FIA.Repositories
 
         }
 
+        public List<NewPerson_Provinces_Result> GetPeronByID(string STRURN)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<NewPerson_Provinces_Result> GetPeronProvincewise(string Province)
         {
            

@@ -53,7 +53,7 @@ namespace CTW_FIA.Repositories
 
         public List<PowerSource_sel_Result> AllPowerSource()
         {
-            string connectionString = configuration.GetConnectionString("DefaultConnection");
+            
             var dat = databaseRepo.ExecuteProc("PowerSource_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(PowerSource_sel_Result));
             var list = new List<PowerSource_sel_Result>();

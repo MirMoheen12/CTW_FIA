@@ -17,5 +17,9 @@ namespace CTW_FIA.Controllers
             ViewBag.Agencies = terrorist.AllAgencies();
             return View();
         }
+        public IActionResult PersonDetails(string STRURN)
+        {
+            return View();
+        }
     }
 }
