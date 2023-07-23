@@ -1,5 +1,8 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CTW_FIA.Repositories
 {
@@ -27,5 +30,9 @@ namespace CTW_FIA.Repositories
             }
             return list;
         }
+
+
+
+
     }
 }
