@@ -1,4 +1,5 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,9 @@ namespace CTW_FIA.Controllers
         }
         public IActionResult PersonDetails(string STRURN)
         {
-            return View();
+            ///QuickSearchPerson_sel_Result
+            var data=terrorist.GetPeronByID(STRURN);
+            return View(data);
         }
     }
 }

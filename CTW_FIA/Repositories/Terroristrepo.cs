@@ -36,9 +36,20 @@ namespace CTW_FIA.Repositories
 
         }
 
-        public List<NewPerson_Provinces_Result> GetPeronByID(string STRURN)
+        public List<QuickSearchPerson_sel_Result> GetPeronByID(string STRURN)
         {
-            throw new NotImplementedException();
+            var dat = new
+            {
+                textSearch = STRURN
+            };
+            var dbres = databaseRepo.ExecuteProc("QuickSearchPerson_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchPerson_sel_Result));
+            var list = new List<QuickSearchPerson_sel_Result>();
+            foreach (var item in dt)
+            {
+                list.Add((QuickSearchPerson_sel_Result)item);
+            }
+            return (list);
         }
 
         public List<NewPerson_Provinces_Result> GetPeronProvincewise(string Province)
