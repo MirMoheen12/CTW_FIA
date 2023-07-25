@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CTW_FIA.Interface;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CTW_FIA.Controllers
 {
+    [AllowAnonymous]
     public class ComponentsController : Controller
     {
-        public IActionResult Index()
+        private readonly IComponents components;
+        public ComponentsController(IComponents components)
         {
-            return View();
+            this.components = components;
+        }
+        public IActionResult AllComponenst()
+        {
+            var data=components.AllComponents();
+            return View(data);
         }
     }
 }

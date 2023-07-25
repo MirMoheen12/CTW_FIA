@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CTW_FIA.Interface;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CTW_FIA.Controllers
 {
+    [AllowAnonymous]
     public class CBRNController : Controller
     {
-        public IActionResult Index()
+        private readonly ICBRN cBRN;
+        public CBRNController(ICBRN cBRN)
         {
-            return View();
+            this.cBRN = cBRN;
+        }
+        public IActionResult AllCbrn()
+        {
+            var data = cBRN.Allcbrn();
+            return View(data);
         }
     }
 }

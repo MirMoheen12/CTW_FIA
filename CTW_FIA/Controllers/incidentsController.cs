@@ -12,11 +12,13 @@ namespace CTW_FIA.Controllers
         private readonly IRecord record;
         private readonly IDashboard dashboard;
         private readonly IIncident incident;
-        public incidentsController(IDashboard dashboard, IIncident incident, IRecord record)
+        private readonly ICommonlinks commonlinks;
+        public incidentsController(IDashboard dashboard, IIncident incident, IRecord record, ICommonlinks commonlinks)
         {
             this.dashboard = dashboard;
             this.incident = incident;
             this.record = record;
+            this.commonlinks = commonlinks;
         }
         public IActionResult Index()
         {
@@ -35,6 +37,8 @@ namespace CTW_FIA.Controllers
         }
         public IActionResult IncidentDetails(string strurn)
         {
+            var Linkres=commonlinks.getAlllinksCount(strurn);
+            ViewBag.link = Linkres;
             var data = (PreviewIncidentByStrUrn)(incident.getIncidentID(strurn));
             return View(data);
         }

@@ -22,5 +22,29 @@ namespace CTW_FIA.Controllers
             var data = powerSource.AllPowerSource();
             return View(data);
         }
+        [HttpGet]
+        public IActionResult AddPowerSource()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddPowerSource(PowerSource ps)
+        {
+            String Name = @User.Identity.Name;
+            if (powerSource.AddPowerSource(ps, Name))
+            {
+                return RedirectToAction("AllPowerSource", "PowerSource");
+
+            }
+            return RedirectToAction("GetSinglePowerSource", "PowerSource", new {id = ps.strURN});
+
+        }
+
+        public IActionResult GetSinglePowerSource(String id)
+        {
+
+            return View();
+        }
+
     }
 }

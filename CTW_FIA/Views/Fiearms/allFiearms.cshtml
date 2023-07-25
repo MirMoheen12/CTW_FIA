@@ -1,0 +1,81 @@
+﻿@model IEnumerable<CTW_FIA.Models.Dto.Firearms_sel_Result>
+@{
+    ViewData["Title"] = "All Fiarms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .table-responsive {
+        max-height: 650px;
+    }
+</style>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="row" id="GenericTable" style="">
+
+
+
+
+    <div class="e-panel card" style="width:100%">
+        <div class="card-body">
+            <h2>All Fiearms</h2>
+            <table id="SearchGenericTable" class="table table-bordered text-dark">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>StrUrn</th>
+                        <th>Type</th>
+
+                        <th>Created On </th>
+
+
+                        <th>Option</th>
+                    </tr>
+                </thead>
+                <tbody id="SearchIncTbody">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.SerialNo
+                            </td>
+
+                            <td>
+                                @item.strURN
+                            </td>
+                            <td>
+                                @item.Type
+                            </td>
+
+                            <td>
+                                @item.CreatedOn
+                            </td>
+
+
+                            <td>
+                                <a href="~/incidents/IncidentDetails?strurn=@item.strURN" class="btn btn-sm btn-primary">
+                                    Details
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript">
+    $("#SearchGenericTable").DataTable({
+
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print"]
+    }).buttons().container().appendTo('#SearchGenericTable_wrapper .col-md-6:eq(0)');
+
+</script>
+
+
+
+

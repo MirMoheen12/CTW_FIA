@@ -7,7 +7,7 @@ namespace CTW_FIA.Interface
     {
         public List<SqlParameter> returnSppram(Object obj);
         public List<Object> ConverttoObject(DataTable data, Type objectType);
-        public DataTable ExecuteProc(string conn,string pProcedureName, List<SqlParameter> param);
+        public DataTable ExecuteProc(string pProcedureName, List<SqlParameter> param);
 
 
     }

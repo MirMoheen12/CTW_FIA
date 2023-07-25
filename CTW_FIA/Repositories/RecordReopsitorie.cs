@@ -14,11 +14,11 @@ namespace CTW_FIA.Repositories
 
         public List<DistrictDatas> GetFirstDistrictDataPerCountry()
         {
-            var districtData = _context.DistrictDatas
-                .GroupBy(x => x.Country)
-                .Select(x => x.FirstOrDefault()).ToList();
+            //var districtData = _context.DistrictDatas
+            //    .GroupBy(x => x.Country)
+            //    .Select(x => x.FirstOrDefault()).ToList();
 
-            return districtData;
+            return null;
         }
 
 

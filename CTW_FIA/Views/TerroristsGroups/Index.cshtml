@@ -7,7 +7,22 @@
 }
 
 <div class="row no-gutters">
-    <div class="col-md-12"><h2 class="font-weight-normal text-center">Terrorist Groups Analysis – Graph </h2></div>
+    <div class="col-md-12"><h2 class="font-weight-normal text-center">Terrorist Groups Analysis – Graphs </h2></div>
+
+
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-normal text-center text-center">
+                    Terrorist Analysis Groups
+                    (Incidents Wise)
+
+                </h6>
+                <canvas id="GWChart" style="position: relative; height:60vh; width:80vw"></canvas>
+            </div>
+        </div>
+    </div>
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
@@ -17,18 +32,6 @@
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h6 class="font-weight-normal text-center text-center">
-                    Terrorist Analysis Group
-                    (Incidents Wise)
-
-                </h6>
-                <canvas id="GWChart" style="position: relative; height:60vh; width:80vw"></canvas>
-            </div>
-        </div>
-    </div>
     <div class="col-md-6"></div>
 
 
@@ -128,14 +131,12 @@
                             strength.push(response[j].name);
                             count_strength.push(response[j].totalRecord);
                         }
-                        if (response[j].tablename == "GW" && response[j].name != 'UNKNOWN') {
+                        if (response[j].tablename == "GW") {
                             // alert(j);
-                            if (response[j].name == '') {
-                                provinegroup.push('NULL');
-                            }
-                            else {
+                            if (response[j].name != '') {
                                 provinegroup.push(response[j].name);
                             }
+                     
 
                             count_provincegroupt.push(response[j].totalRecord);
                         }
@@ -149,7 +150,7 @@
 
                     const ctx_gw = document.getElementById('GWChart');
                     const myChart2 = new Chart(ctx_gw, {
-                        type: 'pie',
+                        type: 'bar',
                         data: {
                             labels: gwname,
                             datasets: [{

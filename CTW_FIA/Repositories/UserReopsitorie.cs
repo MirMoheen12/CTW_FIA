@@ -14,45 +14,38 @@ namespace CTW_FIA.Repositories
 {
     public class UserReopsitorie:IUser
     {
-        private readonly IStoredProcedure storedProcedure;
+        private readonly IDatabaseRepo databaseRepo;
 		private readonly AppDbContext context;
+        private readonly IConfiguration configuration;
 
-        public UserReopsitorie(IStoredProcedure storedProcedure, AppDbContext context)
+        public UserReopsitorie(IDatabaseRepo databaseRepo, AppDbContext context,IConfiguration configuration)
         {
-
-            this.storedProcedure = storedProcedure;
+            this.configuration=configuration;
+            this.databaseRepo = databaseRepo;
             this.context = context;
         }
 
 
 		public UserDto Login(string userName, string Password)
         {
-
             try
             {
-                DataTable dataTable = storedProcedure.GetUserByCredentials(userName, Password);
-                if (dataTable != null)
+                var Allsp = new
                 {
-                    if (dataTable.Rows.Count > 0)
-                    {
-                        DataRow row = dataTable.Rows[0];
-
-                        UserDto user = new UserDto
-                        {
-                            UserID = Convert.ToInt32(row["UserID"]),
-                            UserName = row["UserName"].ToString(),
-                            Password = row["Password"].ToString(),
-                            DepartmentID = Convert.ToInt32(row["DepartmentID"]),
-                            OfficeID = Convert.ToInt32(row["OfficeID"]),
-                            Designation = row["Designation"].ToString(),
-                            ActiveUser = Convert.ToBoolean(row["ActiveUser"]),
-                            AccountLock = Convert.ToBoolean(row["AccountLock"]),
-                            UserRole = row["UserRole"].ToString(),
-                        };
-
-                        return user;
-                    }
+                    UserName = userName,
+                    Password = Password
+                };
+                var allpram=databaseRepo.returnSppram(Allsp);
+                var res = databaseRepo.ExecuteProc("GetUserByCredentials",allpram);
+                if(res!=null)
+                {
+                    UserDto user = new UserDto();
+                    var data=databaseRepo.ConverttoObject(res,typeof(UserDto));
+                    user = (UserDto)data.FirstOrDefault();
+                    return user;
                 }
+                
+                
                 return null;
             }
             catch (Exception)

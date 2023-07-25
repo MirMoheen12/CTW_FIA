@@ -332,7 +332,7 @@
                                         <i class="fas fa-users" aria-hidden="true"></i>
                                         <p>
 
-                                            Terrorists
+                                            Person Involved
 
                                             <i class="fas fa-angle-left right" aria-hidden="true"></i>
 
@@ -414,7 +414,7 @@
                                         <i class="fa fa-bomb" aria-hidden="true"></i>
                                         <p>
 
-                                            Explosives
+                                            IEDs & Others
 
                                             <i class="fas fa-angle-left right" aria-hidden="true"></i>
 
@@ -445,63 +445,63 @@
                                             </li>
                               
                                             <li class="nav-item">
-                                                <a class="nav-link" data-href="All Communications" onclick="ClickIncPreview(this.data-href)">
+                                                <a class="nav-link" href="/Communications/AllCommunications">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                     <p>Communication</p><span class="badge badge-info right" id="comm">0</span>
                                                 </a>
                                             </li>
                                   
                                             <li class="nav-item">
-                                                <a class="nav-link" data-href="All Ordinances" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="/Ordinance/AllOrdinance">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                     <p>Ordinance</p><span class="badge badge-info right" id="ord">0</span>
                                                 </a>
                                             </li>
                        
                                             <li class="nav-item">
-                                                <a class="nav-link" data-href="All Equipments" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="/Equipment/AllEquipments">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                     <p>Equipment</p><span class="badge badge-info right" id="equ">0</span>
                                                 </a>
                                             </li>
                           
                                             <li class="nav-item">
-                                                <a class="nav-link" data-href="All InitiationSystems" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="/InitiasSystem/AllIntianSystem">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                     <p>Initiation System</p><span class="badge badge-info right" id="isys">0</span>
                                                 </a>
                                             </li>
                              
                                             <li class="nav-item">
-                                                <a class="nav-link" data-href="All Components" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="/Components/AllComponenst">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                     <p>Components</p><span class="badge badge-info right" id="comp">0</span>
                                                 </a>
                                             </li>
                   
                                             <li class="nav-item">
-                                                <a class="nav-link" data-href="All CBRNs" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="/CBRN/AllCbrn">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                     <p>CBRN</p><span class="badge badge-info right" id="cbrn">0</span>
                                                 </a>
                                             </li>
                               
                                             <li class="nav-item">
-                                                <a class="nav-link" data-href="All Firearms" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="/Fiearms/allFiearms">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                     <p>Firearms</p><span class="badge badge-info right" id="fir">0</span>
                                                 </a>
                                             </li>
                          
                                             <li class="nav-item">
-                                                <a class="nav-link" data-href="All Chemicals" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="/Chemical/Allcheimcal">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                     <p>Chemicals</p><span class="badge badge-info right" id="chem">0</span>
                                                 </a>
                                             </li>
                   
                                             <li class="nav-item">
-                                                <a class="nav-link" data-href="All Detonators" onclick="ClickIncPreview(this.data-href)">
+                                            <a class="nav-link" href="/Detonators/Index">
                                                     <i class="far fa-circle nav-icon" aria-hidden="true"></i>
                                                     <p>Detonators</p><span class="badge badge-info right" id="det">0</span>
                                                 </a>
@@ -1031,7 +1031,7 @@
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             success: function (response) {
-                console.log(response);
+              
                 for (let j = 0; j < response.length; j++) {
                     if (response[j].name == "Sindh") {
                         if(response[j].tablename == "PW")

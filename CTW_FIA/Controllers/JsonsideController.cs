@@ -8,9 +8,11 @@ namespace CTW_FIA.Controllers
     public class JsonsideController : Controller
     {
         private readonly IDashboard dashboard;
-        public JsonsideController(IDashboard dashboard)
+        private readonly ITerrorist terrorist;
+        public JsonsideController(IDashboard dashboard, ITerrorist terrorist)
         {
             this.dashboard = dashboard;
+            this.terrorist = terrorist;
         }
         public IActionResult Index()
         {
@@ -22,5 +24,13 @@ namespace CTW_FIA.Controllers
             var data = dashboard.getCtwdashboardsLeftnavigation();
             return Json(data);
         }
+        [HttpGet]
+        public JsonResult GetReportingAgency()
+        {
+            //var data = dashboard.getCtwdashboardsIncidentwise().Where(X => X.tablename == "PW").ToList(); 
+            var data = terrorist.AllAgencies();
+            return Json(data);
+        }
+
     }
 }

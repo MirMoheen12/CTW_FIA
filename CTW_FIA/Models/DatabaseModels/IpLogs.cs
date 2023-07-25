@@ -1,7 +1,10 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class IpLogs
     {
+        [Key]
         public string strURN { get; set; }
         public string IP { get; set; }
         public string UserId { get; set; }

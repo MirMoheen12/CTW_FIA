@@ -92,7 +92,7 @@
         <div class="card">
             <div class="card-body">
                 <h6 class="font-weight-normal text-center">
-                    Terrorist Incidents Analysis
+                    Terrorist Incidents Analysis<br />
                     (Province Wise)
                 </h6>
                 <canvas id="myChart"></canvas>
@@ -103,7 +103,7 @@
         <div class="card">
             <div class="card-body">
                 <h6 class="font-weight-normal text-center">
-                    Person Involved
+                    Person Involved<br />
                     (Province Wise)
                 </h6>
                 <canvas id="barChart1"></canvas>
@@ -117,7 +117,7 @@
         <div class="card">
             <div class="card-body">
                 <h6 class="font-weight-normal text-center">
-                    Explosive Reported
+                    Explosive Reported<br />
                     (Type Wise)
                 </h6>
                 <canvas id="barChart2"></canvas>
@@ -127,7 +127,9 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <h6 class="font-weight-normal text-center">Terrorist Groups</h6>
+                <h6 class="font-weight-normal text-center">Terrorist Groups <br />
+                (Analysis)    
+                </h6>
                 <canvas id="pieChart"></canvas>
             </div>
         </div>
@@ -182,15 +184,12 @@
                             provincet.push(response.graphDtos[j].name);
                             count_provincet.push(response.graphDtos[j].totalRecord);
                         }
-                        if (response.graphDtos[j].tablename == "Groupwise" && response.graphDtos[j].name!='UNKNOWN') {
+                        if (response.graphDtos[j].tablename == "Groupwise") {
                             // alert(j);
-                            if (response.graphDtos[j].name == '') {
-                                provinegroup.push('NULL');
-                            }
-                            else
-                            {
+                            if (response.graphDtos[j].name != '') {
                                 provinegroup.push(response.graphDtos[j].name);
                             }
+                    
                             
                             count_provincegroupt.push(response.graphDtos[j].totalRecord);
                         }

@@ -6,7 +6,7 @@
 
 }
 
-    <div class="row no-gutters" >
+
 
        @*  <div class="row no-gutters" style="justify-content: center;">*@
         @*<div class="col-md-6">
@@ -17,29 +17,42 @@
     </div>
     </div>
     </div>*@
-      <div class="col-md-12"><h2 class="font-weight-normal text-center">Explosive Data Analysis – Graph </h2></div>
+      <div class="col-md-12"><h2 class="font-weight-normal text-center">Explosive Data Analysis – Graphs </h2></div>
         <div class="row no-gutters">
           
 
-            <div class="col-md-12">
+            <div class="col-md-6">
               
                     <div class="card">
                     
                         <div class="card-body">
                         <h6 class="font-weight-normal text-center">Explosive Analysis <br/>(Incident Wise)</h6>
-                        <canvas id="explosiveChart" style="position: relative; height:300px; width:280px"></canvas>
+                        <canvas id="explosiveChart" ></canvas>
                     </div>
                     
                 </div>
               
             </div>
-           
+    <div class="col-md-6">
+
+        <div class="card">
+
+            <div class="card-body">
+                <h6 class="font-weight-normal text-center">Explosive Report <br />(Type Wise)</h6>
+                <canvas id="secchart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
         </div>
 
    @section Scripts{
     <script type="text/javascript">
         $(document).ready(function () {
             const ctx_explosives = document.getElementById('explosiveChart');
+            const Secchart = document.getElementById('secchart');
+            
             Chart.register(ChartDataLabels);
             Chart.defaults.set('plugins.datalabels', {
                 color: '#000000'
@@ -59,26 +72,90 @@
                     'rgba(138, 38, 64, 1)',
 
                 ];
-            console.log("ready!");
+  
             $.ajax({
                 type: "GET",
                 url: "/Explosives/Getdashboard",
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
                 success: function (response) {
+                    const type = [];
 
-                    console.log(response);
+                    const count_type = []
+                    const type2 = [];
 
-                    const type = response.map(i => `${i.name}`);
-
-                    const count_type = response.map(i => `${i.totalRecord}`);
-
-
+                    const count_type2 = []
+                    for (let j = 0; j < response.length; j++) 
+                    {
+                        if (response[j].tablename == "Exp") {
+                            // alert(j);
+                            type.push(response[j].name);
+                            count_type.push(response[j].totalRecord);
+                        }
+                        if (response[j].tablename == "Sec") {
+                            // alert(j);
+                            type2.push(response[j].name);
+                            count_type2.push(response[j].totalRecord);
+                        }
+              
+                    }
                     console.log(type);
-                    console.log(count_type);
+                    const myChart2 = new Chart(Secchart, {
+                        type: 'bar',
+                        data: {
+                            labels: type2,
+                            datasets: [{
+                                label: '# Explosive Report Type Wise',
+                                data: count_type2,
+                                backgroundColor: c_background_colors,
+                                borderColor: c_background_colors,
+                                borderWidth: 2
+
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+
+                                y: {
+
+                                    ticks: {
+                                        // Include a dollar sign in the ticks
+
+                                        fixedStepSize: 1
+                                    }
+                                }
+                            },
+                            legend: {
+                                labels: {
+                                    // This more specific font property overrides the global property
+                                    font: {
+                                        size: 22
+                                    }
+                                }
+                            },
+                            tooltips: {
+                                enabled: false
+                            },
+                            plugins: {
+                                datalabels: {
+                                    anchor: 'end',
+                                    align: 'end',
+                                    labels: {
+                                        value: {
+                                            color: 'black'
+                                        },
+                                        font: {
+                                            size: 22
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
 
                     const myChart = new Chart(ctx_explosives, {
-                        type: 'pie',
+                        type: 'bar',
                         data: {
                             labels: type,
                             datasets: [{

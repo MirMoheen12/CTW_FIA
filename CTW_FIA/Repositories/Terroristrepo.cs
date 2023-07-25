@@ -8,18 +8,24 @@ namespace CTW_FIA.Repositories
     {
         private readonly IDatabaseRepo databaseRepo;
         private readonly IConfiguration configuration;
-        public Terroristrepo(IDatabaseRepo databaseRepo, IConfiguration configuration)
+        private readonly AppDbContext dbContext;
+        public Terroristrepo(IDatabaseRepo databaseRepo, IConfiguration configuration, AppDbContext dbContext)
         {
             this.databaseRepo = databaseRepo;
-
             this.configuration = configuration;
+            this.dbContext = dbContext;
+        }
 
+        public List<ReportingAgency> AllAgencies()
+        {
+            var data = dbContext.ReportingAgency.ToList();
+            return (data);
         }
 
         public List<TerroristGroup_Records> GetAllTerrorist()
         {
-            string con = configuration.GetConnectionString("DefaultConnection");
-            var dbres = databaseRepo.ExecuteProc(con, "Groups_sel2", null);
+            
+            var dbres = databaseRepo.ExecuteProc( "Groups_sel2", null);
             var dt = databaseRepo.ConverttoObject(dbres, typeof(TerroristGroup_Records));
             var list = new List<TerroristGroup_Records>();
             foreach (var item in dt)
@@ -30,14 +36,30 @@ namespace CTW_FIA.Repositories
 
         }
 
+        public List<QuickSearchPerson_sel_Result> GetPeronByID(string STRURN)
+        {
+            var dat = new
+            {
+                textSearch = STRURN
+            };
+            var dbres = databaseRepo.ExecuteProc("QuickSearchPerson_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchPerson_sel_Result));
+            var list = new List<QuickSearchPerson_sel_Result>();
+            foreach (var item in dt)
+            {
+                list.Add((QuickSearchPerson_sel_Result)item);
+            }
+            return (list);
+        }
+
         public List<NewPerson_Provinces_Result> GetPeronProvincewise(string Province)
         {
-            string con = configuration.GetConnectionString("DefaultConnection");
+           
             var dat = new
             {
                 provinceName = Province
             };
-            var dbres = databaseRepo.ExecuteProc(con, "NewPerson_Provinces", databaseRepo.returnSppram(dat));
+            var dbres = databaseRepo.ExecuteProc("NewPerson_Provinces", databaseRepo.returnSppram(dat));
             var dt = databaseRepo.ConverttoObject(dbres, typeof(NewPerson_Provinces_Result));
             var list = new List<NewPerson_Provinces_Result>();
             foreach (var item in dt)
