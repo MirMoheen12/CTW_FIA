@@ -1,4 +1,5 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,8 +19,16 @@ namespace CTW_FIA.Controllers
             ViewBag.Agencies = terrorist.AllAgencies();
             return View();
         }
+        [HttpPost]
+        public IActionResult AddPerson(Person P)
+        {
+            var res = terrorist.AddNewPerson(P);
+            ViewBag.Agencies = terrorist.AllAgencies();
+            return View();
+        }
         public IActionResult PersonDetails(string STRURN)
         {
+
             ///QuickSearchPerson_sel_Result
             var data=terrorist.GetPeronByID(STRURN);
             return View(data);

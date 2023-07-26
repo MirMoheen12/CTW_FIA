@@ -20,7 +20,7 @@ namespace CTW_FIA.Repositories
         }
         public bool AddPowerSource(PowerSource powerSource, String WhoCreatedName)
         {
-            powerSource.strURN = databaseRepo.ExecuteProc("GetPowerSourceSTRURN", null).Rows[0][0].ToString(); ;
+            powerSource.strURN = databaseRepo.ExecuteProc("GetPowerSourceSTRURN", null).Rows[0][0].ToString();
             powerSource.CreatedBy = WhoCreatedName;
             powerSource.UpdatedBy = WhoCreatedName;
             powerSource.CreatedOn = DateTime.Now;

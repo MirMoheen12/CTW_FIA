@@ -1,7 +1,12 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Numerics;
+
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class Person
     {
+        [Key]
         public string strURN { get; set; }
         public string Category { get; set; }
         public string CurrentStatus { get; set; }
@@ -16,7 +21,7 @@
         public DateTime DOB { get; set; }
         public string PlaceOfBirth { get; set; }
         public string Tribe { get; set; }
-        public string CNIC { get; set; }
+        public int CNIC { get; set; }
         public string MaritalStatus { get; set; }
         public string Religion { get; set; }
         public string Occupation { get; set; }
@@ -55,6 +60,7 @@
         public string Mustaches { get; set; }
         public string MustachesColor { get; set; }
         public string memRemarks { get; set; }
+        [NotMapped]
         public int intID { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }

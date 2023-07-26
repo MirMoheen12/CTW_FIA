@@ -1,6 +1,8 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
+using System;
+using System.Data;
 
 namespace CTW_FIA.Repositories
 {
@@ -16,10 +18,65 @@ namespace CTW_FIA.Repositories
             this.dbContext = dbContext;
         }
 
+        public bool AddNewPerson(Person P)
+        {
+         
+            try
+            {
+                AddNewTerrorist(P);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+             
+            }
+        }
+
         public List<ReportingAgency> AllAgencies()
         {
             var data = dbContext.ReportingAgency.ToList();
             return (data);
+        }
+
+        public List<CountryList> AllCountry()
+        {
+            var dbres = databaseRepo.ExecuteProc("getAllCountries",null);
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(CountryList));
+            var list = new List<CountryList>();
+            foreach (var item in dt)
+            {
+                list.Add((CountryList)item);
+            }
+            return (list);
+        }
+
+        public List<DistrictList> GetAllDistrictByProvince(string Province)
+        {
+            var dat = new
+            {
+                Province = Province
+            };
+            var dbres = databaseRepo.ExecuteProc("DistrictList_Web", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(DistrictList));
+            var list = new List<DistrictList>();
+            foreach (var item in dt)
+            {
+                list.Add((DistrictList)item);
+            }
+            return (list);
+        }
+
+        public List<ProvinceList> GetALlprovinceCountryWise(string Country)
+        {
+            var dbres = databaseRepo.ExecuteProc("ProvinceList_sel", null);
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(ProvinceList));
+            var list = new List<ProvinceList>();
+            foreach (var item in dt)
+            {
+                list.Add((ProvinceList)item);
+            }
+            return (list);
         }
 
         public List<TerroristGroup_Records> GetAllTerrorist()
@@ -68,6 +125,25 @@ namespace CTW_FIA.Repositories
             }
             return (list);
            
+        }
+
+        private bool AddNewTerrorist(Person P)
+        {
+            try
+            {
+
+                P.strURN = databaseRepo.ExecuteProc("GetPersonSTRURN", null).Rows[0][0].ToString();
+                var res = dbContext.Person.Add(P);
+                P.CreatedOn = DateTime.Now;
+                P.textSearch = P.Name + " " + P.strURN + " " + P.memRemarks + " " + P.CNIC.ToString();
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+
+            }
         }
     }
 }

@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CTW_FIA.Models.DatabaseModels
 {
     public class Communications
     {
+        [Key]
         public string strURN { get; set; }
         public string CommType { get; set; }
         public string CommDescription { get; set; }
