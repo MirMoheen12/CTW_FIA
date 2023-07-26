@@ -62,6 +62,21 @@ namespace CTW_FIA.Models.DatabaseModels
         public string memRemarks { get; set; }
         [NotMapped]
         public int intID { get; set; }
+        [NotMapped]
+        public string? Country { get; set; }
+        [NotMapped]
+        public string? Province { get; set; }
+        [NotMapped]
+        public string? District { get; set; }
+        [NotMapped]
+        public string? AddressDescription { get; set; }
+        [NotMapped]
+        public string? Postelcode { get; set; }
+        [NotMapped]
+        public string? SocialMediaAccounts { get; set; }
+        [NotMapped]
+        public string? PassPortNo { get; set; }
+
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
         public string CreatedBy { get; set; }

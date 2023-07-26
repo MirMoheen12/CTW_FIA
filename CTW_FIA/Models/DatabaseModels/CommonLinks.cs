@@ -1,11 +1,16 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class CommonLinks
     {
+        [Key]
         public string strURN { get; set; }
         public string strURNDest { get; set; }
         public string strURNSource { get; set; }
         public string strLink { get; set; }
+        [NotMapped]
         public int intID { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }

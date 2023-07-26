@@ -1,7 +1,11 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class DatabaseList
     {
+        [Key]
         public string strURN { get; set; }
         public int intType { get; set; }
         public string strTitle { get; set; }
@@ -10,6 +14,7 @@
         public bool optTransmit { get; set; }
         public bool optPhysicalDatabase { get; set; }
         public DateTime dteSent { get; set; }
+        [NotMapped]
         public int intID { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }

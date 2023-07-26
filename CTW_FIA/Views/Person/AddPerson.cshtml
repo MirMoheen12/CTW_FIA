@@ -259,13 +259,13 @@
                             <label for="pcountry" class="col-sm-2 col-form-label" style="font-size: 13px;">Country</label>
 
                             <div class="col-sm-4">
-                       @*         <select asp-for="Country" id="selectedcountry" class="form-control">
+                               <select asp-for="Country" id="selectedcountry" class="form-control">
                                     <option>Select Country</option>
-                                    @for (var i = 0; i < ViewBag.country.Count; i++)
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
                                     {
-                                        <option>@ViewBag.country[i].Country</option>
+                                        <option>@ViewBag.Allcountries[i].strCountry</option>
                                     }
-                                </select>*@
+                                </select>
                             </div>
 
                             <label for="personprovince" class="col-sm-2 col-form-label" style="font-size: 13px;">Province</label>
@@ -340,7 +340,7 @@
                             <br />
                             <label for="personprovince" class="col-sm-2 col-form-label" style="font-size: 13px;">Social Media Account</label>
                             <div class="col-sm-4">
-                                <input type="text"  class="form-control" />
+                                <input type="text" asp-for="SocialMediaAccounts"  class="form-control" />
                             </div>
                         </div>
 
@@ -858,38 +858,7 @@
     </div>
 </form>
 
-@section Scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var ReportingAgencyList = $('#Personpreportingagency');
-            $.ajax({
-                type: "GET",
-                url: "/Jsonside/GetReportingAgency",
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                success: function (data) {
-
-                  
-                    var v = JSON.stringify(data);
-                    var selIncAgency = "";
-                    selIncAgency += "<option value='' disabled selected>--Select--</option>";
-                    $.each(data, function (k, v) {
-                        var id1 = data[k].reportingAgencyTitle;
-                        // var val1 =  JSON.stringify(data[k].ReportingAgencyTitle);
-                        selIncAgency += "<option value='" + id1 + "'>" + id1 + "</option>";
-                    });
-                    ReportingAgencyList.append(selIncAgency);
+<script>
 
 
-
-                    //alert(arr);
-                },
-                error: function (response) {
-                    alert("error");
-                }
-            });
-        });
-    </script>
-}
-
-
+</script>

@@ -17,12 +17,13 @@ namespace CTW_FIA.Controllers
         public IActionResult AddPerson()
         {
             ViewBag.Agencies = terrorist.AllAgencies();
+            ViewBag.Allcountries = terrorist.AllCountry();
             return View();
         }
         [HttpPost]
-        public IActionResult AddPerson(Person P)
+        public IActionResult AddPerson(Person P,IFormFile file)
         {
-            var res = terrorist.AddNewPerson(P);
+            var res = terrorist.AddNewPerson(P,file);
             ViewBag.Agencies = terrorist.AllAgencies();
             return View();
         }

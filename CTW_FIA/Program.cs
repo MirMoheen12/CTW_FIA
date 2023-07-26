@@ -55,6 +55,8 @@ builder.Services.AddTransient<IFearams, FireamsRepo>();
 builder.Services.AddTransient<Ichemical, chemicalrepo>();
 builder.Services.AddTransient<IDetonators, Detanatorsrepo>();
 builder.Services.AddTransient<ICommonlinks, CommonlinksRepo>();
+builder.Services.AddTransient<IAddress, AddressRepo>();
+builder.Services.AddTransient<IMediaFiles, MediaRepository>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

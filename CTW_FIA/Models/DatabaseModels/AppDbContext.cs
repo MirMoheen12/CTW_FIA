@@ -26,8 +26,9 @@ namespace CTW_FIA.Models.DatabaseModels
         //public DbSet<Firearms> Firearms { get; set; }
         //public DbSet<Incident> Incidents { get; set; }
         //public DbSet<PersonAddress> PersonAddresses { get; set; }
-        //public DbSet<SocialMedia> SocialMedia { get; set; }
-        //public DbSet<MediaFile> MediaFiles { get; set; }
+        public DbSet<SocialMedia> SocialMedia { get; set; }
+        public DbSet<MediaFile> MediaFiles { get; set; }
+        public DbSet<tblCNIC> tblCNIC { get; set; }
         //public DbSet<Chemical> Chemicals { get; set; }
         //public DbSet<Components> Components { get; set; }
         //public DbSet<InitiationSystem> InitiationSystems { get; set; }
@@ -40,9 +41,10 @@ namespace CTW_FIA.Models.DatabaseModels
         //public DbSet<Ordinance> Ordinances { get; set; }
         //public DbSet<Pipe> Pipes { get; set; }
         //public DbSet<Property> Properties { get; set; }
-        //public DbSet<CommonLinks> CommonLinks { get; set; }
+        public DbSet<CommonLinks> CommonLinks { get; set; }
         public DbSet<ReportingAgency> ReportingAgency { get; set; }
-        //public DbSet<Group> Groups { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<tblPassport> tblPassport { get; set; }
         //public DbSet<Detonator> Detonators { get; set; }
         //public DbSet<Ordnance> Ordnances { get; set; }
         //public DbSet<ProvinceList> ProvinceLists { get; set; }
@@ -50,7 +52,7 @@ namespace CTW_FIA.Models.DatabaseModels
         //public DbSet<CountryList> CountryLists { get; set; }
         //public DbSet<CityList> CityLists { get; set; }
         //public DbSet<PoliceStation> PoliceStations { get; set; }
-        //public DbSet<DatabaseList> DatabaseLists { get; set; }
+        public DbSet<DatabaseList> DatabaseLists { get; set; }
         //public DbSet<DistrictDatas> DistrictDatas { get; set; }
         //public DbSet<DistrictPS> DistrictPS { get; set; }
         //public DbSet<AllTable> AllTables { get; set; }

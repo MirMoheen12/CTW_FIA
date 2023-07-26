@@ -1,8 +1,13 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class tblPassport
     {
+        [NotMapped]
         public int intID { get; set; }
+        [Key]
         public string strURN { get; set; }
         public string strPassportNo { get; set; }
         public string strCountry { get; set; }

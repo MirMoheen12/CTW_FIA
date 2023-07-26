@@ -1,7 +1,11 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class Group
     {
+        [Key]
         public string strURN { get; set; }
         public string GroupName { get; set; }
         public string SubCategory { get; set; }
@@ -20,6 +24,7 @@
         public string Address { get; set; }
         public string MemRemarks { get; set; }
         public DateTime DateEstablished { get; set; }
+        [NotMapped]
         public int intID { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }

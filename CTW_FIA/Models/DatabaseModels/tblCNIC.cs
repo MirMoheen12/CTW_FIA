@@ -1,7 +1,11 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class tblCNIC
     {
+        [Key]
         public int intID { get; set; }
         public string strURN { get; set; }
         public string strCNIC { get; set; }

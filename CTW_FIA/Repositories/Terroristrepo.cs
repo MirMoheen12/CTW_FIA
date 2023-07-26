@@ -9,21 +9,88 @@ namespace CTW_FIA.Repositories
     public class Terroristrepo : ITerrorist
     {
         private readonly IDatabaseRepo databaseRepo;
-        private readonly IConfiguration configuration;
+        private readonly ICommonlinks commonlinks;
         private readonly AppDbContext dbContext;
-        public Terroristrepo(IDatabaseRepo databaseRepo, IConfiguration configuration, AppDbContext dbContext)
+        private readonly IAddress _address;
+        private readonly IMediaFiles _mediaFiles;
+        public Terroristrepo(IDatabaseRepo databaseRepo, ICommonlinks commonlinks, AppDbContext dbContext, IAddress _address,IMediaFiles _media)
         {
             this.databaseRepo = databaseRepo;
-            this.configuration = configuration;
+            this.commonlinks = commonlinks;
             this.dbContext = dbContext;
+            this._address = _address;
+            this._mediaFiles = _media;
         }
 
-        public bool AddNewPerson(Person P)
+        public bool AddNewPerson(Person P,IFormFile? formFile)
         {
          
             try
             {
-                AddNewTerrorist(P);
+               string pstrurn= AddNewTerrorist(P);
+                Address address = new Address();
+                address.Country = P.Country;
+                address.AddressDescription = P.AddressDescription;
+                address.Province = P.Province;
+                address.District = P.District;
+                address.PostalZip = P.Postelcode;
+                string adrsUrn = _address.AddAddress(address);
+                var cl = commonlinks.CreateCommonlinks(pstrurn, adrsUrn, "Person", "Address", "Intial Insert", address.Country.ToString() + ' ' + address.AddressDescription.ToString());
+                    if(formFile!=null)
+                {
+                 
+                    MediaFile media = new MediaFile();
+                    media.FileName= formFile.FileName;  
+                    media.ContentType = formFile.ContentType;
+                    media.Description = "Person Image";
+                    media.FilePath = _mediaFiles.AddFileIntoServer(formFile);
+                    string medstrurn = _mediaFiles.AddMedia(media);
+                    commonlinks.CreateCommonlinks(pstrurn, medstrurn, "Person", "MediaFile", "Media File", address.Country.ToString() + ' ' + address.AddressDescription.ToString());
+
+                }
+                if(P.SocialMediaAccounts!=null)
+                {
+                    SocialMedia socialMedia = new SocialMedia();
+                    socialMedia.SocialMediaProfile = P.SocialMediaAccounts;
+                    socialMedia.PersonstrURN = P.strURN;
+                    dbContext.SocialMedia.Add(socialMedia);
+                    dbContext.SaveChanges();
+                }
+                if(P.CNIC!=null)
+                {
+                    tblCNIC tblCNIC = new tblCNIC();
+                    tblCNIC.strURN= databaseRepo.ExecuteProc("GetCNICSTRURN", null).Rows[0][0].ToString();
+                    tblCNIC.strCNIC = P.CNIC.ToString();
+                    tblCNIC.dteSent = DateTime.Now;
+                    tblCNIC.excl_memTextSearch = P.CNIC.ToString();
+                    dbContext.tblCNIC.Add(tblCNIC);
+                    dbContext.SaveChanges();
+                    commonlinks.CreateCommonlinks(pstrurn, tblCNIC.strURN, "Person", "tblCNIC", "CNIC", address.Country.ToString() + ' ' + address.AddressDescription.ToString());
+                }
+                if(P.PassPortNo!=null)
+                {
+                    tblPassport tblPassport = new tblPassport();
+                    tblPassport.strURN= databaseRepo.ExecuteProc("tblPassportSTRURN", null).Rows[0][0].ToString();
+                    tblPassport.strPassportNo = P.PassPortNo;
+                    tblPassport.strCountry = "";
+                    tblPassport.dteIssue = null;
+                    tblPassport.strPlaceIssue = null;
+                    tblPassport.dteExpire = null;
+                    tblPassport.strLegacyCode = null;
+                    tblPassport.strPrimaryMediaImageUrn = null;
+                    tblPassport.optLibrary = null;
+                    tblPassport.optTransmit = null;
+                    tblPassport.memRemarks = null;
+                    tblPassport.optCompliance = false;
+                    tblPassport.strSecurityRating = null;
+                    tblPassport.dteSent = null;
+                    tblPassport.strCreatedBy = "";
+                    tblPassport.dteCreated = DateTime.Now;
+                    dbContext.tblPassport.Add(tblPassport);
+                    dbContext.SaveChanges();
+                    commonlinks.CreateCommonlinks(pstrurn, tblPassport.strURN, "Person", "tblPassport", "tblPassport", address.Country.ToString() + ' ' + address.AddressDescription.ToString());
+
+                }
                 return true;
             }
             catch (Exception e)
@@ -128,7 +195,7 @@ namespace CTW_FIA.Repositories
            
         }
 
-        private bool AddNewTerrorist(Person P)
+        private string AddNewTerrorist(Person P)
         {
            
                 P.strURN = databaseRepo.ExecuteProc("GetPersonSTRURN", null).Rows[0][0].ToString();
@@ -136,7 +203,7 @@ namespace CTW_FIA.Repositories
                 P.CreatedOn = DateTime.Now;
                 P.textSearch = P.Name + " " + P.strURN + " " + P.memRemarks + " " + P.CNIC.ToString();
                 dbContext.SaveChanges();
-                return true;
+                return P.strURN;
      
             
         }
