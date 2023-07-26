@@ -26,10 +26,11 @@ namespace CTW_FIA.Repositories
                 AddNewTerrorist(P);
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                AddErrorLog(e.Message.ToString());
                 return false;
-             
+
             }
         }
 
@@ -129,21 +130,23 @@ namespace CTW_FIA.Repositories
 
         private bool AddNewTerrorist(Person P)
         {
-            try
-            {
-
+           
                 P.strURN = databaseRepo.ExecuteProc("GetPersonSTRURN", null).Rows[0][0].ToString();
                 var res = dbContext.Person.Add(P);
                 P.CreatedOn = DateTime.Now;
                 P.textSearch = P.Name + " " + P.strURN + " " + P.memRemarks + " " + P.CNIC.ToString();
                 dbContext.SaveChanges();
                 return true;
-            }
-            catch (Exception)
+     
+            
+        }
+        private void AddErrorLog(string Msg)
+        {
+            var dat = new
             {
-                return false;
-
-            }
+                Msg = Msg
+            };
+            var dbres = databaseRepo.ExecuteProc("InsertErrorLog", databaseRepo.returnSppram(Msg));
         }
     }
 }
