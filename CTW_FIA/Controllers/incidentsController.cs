@@ -45,8 +45,8 @@ namespace CTW_FIA.Controllers
 
         public ActionResult NewIncident()
         {
-            var data = record.GetFirstDistrictDataPerCountry();
-            ViewBag.country = data;
+
+            ViewBag.Allcountries = terrorist.AllCountry();
             return View();
         }
     }
