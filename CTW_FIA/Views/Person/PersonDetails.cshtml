@@ -1,0 +1,244 @@
+﻿@model CTW_FIA.Models.Dto.QuickSearchPerson_sel_Result
+@{
+    ViewData["Title"] = "Incident";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .table-responsive {
+        max-height: 650px;
+    }
+</style>
+
+<div class="row no-gutters">
+
+
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                @*    <h4 class="card-title"> Incident</h4>*@
+
+                <form class="forms-sample">
+                    <div class="form-row text-dark">
+
+                        @* <label class="col-form-label">Enter STRURN</label>
+                        <div class="col-sm-4">
+                        <input type="text" placeholder="Search..." name="search" id="textStrurnid">
+                        <button type="button" onclick="ViewIncident()"><i class="fa fa-search"></i></button>
+                        </div>*@
+                        <div class="col-sm-9">
+                            <button type="button" id="addMedia" class="btn btn-primary btn-md">Add Media</button>
+                            <button type="button" id="editIncident" class="btn btn-primary btn-md">Edit Record</button>
+                            <button type="button" id="deleteIncident" class="btn btn-primary btn-md">Delete Record</button>
+                            <button type="button" id="linkRecord" class="btn btn-primary btn-md">Link Record</button>
+                            <input type="button" class="btn btn-primary btn-md" id="btnExport" value="To PDF" onclick="Export()" />
+                            <button id="csv" onclick="tableToCSV()" class="btn btn-primary btn-md">To CSV</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9 grid-margin stretch-card">
+        <div class="card ">
+
+            <div id="exptopdf" class="pdfpage" style="background: #FFFFFF;">
+
+                <div class="d-flex p-2 bg-gradient-primary justify-content-center"><b>Incident</b></div>
+
+                <!--Row with two columns divided in 1:3 ratio-->
+
+                <table class="table table-borderless text-dark" id="IncidentPreTable">
+
+                    <tbody id="Incidenttbody">
+                        @* <tr id="strURNcolid">
+                        <td class="col-md-4" style="text-align: right; vertical-align: middle;">strURN: </td>
+                        <td id="strURNid" class="col-md-8"></td>
+                        </tr>*@
+
+                        <tr id="strOperationNamecolid">
+                            <td class="col-md-4" style="text-align: right; vertical-align: middle;">Print Date: </td>
+                            <td id="strOperationNameId">@DateTime.Now.ToShortDateString()</td>
+                        </tr>
+                        <tr id="FirNocolid">
+                            <td style="text-align: right; vertical-align: middle;">Province:</td>
+                            <td id="FirNoid">@Model.Province</td>
+                        </tr>
+                        <tr id="RegYearcolid">
+                            <td style="text-align: right; vertical-align: middle;">District:</td>
+                            <td id="RegYearid">@Model.District</td>
+                        </tr>
+                        <tr id="UScolid">
+                            <td style="text-align: right; vertical-align: middle;">City:</td>
+                            <td id="US id">@Model.City</td>
+                        </tr>
+                        <tr id="Countrycolid">
+                            <td style="text-align: right; vertical-align: middle;">Postal Code:</td>
+                            <td id="Countryid">@Model.PostalZip</td>
+                        </tr>
+                        <tr id="Provincecolid">
+                            <td style="text-align: right; vertical-align: middle;">Address:</td>
+                            <td id="Provinceid">@Model.AddressDescription</td>
+                        </tr>
+                        <tr id="Citycolid">
+                            <td style="text-align: right; vertical-align: middle;">Email:</td>
+                            <td id="Cityid">@Model.Email</td>
+                        </tr>
+
+                        <tr id="Districtcolid">
+                            <td style="text-align: right; vertical-align: middle;">Body Structure:</td>
+                            <td id="Districtid">@Model.BodyStructure</td>
+                        </tr>
+                        <tr id="PostalZipcolid">
+                            <td style="text-align: right; vertical-align: middle;">Bald Type:</td>
+                            <td id="PostalZipid">@Model.BaldType</td>
+                        </tr>
+                        <tr id="PoliceStationcolid">
+                            <td style="text-align: right; vertical-align: middle;">Body Build:</td>
+                            <td id="PoliceStationid">@Model.BodyBuild</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Beard:</td>
+                            <td id="Addressid">@Model.Beard</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Height:</td>
+                            <td id="Addressid">@Model.Height</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Height in Feet:</td>
+                            <td id="Addressid">@Model.HeightInFeet</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Complexion:</td>
+                            <td id="Addressid">@Model.Complexion</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Identification Mark:</td>
+                            <td id="Addressid">@Model.IdentificationMark</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Premanent Identification Mark:</td>
+                            <td id="Addressid">@Model.PermanentIdentificationMark</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Distinguishing Mark:</td>
+                            <td id="Addressid">@Model.DistinguishingMarks</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Overt Appearance:</td>
+                            <td id="Addressid">@Model.OvertAppearance</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Talking Style:</td>
+                            <td id="Addressid">@Model.TalkingStyle</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Voice Pitch:</td>
+                            <td id="Addressid">@Model.VoicePitch</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Normal Dress:</td>
+                            <td id="Addressid">@Model.NormalDress</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Hair Cut Style:</td>
+                            <td id="Addressid">@Model.HairCutStyle</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Hair Type:</td>
+                            <td id="Addressid">@Model.HairType</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Hair Color:</td>
+                            <td id="Addressid">@Model.HairColor</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Hair Implants:</td>
+                            <td id="Addressid">@Model.HairImplants</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Wig:</td>
+                            <td id="Addressid">@Model.Wig</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Cheek Structure:</td>
+                            <td id="Addressid">@Model.CheekStructure</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Contact Lenses:</td>
+                            <td id="Addressid">@Model.ContactLenses</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Face Shape:</td>
+                            <td id="Addressid">@Model.VFaceShape</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Ear Structure Shape:</td>
+                            <td id="Addressid">@Model.EarStructure</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Eye Look:</td>
+                            <td id="Addressid">@Model.EyeLook</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Eye Color:</td>
+                            <td id="Addressid">@Model.EyeColor</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Eye Browns:</td>
+                            <td id="Addressid">@Model.Eyebrows</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Eye Glasses:</td>
+                            <td id="Addressid">@Model.EyeGlasses</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Nose Structure:</td>
+                            <td id="Addressid">@Model.NoseStructure</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Lip Structure:</td>
+                            <td id="Addressid">@Model.LipStucture</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Mustache:</td>
+                            <td id="Addressid">@Model.Mustaches</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Mustache Color:</td>
+                            <td id="Addressid">@Model.MustachesColor</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Affiliation:</td>
+                            <td id="Addressid">@Model.Affiliation</td>
+                        </tr>
+                        <tr id="Addresscolid">
+                            <td style="text-align: right; vertical-align: middle;">Remarks:</td>
+                            <td id="Addressid">@Model.memRemarks</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("DisplayLinksRecord")
+
+
+
+</div>
+
+
+
+
+
+
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript">
+    $("#SearchGenericTable").DataTable({
+
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print"]
+    }).buttons().container().appendTo('#SearchGenericTable_wrapper .col-md-6:eq(0)');
+
+</script>
