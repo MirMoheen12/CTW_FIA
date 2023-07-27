@@ -161,7 +161,7 @@ namespace CTW_FIA.Repositories
 
         }
 
-        public List<QuickSearchPerson_sel_Result> GetPeronByID(string STRURN)
+        public QuickSearchPerson_sel_Result GetPeronByID(string STRURN)
         {
             var dat = new
             {
@@ -174,7 +174,7 @@ namespace CTW_FIA.Repositories
             {
                 list.Add((QuickSearchPerson_sel_Result)item);
             }
-            return (list);
+            return list.FirstOrDefault();
         }
 
         public List<NewPerson_Provinces_Result> GetPeronProvincewise(string Province)
@@ -214,6 +214,23 @@ namespace CTW_FIA.Repositories
                 Msg = Msg
             };
             var dbres = databaseRepo.ExecuteProc("InsertErrorLog", databaseRepo.returnSppram(Msg));
+        }
+
+        public QuickSearchGroups_sel_Result GetGroupsByStrurn(string Strurn)
+        {
+            var dat = new
+            {
+                textSearch = Strurn
+            };
+            var dbres = databaseRepo.ExecuteProc("QuickSearchExplosives_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchGroups_sel_Result));
+            var list = new List<QuickSearchGroups_sel_Result>();
+            foreach (var item in dt)
+            {
+                list.Add((QuickSearchGroups_sel_Result)item);
+            }
+            return list.FirstOrDefault();
+
         }
     }
 }

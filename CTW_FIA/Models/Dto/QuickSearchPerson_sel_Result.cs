@@ -52,8 +52,8 @@
         public string? HairCutStyle { get; set; }
         public string? HairType { get; set; }
         public string? HairColor { get; set; }
-        public bool HairImplants { get; set; }
-        public bool Wig { get; set; }
+        public string? HairImplants { get; set; }
+        public string? Wig { get; set; }
         public string? CheekStructure { get; set; }
         public string? ContactLenses { get; set; }
         public string? VFaceShape { get; set; }
