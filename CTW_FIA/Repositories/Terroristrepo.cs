@@ -40,11 +40,14 @@ namespace CTW_FIA.Repositories
                 {
                  
                     MediaFile media = new MediaFile();
+                    media.strURN = databaseRepo.ExecuteProc("GetMeidFileTRURN", null).Rows[0][0].ToString();
                     media.FileName= formFile.FileName;  
                     media.ContentType = formFile.ContentType;
                     media.Description = "Person Image";
                     media.FilePath = _mediaFiles.AddFileIntoServer(formFile);
+                    media.textSearch = media.strURN + " " + P.Name; 
                     string medstrurn = _mediaFiles.AddMedia(media);
+
                     commonlinks.CreateCommonlinks(pstrurn, medstrurn, "Person", "MediaFile", "Media File", address.Country.ToString() + ' ' + address.AddressDescription.ToString());
 
                 }
@@ -62,7 +65,7 @@ namespace CTW_FIA.Repositories
                     tblCNIC.strURN= databaseRepo.ExecuteProc("GetCNICSTRURN", null).Rows[0][0].ToString();
                     tblCNIC.strCNIC = P.CNIC.ToString();
                     tblCNIC.dteSent = DateTime.Now;
-                    tblCNIC.excl_memTextSearch = P.CNIC.ToString();
+                    tblCNIC.excl_memTextSearch = tblCNIC.strURN+" "+ P.CNIC.ToString();
                     dbContext.tblCNIC.Add(tblCNIC);
                     dbContext.SaveChanges();
                     commonlinks.CreateCommonlinks(pstrurn, tblCNIC.strURN, "Person", "tblCNIC", "CNIC", address.Country.ToString() + ' ' + address.AddressDescription.ToString());
@@ -86,6 +89,7 @@ namespace CTW_FIA.Repositories
                     tblPassport.dteSent = null;
                     tblPassport.strCreatedBy = "";
                     tblPassport.dteCreated = DateTime.Now;
+                    tblPassport.excl_memTextSearch = tblPassport.strURN+" "+P.PassPortNo;
                     dbContext.tblPassport.Add(tblPassport);
                     dbContext.SaveChanges();
                     commonlinks.CreateCommonlinks(pstrurn, tblPassport.strURN, "Person", "tblPassport", "tblPassport", address.Country.ToString() + ' ' + address.AddressDescription.ToString());
