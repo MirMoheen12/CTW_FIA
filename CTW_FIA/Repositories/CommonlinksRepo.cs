@@ -26,8 +26,8 @@ namespace CTW_FIA.Repositories
                 commonLinks.strURNSource = srcSTRURN;
                 commonLinks.strURNDest = dstSTRURN;
                 commonLinks.textSearch = textsearch;
-                commonLinks.intDbIdSource = Convert.ToInt16(appDbContext.DatabaseLists.Where(x => x.strTable == DbSrc).Select(x => x.intType).FirstOrDefault());
-                commonLinks.intDbIdDest = Convert.ToInt16(appDbContext.DatabaseLists.Where(x => x.strTable == DbDest).Select(x => x.intType).FirstOrDefault());
+                commonLinks.intDbIdSource = Convert.ToInt16(appDbContext.DatabaseList.Where(x => x.strTable == DbSrc).Select(x => x.intType).FirstOrDefault());
+                commonLinks.intDbIdDest = Convert.ToInt16(appDbContext.DatabaseList.Where(x => x.strTable == DbDest).Select(x => x.intType).FirstOrDefault());
                 commonLinks.CreatedOn = DateTime.Now;
                 appDbContext.CommonLinks.Add(commonLinks);
                 appDbContext.SaveChanges();

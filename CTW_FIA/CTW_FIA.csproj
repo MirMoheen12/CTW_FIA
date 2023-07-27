@@ -64,6 +64,7 @@
 
   <ItemGroup>
     <Folder Include="Views\PartialView\" />
+    <Folder Include="wwwroot\AllMedia\" />
   </ItemGroup>
 
 </Project>

@@ -19,7 +19,7 @@ namespace CTW_FIA.Repositories
 
                 address.strURN = databaseRepo.ExecuteProc("GetAddressSTRURN", null).Rows[0][0].ToString();
                 address.CreatedOn = DateTime.Now;
-                address.textSearch = address.AddressName.ToString() + " " + address.Country.ToString() + " " + address.Province.ToString() + " " + address.City.ToString();
+                address.textSearch = address.Country.ToString() + " " + address.Province.ToString() + " " + address.District.ToString();
                 dbContext.Address.Add(address);
                 dbContext.SaveChanges();
                return address.strURN;

@@ -27,7 +27,7 @@ namespace CTW_FIA.Models.DatabaseModels
         //public DbSet<Incident> Incidents { get; set; }
         //public DbSet<PersonAddress> PersonAddresses { get; set; }
         public DbSet<SocialMedia> SocialMedia { get; set; }
-        public DbSet<MediaFile> MediaFiles { get; set; }
+        public DbSet<MediaFile> MediaFile { get; set; }
         public DbSet<tblCNIC> tblCNIC { get; set; }
         //public DbSet<Chemical> Chemicals { get; set; }
         //public DbSet<Components> Components { get; set; }
@@ -52,7 +52,7 @@ namespace CTW_FIA.Models.DatabaseModels
         //public DbSet<CountryList> CountryLists { get; set; }
         //public DbSet<CityList> CityLists { get; set; }
         //public DbSet<PoliceStation> PoliceStations { get; set; }
-        public DbSet<DatabaseList> DatabaseLists { get; set; }
+        public DbSet<DatabaseList> DatabaseList { get; set; }
         //public DbSet<DistrictDatas> DistrictDatas { get; set; }
         //public DbSet<DistrictPS> DistrictPS { get; set; }
         //public DbSet<AllTable> AllTables { get; set; }

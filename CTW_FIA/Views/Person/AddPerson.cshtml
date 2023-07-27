@@ -181,7 +181,7 @@
                             </div>
                             <label for="Age" class="col-sm-2 col-form-label" style="font-size: 13px;">Age</label>
                             <div class="col-sm-4">
-                                <input type="number" class="form-control" />
+                                <input type="number" asp-for="Age" class="form-control" />
                             </div>
                         </div>
 
@@ -205,7 +205,7 @@
 
                             <label for="Passport No" class="col-sm-2 col-form-label" style="font-size: 13px;">Passport No</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control"  placeholder="">
+                                <input type="text" asp-for="PassPortNo" class="form-control"  placeholder="">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -263,14 +263,14 @@
                                     <option>Select Country</option>
                                     @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
                                     {
-                                        <option>@ViewBag.Allcountries[i].strCountry</option>
+                                        <option value="@ViewBag.Allcountries[i].strCountry">@ViewBag.Allcountries[i].strCountry</option>
                                     }
                                 </select>
                             </div>
 
                             <label for="personprovince" class="col-sm-2 col-form-label" style="font-size: 13px;">Province</label>
                             <div class="col-sm-4">
-                                <select id="personprovince"  class="form-control">
+                                <select id="personprovince" asp-for="Province"  class="form-control">
                                     <option>Select the Province</option>
                                 </select>
                             </div>
@@ -280,7 +280,7 @@
 
                             <div class="col-sm-4">
 
-                                <select id="SelectDistrict" class="form-control">
+                                <select id="ProvinceDistrict" asp-for="District" class="form-control">
                                     <option>Select the District</option>
 
                                 </select>
@@ -289,7 +289,7 @@
 
                             <label for="PostalCode" class="col-sm-2 col-form-label" style="font-size: 13px;">Postal Code</label>
                             <div class="col-sm-4">
-                                <input type="number" class="form-control"  placeholder="">
+                                <input type="number" class="form-control" asp-for="Postelcode"  placeholder="">
 
                             </div>
                         </div>
@@ -301,7 +301,7 @@
 
                             <label for="PostalCode" class="col-sm-2 col-form-label" style="font-size: 13px;">Police Station</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="PostalCode" placeholder="">
+                                <input type="text" class="form-control" asp-for="PoliceAstation" placeholder="">
 
                             </div>
                         </div>
@@ -310,7 +310,7 @@
 
 
                             <div class="col-sm-9">
-                                <textarea class="form-control"  rows="4"></textarea>
+                                <textarea class="form-control" asp-for="AddressDescription"  rows="4"></textarea>
                             </div>
                             <div class="col-sm-1">
                                 <button type="submit" class="btn btn-primary mr-2" style="font-size: 13px;">
@@ -325,12 +325,12 @@
                         <legend class="float-none w-auto p-2" style="font-size: 12px">Contact Details</legend>
 
                         <div class="form-group row">
-
+@*
                             <label for="cellno" class="col-sm-2 col-form-label" style="font-size: 13px;">Cell No</label>
 
                             <div class="col-sm-4">
-                                <input type="text" name="cellno" class="form-control" maxlength="11" />
-                            </div>
+                                <input type="text" name="cellno" asp-for class="form-control" maxlength="11" />
+                            </div>*@
 
                             <label for="personprovince" class="col-sm-2 col-form-label" style="font-size: 13px;">Email</label>
                             <div class="col-sm-4">
@@ -859,6 +859,93 @@
 </form>
 
 <script>
+        $(document).ready(function () {
+        $('#selectedcountry').change(function () {
+            if ($(this).val() == ""||$(this).val() != "Pakistan") {
+            
+                $("#personprovince").empty();
+            }
+            else {
+                $('.spinner').css('display', 'block');
+                $.ajax({
+                 
+                    url: '/Jsonside/GetAllProvince',
+                    type: 'GET',
+                    data: { country: $(this).val() },
+                    contentType: 'application/json',
+                    success: function (response) {
+                        $("#personprovince").empty();
+                        $("#personprovince").append(`<option value="">Select Province</option>`);
+                        for (var i = 0; i < response.length; i++) {
 
+                            addOption(response[i].strProvince, response[i].strProvince, '#personprovince')
+
+
+                        }
+                        if (response.length == 0) {
+                            $("#personprovince").empty();
+
+                        }
+                        else
+                        {
+                            $('.spinner').css('display', 'none');
+                        }
+
+
+                    }
+                });
+            }
+
+
+
+        });
+        $('#personprovince').change(function () {
+            if ($(this).val() == "") {
+
+                $("#ProvinceDistrict").empty();
+            }
+            else {
+                $('.spinner').css('display', 'block');
+                $.ajax({
+
+                    url: '/Jsonside/GetDistrictByProvince',
+                    type: 'GET',
+                    data: { Province: $(this).val() },
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log(response);
+                        $("#ProvinceDistrict").empty();
+                        $("#ProvinceDistrict").append(`<option value="">Select District</option>`);
+                        for (var i = 0; i < response.length; i++) {
+
+                            addOption(response[i].strDistrict, response[i].strDistrict, '#ProvinceDistrict')
+
+
+                        }
+                        if (response.length == 0) {
+                            $("#ProvinceDistrict").empty();
+                            $('.spinner').css('display', 'none');
+
+                        }
+                        else {
+                            $('.spinner').css('display', 'none');
+                        }
+
+
+                    }
+                });
+            }
+
+
+
+        });
+        
+        
+        });
+        
+    function addOption(value, text,userid) 
+    {
+        $(userid).append(`<option value="${value}">${text}</option>`);
+    }
 
 </script>

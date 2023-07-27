@@ -25,6 +25,7 @@ namespace CTW_FIA.Controllers
         {
             var res = terrorist.AddNewPerson(P,file);
             ViewBag.Agencies = terrorist.AllAgencies();
+            ViewBag.Allcountries = terrorist.AllCountry();
             return View();
         }
         public IActionResult PersonDetails(string STRURN)

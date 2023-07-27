@@ -65,6 +65,8 @@ namespace CTW_FIA.Models.DatabaseModels
         [NotMapped]
         public string? Country { get; set; }
         [NotMapped]
+        public string? PoliceAstation { get; set; }
+        [NotMapped]
         public string? Province { get; set; }
         [NotMapped]
         public string? District { get; set; }

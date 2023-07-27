@@ -22,7 +22,7 @@ namespace CTW_FIA.Repositories
             string fileName = Guid.NewGuid().ToString();
             string fileexten = Path.GetExtension(Files.FileName);
             fileName = fileName + fileexten;
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\ApprovalFiles\", fileName);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\AllMedia\", fileName);
             using (FileStream stream = new FileStream(filePath, FileMode.Create))
             {
                 Files.CopyTo(stream);
@@ -37,7 +37,7 @@ namespace CTW_FIA.Repositories
             {
                 mediaFile.strURN = databaseRepo.ExecuteProc("GetMediaSTRURN", null).Rows[0][0].ToString();
                 mediaFile.CreatedOn = DateTime.Now;
-                dbContext.MediaFiles.Add(mediaFile);
+                dbContext.MediaFile.Add(mediaFile);
                 dbContext.SaveChanges();
                 return mediaFile.strURN;
             }
