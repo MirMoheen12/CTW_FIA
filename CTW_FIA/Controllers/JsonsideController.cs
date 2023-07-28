@@ -1,4 +1,5 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,12 @@ namespace CTW_FIA.Controllers
     {
         private readonly IDashboard dashboard;
         private readonly ITerrorist terrorist;
-        public JsonsideController(IDashboard dashboard, ITerrorist terrorist)
+        private readonly AppDbContext dbContext;
+        public JsonsideController(IDashboard dashboard, ITerrorist terrorist, AppDbContext dbContext)
         {
             this.dashboard = dashboard;
             this.terrorist = terrorist;
+            dbContext =dbContext;
         }
         public IActionResult Index()
         {
@@ -50,6 +53,13 @@ namespace CTW_FIA.Controllers
         {
             //var data = dashboard.getCtwdashboardsIncidentwise().Where(X => X.tablename == "PW").ToList(); 
             var data = terrorist.GetALlprovinceCountryWise(country);
+            return Json(data);
+        }
+        [HttpGet]
+        public JsonResult GetAllPoliceStation()
+        {
+            //var data = dashboard.getCtwdashboardsIncidentwise().Where(X => X.tablename == "PW").ToList(); 
+            var data = terrorist.AllPliceStation();
             return Json(data);
         }
 

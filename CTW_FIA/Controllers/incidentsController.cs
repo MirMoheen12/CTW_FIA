@@ -13,9 +13,11 @@ namespace CTW_FIA.Controllers
         private readonly IDashboard dashboard;
         private readonly IIncident incident;
         private readonly ICommonlinks commonlinks;
-        public incidentsController(IDashboard dashboard, IIncident incident, IRecord record, ICommonlinks commonlinks)
+        private readonly ITerrorist terrorist;
+        public incidentsController(ITerrorist terrorist, IDashboard dashboard, IIncident incident, IRecord record, ICommonlinks commonlinks)
         {
             this.dashboard = dashboard;
+            this.terrorist=terrorist;
             this.incident = incident;
             this.record = record;
             this.commonlinks = commonlinks;
@@ -47,6 +49,7 @@ namespace CTW_FIA.Controllers
         {
 
             ViewBag.Allcountries = terrorist.AllCountry();
+            ViewBag.Agencies = terrorist.AllAgencies();
             return View();
         }
     }

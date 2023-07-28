@@ -111,6 +111,18 @@ namespace CTW_FIA.Repositories
             return (data);
         }
 
+        public List<PoliceStation> AllPliceStation()
+        {
+            var dbres = databaseRepo.ExecuteProc("AllPolicestation", null);
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(PoliceStation));
+            var list = new List<PoliceStation>();
+            foreach (var item in dt)
+            {
+                list.Add((PoliceStation)item);
+            }
+            return (list);
+        }
+
         public List<CountryList> AllCountry()
         {
             var dbres = databaseRepo.ExecuteProc("getAllCountries",null);

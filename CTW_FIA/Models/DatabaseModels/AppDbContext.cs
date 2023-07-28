@@ -14,7 +14,7 @@ namespace CTW_FIA.Models.DatabaseModels
         }
 
 
-
+       
         public DbSet<MacAddress> MacAddress { get; set; }
         public DbSet<BaseLogs> BaseLogs { get; set; }
         public DbSet<IpLogs> IpLogs { get; set; }
@@ -51,7 +51,7 @@ namespace CTW_FIA.Models.DatabaseModels
         //public DbSet<DistrictList> DistrictLists { get; set; }
         //public DbSet<CountryList> CountryLists { get; set; }
         //public DbSet<CityList> CityLists { get; set; }
-        //public DbSet<PoliceStation> PoliceStations { get; set; }
+        
         public DbSet<DatabaseList> DatabaseList { get; set; }
         //public DbSet<DistrictDatas> DistrictDatas { get; set; }
         //public DbSet<DistrictPS> DistrictPS { get; set; }

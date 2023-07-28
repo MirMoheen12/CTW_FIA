@@ -13,6 +13,7 @@ namespace CTW_FIA.Interface
         public List<DistrictList> GetAllDistrictByProvince(string Province);
         public List<ProvinceList> GetALlprovinceCountryWise(string Country);
         public bool AddNewPerson(Person P, IFormFile? formFile);
+        public List<PoliceStation> AllPliceStation();
 
     }
 }
