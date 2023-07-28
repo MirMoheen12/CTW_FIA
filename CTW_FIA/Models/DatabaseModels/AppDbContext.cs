@@ -24,7 +24,7 @@ namespace CTW_FIA.Models.DatabaseModels
         //public DbSet<Explosive> Explosives { get; set; }
         //public DbSet<Equipment> Equipment { get; set; }
         //public DbSet<Firearms> Firearms { get; set; }
-        //public DbSet<Incident> Incidents { get; set; }
+        public DbSet<Incident> Incident { get; set; }
         //public DbSet<PersonAddress> PersonAddresses { get; set; }
         public DbSet<SocialMedia> SocialMedia { get; set; }
         public DbSet<MediaFile> MediaFile { get; set; }
