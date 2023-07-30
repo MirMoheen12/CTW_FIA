@@ -1,6 +1,6 @@
 @model CTW_FIA.Models.DatabaseModels.Incident
 @{
- 
+    Layout = null;
 }
 
 <div class="row no-gutters" style="">
@@ -11,12 +11,12 @@
 
                         <h5>Main Incident</h5>
                   
-                       <form class="forms-sample" method="post" asp-action="NewIncident" asp-controller="Records">
+                       <form class="forms-sample" method="post" asp-action="NewIncident" asp-controller="Incidents">
                             <div class="form-group row">
 
                                 <label for="OperationName" class="col-sm-2 col-form-label" style="font-size: 13px;">Subject</label>
                                 <div class="col-sm-10">
-                            <input type="text" class="form-control" id="OperationName" asp-for="strOperationName" name="OperationName">
+                            <input type="text" class="form-control" id="OperationName" asp-for="strOperationName">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -316,7 +316,7 @@
                                     </select>
                                 </div>
                            </div>
-                         <div class="form-group row">
+                   @*      <div class="form-group row">
                                 
                                 <label for="ModusofOperandi" class="col-sm-2 col-form-label" style="font-size: 13px;">Modus operandi</label>
                                 <div class="col-sm-10">
@@ -324,7 +324,7 @@
                                     <textarea  class="form-control" asp-for="ModusofOperand" id="ModusofOperandi" rows="4"></textarea>
 
                                 </div>
-                            </div>
+                            </div>*@
                         </fieldset>
 
                         <fieldset class="border p-3">

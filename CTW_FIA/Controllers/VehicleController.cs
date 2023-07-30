@@ -1,4 +1,5 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,18 @@ namespace CTW_FIA.Controllers
         {
             var data = vehicle.AllVehicle();
             return View(data);
+        }
+        [HttpGet]
+        public IActionResult AddNewVehicle()
+        {
+         
+            return View(new Vehicle());
+        }
+        [HttpPost]
+        public IActionResult AddNewVehicle(Vehicle veh)
+        {
+            var res=vehicle.AddNewVehicle(veh);
+            return View(new Vehicle());
         }
     }
 }

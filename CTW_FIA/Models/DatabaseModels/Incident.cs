@@ -37,7 +37,6 @@ namespace CTW_FIA.Models.DatabaseModels
         public string CaseStatus { get; set; }
         public string strCaseProgress { get; set; }
         public string Weapon { get; set; }
-        public string ModusofOperand { get; set; }
         public DateTime dteSent { get; set; }
         [NotMapped]
         public int intID { get; set; }

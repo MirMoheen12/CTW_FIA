@@ -40,6 +40,21 @@ namespace CTW_FIA.Controllers
             var data = terrorist.GetPeronByID(STRURN);
             return View(data);
         }
+        [HttpGet]
+        public IActionResult AddTerroristGroup()
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            ViewBag.Agencies = terrorist.AllAgencies();
+            return View(new Group());
+        }
+        [HttpPost]
+        public IActionResult AddTerroristGroup(Group group)
+        {
+            var res = terrorist.AddNewGroup(group);
+            ViewBag.Allcountries = terrorist.AllCountry();
+            ViewBag.Agencies = terrorist.AllAgencies();
+            return View(new Group());
+        }
 
 
     }

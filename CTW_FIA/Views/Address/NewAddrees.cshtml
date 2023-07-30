@@ -1,0 +1,384 @@
+﻿@model CTW_FIA.Models.DatabaseModels.Address
+@{
+   
+}
+
+<div class="row no-gutters">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample" asp-action="NewAddrees",asp-controller="Address">
+                    <h5>Address Form</h5>
+
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px">
+                            Address Details
+                        </legend>
+
+                        <div class="form-group row">
+                            <label for="Address Description"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Address Description
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       class="form-control"
+                                       id="adDescription"
+                                       placeholder=""
+                                       asp-for="AddressDescription" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Address Name"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Address Name
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       asp-for="AddressName"
+                                       class="form-control"
+                                       id="adName"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Address Type"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Address Type
+                            </label>
+                            <div class="col-sm-4">
+                                <select id="adType" class="form-control" asp-for="AddressType">
+                                    <option value="" disabled selected>
+                                        Select the Address Type
+                                    </option>
+                                    <option>RESIDENTIAL</option>
+                                    <option>COMMERCIAL</option>
+                                    <option>OTHER</option>
+                                </select>
+                            </div>
+
+                            <label for="HouseNo"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">House No.</label>
+                            <div class="col-sm-4">
+                                <input asp-for="HouseNumber"
+                                       type="text"
+                                       class="form-control"
+                                       id="HouseNo"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Country" class="col-sm-2 col-form-label" style="font-size: 13px">Country</label>
+
+                            <div class="col-sm-4">
+                                <select asp-for="Country" id="selectedcountry" class="form-control">
+                                    <option>Select Country</option>
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option>@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+                                </select>
+                            </div>
+                            <label for="Province"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Province
+                            </label>
+                            <div class="col-sm-4">
+
+                                <select id="personprovince" asp-for="Province" class="form-control">
+                                    <option>Select the Province</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="City"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">District</label>
+                            <div class="col-sm-4">
+                                <select asp-for="District" id="ProvinceDistrict" class="form-control">
+                                    <option>Select the District</option>
+
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="StreetNo"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Street No.</label>
+                            <div class="col-sm-4">
+                                <input asp-for="StreetNumber"
+                                       type="text"
+                                       class="form-control"
+                                       id="adStreetNo"
+                                       placeholder="" />
+                            </div>
+
+                            <label for="CityName"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Mohallah</label>
+                            <div class="col-sm-4">
+                                <input asp-for="Mohallah"
+                                       type="text"
+                                       class="form-control"
+                                       id="Mohallah"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Mohallah"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Village</label>
+                            <div class="col-sm-4">
+                                <input asp-for="Village" type="text" class="form-control" id="Village" placeholder="" />
+                            </div>
+
+                            <label for="Town" class="col-sm-2 col-form-label" style="font-size: 13px">Town</label>
+                            <div class="col-sm-4">
+                                <input asp-for="Town" type="text" class="form-control" id="Town" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="PostOffice" class="col-sm-2 col-form-label" style="font-size: 13px">Post Office</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="PostOffice"
+                                       class="form-control"
+                                       id="PostOffice"
+                                       placeholder="" />
+                            </div>
+
+                            <label for="TehsilTaluka" class="col-sm-2 col-form-label" style="font-size: 13px">Tehsil Taluka</label>
+                            <div class="col-sm-4">
+                                <input asp-for="TehsilTaluka" type="text" class="form-control" id="TehsilTaluka" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ZipCode" class="col-sm-2 col-form-label" style="font-size: 13px">Zip Code</label>
+                            <div class="col-sm-4">
+                                <input asp-for="PostalZip" type="text" class="form-control" id="ZipCode" placeholder="" />
+                            </div>
+
+                            <label for="CommonwealthTerritory" class="col-sm-2 col-form-label" style="font-size: 13px">Commonwealth Territory</label>
+                            <div class="col-sm-4">
+                                <input asp-for="CommonwealthTerritory" type="text" class="form-control" id="CommonwealthTerritory" placeholder="" />
+                            </div>
+                        </div>
+                        @*
+                        <div class="form-group row">
+                        <label
+                        for="Latitude"
+                        class="col-sm-2 col-form-label"
+                        style="font-size: 13px"
+                        >Latitude</label
+                        >
+                        <div class="col-sm-4">
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="adLatitude"
+                        placeholder=""
+                        />
+                        </div>
+
+                        <label
+                        for="Longitude"
+                        class="col-sm-2 col-form-label"
+                        style="font-size: 13px"
+                        >Longitude</label
+                        >
+                        <div class="col-sm-4">
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="adLongitude"
+                        placeholder=""
+                        />
+                        </div>
+                        </div>
+                        *@
+                        <div class="form-group row">
+                            <label for="Other1" class="col-sm-2 col-form-label" style="font-size: 13px">Other 1</label>
+                            <div class="col-sm-10">
+                                <input asp-for="Other1" type="text" class="form-control" id="adOther1" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Other2" class="col-sm-2 col-form-label" style="font-size: 13px">Other 2</label>
+                            <div class="col-sm-10">
+                                <input asp-for="Other2" type="text" class="form-control" id="adOther2" placeholder="" />
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="border p-3">
+                        <br />
+                        <div class="form-group row">
+                            <label for="Remarks" class="col-sm-2 col-form-label" style="font-size: 13px">Remarks</label>
+
+                            @*  <div class="col-sm-10">
+                            <textarea asp-for="MemRemarks" class="form-control" id="adRemarks" rows="4"></textarea>
+                            </div>*@
+                        </div>
+                    </fieldset>
+                    <br />
+                    <input type="submit" class="btn btn-primary mr-2" value="Save" />
+                    <button class="btn btn-dark">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $("#RegYear").on("input", function () {
+        $('#FirNo').val('');
+        FirString = "";
+        FirString = "FIR#" + $('#FirNo').val();
+        FirString = FirString + "/" + $('#RegYear').val() + " ";
+        FirString = FirString + "U/S:" + $('#US').val() + " ";
+        FirString = FirString + "P.S:" + $('#PoliceStation').val() + " ,";
+        FirString = FirString + "District:" + $('#ProvinceDistrict').val() + " ";
+        $('#FirNo').val(FirString);
+        //  alert(FirString);
+    });
+    $("#ProvinceDistrict").change(function () {
+        $('#FirNo').val('');
+        FirString = "";
+        FirString = "FIR#" + $('#FirNo').val();
+        FirString = FirString + "/" + $('#RegYear').val() + " ";
+        FirString = FirString + "U/S:" + $('#US').val() + " ";
+        FirString = FirString + "P.S:" + $('#PoliceStation').val() + " ,";
+        FirString = FirString + "District:" + $('#ProvinceDistrict').val() + " ";
+        $('#FirNo').val(FirString);
+        //  alert(FirString);
+    });
+    $(document).ready(function () {
+        getAllpoliceStation();
+        $('#selectedcountry').change(function () {
+            if ($(this).val() == "" || $(this).val() != "Pakistan") {
+
+                $("#personprovince").empty();
+            }
+            else {
+                $('.spinner').css('display', 'block');
+                $.ajax({
+
+                    url: '/Jsonside/GetAllProvince',
+                    type: 'GET',
+                    data: { country: $(this).val() },
+                    contentType: 'application/json',
+                    success: function (response) {
+
+                        $("#personprovince").empty();
+                        $("#personprovince").append(`<option value="">Select Province</option>`);
+                        for (var i = 0; i < response.length; i++) {
+
+                            addOption(response[i].strProvince, response[i].strProvince, '#personprovince')
+
+
+                        }
+                        if (response.length == 0) {
+                            $('.spinner').css('display', 'none');
+                            $("#personprovince").empty();
+
+                        }
+                        else {
+                            $('.spinner').css('display', 'none');
+                        }
+
+
+                    }
+                });
+            }
+
+
+
+        });
+        $('#personprovince').change(function () {
+            if ($(this).val() == "") {
+
+                $("#ProvinceDistrict").empty();
+            }
+            else {
+
+                $('.spinner').css('display', 'block');
+                $.ajax({
+
+                    url: '/Jsonside/GetDistrictByProvince',
+                    type: 'GET',
+                    data: { Province: $(this).val() },
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log(response);
+                        $("#ProvinceDistrict").empty();
+                        $("#ProvinceDistrict").append(`<option value="">Select District</option>`);
+                        for (var i = 0; i < response.length; i++) {
+
+                            addOption(response[i].strDistrict, response[i].strDistrict, '#ProvinceDistrict')
+
+
+                        }
+                        if (response.length == 0) {
+                            $("#ProvinceDistrict").empty();
+                            $('.spinner').css('display', 'none');
+
+                        }
+                        else {
+                            $('.spinner').css('display', 'none');
+                        }
+
+
+                    }
+                });
+            }
+
+
+
+        });
+    });
+    function getAllpoliceStation() {
+        $.ajax({
+
+            url: '/Jsonside/GetAllPoliceStation',
+            type: 'GET',
+            data: {},
+            contentType: 'application/json',
+            success: function (response) {
+                console.log(response);
+                $("#PoliceStation").empty();
+                $("#PoliceStation").append(`<option value="">Select Police Station</option>`);
+
+                for (var i = 0; i < response.length; i++) {
+
+                    addOption(response[i].strPoliceStation, response[i].strPoliceStation, '#PoliceStation')
+
+
+                }
+                if (response.length == 0) {
+                    $("#PoliceStation").empty();
+                    $('.spinner').css('display', 'none');
+
+                }
+                else {
+                    $('.spinner').css('display', 'none');
+                }
+
+
+            }
+        });
+    }
+    function addOption(value, text, userid) {
+        $(userid).append(`<option value="${value}">${text}</option>`);
+    }
+</script>
+
+

@@ -59,7 +59,7 @@ namespace CTW_FIA.Controllers
             incident.AddNewIncident(inc);
             ViewBag.Allcountries = terrorist.AllCountry();
             ViewBag.Agencies = terrorist.AllAgencies();
-            return View();
+            return RedirectToAction("Record","AddRecord");
         }
     }
 }

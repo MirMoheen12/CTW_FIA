@@ -1,4 +1,5 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +17,18 @@ namespace CTW_FIA.Controllers
         {
             var data = communication.AllCommunication();
             return View(data);
+        }
+        [HttpGet]
+        public IActionResult AddCommunicaion()
+        {
+
+            return View(new Vehicle());
+        }
+        [HttpPost]
+        public IActionResult AddCommunicaion(Communications c)
+        {
+            var res = communication.AddNewcommunication(c);
+            return View(new Communications());
         }
     }
 }

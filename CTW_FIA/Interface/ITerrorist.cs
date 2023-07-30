@@ -15,6 +15,7 @@ namespace CTW_FIA.Interface
         public bool AddNewPerson(Person P, IFormFile? formFile);
         public QuickSearchGroups_sel_Result GetGroupsByStrurn(string Strurn);
         public List<PoliceStation> AllPliceStation();
+        public bool AddNewGroup(Group group);
 
     }
 }

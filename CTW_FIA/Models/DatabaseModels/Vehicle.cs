@@ -1,7 +1,11 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class Vehicle
     {
+        [Key]
         public string strURN { get; set; }
         public string VehicleType { get; set; }
         public string VehicleSubType { get; set; }
@@ -13,6 +17,7 @@
         public string DeviceLocation { get; set; }
         public string memRemarks { get; set; }
         public DateTime? dteSent { get; set; }
+        [NotMapped]
         public int intID { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }

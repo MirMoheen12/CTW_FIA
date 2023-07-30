@@ -1,0 +1,198 @@
+﻿@model CTW_FIA.Models.DatabaseModels.Vehicle
+@{
+    ViewData["Title"] = "AddNewVehicle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row no-gutters">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+
+
+                <form class="forms-sample" method="post" asp-action="AddNewVehicle" asp-controller="Vehicle">
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px">
+                            Vehicle Form
+                        </legend>
+
+
+                        <div class="form-group row">
+                            <label for="VehicleType"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Vehicle Type</label>
+                            <div class="col-sm-10">
+                                <select id="vehicleTypeid" asp-for="VehicleType" class="form-control">
+                                    <option value="" disabled selected>
+                                        Select the Vechicle Type
+                                    </option>
+                                    <option>Alto Car</option>
+                                    <option>Bicycle</option>
+                                    <option>Car</option>
+                                    <option>Carry van</option>
+                                    <option>Chinchi Rikshaw</option>
+                                    <option>Corolla</option>
+                                    <option>Donkey cart</option>
+                                    <option>Double Cab Pickup</option>
+                                    <option>FX-Car</option>
+                                    <option>Hiace Van</option>
+                                    <option>Honda CG-125</option>
+                                    <option>Jeep</option>
+                                    <option>Mini Hino Truck</option>
+                                    <option>Mini Truck</option>
+                                    <option>Motor Bike</option>
+                                    <option>Motor Car</option>
+                                    <option>Motor Cycle</option>
+                                    <option>Motor Cycle/Cycles</option>
+                                    <option>Motorbike</option>
+                                    <option>Motorcar</option>
+                                    <option>Motorcycle</option>
+                                    <option>Pajero</option>
+                                    <option>pick up</option>
+                                    <option>Pickup</option>
+                                    <option>Police Truck</option>
+                                    <option>Prado Jeep</option>
+                                    <option>Rickshaw</option>
+                                    <option>Suzuki</option>
+                                    <option>Suzuki Taxi</option>
+                                    <option>Taxi/Car Cab</option>
+                                    <option>Toyota</option>
+                                    <option>Toyota corolla</option>
+                                    <option>Taxi/Car Cab</option>
+                                    <option>Toyota Pick up</option>
+                                    <option>Toyota Vitz</option>
+                                    <option>Tractor Trolley</option>
+                                    <option>Truck</option>
+                                    <option>Van</option>
+                                    <option>Unknown</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="vehicleSubType"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Vehicle Sub Type
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" asp-for="VehicleSubType"
+                                       class="form-control"
+                                       id="vehicleSubType"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="makeModel"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Make Model
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       class="form-control"
+                                       id="makeModel"
+                                       asp-for="MakeModel"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="RegistrationNo"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Registration No.</label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       class="form-control"
+                                       id="RegistrationNo"
+                                       asp-for="RegistrationNo"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ChassesNo"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Chases No
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       class="form-control"
+                                       id="ChessesNo"
+                                       asp-for="ChasesNo"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Color"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Color
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                    asp-for="Color"
+                                       class="form-control"
+                                       id="VehicleColor"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Size"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Size</label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                    asp-for="size"
+                                       class="form-control"
+                                       id="VehicleSize"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="deviceLocation "
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Device Location
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                    asp-for="DeviceLocation"
+                                       class="form-control"
+                                       id="deviceLocation"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                    <fieldset class="border p-3">
+                        <br />
+                        <div class="form-group row">
+                            <label for="Remarks"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Remarks</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control"
+                                asp-for="memRemarks"
+                                          id="VehicleRemarks"
+                                          rows="4"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                    <button type="submit"
+                            class="btn btn-primary mr-2"
+                          >
+                        Save
+                    </button>
+                    <button class="btn btn-dark">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+

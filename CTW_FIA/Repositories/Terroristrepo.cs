@@ -248,5 +248,24 @@ namespace CTW_FIA.Repositories
             return list.FirstOrDefault();
 
         }
+
+        public bool AddNewGroup(Group group)
+        {
+            try
+            {
+                group.strURN = databaseRepo.ExecuteProc("GetGroupSTRURN", null).Rows[0][0].ToString();
+                group.CreatedOn = DateTime.Now;
+                group.textSearch = group.strURN + " " + group.GroupName + group.Country + " " + group.Province + " " + group.District;
+                dbContext.Group.Add(group);
+                dbContext.SaveChanges();
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
     }
 }
