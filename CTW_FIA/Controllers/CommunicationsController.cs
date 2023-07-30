@@ -9,9 +9,12 @@ namespace CTW_FIA.Controllers
     public class CommunicationsController : Controller
     {
         private readonly ICommunication communication;
-        public CommunicationsController(ICommunication communication)
+        private readonly ITerrorist terrorist;
+        public CommunicationsController(ICommunication communication, ITerrorist terrorist)
         {
             this.communication = communication;
+            this.terrorist = terrorist;
+
         }
         public IActionResult AllCommunications()
         {
@@ -21,12 +24,13 @@ namespace CTW_FIA.Controllers
         [HttpGet]
         public IActionResult AddCommunicaion()
         {
-
-            return View(new Vehicle());
+            ViewBag.Allcountries = terrorist.AllCountry();
+            return View(new Communications());
         }
         [HttpPost]
         public IActionResult AddCommunicaion(Communications c)
         {
+            ViewBag.Allcountries = terrorist.AllCountry();
             var res = communication.AddNewcommunication(c);
             return View(new Communications());
         }

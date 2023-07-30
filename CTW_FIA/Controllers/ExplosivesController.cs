@@ -1,4 +1,5 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +31,17 @@ namespace CTW_FIA.Controllers
         {
             var data = explosive.AllExplosive();
             return View(data);
+        }
+        [HttpGet]
+        public IActionResult AddExplosive()
+        {
+            return View(new Explosive());
+        }
+        [HttpPost]
+        public IActionResult AddExplosive(Explosive E)
+        {
+            explosive.AddExplosive(E);
+            return View(new Explosive());
         }
 
     }
