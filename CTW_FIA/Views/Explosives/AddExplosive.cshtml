@@ -119,7 +119,13 @@
                                    class="col-sm-2 col-form-label"
                                    style="font-size: 13px">Country of Origin</label>
                             <div class="col-sm-4">
-                                <select id="expcountryOrigin" asp-for="CountryOrigin" class="form-control"></select>
+                                <select id="expcountryOrigin" asp-for="CountryOrigin" class="form-control">
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option>@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+
+                                </select>
 
                             </div>
                             <label for="Country"
@@ -128,7 +134,13 @@
                                 Country of Recovery
                             </label>
                             <div class="col-sm-4">
-                                <select id="expcountryRecovered" asp-for="CountryRecovered" class="form-control"></select>
+                                <select id="expcountryRecovered" asp-for="CountryRecovered" class="form-control">
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option>@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+
+                                </select>
 
                             </div>
                         </div>
