@@ -38,7 +38,7 @@ namespace CTW_FIA.Models.DatabaseModels
         //public DbSet<BankAccount> BankAccounts { get; set; }
         //public DbSet<ContactNumber> ContactNumbers { get; set; }
         //public DbSet<CBRN> CBRNs { get; set; }
-        //public DbSet<Ordinance> Ordinances { get; set; }
+        public DbSet<Ordnance> Ordinance { get; set; }
         //public DbSet<Pipe> Pipes { get; set; }
         //public DbSet<Property> Properties { get; set; }
         public DbSet<CommonLinks> CommonLinks { get; set; }

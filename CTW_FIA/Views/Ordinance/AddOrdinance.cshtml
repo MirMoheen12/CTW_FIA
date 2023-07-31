@@ -1,6 +1,6 @@
 ﻿@model CTW_FIA.Models.DatabaseModels.Ordnance
 @{
-    Layout = null;
+    //Layout = null;
 }
 
 <div class="row no-gutters">
@@ -9,7 +9,7 @@
             <div class="card-body">
                 <h5 class="float-none w-auto p-2">Ordnance Form</h5>
 
-                <form class="forms-sample" method="post" asp-action="Ordinance" asp-controller="Records">
+                <form class="forms-sample" method="post" asp-action="AddOrdinance" asp-controller="Ordinance">
                     <fieldset class="border p-3">
                         <legend class="float-none w-auto p-2" style="font-size: 12px">
                             Ordnance Details
@@ -89,9 +89,9 @@
                             <div class="col-sm-4">
                                 <select  id="orCountryOrigin" asp-for="CountryOrigin" class="form-control"> 
                                 <option>Select country</option>
-                                  @for (var i = 0; i < ViewBag.country.Count; i++)
+                                 @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
                                     {
-                                        <option>@ViewBag.country[i].Country</option>
+                                        <option>@ViewBag.Allcountries[i].strCountry</option>
                                     }
                                     </select>
                             </div>
@@ -101,9 +101,9 @@
                             <div class="col-sm-4">
                                 <select id="orCountryRecovery" asp-for="CountryRecovered" class="form-control"> 
                                      <option>Select country</option>
-                                  @for (var i = 0; i < ViewBag.country.Count; i++)
+                                 @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
                                     {
-                                        <option>@ViewBag.country[i].Country</option>
+                                        <option>@ViewBag.Allcountries[i].strCountry</option>
                                     }
                                     </select>
 
@@ -261,234 +261,7 @@
             </div>
         </div>
     </div>
-    @*<div class="col-md-3 grid-margin stretch-card">
-    <div class="card">
-    <div class="card-body">
-    <h4 class="card-title">Matched Records</h4>
-    <p class="card-description">No data to display</p>
-    </div>
-    </div>
-    </div>*@
+
 </div>
 
-<script src="~/Content/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-    var vpage_name = "";
-    var vparam_x = "";
-    var vpage_status = "";
-    $(document).ready(function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const param_x = urlParams.get('id');
-        const page_status = urlParams.get('pageStatus');
-        const page_name = urlParams.get('pageName');
-        vpage_name = page_name;
-        vparam_x = param_x;
-        vpage_status = page_status;
-   
-        if (page_status == "u" && param_x != "" && page_name == "Ordinancepreview") {
-          //  alert(page_status + " " + param_x + " " + page_name);
-            ViewOrdnanceById(param_x);
-            ViewLinks(param_x);
-        }
-    });
-    function OrdnanceClick() {
-        if (vpage_status == "u" && vparam_x != "" && vpage_name == "Ordinancepreview") {
-            OrdnanceUpdation();
-        }
-        else {
-            OrdnancePost();
-        }
 
-    }
-    function OrdnancePost() {
-        var orCategory = $("#orCategory").val();
-        var orType = $("#orType").val();
-        var orOther = $("#orOther").val();
-        var orManufacturer = $("#orManufacturer").val();
-        var orBrandName = $("#orBrandName").val();
-        var orCountryOrigin = $("#orCountryOrigin").val();
-        var orCountryRecovery = $("#orCountryRecovery").val();
-        var orExplosiveWeight = $("#orExplosiveWeight").val();
-        var orMarkings = $("#orMarkings").val();
-        var orBatchCode = $("#orBatchCode").val();
-        var orSerialNumber = $("#orSerialNumber").val();
-        var orColour = $("#orColour").val();
-        var orCalibre = $("#orCalibre").val();
-        var headStamp = $("#headStamp").val();
-        var orLength = $("#orLength").val();
-        var orWidth = $("#orWidth").val();
-        var orDepth = $("#orDepth").val();
-        var orDiameter = $("#orDiameter").val();
-        var orNumberRecovered = $("#orNumberRecovered").val();
-        var orRemarks = $("#orRemarks").val();
-    
-        var headStampstatus=false;
-        if(headStamp =="on")
-        {
-        headStampstatus= true;
-        }
-        var settings = {
-            "url": "/api/Ordinances",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-                "Content-Type": "application/json"
-            },
-            "data": JSON.stringify({
-                "intID": 0,
-                "strURN": "string",
-                "category": orCategory,
-                "type": orType,
-                "other": orOther,
-                "manufacturer": orManufacturer,
-                "brandName": orBrandName,
-                "countryRecovered": orCountryRecovery,
-                "countryOrigin": orCountryOrigin,
-                "explosiveWeight": orExplosiveWeight,
-                "memMarkings": orMarkings,
-                "batchCode": orBatchCode,
-                "serialNumbers": orSerialNumber,
-                "colour": orColour,
-                "calibre": orCalibre,
-                "headStamp": headStampstatus,
-                "length": orLength,
-                "width": orWidth,
-                "depth": orDepth,
-                "diameter": orDiameter,
-                "numberRecovered": orNumberRecovered,
-                "remarks": orRemarks,
-                "strCreatedBy": "Admin",
-                "dateCreated": "2022-04-03T19:49:46.940Z",
-                "dateLastModified": "2022-04-03T19:49:46.940Z",
-                "strLastModifiedBy": "Admin"
-
-            }),
-        };
-
-        $.ajax(settings).done(function(response) {
-            alert("Ordinance has been added successfully");
-            if (confirm('Do you want to add Media File ?')) {
-                console.log("Media File.");
-                localStorage.setItem("strURN", response.strURN);
-                localStorage.setItem("tableName", "Ordinance");
-                window.location.href = "/Admin/Records/AddMedia";
-            }
-            else {
-                  localStorage.setItem("strURN", response.strURN);
-                localStorage.setItem("tableName", "Ordinance");
-                var id = response.strURN;
-               // window.location.href = "/Admin/Records/Ordinancepreview?id=" + id;
-                window.location.href = "/Admin/Records/PreviewRecord?controller=Ordinances&id="+id;
-         
-            }
-
-        });
-
-    }
-    function ViewOrdnanceById(x) {
-       
-        var url = "/api/Ordinances/GetOrdinanceById?id=" +x;
-        //alert(url)
-        $.ajax({
-            type: "GET",
-            url: url,
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            success: function(response) {
-                //alert(JSON.stringify(response));
-               // alert((response.strURN.toString()));
-                $("#orCategory").val(response.category);
-                
-                  $("#orType").val(response.type);
-                $("#orOther").val(response.other);
-                $("#orMarkings").val(response.manufacturer);
-                $("#orBrandName").val(response.brandName);
-                $("#orCountryRecovery").val(response.countryRecovered);
-                $("#orExplosiveWeight").val(response.explosiveWeight);
-                $("#orMarkings").val(response.memMarkings);
-                $("#orBatchCode").val(response.batchCode);
-                $("#orSerialNumber").val(response.serialNumbers);
-                $("#orColour").val(response.colour);
-                $("#orCalibre").val(response.calibre);
-                $("#orCountryOrigin").val(response.countryOrigin);
-               
-               $("#headStamp").val(response.headStamp);
-                $("#orLength").val(response.length);
-                $("#orWidth").val(response.width);
-                $("#orDepth").val(response.depth);
-                $("#orDiameter").val(response.diameter);
-                $("#orNumberRecovered").val(response.numberRecovered);
-                $("#orRemarks").val(response.memRemarks);
-            }, 
-            error: function(response) {
-               // alert("error");
-            }
-        });
-    }
-    function OrdinanceUpdation() {
-        var strid = vparam_x;
-        var Category = $("#category").val();
-        var Other = $("#other").val();
-        var Manufacturer = $("#manufacturer").val();
-        var BrandName = $("#brandName").val();
-        var CountryRecovered = $("#countryRecovered").val();
-        var ExplosiveWeight = $("#vexplosiveWeight").val();
-        var memMarkings = $("#memMarkings").val();
-        var BatchCode = $("#batchCode").val();
-        var SerialNumbers = $("#serialNumbers").val();
-        var Colour = $("#colour").val();
-        var Calibre = $("#calibre").val();
-        var HeadStamp = $("#headStamp").val();
-        var Length = $("#length").val();
-        var Depth = $("#depth").val();
-        var Diameter = $("#diameter").val();
-        var NumberRecovered = $("#numberRecovered").val();
-        var proRemarks = $("#proRemarks").val();
-         var headStampstatus=false;
-        if(headStamp =="on")
-        {
-        headStampstatus= true;
-        }
-        var settings = {
-            "url": "/api/Ordinances/" + strid,
-            "method": "PUT",
-            "timeout": 0,
-            "headers": {
-                "Content-Type": "application/json"
-            },
-            "data": JSON.stringify({
-                "intID": 0,
-                "strURN": strid,
-                "Category": category,
-                "Other": other,
-                "Manufacturer": manufacturer,
-                "BrandName": brandName,
-                "CountryRecovered": countryRecovered,
-                "ExplosiveWeight": explosiveWeight,
-                "memMarkings": memMarkings,
-                "BatchCode": batchCode,
-                "SerialNumbers": serialNumbers,
-                "Colour": colour,
-                "Calibre": calibre,
-                "HeadStamp": headStampstatus,
-                "Length": length,
-                "Depth": depth,
-                "Diameter": diameter,
-                "NumberRecovered": numberRecovered,
-                "memRemarks": proRemarks,
-                "strCreatedBy": "string",
-                "dateCreated": "2022-04-05T06:16:48.067Z",
-                "dateLastModified": "2022-04-05T06:16:48.067Z",
-                "strLastModifiedBy": "string",
-            }),
-        };
-        $.ajax(settings).done(function(response) {
-            alert("Ordinance has been Updated successfully");
-           // window.location.href = "/Admin/Records/Ordinancepreview?id=" + strid;
-             window.location.href = "/Admin/Records/PreviewRecord?controller=Ordinances&id="+strid;
-         
-        });
-    }
-  
-
-</script>
