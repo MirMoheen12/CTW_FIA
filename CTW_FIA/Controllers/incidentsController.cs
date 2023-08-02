@@ -46,7 +46,7 @@ namespace CTW_FIA.Controllers
         public ActionResult NewIncident()
         {
 
-            ViewBag.Allcountries = terrorist.AllCountry();
+            //ViewBag.Allcountries = terrorist.AllCountry();
             return View();
         }
     }
