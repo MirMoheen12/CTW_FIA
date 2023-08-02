@@ -1,4 +1,5 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +14,11 @@ namespace CTW_FIA.Controllers
         private readonly IDashboard dashboard;
         private readonly IIncident incident;
         private readonly ICommonlinks commonlinks;
-        public incidentsController(IDashboard dashboard, IIncident incident, IRecord record, ICommonlinks commonlinks)
+        private readonly ITerrorist terrorist;
+        public incidentsController(ITerrorist terrorist, IDashboard dashboard, IIncident incident, IRecord record, ICommonlinks commonlinks)
         {
             this.dashboard = dashboard;
+            this.terrorist=terrorist;
             this.incident = incident;
             this.record = record;
             this.commonlinks = commonlinks;
@@ -42,12 +45,22 @@ namespace CTW_FIA.Controllers
             var data = (PreviewIncidentByStrUrn)(incident.getIncidentID(strurn));
             return View(data);
         }
-
+        [HttpGet]
         public ActionResult NewIncident()
         {
 
             //ViewBag.Allcountries = terrorist.AllCountry();
+            ViewBag.Allcountries = terrorist.AllCountry();
+            ViewBag.Agencies = terrorist.AllAgencies();
             return View();
+        }
+        [HttpPost]
+        public ActionResult NewIncident(Incident inc)
+        {
+            incident.AddNewIncident(inc);
+            ViewBag.Allcountries = terrorist.AllCountry();
+            ViewBag.Agencies = terrorist.AllAgencies();
+            return RedirectToAction("AddRecord", "Record", new { pagname="Incidents", pagestatus="Updated" });
         }
     }
 }

@@ -111,6 +111,18 @@ namespace CTW_FIA.Repositories
             return (data);
         }
 
+        public List<PoliceStation> AllPliceStation()
+        {
+            var dbres = databaseRepo.ExecuteProc("AllPolicestation", null);
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(PoliceStation));
+            var list = new List<PoliceStation>();
+            foreach (var item in dt)
+            {
+                list.Add((PoliceStation)item);
+            }
+            return (list);
+        }
+
         public List<CountryList> AllCountry()
         {
             var dbres = databaseRepo.ExecuteProc("getAllCountries",null);
@@ -234,6 +246,25 @@ namespace CTW_FIA.Repositories
                 list.Add((QuickSearchGroups_sel_Result)item);
             }
             return list.FirstOrDefault();
+
+        }
+
+        public bool AddNewGroup(Group group)
+        {
+            try
+            {
+                group.strURN = databaseRepo.ExecuteProc("GetGroupSTRURN", null).Rows[0][0].ToString();
+                group.CreatedOn = DateTime.Now;
+                group.textSearch = group.strURN + " " + group.GroupName + group.Country + " " + group.Province + " " + group.District;
+                dbContext.Group.Add(group);
+                dbContext.SaveChanges();
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
 
         }
     }

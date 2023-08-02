@@ -6,5 +6,6 @@ namespace CTW_FIA.Interface
     public interface IExplosive
     {
         public List<Explosives_sel_Result> AllExplosive();
+        public bool AddExplosive(Explosive E);
     }
 }

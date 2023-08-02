@@ -1,4 +1,5 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
 using System.Configuration;
 
@@ -7,13 +8,35 @@ namespace CTW_FIA.Repositories
     public class VehicleRepo : IVehicle
     {
         private readonly IDatabaseRepo databaseRepo;
-        private readonly IConfiguration configuration;
-        public VehicleRepo(IDatabaseRepo databaseRepo, IConfiguration configuration)
+        private readonly AppDbContext appDbContext;
+      
+        public VehicleRepo(IDatabaseRepo databaseRepo, AppDbContext appDbContext)
         {
+            this.appDbContext = appDbContext;
             this.databaseRepo = databaseRepo;
-            this.configuration = configuration;
+          
 
         }
+
+        public bool AddNewVehicle(Vehicle vehicle)
+        {
+            try
+            {
+                vehicle.strURN = databaseRepo.ExecuteProc("GetVehicleSTRURN", null).Rows[0][0].ToString();
+                vehicle.CreatedOn = DateTime.Now;
+                vehicle.textSearch = vehicle.strURN + "  " + vehicle.VehicleType + "  " + vehicle.VehicleSubType + "  " + vehicle.Color + " " + vehicle.RegistrationNo;
+                appDbContext.Vehicle.Add(vehicle);
+                appDbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+               
+            }
+
+        }
+
         public List<Vehicles_sel_Result> AllVehicle()
         {
           

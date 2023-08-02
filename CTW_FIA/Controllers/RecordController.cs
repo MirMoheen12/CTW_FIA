@@ -1,9 +1,7 @@
 ﻿using CTW_FIA.Interface;
-using CTW_FIA.Models;
 using CTW_FIA.Models.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace CTW_FIA.Controllers
 {
@@ -17,8 +15,10 @@ namespace CTW_FIA.Controllers
         }
 
 
-        public IActionResult AddRecord()
+        public IActionResult AddRecord(string pagname="All",string pagestatus="New")
         {
+            ViewBag.pagename = pagname;
+            ViewBag.pagstatus = pagestatus;
             return View();
         }
 

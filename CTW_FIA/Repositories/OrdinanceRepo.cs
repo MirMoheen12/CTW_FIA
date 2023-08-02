@@ -1,4 +1,5 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
 
 namespace CTW_FIA.Repositories
@@ -7,12 +8,33 @@ namespace CTW_FIA.Repositories
     {
         private readonly IConfiguration configuration;
         private readonly IDatabaseRepo databaseRepo;
+        private readonly AppDbContext appDbContext;
 
-        public OrdinanceRepo(IConfiguration configuration, IDatabaseRepo databaseRepo)
+        public OrdinanceRepo(IConfiguration configuration, IDatabaseRepo databaseRepo, AppDbContext appDbContext)
         {
             this.configuration = configuration;
             this.databaseRepo = databaseRepo;
+            this.appDbContext = appDbContext;
         }
+
+        public bool AddNewOrdinance(Ordnance ordinance)
+        {
+            try
+            {
+                ordinance.strURN = databaseRepo.ExecuteProc("GetORDNanceSTRURN", null).Rows[0][0].ToString();
+                ordinance.textSearch = ordinance.strURN + "  " + ordinance.BrandName;
+                ordinance.CreatedOn = DateTime.Now;
+                appDbContext.Ordinance.Add(ordinance);
+                appDbContext.SaveChanges();
+                return true;
+            }catch(Exception e)
+            {
+                return false;
+            }
+            
+             
+        }
+
         public List<Ordinance_sel_Result> AllOrdinance()
         {
             
@@ -25,5 +47,8 @@ namespace CTW_FIA.Repositories
             }
             return list;
         }
+
+
+
     }
 }

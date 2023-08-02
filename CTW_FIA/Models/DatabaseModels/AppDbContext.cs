@@ -14,17 +14,17 @@ namespace CTW_FIA.Models.DatabaseModels
         }
 
 
-
+       
         public DbSet<MacAddress> MacAddress { get; set; }
         public DbSet<BaseLogs> BaseLogs { get; set; }
         public DbSet<IpLogs> IpLogs { get; set; }
         public DbSet<Address> Address { get; set; }
         public DbSet<Communications> Communications { get; set; }
         //public DbSet<Evidence> Evidence { get; set; }
-        //public DbSet<Explosive> Explosives { get; set; }
+        public DbSet<Explosive> Explosive { get; set; }
         //public DbSet<Equipment> Equipment { get; set; }
         //public DbSet<Firearms> Firearms { get; set; }
-        //public DbSet<Incident> Incidents { get; set; }
+        public DbSet<Incident> Incident { get; set; }
         //public DbSet<PersonAddress> PersonAddresses { get; set; }
         public DbSet<SocialMedia> SocialMedia { get; set; }
         public DbSet<MediaFile> MediaFile { get; set; }
@@ -32,26 +32,26 @@ namespace CTW_FIA.Models.DatabaseModels
         //public DbSet<Chemical> Chemicals { get; set; }
         //public DbSet<Components> Components { get; set; }
         //public DbSet<InitiationSystem> InitiationSystems { get; set; }
-        //public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Vehicle> Vehicle { get; set; }
         public DbSet<PowerSource> PowerSource { get; set; }
         public DbSet<Person> Person { get; set; }
         //public DbSet<BankAccount> BankAccounts { get; set; }
         //public DbSet<ContactNumber> ContactNumbers { get; set; }
         //public DbSet<CBRN> CBRNs { get; set; }
-        //public DbSet<Ordinance> Ordinances { get; set; }
+        public DbSet<Ordnance> Ordinance { get; set; }
         //public DbSet<Pipe> Pipes { get; set; }
         //public DbSet<Property> Properties { get; set; }
         public DbSet<CommonLinks> CommonLinks { get; set; }
         public DbSet<ReportingAgency> ReportingAgency { get; set; }
-        public DbSet<Group> Groups { get; set; }
+        public DbSet<Group> Group { get; set; }
         public DbSet<tblPassport> tblPassport { get; set; }
-        //public DbSet<Detonator> Detonators { get; set; }
+        public DbSet<Detonator> Detonator { get; set; }
         //public DbSet<Ordnance> Ordnances { get; set; }
         //public DbSet<ProvinceList> ProvinceLists { get; set; }
         //public DbSet<DistrictList> DistrictLists { get; set; }
         //public DbSet<CountryList> CountryLists { get; set; }
         //public DbSet<CityList> CityLists { get; set; }
-        //public DbSet<PoliceStation> PoliceStations { get; set; }
+        
         public DbSet<DatabaseList> DatabaseList { get; set; }
         //public DbSet<DistrictDatas> DistrictDatas { get; set; }
         //public DbSet<DistrictPS> DistrictPS { get; set; }
