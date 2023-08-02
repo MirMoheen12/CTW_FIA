@@ -37,7 +37,7 @@ namespace CTW_FIA.Controllers
             var Linkres = commonlinks.getAlllinksCount(STRURN);
             ViewBag.link = Linkres;
             ///QuickSearchPerson_sel_Result
-            var data = terrorist.GetPeronByID(STRURN);
+            var data = terrorist.GetGroupsByStrurn(STRURN);
             return View(data);
         }
         [HttpGet]

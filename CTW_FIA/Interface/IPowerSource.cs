@@ -8,5 +8,7 @@ namespace CTW_FIA.Interface
         public List<PowerSource_sel_Result> AllPowerSource();
         public bool AddPowerSource(PowerSource powerSource, String WhoCreatedName);
         public PowerSource GetpowerSourceById(string id);
+
+        public QuickSearchPowerSource_sel_Result GetGroupsByStrurn(String STRURN);
     }
 }
