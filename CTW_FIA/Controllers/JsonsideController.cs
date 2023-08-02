@@ -11,11 +11,13 @@ namespace CTW_FIA.Controllers
         private readonly IDashboard dashboard;
         private readonly ITerrorist terrorist;
         private readonly AppDbContext dbContext;
-        public JsonsideController(IDashboard dashboard, ITerrorist terrorist, AppDbContext dbContext)
+        private readonly IJson jsn;
+        public JsonsideController(IDashboard dashboard, ITerrorist terrorist, AppDbContext dbContext, IJson jsn)
         {
             this.dashboard = dashboard;
             this.terrorist = terrorist;
-            dbContext =dbContext;
+            dbContext = dbContext;
+            this.jsn = jsn;
         }
         public IActionResult Index()
         {
@@ -60,6 +62,13 @@ namespace CTW_FIA.Controllers
         {
             //var data = dashboard.getCtwdashboardsIncidentwise().Where(X => X.tablename == "PW").ToList(); 
             var data = terrorist.AllPliceStation();
+            return Json(data);
+        }
+        [HttpGet]
+        public JsonResult GetAllReportingAgency()
+        {
+            //var data = dashboard.getCtwdashboardsIncidentwise().Where(X => X.tablename == "PW").ToList(); 
+            var data = jsn.GetReportingAgencies();
             return Json(data);
         }
 

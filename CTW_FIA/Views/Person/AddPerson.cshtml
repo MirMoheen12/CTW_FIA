@@ -52,7 +52,7 @@
                         <div class="form-group row">
                             <label for="personcategory" class="col-sm-2 col-form-label" style="font-size: 13px;">Category</label>
                             <div class="col-sm-4">
-                                <select asp-for="Category" id="personcategory" class="form-control">
+                                <select asp-for="Category" required id="personcategory" class="form-control">
                                     <option>Select</option>
                                     <option>ACCUSED/SUSPECT</option>
                                     <option>FRIEND / RELATIVE</option>
@@ -63,7 +63,7 @@
                             </div>
                             <label for="Personcurrentstatus" class="col-sm-2 col-form-label" style="font-size: 13px;">Current Status</label>
                             <div class="col-sm-4">
-                                <select asp-for="CurrentStatus" id="Personcurrentstatus" class="form-control">
+                                <select asp-for="CurrentStatus" required id="Personcurrentstatus" class="form-control">
                                     <option>Select</option>
                                     <option>Arrested</option>
                                     <option>On Bail</option>
@@ -88,14 +88,14 @@
                         <div class="form-group row">
                             <label for="Personpreportingagency" class="col-sm-2 col-form-label" style="font-size: 13px;">Reporting Agency</label>
                             <div class="col-sm-4">
-                                <select asp-for="ReportingAgency" id="Personpreportingagency" class="form-control">
+                                <select asp-for="ReportingAgency" required id="Personpreportingagency" class="form-control">
                                 </select>
                             </div>
-                            <div class="col-sm-2">
+                   @*         <div class="col-sm-2">
 
                                 <button id="new-item" type="button" class="btn btn-primary mr-2" style="font-size: 11px" data-toggle="modal" data-target="#myModal">Add</button>
 
-                            </div>
+                            </div>*@
                             <div class="col-sm-4">
                                 <div class="custom-control custom-switch customSwitch1" style="display:none">
                                     <input type="checkbox" class="custom-control-input" id="customSwitch1">
@@ -107,7 +107,7 @@
                         <div class="form-group row">
                             <label for="Personaccusationstatus" class="col-sm-2 col-form-label" style="font-size: 13px;">Current Accusation Status</label>
                             <div class="col-sm-4">
-                                <select asp-for="AccusationStatus" id="Personaccusationstatus" class="form-control" onchange="addPersonaccusation()">
+                                <select asp-for="AccusationStatus" required id="Personaccusationstatus" class="form-control" onchange="addPersonaccusation()">
                                     <option>Select</option>
                                     <option value="Red Book">Red Book</option>
                                     <option>4th Schedule</option>
@@ -259,7 +259,7 @@
                             <label for="pcountry" class="col-sm-2 col-form-label" style="font-size: 13px;">Country</label>
 
                             <div class="col-sm-4">
-                               <select asp-for="Country" id="selectedcountry" class="form-control">
+                                <select asp-for="Country" id="selectedcountry" required class="form-control">
                                     <option>Select Country</option>
                                     @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
                                     {
@@ -301,7 +301,7 @@
 
                             <label for="PostalCode" class="col-sm-2 col-form-label" style="font-size: 13px;">Police Station</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" asp-for="PoliceAstation" placeholder="">
+                                <input type="text" class="form-control" required asp-for="PoliceAstation" placeholder="">
 
                             </div>
                         </div>
@@ -859,7 +859,35 @@
 </form>
 
 <script>
+    
         $(document).ready(function () {
+        $.ajax({
+
+            url: '/Jsonside/GetAllReportingAgency',
+            type: 'GET',
+            data: { },
+            contentType: 'application/json',
+            success: function (response) {
+                console.log(response)
+                $("#Personpreportingagency").empty();
+                $("#Personpreportingagency").append(`<option value="">Select Reporting Agency</option>`);
+                for (var i = 0; i < response.length; i++) {
+
+                    addOption(response[i].reportingAgencyTitle, response[i].reportingAgencyTitle, '#Personpreportingagency')
+
+
+                }
+                if (response.length == 0) {
+                    $("#personprovince").empty();
+
+                }
+                else {
+                    $('.spinner').css('display', 'none');
+                }
+
+
+            }
+        });
         $('#selectedcountry').change(function () {
             if ($(this).val() == ""||$(this).val() != "Pakistan") {
             
