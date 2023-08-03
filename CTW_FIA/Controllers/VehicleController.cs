@@ -9,9 +9,11 @@ namespace CTW_FIA.Controllers
     public class VehicleController : Controller
     {
         private readonly IVehicle vehicle;
-        public VehicleController(IVehicle vehicle)
+        private readonly ICommonlinks commonlinks;
+        public VehicleController(ICommonlinks commonlinks,IVehicle vehicle)
         {
             this.vehicle = vehicle;
+            this.commonlinks = commonlinks;
         }
         public IActionResult Index()
         {
@@ -33,6 +35,15 @@ namespace CTW_FIA.Controllers
         {
             var res=vehicle.AddNewVehicle(veh);
             return View(new Vehicle());
+        }
+
+        public IActionResult VehicleDetails(string STRURN)
+        {
+            var Linkres = commonlinks.getAlllinksCount(STRURN);
+            ViewBag.link = Linkres;
+            ///QuickSearchPerson_sel_Result
+            var data = vehicle.GetGroupsByStrurn(STRURN);
+            return View(data);
         }
     }
 }
