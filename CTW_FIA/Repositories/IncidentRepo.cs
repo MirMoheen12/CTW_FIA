@@ -39,15 +39,15 @@ namespace CTW_FIA.Repositories
 
         }
 
-        public object getIncidentID(string STRURN)
+        public PreviewIncidentByStrUrn getIncidentID(string STRURN)
         {
         
             var dat = new {
                 strURN= STRURN
             };
             var dbres = databaseRepo.ExecuteProc("LinkedRecordIncident_sel", databaseRepo.returnSppram(dat));
-            return (databaseRepo.ConverttoObject(dbres, typeof(PreviewIncidentByStrUrn)).FirstOrDefault());
-        
+            var rec = databaseRepo.ConverttoObject(dbres, typeof(PreviewIncidentByStrUrn)).Cast<PreviewIncidentByStrUrn>().ToList();
+            return rec.FirstOrDefault();        
         }
 
         public List<PreviewIncident> getIncidentProvincewiese(string Province)

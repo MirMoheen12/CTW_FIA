@@ -13,14 +13,16 @@ namespace CTW_FIA.Controllers
     {
         private readonly IRecord record;
         private readonly ITerrorist terrorist;
+        private readonly IIncident incident;
         private readonly ICommonlinks commonlinks;
         private readonly ConverterModel converterModel;
-        public RecordController(IRecord record, ICommonlinks commonlinks, ConverterModel converterModel,ITerrorist terrorist) { 
+        public RecordController(IRecord record, ICommonlinks commonlinks, ConverterModel converterModel,ITerrorist terrorist,IIncident incident) { 
         
             this.record = record;
             this.commonlinks = commonlinks;
             this.terrorist = terrorist;
             this.converterModel = converterModel;
+            this.incident = incident;
         }
 
 
@@ -37,13 +39,21 @@ namespace CTW_FIA.Controllers
             {
                 case "Person":
                     {
+                        
                         var dat=terrorist.GetPeronByID(STRUN);
+                        lis = converterModel.getModel(dat);
+                        break;
+                    }
+                case "Incident":
+                    {
+                        var dat = incident.getIncidentID(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 default:
                     break;
             }
+            ViewData["Title"] = modelname;
             ViewBag.link = commonlinks.getAlllinksCount(STRUN);
         
             return View(lis);
