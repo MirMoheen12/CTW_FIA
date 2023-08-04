@@ -1,0 +1,114 @@
+﻿@model IEnumerable<CTW_FIA.Models.LocalModels.DisplayModel>
+@{
+    ViewData["Title"] = "Terrorist Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .table-responsive {
+        max-height: 650px;
+    }
+</style>
+<style>
+    .table-responsive {
+        max-height: 650px;
+    }
+</style>
+
+
+<div class="row no-gutters">
+    <div class="col-md-9 grid-margin stretch-card">
+        <div class="card ">
+
+            <div id="exptopdf" class="pdfpage" style="background: #FFFFFF;">
+
+                <div class="d-flex p-2 bg-gradient-primary justify-content-center"><b>Terrorist Details</b></div>
+                <br />
+                <table id="SearchGenericTable" class="table table-bordered text-dark">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="SearchIncTbody">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.PropertName
+                                </td>
+
+                                <td>
+                                    @item.PropertValue
+                                </td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+    @Html.Partial("DisplayLinksRecord")
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+
+<!-- Include DataTables Buttons CSS and JavaScript -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+
+<!-- Include DataTables Responsive CSS and JavaScript -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script>
+    // Initialize DataTable
+    $(document).ready(function () {
+        $('#SearchGenericTable').DataTable({
+            paging: false, // Enable pagination
+            searching: true, // Enable global search
+            ordering: false, // Enable column sorting
+            info: false, // Display information about the table (e.g., "Showing x to y of z entries")
+            lengthChange: true, // Allow users to change the number of rows per page
+            dom: 'Bfrtip', // Enable DataTables Buttons extension
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'], // Available export formats
+            responsive: true, // Enable responsive design for different screen sizes
+            columnDefs: [
+                { responsivePriority: 1, targets: 0 }, // Example: Define responsive priorities for columns
+            ],
+            language: {
+                url: '' // Load language file
+            }
+        });
+    });
+</script>

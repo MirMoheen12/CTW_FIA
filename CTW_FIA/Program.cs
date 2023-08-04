@@ -8,6 +8,7 @@ using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Interface;
 using CTW_FIA.Repositories;
 using System.Configuration;
+using CTW_FIA.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(item => item.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -58,6 +59,7 @@ builder.Services.AddTransient<ICommonlinks, CommonlinksRepo>();
 builder.Services.AddTransient<IAddress, AddressRepo>();
 builder.Services.AddTransient<IMediaFiles, MediaRepository>();
 builder.Services.AddTransient<IJson, JsonRepo>();
+builder.Services.AddTransient<ConverterModel>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

@@ -4,6 +4,7 @@ using CTW_FIA.Models.Dto;
 using CTW_FIA.Models.LocalModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
@@ -34,40 +35,9 @@ namespace CTW_FIA.Controllers
         }
         public IActionResult PersonDetails(string STRURN)
         {
-            List<DisplayModel> dm=new List<DisplayModel>();
-            var Linkres = _commonLinks.getAlllinksCount(STRURN);
-            ViewBag.link = Linkres;
-            ///QuickSearchPerson_sel_Result
             var data=terrorist.GetPeronByID(STRURN);
-            Type type = data.GetType();
-            PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            foreach (PropertyInfo property in properties)
-            {
-                DisplayModel model = new DisplayModel();
-                model.PropertName = GetDisplayName(data,property.Name);
-              
-                model.PropertValue = Convert.ToString(property.GetValue(data));
-                dm.Add(model);  
-               
-            }
-            return View(dm);
+            return RedirectToAction("RecordDetails", "Record", new { STRUN=STRURN, modelname= "Person" });
         }
-        string GetDisplayName(object obj, string propertyName)
-        {
-            Type type = obj.GetType();
-            var propertyInfo = type.GetProperty(propertyName);
-
-            if (propertyInfo != null)
-            {
-                var displayAttribute = (DisplayAttribute)Attribute.GetCustomAttribute(propertyInfo, typeof(DisplayAttribute));
-
-                if (displayAttribute != null)
-                {
-                    return displayAttribute.Name;
-                }
-            }
-
-            return null;
-        }
+      
     }
 }
