@@ -1,8 +1,13 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
+using CTW_FIA.Models.LocalModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
+
 namespace CTW_FIA.Controllers
 {
     [AllowAnonymous]
@@ -30,11 +35,9 @@ namespace CTW_FIA.Controllers
         }
         public IActionResult PersonDetails(string STRURN)
         {
-            var Linkres = _commonLinks.getAlllinksCount(STRURN);
-            ViewBag.link = Linkres;
-            ///QuickSearchPerson_sel_Result
             var data=terrorist.GetPeronByID(STRURN);
-            return View(data);
+            return RedirectToAction("RecordDetails", "Record", new { STRUN=STRURN, modelname= "Person" });
         }
+      
     }
 }
