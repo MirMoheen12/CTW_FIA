@@ -42,5 +42,10 @@ namespace CTW_FIA.Repositories
             }
             return list.FirstOrDefault();
         }
+
+        QuickSearchEquipment_sel_Result IEquipments.GetGroupsByStrurn(string Strurn)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

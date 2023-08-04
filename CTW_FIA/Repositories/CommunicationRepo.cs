@@ -46,6 +46,12 @@ namespace CTW_FIA.Repositories
             return list;
 
         }
+
+        public QuickSearchCommunications_sel_Result communicationDetails(string Strurn)
+        {
+            throw new NotImplementedException();
+        }
+
         public QuickSearchCommunications_sel_Result GetGroupsByStrurn(string Strurn)
         {
             var dat = new

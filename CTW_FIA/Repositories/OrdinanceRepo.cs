@@ -64,5 +64,9 @@ namespace CTW_FIA.Repositories
             return list.FirstOrDefault();
         }
 
+        public QuickSearchOrdinance_sel_Result OrdinanceDetails(string Strurn)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
