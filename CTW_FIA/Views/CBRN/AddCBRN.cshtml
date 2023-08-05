@@ -1,0 +1,128 @@
+﻿@model CTW_FIA.Models.DatabaseModels.CBRN
+@{
+    Layout = null;
+}
+
+<div class="row no-gutters">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h5>CBRN Form</h5>
+
+                <form class="forms-sample" method="post" asp-action="AddCBRN" asp-controller="CBRN">
+
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px">
+                            CBRN Details
+                        </legend>
+                        <div class="form-group row">
+                            <label for="CBRNcategory" class="col-sm-2 col-form-label" style="font-size: 13px">Category</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="CBRNcategory" name="strCategory">
+                                    <option value="">Select</option>
+                                    <option>Chemical</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <label for="CBRNType" class="col-sm-2 col-form-label" style="font-size: 13px">Type</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="CBRNType" name="strType">
+                                    <option value="">Select</option>
+                                    <option>Gas</option>
+                                    <option>Solid</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="CBRNOther" class="col-sm-2 col-form-label" style="font-size: 13px">Other</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="CBRNOther" name="strOther" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="CBRNManufacturer" class="col-sm-2 col-form-label" style="font-size: 13px">Manufacturer</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="CBRNManufacturer" name="strManufacturer" placeholder="" />
+                            </div>
+                            <label for="CBRNName" class="col-sm-2 col-form-label" style="font-size: 13px">Name</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="CBRNName" name="strName" placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="CBRNCountryOri" class="col-sm-2 col-form-label" style="font-size: 13px">Country of Origin</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="CBRNCountryOri" name="strCountryOrigin"></select>
+                            </div>
+                            <label for="CBRNCountryRec" class="col-sm-2 col-form-label" style="font-size: 13px">Country of Recovery</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="CBRNCountryRec" name="strCountryRecovered"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="CBRNQuantity" class="col-sm-2 col-form-label" style="font-size: 13px">Quantity</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="CBRNQuantity" name="intQuantity" placeholder="" />
+                            </div>
+                            <label for="CBRNQuanMeasurement" class="col-sm-2 col-form-label" style="font-size: 13px">Quantity Measurement</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="CBRNQuanMeasurement" name="strQuantityMeasurement" placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="CBRNMethodDelivery" class="col-sm-2 col-form-label" style="font-size: 13px">Method Delivery</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="CBRNMethodDelivery" name="strMethodDelivery" placeholder="" />
+                            </div>
+                            <label for="CBRNSpecialPrecaution" class="col-sm-2 col-form-label" style="font-size: 13px">Special Precaution</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="CBRNSpecialPrecaution" name="strSpecialPrecautions" placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="CBRNHazard" class="col-sm-2 col-form-label" style="font-size: 13px">Hazard</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="CBRNHazard" name="strHazard" />
+                            </div>
+
+                            <label for="CBRNUNNumber" class="col-sm-2 col-form-label" style="font-size: 13px">UN Number</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="CBRNUNNumber" name="strUNNumber" placeholder="" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="CBRNDescription" class="col-sm-2 col-form-label" style="font-size: 13px">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="CBRNDescription" name="strDescription" placeholder="" />
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+                    <fieldset class="border p-3">
+                        <br />
+                        <div class="form-group row">
+                            <label for="CBRNRemarks" class="col-sm-2 col-form-label" style="font-size: 13px">Remarks</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="CBRNRemarks" name="memRemarks" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <br />
+                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                    <button class="btn btn-dark">Cancel</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,12 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.DatabaseModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CTW_FIA.Controllers
 {
     public class InitiationSystemController : Controller
     {
+        private readonly  IIntianSystem intianSystem;
+        private readonly ITerrorist terrorist;
+        public InitiationSystemController(IIntianSystem intianSystem, ITerrorist terrorist)
+        {
+            this.intianSystem = intianSystem;
+            this.terrorist = terrorist;
+        }
         public IActionResult Index()
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult AddInitiationSystem()
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddInitianSystem(InitiationSystem ins)
+        {
+            intianSystem.AddNewInitiation(ins);
+            ViewBag.Allcountries = terrorist.AllCountry();
+            return RedirectToAction("Record", "AddRecord");
+        }
+
     }
 }
