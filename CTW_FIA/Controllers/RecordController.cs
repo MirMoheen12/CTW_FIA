@@ -111,7 +111,7 @@ namespace CTW_FIA.Controllers
                     }
                 case "Power Source":
                     {
-                        var dat = powerSource.GetpowerSourceById(STRUN);
+                        var dat = powerSource.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }

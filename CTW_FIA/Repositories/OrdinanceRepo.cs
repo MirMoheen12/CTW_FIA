@@ -1,6 +1,7 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
+using System;
 
 namespace CTW_FIA.Repositories
 {
@@ -66,7 +67,18 @@ namespace CTW_FIA.Repositories
 
         public QuickSearchOrdinance_sel_Result OrdinanceDetails(string Strurn)
         {
-            throw new NotImplementedException();
+            var dat = new
+            {
+                textSearch = Strurn
+            };
+            var dbres = databaseRepo.ExecuteProc("QuickSearchOrdinance_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchOrdinance_sel_Result));
+            var list = new List<QuickSearchOrdinance_sel_Result>();
+            foreach (var item in dt)
+            {
+                list.Add((QuickSearchOrdinance_sel_Result)item);
+            }
+            return list.FirstOrDefault();
         }
     }
 }

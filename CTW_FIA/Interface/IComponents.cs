@@ -7,5 +7,6 @@ namespace CTW_FIA.Interface
     {
          public bool AddNewComponent(Components c);
         public List<Components_sel_Result> AllComponents();
+        object GetGroupsByStrurn(string sTRUN);
     }
 }

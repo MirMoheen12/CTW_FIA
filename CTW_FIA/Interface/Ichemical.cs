@@ -5,5 +5,6 @@ namespace CTW_FIA.Interface
     public interface Ichemical
     {
         public List<Chemicals_sel_Result> allChemical();
+        Chemicals_sel_Result GetGroupsByStrurn(string sTRUN);
     }
 }

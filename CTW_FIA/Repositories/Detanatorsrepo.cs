@@ -45,6 +45,21 @@ namespace CTW_FIA.Repositories
             }
             return list;
         }
- 
+
+        public DetonatorDetails_sel_Result GetGroupsByStrurn(string sTRUN)
+        {
+            var dat = new
+            {
+                textSearch = sTRUN
+            };
+            var dbres = databaseRepo.ExecuteProc("DetonatorDetails_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(DetonatorDetails_sel_Result));
+            var list = new List<DetonatorDetails_sel_Result>();
+            foreach (var item in dt)
+            {
+                list.Add((DetonatorDetails_sel_Result)item);
+            }
+            return list.FirstOrDefault();
+        }
     }
 }

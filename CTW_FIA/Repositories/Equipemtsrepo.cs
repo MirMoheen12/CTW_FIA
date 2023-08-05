@@ -1,6 +1,7 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
+using System;
 
 namespace CTW_FIA.Repositories
 {
@@ -47,7 +48,18 @@ namespace CTW_FIA.Repositories
 
         public QuickSearchEquipment_sel_Result GetGroupsByStrurn(string Strurn)
         {
-            throw new NotImplementedException();
+            var dat = new
+            {
+                textSearch = Strurn
+            };
+            var dbres = databaseRepo.ExecuteProc("QuickSearchCommunications_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchOrdinance_sel_Result));
+            var list = new List<QuickSearchEquipment_sel_Result>();
+            foreach (var item in dt)
+            {
+                list.Add((QuickSearchEquipment_sel_Result)item);
+            }
+            return list.FirstOrDefault();
         }
     }
 }
