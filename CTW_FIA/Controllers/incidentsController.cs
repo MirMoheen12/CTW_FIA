@@ -49,6 +49,7 @@ namespace CTW_FIA.Controllers
         public ActionResult NewIncident()
         {
 
+            //ViewBag.Allcountries = terrorist.AllCountry();
             ViewBag.Allcountries = terrorist.AllCountry();
             ViewBag.Agencies = terrorist.AllAgencies();
             return View();
@@ -59,7 +60,7 @@ namespace CTW_FIA.Controllers
             incident.AddNewIncident(inc);
             ViewBag.Allcountries = terrorist.AllCountry();
             ViewBag.Agencies = terrorist.AllAgencies();
-            return RedirectToAction("Record","AddRecord");
+            return RedirectToAction("AddRecord", "Record", new { pagname="Incidents", pagestatus="Updated" });
         }
     }
 }

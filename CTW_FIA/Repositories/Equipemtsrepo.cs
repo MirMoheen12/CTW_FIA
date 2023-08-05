@@ -29,6 +29,7 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
+<<<<<<< HEAD
         public bool AddNewEquipment(Equipment equipment)
         {
             try
@@ -45,6 +46,27 @@ namespace CTW_FIA.Repositories
             }
 
 
+=======
+        public Equipment_sel_Result GetGroupsByStrurn(string Strurn)
+        {
+            var dat = new
+            {
+                textSearch = Strurn
+            };
+            var dbres = databaseRepo.ExecuteProc("QuickSearchEquipment_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(Equipment_sel_Result));
+            var list = new List<Equipment_sel_Result>();
+            foreach (var item in dt)
+            {
+                list.Add((Equipment_sel_Result)item);
+            }
+            return list.FirstOrDefault();
+        }
+
+        QuickSearchEquipment_sel_Result IEquipments.GetGroupsByStrurn(string Strurn)
+        {
+            throw new NotImplementedException();
+>>>>>>> f66bd917d9a356d8879bbc292b20663fb6d79883
         }
     }
 }

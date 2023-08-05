@@ -7,5 +7,6 @@ namespace CTW_FIA.Interface
     {
        public bool AddNewEquipment(Equipment equ);
         public List<Equipment_sel_Result> AllEquipments();
+        public QuickSearchEquipment_sel_Result GetGroupsByStrurn(string Strurn);
     }
 }

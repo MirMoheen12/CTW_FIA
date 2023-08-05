@@ -30,5 +30,10 @@
         public string? SubCategory { get; set; }
         public string? flag { get; set; }
         public string? tableName { get; set; }
+
+        public static explicit operator QuickSearchGroups_sel_Result(QuickSearchPerson_sel_Result v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

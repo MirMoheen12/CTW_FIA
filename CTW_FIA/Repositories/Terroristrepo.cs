@@ -3,6 +3,7 @@ using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
 using System;
 using System.Data;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CTW_FIA.Repositories
 {
@@ -185,12 +186,8 @@ namespace CTW_FIA.Repositories
             };
             var dbres = databaseRepo.ExecuteProc("QuickSearchPerson_sel", databaseRepo.returnSppram(dat));
             var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchPerson_sel_Result));
-            var list = new List<QuickSearchPerson_sel_Result>();
-            foreach (var item in dt)
-            {
-                list.Add((QuickSearchPerson_sel_Result)item);
-            }
-            return list.FirstOrDefault();
+            var rec = dt.Cast<QuickSearchPerson_sel_Result>().ToList();
+            return rec.FirstOrDefault();
         }
 
         public List<NewPerson_Provinces_Result> GetPeronProvincewise(string Province)
@@ -238,7 +235,7 @@ namespace CTW_FIA.Repositories
             {
                 textSearch = Strurn
             };
-            var dbres = databaseRepo.ExecuteProc("QuickSearchExplosives_sel", databaseRepo.returnSppram(dat));
+            var dbres = databaseRepo.ExecuteProc("QuickSearchGroups_sel", databaseRepo.returnSppram(dat));
             var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchGroups_sel_Result));
             var list = new List<QuickSearchGroups_sel_Result>();
             foreach (var item in dt)

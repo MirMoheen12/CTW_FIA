@@ -9,9 +9,11 @@ namespace CTW_FIA.Controllers
     public class PowerSourceController : Controller
     {
         private readonly IPowerSource powerSource;
-        public PowerSourceController(IPowerSource p)
+        private readonly ICommonlinks commonlinks;
+        public PowerSourceController(ICommonlinks commonlinks,IPowerSource p)
         {
             this.powerSource = p;
+            this.commonlinks = commonlinks;
         }
         public IActionResult Index()
         {
@@ -46,5 +48,13 @@ namespace CTW_FIA.Controllers
             return View();
         }
 
+        public IActionResult PowerSourceDetails(string STRURN)
+        {
+            var Linkres = commonlinks.getAlllinksCount(STRURN);
+            ViewBag.link = Linkres;
+            ///QuickSearchPerson_sel_Result
+            var data = powerSource.GetGroupsByStrurn(STRURN);
+            return View(data);
+        }
     }
 }

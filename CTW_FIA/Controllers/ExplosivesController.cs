@@ -11,12 +11,14 @@ namespace CTW_FIA.Controllers
         private readonly IDashboard dashboard;
         private readonly IExplosive explosive;
         private readonly ITerrorist terrorist;
+        private readonly ICommonlinks commonLinks;
 
-        public ExplosivesController(IDashboard dashboard,IExplosive explosive, ITerrorist terrorist)
+        public ExplosivesController(ICommonlinks commonLinks, IDashboard dashboard,IExplosive explosive, ITerrorist terrorist)
         {
             this.explosive = explosive;
             this.dashboard = dashboard;
             this.terrorist = terrorist;
+            this.commonLinks = commonLinks;
         }
         public IActionResult Index()
         {
@@ -47,6 +49,13 @@ namespace CTW_FIA.Controllers
             ViewBag.Allcountries = terrorist.AllCountry();
             return View(new Explosive());
         }
-
+        public IActionResult ExplosiveDetails(string STRURN)
+        {
+            var Linkres = commonLinks.getAlllinksCount(STRURN);
+            ViewBag.link = Linkres;
+            ///QuickSearchPerson_sel_Result
+            var data = explosive.GetGroupsByStrurn(STRURN);
+            return View(data);
+        }
     }
 }

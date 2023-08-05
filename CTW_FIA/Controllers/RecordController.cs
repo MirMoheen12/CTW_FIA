@@ -1,9 +1,10 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models;
 using CTW_FIA.Models.DatabaseModels;
+using CTW_FIA.Models.LocalModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace CTW_FIA.Controllers
 {
@@ -11,117 +12,53 @@ namespace CTW_FIA.Controllers
     public class RecordController : Controller
     {
         private readonly IRecord record;
-        public RecordController(IRecord record) { 
+        private readonly ITerrorist terrorist;
+        private readonly IIncident incident;
+        private readonly ICommonlinks commonlinks;
+        private readonly ConverterModel converterModel;
+        public RecordController(IRecord record, ICommonlinks commonlinks, ConverterModel converterModel,ITerrorist terrorist,IIncident incident) { 
         
             this.record = record;
+            this.commonlinks = commonlinks;
+            this.terrorist = terrorist;
+            this.converterModel = converterModel;
+            this.incident = incident;
         }
 
 
-        public IActionResult AddRecord()
+        public IActionResult AddRecord(string pagname="All",string pagestatus="New")
         {
+            ViewBag.pagename = pagname;
+            ViewBag.pagstatus = pagestatus;
             return View();
         }
-
-        public ActionResult NewIncident()
+        public IActionResult RecordDetails(string STRUN,string modelname)
         {
-            var data = record.GetFirstDistrictDataPerCountry();
-            ViewBag.country = data;
-            return View();
-        }
-        public IActionResult PersonInvolved(string pid = "")
-        {
-            var data = record.GetFirstDistrictDataPerCountry();
-            ViewBag.country = data;
-            return View();
-        }
-        public ActionResult Groups()
-        {
-            var data = record.GetFirstDistrictDataPerCountry();
-            ViewBag.country = data;
-            return View(new Group());
-        }
-
-        public ActionResult Add_Person_Address()
-        {
-            var data = record.GetFirstDistrictDataPerCountry();
-            ViewBag.country = data;
-            return View(new Address());
-        }
-
-        public ActionResult Vehicles()
-        {
-            Vehicle v = new Vehicle();
-            return View(v);
+            List<DisplayModel> lis = new List<DisplayModel>();
+            switch (modelname)
+            {
+                case "Person":
+                    {
+                        
+                        var dat=terrorist.GetPeronByID(STRUN);
+                        lis = converterModel.getModel(dat);
+                        break;
+                    }
+                case "Incident":
+                    {
+                        var dat = incident.getIncidentID(STRUN);
+                        lis = converterModel.getModel(dat);
+                        break;
+                    }
+                default:
+                    break;
+            }
+            ViewData["Title"] = modelname;
+            ViewBag.link = commonlinks.getAlllinksCount(STRUN);
+        
+            return View(lis);
         }
 
-        public ActionResult Communications()
-        {
-            return View(new Communications());
-        }
-
-        public IActionResult Detonators()
-        {
-            return View(new Detonator());
-        }
-        public IActionResult Explosives()
-        {
-            return View();
-        }
-
-        public ActionResult Ordinance()
-        {
-            var data = record.GetFirstDistrictDataPerCountry();
-            ViewBag.country = data;
-            return View();
-        }
-
-        public IActionResult Evidence()
-        {
-            return View(new Evidence());
-        }
-        public IActionResult Equipment()
-        {
-            return View(new Equipment());
-        }
-
-        public ActionResult InitiationSystem()
-        {
-            return View(new InitiationSystem());
-        }
-
-        public ActionResult Components()
-        {
-            return View(new Components());
-        }
-
-        public IActionResult CBRN()
-        {
-            return View(new CBRN());
-        }
-        public IActionResult Property()
-        {
-            return View(new Property());
-        }
-        public IActionResult BankAccount()
-        {
-            return View(new BankAccount());
-        }
-        public IActionResult Firearms()
-        {
-            return View();
-        }
-
-        public ActionResult Chemical()
-        {
-            return View(new Chemical());
-        }
-
-        public ActionResult PowerSource()
-        {
-            var data = record.GetFirstDistrictDataPerCountry();
-            ViewBag.country = data;
-            return View(new PowerSource());
-        }
     }
 
 }

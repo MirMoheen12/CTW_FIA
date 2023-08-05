@@ -63,5 +63,20 @@ namespace CTW_FIA.Repositories
             }
             return list;
         }
+        public QuickSearchPowerSource_sel_Result GetGroupsByStrurn(string Strurn)
+        {
+            var dat = new
+            {
+                textSearch = Strurn
+            };
+            var dbres = databaseRepo.ExecuteProc("QuickSearchPowerSource_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchPowerSource_sel_Result));
+            var list = new List<QuickSearchPowerSource_sel_Result>();
+            foreach (var item in dt)
+            {
+                list.Add((QuickSearchPowerSource_sel_Result)item);
+            }
+            return list.FirstOrDefault();
+        }
     }
 }

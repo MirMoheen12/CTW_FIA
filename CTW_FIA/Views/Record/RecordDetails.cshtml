@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<CTW_FIA.Models.LocalModels.DisplayModel>
 @{
-    ViewData["Title"] = "Terrorist Details";
+    
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -21,7 +21,7 @@
 
             <div id="exptopdf" class="pdfpage" style="background: #FFFFFF;">
 
-                <div class="d-flex p-2 bg-gradient-primary justify-content-center"><b>Terrorist Details</b></div>
+                <div class="d-flex p-2 bg-gradient-primary justify-content-center"><b>@ViewData["Title"]</b></div>
                 <br />
                 <table id="SearchGenericTable" class="table table-bordered text-dark">
                     <thead>
@@ -47,8 +47,8 @@
                         }
                     </tbody>
                 </table>
-                
-       
+
+
             </div>
         </div>
     </div>

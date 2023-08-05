@@ -16,7 +16,7 @@
 
                                 <label for="OperationName" class="col-sm-2 col-form-label" style="font-size: 13px;">Subject</label>
                                 <div class="col-sm-10">
-                            <input type="text" class="form-control" id="OperationName" asp-for="strOperationName">
+                            <input type="text" class="form-control" required id="OperationName" asp-for="strOperationName">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -42,19 +42,19 @@
                                 <div class="form-group row"> 
                                  <label for="Description" class="col-sm-2 col-form-label" style="font-size: 13px;">Reg Year</label>
                                     <div class="col-sm-4">
-                                        <input type="number" min="2000" max="2050" class="form-control" asp-for="RegYear" id="RegYear"/>
+                                        <input type="number" required min="2000" max="2050" class="form-control" asp-for="RegYear" id="RegYear"/>
                                     </div>
 
 
                                     <label for="Police" class="col-sm-2 col-form-label" style="font-size: 13px;">U/S</label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" asp-for="US" id="US" />
+                                        <input type="text" class="form-control" required asp-for="US" id="US" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="IncidentCountryList" class="col-sm-2 col-form-label"  style="font-size: 13px;">Country</label>
                                        <div class="col-sm-4">
-                                <select  asp-for="Country" id="selectedcountry" class="form-control">
+                                <select  asp-for="Country" required id="selectedcountry" class="form-control">
                                     <option>Select Country</option>
                                     @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
                                     {
@@ -89,8 +89,8 @@
 
                                     <div class="col-sm-4">
                          
-                                   <select class="form-control" id="PoliceStation" asp-for="PoliceStation" onchange="selectPolice()">
-                                            <option>Select Police Station</option>
+                                   <select class="form-control" required id="PoliceStation" asp-for="PoliceStation" onchange="selectPolice()">
+                                            <option value="">Select Police Station</option>
                                         </select>
                                     </div>
 
@@ -144,7 +144,7 @@
 
                                 <div class="col-sm-4">
 
-                                    <input type="date" asp-for="IncidentDate" class="form-control" id="IncidentDate"/>
+                                    <input type="date" required asp-for="IncidentDate" class="form-control" id="IncidentDate"/>
 
                                     </div>
                             </div>
@@ -153,13 +153,13 @@
 
                                 <div class="col-sm-4">
 
-                                <input type="time" asp-for="IncidentTime" class="form-control" id="IncidentTime" />
+                                <input type="time" required asp-for="IncidentTime" class="form-control" id="IncidentTime" />
 
                                 </div>
                                 <label for="IncidentTimeEnd" class="col-sm-2 col-form-label" style="font-size: 13px;">Incident End Time</label>
                                 
                             <div class="col-sm-4">
-                                <input type="time" asp-for="IncidentTimeEnd" class="form-control" id="IncidentTimeEnd" />
+                                <input type="time" required asp-for="IncidentTimeEnd" class="form-control" id="IncidentTimeEnd" />
 
                                
                             </div>
@@ -235,7 +235,7 @@
                             <div class="form-group row">
                                 <label for="Weapon" class="col-sm-2 col-form-label" style="font-size: 13px;">Weapon</label>
                                  <div class="col-sm-2">
-                                <select class="form-control" asp-for="Weapon" id="Weapon">
+                                <select class="form-control" required asp-for="Weapon" id="Weapon">
                                         <option value="" disabled selected>Select</option>
                                         <option>Automatic Weapon</option>
                                         <option>Hand Grenade</option>
@@ -261,7 +261,7 @@
                                   <label for="IncidentTarget" class="col-sm-1 col-form-label" style="font-size: 13px;">Target</label>
                                
                                  <div class="col-sm-2">
-                                <select class="form-control" asp-for="Target" id="IncidentTarget">
+                                <select class="form-control" required asp-for="Target" id="IncidentTarget">
                                         <option value="" disabled selected>Select</option>
                                         <option>Airport/Aeroplane</option>
                                         <option>Bridge/Road</option>
@@ -301,11 +301,11 @@
                                 </div>
                           @*  </div>
                               <div class="form-group row">*@  <div class="col-sm-1"></div>
-                                <label for="Motive" class="col-sm-1 col-form-label" style="font-size: 13px;">Motive </label>
+                            <label for="Motive"  class="col-sm-1 col-form-label" style="font-size: 13px;">Motive </label>
                                 
                                 <div class="col-sm-2">
-                                
-                                   <select class="form-control" asp-for="Motive"  id="Motive">
+
+                                <select required class="form-control" asp-for="Motive" id="Motive">
                                         <option value="" disabled selected>Select</option>
                                         <option>Ethinic</option>
                                         <option>Religious Millitants</option>
@@ -335,7 +335,7 @@
     
                                 <label for="CrimeSceneRecoveries" class="col-sm-2 col-form-label" style="font-size: 13px;">Recoveries from Crime Scene Premises</label>
                                 <div class="col-sm-10">
-                                     <input type="text" asp-for="CrimeSceneRecoveries" id="CrimeSceneRecoveries" class="form-control" />
+                                     <input  type="text" asp-for="CrimeSceneRecoveries" id="CrimeSceneRecoveries" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group row">

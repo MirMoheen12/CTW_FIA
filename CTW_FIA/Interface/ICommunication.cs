@@ -7,5 +7,6 @@ namespace CTW_FIA.Interface
     {
         public List<Communications_sel> AllCommunication();
         public bool AddNewcommunication(Communications c);
+        public QuickSearchCommunications_sel_Result communicationDetails(string Strurn);
     }
 }
