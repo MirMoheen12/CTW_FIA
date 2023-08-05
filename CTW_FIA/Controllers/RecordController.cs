@@ -93,79 +93,79 @@ namespace CTW_FIA.Controllers
                     }
                 case "Terrorist Groups":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = terrorist.GetPeronByID(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Explosives":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = explosive.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Vehicles":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = vehicle.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Power Source":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = powerSource.GetpowerSourceById(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Communication":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = communication.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Ordinance":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = ordinance.OrdinanceDetails(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Equipment":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = equipments.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Initiation System":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = intianSystem.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Components":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = components.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "CBRN":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = cBRN.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Firearms":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = fearams.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Chemicals":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = chemical.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Detonators":
                     {
-                        var dat = incident.getIncidentID(STRUN);
+                        var dat = detonators.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
