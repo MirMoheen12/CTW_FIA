@@ -1,7 +1,10 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class CBRN
     {
+        [Key]
         public string strURN { get; set; }
         public string strCountryOrigin { get; set; }
         public string strType { get; set; }
@@ -13,6 +16,7 @@
         public string strSpecialPrecautions { get; set; }
         public string strOther { get; set; }
         public string strSecurityRating { get; set; }
+        [NotMapped]
         public int intID { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }

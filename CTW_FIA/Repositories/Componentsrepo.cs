@@ -1,17 +1,38 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
 
 namespace CTW_FIA.Repositories
 {
     public class Componentsrepo:IComponents
     {
-        private readonly IDatabaseRepo databaseRepo;
-        private readonly IConfiguration configuration;
-        public Componentsrepo(IDatabaseRepo databaseRepo, IConfiguration configuration)
-        {
-            this.databaseRepo = databaseRepo;
-            this.configuration = configuration;
 
+        private readonly IConfiguration configuration;
+        private readonly IDatabaseRepo databaseRepo;
+        private readonly AppDbContext appDbContext;
+
+        public Componentsrepo(IConfiguration configuration, IDatabaseRepo databaseRepo, AppDbContext appDbContext)
+        {
+            this.configuration = configuration;
+            this.databaseRepo = databaseRepo;
+            this.appDbContext = appDbContext;
+        }
+
+        public bool AddNewComponent(Components component)
+        {
+            try
+            {
+                component.strURN = databaseRepo.ExecuteProc("GetCompSTRURN", null).Rows[0][0].ToString();
+                component.textSearch = component.strURN + "  " + component.Manufacturer;
+                component.CreatedOn = DateTime.Now;
+                appDbContext.Components.Add(component);
+                appDbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public List<Components_sel_Result> AllComponents()
