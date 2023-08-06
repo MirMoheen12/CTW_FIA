@@ -47,7 +47,7 @@ namespace CTW_FIA.Controllers
         {
             explosive.AddExplosive(E);
             ViewBag.Allcountries = terrorist.AllCountry();
-            return View(new Explosive());
+            return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
         }
         //public IActionResult ExplosiveDetails(string STRURN)
         //{

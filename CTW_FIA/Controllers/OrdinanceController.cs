@@ -34,9 +34,9 @@ namespace CTW_FIA.Controllers
 
            ordinance.AddNewOrdinance(ord);
             ViewBag.Allcountries = terrorist.AllCountry();
-            return RedirectToAction("Record", "AddRecord");
+            return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
 
-           
+
         }
     }
 }

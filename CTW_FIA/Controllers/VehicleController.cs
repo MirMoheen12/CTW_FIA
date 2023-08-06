@@ -34,7 +34,7 @@ namespace CTW_FIA.Controllers
         public IActionResult AddNewVehicle(Vehicle veh)
         {
             var res=vehicle.AddNewVehicle(veh);
-            return View(new Vehicle());
+            return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
         }
 
         //public IActionResult VehicleDetails(string STRURN)

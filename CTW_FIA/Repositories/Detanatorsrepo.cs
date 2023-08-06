@@ -36,7 +36,7 @@ namespace CTW_FIA.Repositories
         public List<DetonatorDetails_sel_Result> alldetonators()
         {
          
-            var dat = databaseRepo.ExecuteProc("DetonatorDetails_sel", null);
+            var dat = databaseRepo.ExecuteProc("Detonators_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(DetonatorDetails_sel_Result));
             var list = new List<DetonatorDetails_sel_Result>();
             foreach (var item in res)
@@ -52,7 +52,7 @@ namespace CTW_FIA.Repositories
             {
                 textSearch = sTRUN
             };
-            var dbres = databaseRepo.ExecuteProc("DetonatorDetails_sel", databaseRepo.returnSppram(dat));
+            var dbres = databaseRepo.ExecuteProc("QuickSearchDetonators_sel", databaseRepo.returnSppram(dat));
             var dt = databaseRepo.ConverttoObject(dbres, typeof(DetonatorDetails_sel_Result));
             var list = new List<DetonatorDetails_sel_Result>();
             foreach (var item in dt)

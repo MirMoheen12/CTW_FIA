@@ -31,7 +31,7 @@ namespace CTW_FIA.Controllers
         {
             ViewBag.Allcountries = terrorist.AllCountry();
             var res = detonators.AddDetonators(D);
-            return View(new Detonator());
+            return RedirectToAction("AddRecord", "Record", new { pagname = "Detonators", pagestatus = "Updated" });
         }
     }
 }

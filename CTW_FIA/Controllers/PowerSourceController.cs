@@ -35,10 +35,10 @@ namespace CTW_FIA.Controllers
             String Name = @User.Identity.Name;
             if (powerSource.AddPowerSource(ps, Name))
             {
-                return RedirectToAction("AllPowerSource", "PowerSource");
+                return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
 
             }
-            return RedirectToAction("GetSinglePowerSource", "PowerSource", new {id = ps.strURN});
+            return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
 
         }
 

@@ -23,8 +23,8 @@ namespace CTW_FIA.Controllers
         public IActionResult AddCheimcal(PowerSource ps)
         {
             String Name = @User.Identity.Name;
-           
-            return RedirectToAction("GetSinglePowerSource", "PowerSource");
+
+            return RedirectToAction("AddRecord", "Record", new { pagname = "Chemical", pagestatus = "Updated" });
 
         }
 

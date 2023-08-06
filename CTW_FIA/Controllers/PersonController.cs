@@ -31,7 +31,7 @@ namespace CTW_FIA.Controllers
             var res = terrorist.AddNewPerson(P,file);
             ViewBag.Agencies = terrorist.AllAgencies();
             ViewBag.Allcountries = terrorist.AllCountry();
-            return View();
+            return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
         }
         public IActionResult PersonDetails(string STRURN)
         {

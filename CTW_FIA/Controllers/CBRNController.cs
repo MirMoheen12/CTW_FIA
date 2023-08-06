@@ -33,7 +33,7 @@ namespace CTW_FIA.Controllers
         {
            cBRN.AddNewComponent(c);
             ViewBag.Allcountries = terrorist.AllCountry();
-            return RedirectToAction("Record", "AddRecord");
+            return RedirectToAction("AddRecord", "Record", new { pagname = "CBRN", pagestatus = "Updated" });
         }
     }
 }

@@ -31,7 +31,7 @@ namespace CTW_FIA.Controllers
         public IActionResult AddEquipment(Equipment equ)
         {
             ViewBag.Allcountries = terrorist.AllCountry();
-            return RedirectToAction("Record", "AddRecord");
+            return RedirectToAction("AddRecord", "Record", new { pagname = "Equipments", pagestatus = "Updated" });
 
         }
     }

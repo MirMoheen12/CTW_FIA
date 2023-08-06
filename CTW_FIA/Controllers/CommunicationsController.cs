@@ -32,7 +32,7 @@ namespace CTW_FIA.Controllers
         {
             ViewBag.Allcountries = terrorist.AllCountry();
             var res = communication.AddNewcommunication(c);
-            return View(new Communications());
+            return RedirectToAction("AddRecord", "Record", new { pagname = "Communication", pagestatus = "Updated" });
         }
     }
 }

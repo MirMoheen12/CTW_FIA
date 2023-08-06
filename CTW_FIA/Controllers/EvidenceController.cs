@@ -36,7 +36,7 @@ namespace CTW_FIA.Controllers
 
             evidence.AddNewEvidence(evd);
             ViewBag.Allcountries = terrorist.AllCountry();
-            return RedirectToAction("Record", "AddRecord");
+            return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
 
 
         }

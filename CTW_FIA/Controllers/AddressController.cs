@@ -38,7 +38,7 @@ namespace CTW_FIA.Controllers
             var res = iaddress.AddAddress(address);
             ViewBag.Allcountries = terrorist.AllCountry();
             ViewBag.Agencies = terrorist.AllAgencies();
-            return View();
+            return RedirectToAction("AddRecord", "Record", new { pagname = "Address", pagestatus = "Updated" });
         }
     }
 }

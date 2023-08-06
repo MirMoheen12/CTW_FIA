@@ -53,7 +53,7 @@ namespace CTW_FIA.Controllers
             var res = terrorist.AddNewGroup(group);
             ViewBag.Allcountries = terrorist.AllCountry();
             ViewBag.Agencies = terrorist.AllAgencies();
-            return View(new Group());
+            return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
         }
 
 
