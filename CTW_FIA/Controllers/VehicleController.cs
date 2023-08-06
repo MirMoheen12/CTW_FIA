@@ -37,13 +37,13 @@ namespace CTW_FIA.Controllers
             return View(new Vehicle());
         }
 
-        public IActionResult VehicleDetails(string STRURN)
-        {
-            var Linkres = commonlinks.getAlllinksCount(STRURN);
-            ViewBag.link = Linkres;
-            ///QuickSearchPerson_sel_Result
-            var data = vehicle.GetGroupsByStrurn(STRURN);
-            return View(data);
-        }
+        //public IActionResult VehicleDetails(string STRURN)
+        //{
+        //    var Linkres = commonlinks.getAlllinksCount(STRURN);
+        //    ViewBag.link = Linkres;
+        //    ///QuickSearchPerson_sel_Result
+        //    var data = vehicle.GetGroupsByStrurn(STRURN);
+        //    return View(data);
+        //}
     }
 }

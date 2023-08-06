@@ -49,13 +49,13 @@ namespace CTW_FIA.Controllers
             ViewBag.Allcountries = terrorist.AllCountry();
             return View(new Explosive());
         }
-        public IActionResult ExplosiveDetails(string STRURN)
-        {
-            var Linkres = commonLinks.getAlllinksCount(STRURN);
-            ViewBag.link = Linkres;
-            ///QuickSearchPerson_sel_Result
-            var data = explosive.GetGroupsByStrurn(STRURN);
-            return View(data);
-        }
+        //public IActionResult ExplosiveDetails(string STRURN)
+        //{
+        //    var Linkres = commonLinks.getAlllinksCount(STRURN);
+        //    ViewBag.link = Linkres;
+        //    ///QuickSearchPerson_sel_Result
+        //    var data = explosive.GetGroupsByStrurn(STRURN);
+        //    return View(data);
+        //}
     }
 }

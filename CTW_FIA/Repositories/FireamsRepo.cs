@@ -27,7 +27,7 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
-        public Firearms_sel_Result GetGroupsByStrurn(string sTRUN)
+        public Firearms_sel_Result GetFiremsByStrurn(string sTRUN)
         {
             var dat = new
             {

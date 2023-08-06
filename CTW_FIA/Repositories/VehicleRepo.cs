@@ -50,7 +50,7 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
-        public QuickSearchVehicles_sel_Result GetGroupsByStrurn(string Strurn)
+        public QuickSearchVehicles_sel_Result GetVehcileByStrurn(string Strurn)
         {
             var dat = new
             {

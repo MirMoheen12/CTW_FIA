@@ -31,7 +31,7 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
-        public Chemicals_sel_Result GetGroupsByStrurn(string sTRUN)
+        public Chemicals_sel_Result ChemicalByStrurn(string sTRUN)
         {
             var dat = new
             {

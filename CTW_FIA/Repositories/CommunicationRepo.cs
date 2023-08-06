@@ -47,11 +47,7 @@ namespace CTW_FIA.Repositories
 
         }
 
-        public QuickSearchCommunications_sel_Result communicationDetails(string Strurn)
-        {
-            throw new NotImplementedException();
-        }
-
+   
         public QuickSearchCommunications_sel_Result GetGroupsByStrurn(string Strurn)
         {
             var dat = new
@@ -68,11 +64,13 @@ namespace CTW_FIA.Repositories
             return list.FirstOrDefault();
         }
 
-        QuickSearchCommunications_sel_Result ICommunication.GetGroupsByStrurn(string sTRUN)
+ 
+
+        public QuickSearchCommunications_sel_Result GetCommunicationByStrurn(string sTRUN)
         {
             var dat = new
             {
-                textSearch = Strurn
+                textSearch = sTRUN
             };
             var dbres = databaseRepo.ExecuteProc("QuickSearchCommunications_sel", databaseRepo.returnSppram(dat));
             var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchCommunications_sel_Result));

@@ -48,7 +48,7 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
-        public Components_sel_Result GetGroupsByStrurn(string sTRUN)
+        public Components_sel_Result GetComponByStrurn(string sTRUN)
         {
             var dat = new
             {

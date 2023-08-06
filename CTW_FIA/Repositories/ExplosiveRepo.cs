@@ -49,7 +49,7 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
-        public QuickSearchExplosives_sel_Result GetGroupsByStrurn(string Strurn)
+        public QuickSearchExplosives_sel_Result GetExplosiveByStrurn(string Strurn)
         {
             var dat = new
             {

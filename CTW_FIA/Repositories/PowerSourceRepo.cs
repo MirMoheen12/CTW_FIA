@@ -63,7 +63,7 @@ namespace CTW_FIA.Repositories
             }
             return list;
         }
-        public QuickSearchPowerSource_sel_Result GetGroupsByStrurn(string Strurn)
+        public QuickSearchPowerSource_sel_Result GetPowerSourceByStrurn(string Strurn)
         {
             var dat = new
             {

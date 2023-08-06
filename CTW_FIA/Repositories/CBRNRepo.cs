@@ -45,7 +45,7 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
-        public CBRN_sel_Result GetGroupsByStrurn(string sTRUN)
+        public CBRN_sel_Result getCBRNByStrurn(string sTRUN)
         {
 
             var dat = new

@@ -7,6 +7,6 @@ namespace CTW_FIA.Interface
     {
         public List<Vehicles_sel_Result> AllVehicle();
         public bool AddNewVehicle(Vehicle vehicle);
-        public QuickSearchVehicles_sel_Result GetGroupsByStrurn(string STRURN);
+        public QuickSearchVehicles_sel_Result GetVehcileByStrurn(string STRURN);
     }
 }

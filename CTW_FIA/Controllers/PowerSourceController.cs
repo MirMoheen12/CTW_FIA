@@ -48,13 +48,13 @@ namespace CTW_FIA.Controllers
             return View();
         }
 
-        public IActionResult PowerSourceDetails(string STRURN)
-        {
-            var Linkres = commonlinks.getAlllinksCount(STRURN);
-            ViewBag.link = Linkres;
-            ///QuickSearchPerson_sel_Result
-            var data = powerSource.GetGroupsByStrurn(STRURN);
-            return View(data);
-        }
+        //public IActionResult PowerSourceDetails(string STRURN)
+        //{
+        //    var Linkres = commonlinks.getAlllinksCount(STRURN);
+        //    ViewBag.link = Linkres;
+        //    ///QuickSearchPerson_sel_Result
+        //    //var data = powerSource.GetGroupsByStrurn(STRURN);
+        //    return View(data);
+        //}
     }
 }

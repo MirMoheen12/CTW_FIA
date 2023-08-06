@@ -7,6 +7,6 @@ namespace CTW_FIA.Interface
     {
         public List<DetonatorDetails_sel_Result> alldetonators();
         public bool AddDetonators(Detonator D);
-        object GetGroupsByStrurn(string sTRUN);
+         public DetonatorDetails_sel_Result GetDetonatorsByStrurn(string sTRUN);
     }
 }

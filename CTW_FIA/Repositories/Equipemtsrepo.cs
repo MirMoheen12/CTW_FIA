@@ -46,14 +46,14 @@ namespace CTW_FIA.Repositories
             }
         }
 
-        public QuickSearchEquipment_sel_Result GetGroupsByStrurn(string Strurn)
+        public QuickSearchEquipment_sel_Result GetEquByStrurn(string Strurn)
         {
             var dat = new
             {
                 textSearch = Strurn
             };
-            var dbres = databaseRepo.ExecuteProc("QuickSearchCommunications_sel", databaseRepo.returnSppram(dat));
-            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchOrdinance_sel_Result));
+            var dbres = databaseRepo.ExecuteProc("QuickSearchEquipment_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchEquipment_sel_Result));
             var list = new List<QuickSearchEquipment_sel_Result>();
             foreach (var item in dt)
             {

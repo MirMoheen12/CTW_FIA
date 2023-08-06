@@ -11,7 +11,7 @@
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="row" id="GenericTable" style="">
-    <div class="e-panel card">
+    <div class="e-panel card" style="width:100%">
         <div class="card-body">
             <h2>Vehicles</h2>
             <table id="SearchGenericTable" class="table table-bordered text-dark">
@@ -41,7 +41,7 @@
                                 @item.CreatedOn
                             </td>
                             <td>
-                                <a href="~/incidents/IncidentDetails?strurn=@item.strURN" class="btn btn-sm btn-primary">
+                                <a href="~/Record/RecordDetails?STRUN=@item.strURN&modelname=Vehicles" class="btn btn-sm btn-primary">
                                     Details
                                 </a>
                             </td>

@@ -46,11 +46,11 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
-        public QuickSearchInitiationSystems_sel_Result GetGroupsByStrurn(string sTRUN)
+        public QuickSearchInitiationSystems_sel_Result GetIntianDystmByStrurn(string sTRUN)
         {
             var dat = new
             {
-                textSearch = Strurn
+                textSearch = sTRUN
             };
             var dbres = databaseRepo.ExecuteProc("QuickSearchInitiationSystems_sel", databaseRepo.returnSppram(dat));
             var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchInitiationSystems_sel_Result));

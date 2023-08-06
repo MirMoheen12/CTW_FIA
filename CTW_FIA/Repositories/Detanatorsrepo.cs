@@ -46,7 +46,7 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
-        public DetonatorDetails_sel_Result GetGroupsByStrurn(string sTRUN)
+        public DetonatorDetails_sel_Result GetDetonatorsByStrurn(string sTRUN)
         {
             var dat = new
             {

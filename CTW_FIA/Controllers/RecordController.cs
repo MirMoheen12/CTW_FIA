@@ -30,23 +30,23 @@ namespace CTW_FIA.Controllers
         private readonly Ichemical chemical;
         private readonly IDetonators detonators;
         public RecordController(
-    IRecord record,
-    ICommonlinks commonlinks,
-    ConverterModel converterModel,
-    ITerrorist terrorist,
-    IIncident incident,
-    IExplosive explosive,
-    IVehicle vehicle,
-    IPowerSource powerSource,
-    ICommunication communication,
-    IOrdinance ordinance,
-    IEquipments equipments,
-    IIntianSystem intianSystem,
-    IComponents components,
-    ICBRN cBRN,
-    IFearams fearams,
-    Ichemical chemical,
-    IDetonators detonators)
+        IRecord record,
+        ICommonlinks commonlinks,
+        ConverterModel converterModel,
+        ITerrorist terrorist,
+        IIncident incident,
+        IExplosive explosive,
+        IVehicle vehicle,
+        IPowerSource powerSource,
+        ICommunication communication,
+        IOrdinance ordinance,
+        IEquipments equipments,
+        IIntianSystem intianSystem,
+        IComponents components,
+        ICBRN cBRN,
+        IFearams fearams,
+        Ichemical chemical,
+        IDetonators detonators)
         {
             this.record = record;
             this.commonlinks = commonlinks;
@@ -93,31 +93,31 @@ namespace CTW_FIA.Controllers
                     }
                 case "Terrorist Groups":
                     {
-                        var dat = terrorist.GetPeronByID(STRUN);
+                        var dat = terrorist.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Explosives":
                     {
-                        var dat = explosive.GetGroupsByStrurn(STRUN);
+                        var dat = explosive.GetExplosiveByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Vehicles":
                     {
-                        var dat = vehicle.GetGroupsByStrurn(STRUN);
+                        var dat = vehicle.GetVehcileByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Power Source":
                     {
-                        var dat = powerSource.GetGroupsByStrurn(STRUN);
+                        var dat = powerSource.GetPowerSourceByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Communication":
                     {
-                        var dat = communication.GetGroupsByStrurn(STRUN);
+                        var dat = communication.GetCommunicationByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
@@ -129,44 +129,44 @@ namespace CTW_FIA.Controllers
                     }
                 case "Equipment":
                     {
-                        var dat = equipments.GetGroupsByStrurn(STRUN);
+                        var dat = equipments.GetEquByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Initiation System":
                     {
-                        var dat = intianSystem.GetGroupsByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                       var dat = intianSystem.GetIntianDystmByStrurn(STRUN);
+                       lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Components":
                     {
-                        var dat = components.GetGroupsByStrurn(STRUN);
+                       var dat = components.GetComponByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "CBRN":
                     {
-                        var dat = cBRN.GetGroupsByStrurn(STRUN);
+                        var dat = cBRN.getCBRNByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Firearms":
                     {
-                        var dat = fearams.GetGroupsByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                       var dat = fearams.GetFiremsByStrurn(STRUN);
+                       lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Chemicals":
                     {
-                        var dat = chemical.GetGroupsByStrurn(STRUN);
+                        var dat = chemical.ChemicalByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Detonators":
                     {
-                        var dat = detonators.GetGroupsByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        var dat = detonators.GetDetonatorsByStrurn(STRUN);
+                       lis = converterModel.getModel(dat);
                         break;
                     }
                 default:
