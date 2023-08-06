@@ -48,20 +48,22 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
-        public Components_sel_Result GetComponByStrurn(string sTRUN)
+        public QuickSearchComponents_sel_Result GetComponByStrurn(string sTRUN)
         {
             var dat = new
             {
                 textSearch = sTRUN
             };
-            var dbres = databaseRepo.ExecuteProc("Components_sel", databaseRepo.returnSppram(dat));
-            var dt = databaseRepo.ConverttoObject(dbres, typeof(Components_sel_Result));
-            var list = new List<Components_sel_Result>();
+            var dbres = databaseRepo.ExecuteProc("QuickSearchComponents_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchComponents_sel_Result));
+            var list = new List<QuickSearchComponents_sel_Result>();
             foreach (var item in dt)
             {
-                list.Add((Components_sel_Result)item);
+                list.Add((QuickSearchComponents_sel_Result)item);
             }
             return list.FirstOrDefault();
         }
+
+  
     }
 }

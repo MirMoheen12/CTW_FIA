@@ -45,19 +45,19 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
-        public CBRN_sel_Result getCBRNByStrurn(string sTRUN)
+        public QuickSearchCBRN_sel_Result getCBRNByStrurn(string sTRUN)
         {
 
             var dat = new
             {
                 textSearch = sTRUN
             };
-            var dbres = databaseRepo.ExecuteProc("CBRN_sel", databaseRepo.returnSppram(dat));
-            var dt = databaseRepo.ConverttoObject(dbres, typeof(CBRN_sel_Result));
-            var list = new List<CBRN_sel_Result>();
+            var dbres = databaseRepo.ExecuteProc("QuickSearchCBRN_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchCBRN_sel_Result));
+            var list = new List<QuickSearchCBRN_sel_Result>();
             foreach (var item in dt)
             {
-                list.Add((CBRN_sel_Result)item);
+                list.Add((QuickSearchCBRN_sel_Result)item);
             }
             return list.FirstOrDefault();
         }

@@ -6,7 +6,7 @@ namespace CTW_FIA.Interface
     public interface IComponents
     {
          public bool AddNewComponent(Components c);
-        public List<Components_sel_Result> AllComponents();
-       public QuickSearchComponents_sel_Result GetComponByStrurn(string sTRUN);
+         public List<Components_sel_Result> AllComponents();
+         public QuickSearchComponents_sel_Result GetComponByStrurn(string sTRUN);
     }
 }

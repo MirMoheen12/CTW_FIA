@@ -7,6 +7,6 @@ namespace CTW_FIA.Interface
     {
         public bool AddNewComponent(CBRN c);
         public List<CBRN_sel_Result> Allcbrn();
-       public CBRN_sel_Result getCBRNByStrurn(string sTRUN);
+       public QuickSearchCBRN_sel_Result getCBRNByStrurn(string sTRUN);
     }
 }

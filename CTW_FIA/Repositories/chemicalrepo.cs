@@ -31,18 +31,18 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
-        public Chemicals_sel_Result ChemicalByStrurn(string sTRUN)
+        public QuickSearchChemicals_sel_Result ChemicalByStrurn(string sTRUN)
         {
             var dat = new
             {
                 textSearch = sTRUN
             };
-            var dbres = databaseRepo.ExecuteProc("Chemicals_sel", databaseRepo.returnSppram(dat));
-            var dt = databaseRepo.ConverttoObject(dbres, typeof(Chemicals_sel_Result));
-            var list = new List<Chemicals_sel_Result>();
+            var dbres = databaseRepo.ExecuteProc("QuickSearchChemicals_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchChemicals_sel_Result));
+            var list = new List<QuickSearchChemicals_sel_Result>();
             foreach (var item in dt)
             {
-                list.Add((Chemicals_sel_Result)item);
+                list.Add((QuickSearchChemicals_sel_Result)item);
             }
             return list.FirstOrDefault();
         }
