@@ -1,0 +1,69 @@
+﻿@model CTW_FIA.Models.DatabaseModels.Equipment
+@{
+    Layout = null;
+}
+
+<div class="row no-gutters">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h5>Equipment Form</h5>
+
+                <form class="forms-sample" method="post" asp-action="AddEquipment" asp-controller="Equipment">
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 11px">
+                            Equipment Details
+                        </legend>
+                        <div class="form-group row">
+                            <label for="Category" class="col-sm-2 col-form-label" style="font-size: 13px">Category</label>
+                            <div class="col-sm-10">
+                                <input asp-for="Category" class="form-control" id="Category" placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Name" class="col-sm-2 col-form-label" style="font-size: 13px">Name</label>
+                            <div class="col-sm-4">
+                                <input asp-for="Name" class="form-control" id="Name" placeholder="" />
+                            </div>
+
+                            <label for="Manufacturer" class="col-sm-2 col-form-label" style="font-size: 13px">Manufacturer</label>
+                            <div class="col-sm-4">
+                                <input asp-for="Manufacturer" class="form-control" id="Manufacturer" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Type" class="col-sm-2 col-form-label" style="font-size: 13px">Type</label>
+                            <div class="col-sm-4">
+                                <input asp-for="Type" class="form-control" id="Type" placeholder="" />
+                            </div>
+
+                            <label for="SerialNumber" class="col-sm-2 col-form-label" style="font-size: 13px">Serial No.</label>
+                            <div class="col-sm-4">
+                                <input asp-for="SerialNumber" class="form-control" id="SerialNumber" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Quantity" class="col-sm-2 col-form-label" style="font-size: 13px">Quantity</label>
+                            <div class="col-sm-4">
+                                <input asp-for="Quantity" class="form-control" id="Quantity" placeholder="" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="border p-3">
+                        <br />
+                        <div class="form-group row">
+                            <label for="memRemarks" class="col-sm-2 col-form-label" style="font-size: 13px">Remarks</label>
+                            <div class="col-sm-10">
+                                <textarea asp-for="memRemarks" class="form-control" id="memRemarks" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                    <button class="btn btn-dark">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -129,6 +129,7 @@ namespace CTW_FIA.Models.Dto
 
         [Display(Name = "INC FIR Number")]
         public string? INC_FirNo { get; set; }
+
     }
 
 }

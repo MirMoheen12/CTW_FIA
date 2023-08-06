@@ -2,7 +2,6 @@
 
 namespace CTW_FIA.Models.Dto
 {
-
     public class QuickSearchPerson_sel_Result
     {
         [Display(Name = "Serial No")]
@@ -215,5 +214,4 @@ namespace CTW_FIA.Models.Dto
         [Display(Name = "Preferred Language")]
         public string? pvLanguage { get; set; }
     }
-
 }

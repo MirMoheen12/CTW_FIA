@@ -9,25 +9,30 @@ namespace CTW_FIA.Controllers
     public class EquipmentController : Controller
     {
         private readonly IEquipments equipments;
-        private readonly ICommonlinks commonlinks;
-        public EquipmentController(ICommonlinks commonlinks,IEquipments equipments)
+        private readonly ITerrorist terrorist;
+        public EquipmentController(IEquipments equipments, ITerrorist terrorist)
         {
-            this.equipments=equipments;
-            this.commonlinks=commonlinks;
+            this.equipments = equipments;
+            this.terrorist = terrorist;
         }
         public IActionResult AllEquipments()
         {
-            var data=equipments.AllEquipments();
+            var data = equipments.AllEquipments();
             return View(data);
         }
-
-        public IActionResult EquipmentDetails(string STRURN)
+        [HttpGet]
+        public IActionResult AddEquipment()
         {
-            var Linkres = commonlinks.getAlllinksCount(STRURN);
-            ViewBag.link = Linkres;
-            ///QuickSearchPerson_sel_Result
-            var data = equipments.GetGroupsByStrurn(STRURN);
-            return View(data);
+
+            ViewBag.Allcountries = terrorist.AllCountry();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddEquipment(Equipment equ)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            return RedirectToAction("Record", "AddRecord");
+
         }
     }
 }

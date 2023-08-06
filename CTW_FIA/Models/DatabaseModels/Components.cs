@@ -1,7 +1,10 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class Components
     {
+        [Key]
         public string strURN { get; set; }
         public string Type { get; set; }
         public string CountryOrigin { get; set; }
@@ -20,6 +23,7 @@
         public string Markings { get; set; }
         public string memRemarks { get; set; }
         public DateTime dteSent { get; set; }
+        [NotMapped]
         public int intID { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }

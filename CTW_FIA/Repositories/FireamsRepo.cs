@@ -27,6 +27,20 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
-
+        public Firearms_sel_Result GetGroupsByStrurn(string sTRUN)
+        {
+            var dat = new
+            {
+                textSearch = sTRUN
+            };
+            var dbres = databaseRepo.ExecuteProc("Firearms_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(Firearms_sel_Result));
+            var list = new List<Firearms_sel_Result>();
+            foreach (var item in dt)
+            {
+                list.Add((Firearms_sel_Result)item);
+            }
+            return list.FirstOrDefault();
+        }
     }
 }

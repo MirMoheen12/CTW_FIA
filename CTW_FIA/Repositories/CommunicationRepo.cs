@@ -4,7 +4,7 @@ using CTW_FIA.Models.Dto;
 
 namespace CTW_FIA.Repositories
 {
-    public class CommunicationRepo:ICommunication
+    public class CommunicationRepo : ICommunication
     {
         private readonly IDatabaseRepo databaseRepo;
         private readonly AppDbContext appDbContext;
@@ -53,6 +53,22 @@ namespace CTW_FIA.Repositories
         }
 
         public QuickSearchCommunications_sel_Result GetGroupsByStrurn(string Strurn)
+        {
+            var dat = new
+            {
+                textSearch = Strurn
+            };
+            var dbres = databaseRepo.ExecuteProc("QuickSearchCommunications_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchCommunications_sel_Result));
+            var list = new List<QuickSearchCommunications_sel_Result>();
+            foreach (var item in dt)
+            {
+                list.Add((QuickSearchCommunications_sel_Result)item);
+            }
+            return list.FirstOrDefault();
+        }
+
+        QuickSearchCommunications_sel_Result ICommunication.GetGroupsByStrurn(string sTRUN)
         {
             var dat = new
             {
