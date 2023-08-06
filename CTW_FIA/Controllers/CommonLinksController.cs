@@ -10,5 +10,9 @@ namespace CTW_FIA.Controllers
         {
             return View();
         }
+        public IActionResult createlinks()
+        {
+            return View();
+        }
     }
 }

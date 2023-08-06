@@ -1,0 +1,853 @@
+﻿
+@{
+   
+
+}
+<style>
+    .table-responsive {
+        max-height: 650px;
+    }
+
+        .table-responsive tbody {
+            width: 100%;
+            display: table;
+        }
+</style>
+<div class="row no-gutters">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h5>Source</h5>
+
+                <form class="forms-sample">
+
+                    <div class="form-group row text-dark">
+                        <div class="row">
+                            <label for="ForwardLocking" class="col-sm-3 col-form-label">Databases</label>
+                            <div class="col-sm-3">
+
+                                <select class="form-control" id="src_database">
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" id="src_searchText" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-sm btn-primary" type="button" id="src_searchBtn">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h5>Destination</h5>
+
+
+                <form class="forms-sample">
+
+                    <div class="form-group row text-dark">
+                        <div class="row">
+                            <label for="ForwardLocking" class="col-sm-3 col-form-label">Databases</label>
+                            <div class="col-sm-3">
+
+                                <select class="form-control" id="des_database">
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="des_searchText" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-sm btn-primary" type="button" id="des_searchBtn">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row no-gutters">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card panel-body">
+
+            <div class="d-flex p-2 bg-gradient-primary justify-content-center text-white" id="source_table_name"><b>Source Table</b></div>
+            <br />
+            <div class="container" style="text-align:center">
+                <button class="btn btn-primary mr-2" href="#" id="src_pre"><</button>
+                <button class="btn btn-primary mr-2" href="#" id="src_next">></button>
+            </div>
+            <table class="table text-dark  table-responsive" id="table1">
+
+                <tbody style="text-align:center">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card panel-body">
+
+            <div class="d-flex p-2 bg-gradient-primary justify-content-center text-white" id="destination_table_name"><b>Destination Table</b></div>
+            <br>
+            <div class="container" style="text-align:center">
+                <button class="btn btn-primary mr-2" href="#" id="des_pre"><</button>
+                <button class="btn btn-primary mr-2" href="#" id="des_next">></button>
+            </div>
+            <table class="table text-dark  table-responsive" id="table2">
+
+                <tbody style="text-align:center">
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card text-dark">
+            <div class="card-body">
+                <h5>Linking</h5>
+                <form class="form-sample">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Source Evaluation</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="src_evaluation">
+                                        <option disabled>Select</option>
+                                        <option value="1">A - Always Reliable</option>
+                                        <option value="2">B - Mostly Reliable</option>
+                                        <option value="3">C - Sometimes Relibale</option>
+                                        <option value="4">D - Unreliable</option>
+                                        <option value="5">E - Untested Source</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Information Evaluation</label>
+                                <div class="col-sm-9">
+                                    @*<input type="text" class="form-control" id="info_evaluation">*@
+                                    <select class="form-control" id="info_evaluation">
+                                        <option disabled>Select</option>
+                                        <option value="1">A - Always Reliable</option>
+                                        <option value="2">B - Mostly Reliable</option>
+                                        <option value="3">C - Sometimes Relibale</option>
+                                        <option value="4">D - Unreliable</option>
+                                        <option value="5">E - Untested Source</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Reason for Linking</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="reason_link">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" id="isBidirectional" value="false"> Is link bi-directional? <i class="input-helper"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-primary btn-fw ml-5" id="Create_Link">Create Link</button>
+                    <button type="button" class="btn btn-secondary btn-fw ml-5">Exit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="row">
+
+    <div class="col">
+
+        <div class="row text-dark">
+            <div class="col">
+                <div class="e-panel card">
+                    <div class="card-body">
+                        <div class="card-title">
+                        </div>
+
+                        <table id="commonLinkTable" class="table table-bordered text-dark">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th class="max-width">Source Name</th>
+                                    <th class="max-width">Destination Name</th>
+                                    <th class="max-width">Creation Date</th>
+                                    <th class="max-width">Reason</th>
+                                    <th class="max-width">Actions </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <!-- DataTables  & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net/1.10.24/jquery.dataTables.min.js" integrity="sha512-CjzmXwLSrBjNtvsEN+CQdcghPTeMoDLxMyZ8xlAkObHM9NfFAdZVGxKd54+NFoL0+ydaq3+lV+dJQzb9StoxXw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-bs4/1.10.24/dataTables.bootstrap4.min.js" integrity="sha512-NQ2u+QUFbhI3KWtE0O4rk855o+vgPo58C8vvzxdHXJZu6gLu2aLCCBMdudH9580OmLisCC1lJg2zgjcJbnBMOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-responsive/2.2.7/dataTables.responsive.min.js" integrity="sha512-4ecidd7I1XWwmLVzfLUN0sA0t2It86ti4qwPAzXW7B0/yIScpiOj7uyvFgu/ieGTEFjO5Ho98RZIqt75+ZZhdA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-responsive-bs4/2.2.7/responsive.bootstrap4.min.js" integrity="sha512-OiHNq9acGP68tNJIr1ctDsYv7c2kuEVo2XmB78fh4I+3Wi0gFtZl4lOi9XIGn1f1SHGcXGhn/3VHVXm7CYBFNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/1.7.0/js/dataTables.buttons.min.js" integrity="sha512-EzaqIDcdBg8g037o9E12U69oY/mfHffJJzUtB6dgd67AB4IXkMi1/7WY6og4fKSVXtqqt35S/R5ClqNHjSIH4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons-bs4/1.7.0/buttons.bootstrap4.min.js" integrity="sha512-D4MloW0hy9XtYnqtvwfg2T2WZRn0dB8Ir0KcPrDX7S/gVE05JotZQHirzd9vMSIT8ViKyntOOZl1muHii0spUA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js" integrity="sha512-uVSVjE7zYsGz4ag0HEzfugJ78oHCI1KhdkivjQro8ABL/PRiEO4ROwvrolYAcZnky0Fl/baWKYilQfWvESliRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js" integrity="sha512-HLbtvcctT6uyv5bExN/qekjQvFIl46bwjEq6PBvFogNfZ0YGVE+N3w6L+hGaJsGPWnMcAQ2qK8Itt43mGzGy8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.min.js" integrity="sha512-VIF8OqBWob/wmCvrcQs27IrQWwgr3g+iA4QQ4hH/YeuYBIoAUluiwr/NX5WQAQgUaVx39hs6l05cEOIGEB+dmA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/1.7.0/js/buttons.html5.min.js" integrity="sha512-ehHOosb2HF/KK/7kZSGFaOijR+smIS5PvSPBG0He69iTEQe30Q+g0NLJYQUmySpqGrol1frtzE1Re2a9AebxiQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/1.7.0/js/buttons.print.min.js" integrity="sha512-kYpyIzqFmlPX1c3EhpL4+8AajeawkvGies2wVJcpMZJ/7zupZ/KcHa8QsDng8rtFUn2yPk/0MZolkz3pTqhsPA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-buttons/1.7.0/js/buttons.colVis.min.js" integrity="sha512-ll1/he+7pNOn7mpHZxOpCdV6HB+BNYs9rcDeHZSTV33/JHJIET2HCSjbCXREbl0LteZVQpg+zgpAlIABGXL/ow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var dbList = [];
+            var src_limit = 0;
+            var des_limit = 0;
+            var srcArray = []
+            var desArray = []
+            var srcindex = 0;
+            var desIndex = 0;
+            //var param_x= localStorage.getItem("strURN");
+            //var param_table=   localStorage.getItem("tableName");
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const param_x = urlParams.get('linkid');
+            const param_table = urlParams.get('tblname');
+            // alert("param_x " + param_x + " " + "param_table" + param_table);
+
+
+
+            $.ajax({
+                type: "GET",
+                url: "/api/DatabaseList/",
+                contentType: "application/json",
+                success: function (data) {
+                    dbList = data;
+                    console.log(dbList);
+                    var toAppend = '';
+                    $.each(data, function (i, o) {
+                        toAppend += '<option value=' + o.intType + '>' + o.strTitle + '</option>';
+                    });
+                    $('#src_database').append(toAppend);
+                    $('#des_database').append(toAppend);
+                    if (param_x != null && param_x != "" && param_table != null && param_table != "") {
+
+                        $.each(data, function (i, o) {
+                            if (o.strControllerName == param_table) {
+                                //alert("Found");
+                                $("#src_database option").filter(function () {
+                                    //may want to use $.trim in here
+                                    return $(this).text() == o.strTitle;
+                                }).attr('selected', true);
+                            }
+                        });
+                        loadSrcData(param_x, param_table);
+                    }
+                    ReloadCommonLinktable();
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            });
+
+
+
+            function ReloadCommonLinktable() {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/CommonLinks/",
+                    contentType: "application/json",
+                    success: function (response) {
+
+                        $("#commonLinkTable tbody").empty();
+                        var jsonObject = $.parseJSON(response);
+                        console.log(jsonObject);
+                        $.each(jsonObject, function (i, propVal) {
+                            console.log(propVal);
+                            if (parseInt(propVal.intDbIdSource) > 0) {
+                                var dbsrcTable = dbList.filter(function (v) {
+                                    return v.intType == parseInt(propVal.intDbIdSource);
+                                });
+
+                                console.log(dbsrcTable);
+                                if (dbsrcTable != undefined) {
+                                    console.log(dbsrcTable);
+                                }
+
+
+
+                                var dbdesTable = dbList.filter(function (v) {
+                                    return v.intType == parseInt(propVal.intDbIdDest);
+                                });
+                                console.log(dbdesTable);
+                                //[0].strTable;
+                                if (dbdesTable != undefined) {
+                                    console.log(dbdesTable);
+                                }
+                                if (dbsrcTable != undefined && dbsrcTable.length > 0 && dbdesTable != undefined && dbdesTable.length > 0) {
+                                    $("#commonLinkTable tbody").append("<tr><td>" + (i + 1) + "</td><td>" + dbsrcTable[0].strTable + "</td><td>" + dbdesTable[0].strTable + "</td><td>" + propVal.CreatedOn + "</td><td>" + propVal.strLink + "</td><td class='text-center align-middle'><div class= 'btn-group align-top'><button class='btn btn-sm btn-outline-secondary badge text-dark editCommonLink'  data-strurn='" + propVal.strURN + "' >Edit</button><button class='btn btn-sm btn-outline-secondary badge text-dark' type='button'><i class='fa fa-trash'></i></button></div></td></tr>");
+
+
+                                }
+
+                            }
+                        });
+                        $("#commonLinkTable").DataTable({
+                            "responsive": true, "lengthChange": false, "autoWidth": false,
+                            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+                        }).buttons().container().appendTo('#commonLinkTable_wrapper .col-md-6:eq(0)');
+                    },
+                    error: function (response) {
+                        alert(response)
+                    }
+
+
+                });
+            }
+
+
+
+
+            var commonLinkObj = "";
+
+            $(document).on("click", "button.editCommonLink", function () {
+
+                var obj = $(this).attr("data-strurn");
+                var url = "/api/CommonLinks/" + obj;
+                // alert(url);
+                var q = { query: $("#src_searchText").val() };
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    contentType: "application/json",
+                    success: function (response) {
+                        console.log(response);
+                        var jsonObject = $.parseJSON(response);
+                        commonLinkObj = jsonObject;
+                        //alert("new Object = "+commonLinkObj.strLink);
+
+                        var src_dbName = dbList.filter(function (v) {
+                            return v.intType == jsonObject.intDbIdSource;
+                        })[0].strTitle;
+                        var des_dbName = dbList.filter(function (v) {
+                            return v.intType == jsonObject.intDbIdDest;
+                        })[0].strTitle;
+                        $("#src_database option").filter(function () {
+                            //may want to use $.trim in here
+                            return $(this).text() == src_dbName;
+                        }).attr('selected', true);
+                        $("#des_database option").filter(function () {
+                            //may want to use $.trim in here
+                            return $(this).text() == des_dbName;
+                        }).attr('selected', true);
+
+                        //$("#src_database").val(jsonObject.intDbIdSource).change();
+                        //$("#des_database").val(jsonObject.intDbIdDest).change();
+                        $("#src_evaluation").val(jsonObject.SourceEvaluation).change();
+                        $("#info_evaluation").val(jsonObject.InformationEvaluation).change();
+                        $("#reason_link").val(jsonObject.strLink);
+                        $("#Create_Link").html("Update Link");
+
+
+
+                        srcindex = 0;
+                        desIndex = 0;
+                        var src_controllerName = dbList.filter(function (v) {
+                            return v.intType == jsonObject.intDbIdSource;
+                        })[0].strControllerName;
+
+                        var src_url = "/api/" + src_controllerName + "/" + jsonObject.strURNSource;
+
+                        var des_controllerName = dbList.filter(function (v) {
+                            return v.intType == jsonObject.intDbIdDest;
+                        })[0].strControllerName;
+                        des_url = "/api/" + des_controllerName + "/" + jsonObject.strURNDest;
+                        //alert(url);
+                        $.ajax({
+                            type: "GET",
+                            url: src_url,
+                            contentType: "application/json",
+                            success: function (srcResponse) {
+                                srcArray = [];
+                                //var evidence = $.parseJSON(response);
+                                console.log(srcResponse);
+                                srcArray.push($.parseJSON(srcResponse));
+                                src_limit = srcArray.length;
+                                var src_columnNames = Object.keys(srcResponse[srcindex]);
+                                console.log(src_columnNames);
+                                $("#table1 tbody").empty();
+                                $.each(srcArray[srcindex], function (propName, propVal) {
+                                    console.log(propName, propVal);
+                                    $("#table1").append("<tr><td><b>" + propName + "</b></td><td>" + propVal + "</td></tr>");
+                                });
+
+                                $.ajax({
+                                    type: "GET",
+                                    url: des_url,
+                                    contentType: "application/json",
+                                    success: function (desResponse) {
+                                        desArray = [];
+                                        //var evidence = $.parseJSON(response);
+                                        console.log(desResponse);
+                                        desArray.push($.parseJSON(desResponse));
+                                        des_limit = desArray.length;
+                                        var des_columnNames = Object.keys(desResponse[desIndex]);
+                                        console.log(des_columnNames);
+                                        $("#table2 tbody").empty();
+                                        $.each(desArray[desIndex], function (propName, propVal) {
+                                            console.log(propName, propVal);
+                                            $("#table2").append("<tr><td><b>" + propName + "</b></td><td>" + propVal + "</td></tr>");
+                                        });
+                                    }
+                                });
+                            }
+                        });
+
+
+
+                    }
+                });
+                // alert(obj);
+            });
+            function loadSrcArray(srcStrURN) {
+
+            }
+
+
+
+            $("#src_searchBtn").click(function () {
+                srcindex = 0;
+                var strSelected = "";
+                $("#src_database option:selected").each(function () {
+                    strSelected += $(this)[0].value;
+                });
+                var src_dbName = dbList.filter(function (v) {
+                    return v.intType == strSelected;
+                })[0].strControllerName;
+                //alert(src_dbName)
+                var url = "/api/" + src_dbName + "/SearchRecord";
+                //alert(url);
+                var q = { query: $("#src_searchText").val() };
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: JSON.stringify(q),
+                    contentType: "application/json",
+                    success: function (response) {
+                        srcArray = response;
+                        src_limit = srcArray.length;
+                        columnNames = Object.keys(response[srcindex]);
+                        console.log(columnNames);
+                        $("#table1 tbody").empty();
+                        $.each(srcArray[srcindex], function (propName, propVal) {
+                            console.log(propName, propVal);
+                            if (propVal != null && propVal != "" && propVal != "null")
+                                $("#table1").append("<tr><td>" + propName + "</td><td>" + propVal + "</td></tr>");
+                        });
+                    }
+                });
+
+
+            });
+            $("#des_searchBtn").click(function () {
+                desIndex = 0;
+                var strSelected = "";
+                $("#des_database option:selected").each(function () {
+                    strSelected += $(this)[0].value;
+                });
+                var des_dbName = dbList.filter(function (v) {
+                    return v.intType == strSelected;
+                })[0].strControllerName;
+                //alert(src_dbName)
+                var url = "/api/" + des_dbName + "/SearchRecord";
+                //alert(url);
+                var q = { query: $("#des_searchText").val() };
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: JSON.stringify(q),
+                    contentType: "application/json",
+                    success: function (response) {
+                        desArray = response;
+                        des_limit = desArray.length;
+                        columnNames = Object.keys(response[desIndex]);
+                        console.log(columnNames);
+                        $("#table2 tbody").empty();
+                        $.each(desArray[desIndex], function (propName, propVal) {
+                            console.log(propName, propVal);
+                            if (propVal != null && propVal != "" && propVal != "null")
+                                $("#table2").append("<tr><td>" + propName + "</td><td>" + propVal + "</td></tr>");
+                        });
+                    }
+                });
+
+
+            });
+            $("#src_database").change(function () {
+                srcArray = [];
+                srcindex = 0;
+                src_limit = 0;
+                var strSelected = "";
+                $("#src_database option:selected").each(function () {
+                    strSelected += $(this)[0].value;
+                });
+                var controllerName = dbList.filter(function (v) {
+                    return v.intType == parseInt(strSelected); // Filter out the appropriate one
+                })[0].strControllerName;
+                //alert(controllerName);
+                var url = "/api/" + controllerName + "/GetLastFive";
+
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        console.log(data);
+                        $("#source_table_name").html(controllerName);
+                        srcArray = data;
+                        src_limit = srcArray.length;
+                        $("#table1 tbody").empty();
+                        //alert(src_limit);
+
+
+                        if (data.length > 0) {
+
+                            //columnNames = Object.keys(data[srcindex]);
+                            //console.log(columnNames);
+
+                            $.each(srcArray[srcindex], function (propName, propVal) {
+                                console.log(propName, propVal);
+                                $("#table1").append("<tr><td><b>" + propName + "</b></td><td>" + propVal + "</td></tr>");
+                            });
+                        }
+
+                    },
+                    error: function (data) {
+                        alert("Error ");
+                    }
+                });
+                //alert(url);
+
+            });
+            $("#src_pre").click(function () {
+
+                if (srcindex > 0) {
+
+                    srcindex--;
+
+                    $("#table1 tbody").empty();
+                    $.each(srcArray[srcindex], function (propName, propVal) {
+                        console.log(propName, propVal);
+                        if (propVal != null && propVal != "" && propVal != "null")
+                            $("#table1").append("<tr><td><b>" + propName + "</b></td><td>" + propVal + "</td></tr>");
+                    });
+                }
+
+            });
+            $("#src_next").click(function () {
+                if (srcindex >= 0 && srcindex < src_limit - 1) {
+                    //alert(srcindex);
+                    srcindex++;
+                    $("#table1 tbody").empty();
+                    $.each(srcArray[srcindex], function (propName, propVal) {
+                        console.log(propName, propVal);
+                        if (propVal != null && propVal != "" && propVal != "null")
+                            $("#table1").append("<tr><td><b>" + propName + "</b></td><td>" + propVal + "</td></tr>");
+                    });
+                }
+            });
+
+            $(document).ajaxStop(function () {
+
+
+                $('.spinner').css('display', 'none');
+            });
+
+            $("#des_database").change(function () {
+                desArray = [];
+                desIndex = 0;
+                des_limit = 0;
+
+                //alert("good")
+                var strSelected = "";
+                $("#des_database option:selected").each(function () {
+                    strSelected += $(this)[0].value;
+                });
+                var controllerName = dbList.filter(function (v) {
+                    return v.intType == parseInt(strSelected); // Filter out the appropriate one
+                })[0].strControllerName;
+                //alert(controllerName);
+                var url = "/api/" + controllerName + "/GetLastFive";
+                $("#destination_table_name").html(controllerName);
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+
+                        desArray = data;
+                        des_limit = desArray.length;
+                        $("#table2 tbody").empty();
+                        //alert(src_limit);
+
+
+                        if (data.length > 0) {
+
+                            //columnNames = Object.keys(data[srcindex]);
+                            //console.log(columnNames);
+
+                            $.each(desArray[desIndex], function (propName, propVal) {
+                                console.log(propName, propVal);
+                                $("#table2").append("<tr><td><b>" + propName + "</b></td>><td>" + propVal + "</td></tr>");
+                            });
+                        }
+
+                    },
+                    error: function (data) {
+                        alert("Error ");
+                    }
+                });
+                //var items = [];
+
+                //alert(url);
+        @*$.ajax({
+                type: "GET",
+                url: url,
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                console.log(data);
+                var table = data.strTable;
+
+                url = "/api/"+table+"/GetLastFive";
+
+                //alert(url);
+
+                },
+
+                });*@
+            });
+            $("#des_pre").click(function () {
+
+                if (desIndex > 0) {
+
+                    desIndex--;
+
+                    $("#table2 tbody").empty();
+                    $.each(desArray[desIndex], function (propName, propVal) {
+                        console.log(propName, propVal);
+                        if (propVal != null && propVal != "" && propVal != "null")
+                            $("#table2").append("<tr><td><b>" + propName + "</b></td><td>" + propVal + "</td></tr>");
+                    });
+                }
+
+            });
+            $("#des_next").click(function () {
+                if (desIndex >= 0 && desIndex < des_limit - 1) {
+                    //alert(srcindex);
+                    desIndex++;
+                    $("#table2 tbody").empty();
+                    $.each(desArray[desIndex], function (propName, propVal) {
+                        console.log(propName, propVal);
+                        if (propVal != null && propVal != "" && propVal != "null")
+                            $("#table2").append("<tr><td><b>" + propName + "</b></td><td>" + propVal + "</td></tr>");
+                    });
+                }
+            });
+            var AllDay = false;
+
+            $("#isBidirectional").on('change', function () {
+                $(this).val(this.checked ? "TRUE" : "FALSE");
+                AllDay = $("#isBidirectional").is(":checked") ? "true" : "false";
+                //$("#txt").val(AllDay);
+            });
+            $("#Create_Link").click(function () {
+                var strSelected = "";
+                $("#src_database option:selected").each(function () {
+                    strSelected += $(this)[0].value;
+                });
+                var desSelected = "";
+                $("#des_database option:selected").each(function () {
+                    desSelected += $(this)[0].value;
+                });
+                //alert(strSelected + "\t" + desSelected + "\t" + srcArray[srcindex].strURN + "\t" + desArray[desIndex].strURN);
+                var src_eva = "";
+                $("#src_evaluation option:selected").each(function () {
+                    src_eva += $(this)[0].value;
+                });
+                var inf_eva = "";
+                $("#info_evaluation option:selected").each(function () {
+                    inf_eva += $(this)[0].value;
+                });
+
+                var commonLinksParams = {
+                    strURNSource: srcArray[srcindex].strURN,
+                    strURNDest: desArray[desIndex].strURN,
+                    intDbIdSource: parseInt(strSelected),
+                    intDbIdDest: parseInt(desSelected),
+                    optBiDirectional: AllDay,
+                    strLink: $("#reason_link").val(),
+                    SourceEvaluation: parseInt(src_eva),
+                    InformationEvaluation: parseInt(inf_eva)
+                };
+                //alert(JSON.stringify(commonLinksParams));
+
+                var url = "/api/CommonLinks/PostCommonLinks";
+
+                if ($(this).html() == "Update Link") {
+
+
+                    commonLinkObj.strURNSource = srcArray[srcindex].strURN;
+                    commonLinkObj.strURNDest = desArray[desIndex].strURN;
+                    commonLinkObj.intDbIdSource = parseInt(strSelected);
+                    commonLinkObj.intDbIdDest = parseInt(desSelected);
+                    commonLinkObj.optBiDirectional = AllDay;
+                    commonLinkObj.strLink = $("#reason_link").val();
+                    commonLinkObj.SourceEvaluation = parseInt(src_eva);
+                    commonLinkObj.InformationEvaluation = parseInt(inf_eva);
+
+
+
+
+                    console.log(commonLinkObj);
+                    console.log(JSON.stringify(commonLinkObj));
+
+                    //alert(commonLinkObj.strLink);
+                    url = "/api/CommonLinks/UpdateCommonLinks";
+                    $.ajax({
+                        type: "PUT",
+                        url: url,
+                        contentType: "application/json",
+                        data: JSON.stringify(commonLinkObj),
+
+                        success: function (response) {
+
+                            alert("Update Success");
+                            location.reload();
+                        },
+                        error: function (response) {
+                            alert(response)
+                        }
+                    });
+                }
+                else {
+                    alert("Create");
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        contentType: "application/json",
+                        data: JSON.stringify(commonLinksParams),
+
+                        success: function (response) {
+
+                            alert("Insert Success")
+                            window.location.replace(location.pathname);;
+                        },
+                        error: function (response) {
+                            alert(response)
+                        }
+                    });
+
+                }
+                //alert(url);
+                //var q = { query: $("#src_searchText").val() };
+
+
+
+
+            });
+
+            function loadSrcData(param_x, param_table) {
+                // alert("2");
+                // alert(param_x + " " + param_table);
+                if (param_x != null) {
+                    srcindex = 0;
+
+                    var url = "/api/" + param_table + "/" + param_x;
+
+                    //$("#src_database").val(param_table);
+
+                    $("#source_table_name").html(param_table);
+                    $("#source_table_name").css("display", "block");
+
+                    $.ajax({
+                        type: "GET",
+                        url: url,
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (response) {
+
+                            $("#preview_table tbody").empty();
+
+                            // alert(JSON.stringify(response));
+                            srcArray = [];
+                            srcArray.push(response);
+                            console.log(srcArray[srcindex]);
+                            $("#table1 tbody").empty();
+                            $.each(srcArray[srcindex], function (propName, propVal) {
+                                console.log(propName, propVal);
+                                $("#table1").append("<tr><td style='text-align: center;vertical-align: middle;'><b>" + propName + "</b></td><td>" + propVal + "</td></tr>");
+                            });
+                        },
+                        error: function (response) {
+                            alert("error");
+                        }
+                    });
+                }
+
+
+            }
+        });
+
+
+
+    </script>
+}
