@@ -1,7 +1,10 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models;
 using CTW_FIA.Models.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System;
 
 namespace CTW_FIA.Controllers
 {
@@ -11,10 +14,12 @@ namespace CTW_FIA.Controllers
         private readonly IDashboard dashboard;
         private readonly ITerrorist terrorist;
         private readonly AppDbContext dbContext;
+        private readonly ConverterModel converterModel;
         private readonly IJson jsn;
-        public JsonsideController(IDashboard dashboard, ITerrorist terrorist, AppDbContext dbContext, IJson jsn)
+        public JsonsideController(ConverterModel converterModel,IDashboard dashboard, ITerrorist terrorist, AppDbContext dbContext, IJson jsn)
         {
             this.dashboard = dashboard;
+            this.converterModel = converterModel;
             this.terrorist = terrorist;
             dbContext = dbContext;
             this.jsn = jsn;
@@ -70,6 +75,23 @@ namespace CTW_FIA.Controllers
             //var data = dashboard.getCtwdashboardsIncidentwise().Where(X => X.tablename == "PW").ToList(); 
             var data = jsn.GetReportingAgencies();
             return Json(data);
+        }
+        [HttpGet]
+        public JsonResult GetAllDatabaselist()
+        {
+            //var data = dashboard.getCtwdashboardsIncidentwise().Where(X => X.tablename == "PW").ToList(); 
+            var data = jsn.databaseLists();
+            return Json(data);
+        }
+
+        [HttpGet]
+        public JsonResult GetSingleRec(int ID,string TableName,string Search)
+        {
+            //var data = dashboard.getCtwdashboardsIncidentwise().Where(X => X.tablename == "PW").ToList(); 
+            var data = jsn.GetRecordData(TableName,Search,ID);
+        
+            var data2 = converterModel.GetModelFromDataTable(data);
+            return Json(data2);
         }
 
     }

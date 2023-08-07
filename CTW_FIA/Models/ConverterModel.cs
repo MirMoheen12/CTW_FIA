@@ -1,5 +1,6 @@
 ﻿using CTW_FIA.Models.LocalModels;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Reflection;
 
 namespace CTW_FIA.Models
@@ -38,6 +39,23 @@ namespace CTW_FIA.Models
 
             }
             return dm;
+        }
+        public List<DisplayModel> GetModelFromDataTable(DataTable data)
+        {
+            List<DisplayModel> dmList = new List<DisplayModel>();
+
+            foreach (DataColumn column in data.Columns)
+            {
+                DisplayModel model = new DisplayModel
+                {
+                    PropertName = column.ColumnName,
+                    PropertValue = Convert.ToString(data.Rows[0][column])
+                };
+
+                dmList.Add(model);
+            }
+
+            return dmList;
         }
     }
 }
