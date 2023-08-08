@@ -42,20 +42,27 @@ namespace CTW_FIA.Models
         }
         public List<DisplayModel> GetModelFromDataTable(DataTable data)
         {
-            List<DisplayModel> dmList = new List<DisplayModel>();
-
-            foreach (DataColumn column in data.Columns)
+            try
             {
-                DisplayModel model = new DisplayModel
+                List<DisplayModel> dmList = new List<DisplayModel>();
+
+                foreach (DataColumn column in data.Columns)
                 {
-                    PropertName = column.ColumnName,
-                    PropertValue = Convert.ToString(data.Rows[0][column])
-                };
+                    DisplayModel model = new DisplayModel
+                    {
+                        PropertName = column.ColumnName,
+                        PropertValue = Convert.ToString(data.Rows[0][column])
+                    };
 
-                dmList.Add(model);
+                    dmList.Add(model);
+                }
+
+                return dmList;
             }
-
-            return dmList;
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

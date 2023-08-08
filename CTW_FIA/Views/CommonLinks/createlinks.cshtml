@@ -231,6 +231,7 @@
 </div>
 <script>
     var ID=1;
+    var ID2 = 1;
     $(document).ready(function () {
         $.ajax({
 
@@ -274,7 +275,7 @@
         }
         else 
         {
-            getdata('#table1body', ID, $(this).val(), null)
+            getdata('#table1body', ID, $(this).val(), $('#src_searchText').val())
         }
     });
     $('#des_database').change(function () {
@@ -283,7 +284,7 @@
             $("#table2body").empty();
         }
         else {
-            getdata('#table2body', ID, $(this).val(), null)
+            getdata('#table2body', ID2, $(this).val(), null)
         }
     });
 
@@ -311,8 +312,87 @@
             }
         });
     }
-       
-  
-     
+   
+    ///Prevous
+    
+
+    $("#src_searchBtn").click(function () {
+        if($('#src_database').val()=='')
+        {
+            alert('Select database');
+        }
+        else
+        {
+            ID = 1;
+            getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val())
+        }
+      
+        
+    });
+    $("#des_searchBtn").click(function () {
+        if ($('#des_database').val() == '') {
+            alert('Select database');
+        }
+        else {
+            ID2 = 1;
+            getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val())
+        }
+
+
+
+      
+
+    });
+
+    
+
+    $("#src_pre").click(function () {
+        ID=ID-1;
+        if(ID==0)
+        {
+            $("#src_pre").attr("disabled", true);
+          
+        }
+        else
+        {
+            getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val())
+        }
+    });
+    $("#src_next").click(function () {
+        ID = ID + 1;
+        $("#src_pre").attr("disabled", false);
+        if (ID == 0) {
+
+            $("#src_pre").attr("disabled", true);
+
+        }
+        else {
+            getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val())
+        }
+    });
+    //Next
+    $("#des_pre").click(function () {
+        ID2 = ID2 - 1;
+        if (ID2 == 0) {
+            $("#des_pre").attr("disabled", true);
+
+        }
+        else {
+            getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val())
+        }
+    });
+    $("#des_next").click(function () {
+        ID2 = ID2 + 1;
+        $("#des_pre").attr("disabled", false);
+        if (ID2 == 0) {
+
+            $("#des_next").attr("disabled", true);
+
+        }
+        else {
+            getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val())
+        }
+    });
+
 </script>
 
