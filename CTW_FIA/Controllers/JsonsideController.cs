@@ -87,6 +87,10 @@ namespace CTW_FIA.Controllers
         [HttpGet]
         public JsonResult GetSingleRec(int ID,string TableName,string Search)
         {
+            if (TableName == null)
+            {
+                return null;
+            }
             //var data = dashboard.getCtwdashboardsIncidentwise().Where(X => X.tablename == "PW").ToList(); 
             var data = jsn.GetRecordData(TableName,Search,ID);
         

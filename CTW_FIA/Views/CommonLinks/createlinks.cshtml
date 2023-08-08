@@ -275,6 +275,7 @@
         }
         else 
         {
+            ID=1;
             getdata('#table1body', ID, $(this).val(), $('#src_searchText').val())
         }
     });
@@ -284,6 +285,7 @@
             $("#table2body").empty();
         }
         else {
+            ID2=1;
             getdata('#table2body', ID2, $(this).val(), null)
         }
     });
@@ -353,6 +355,10 @@
             $("#src_pre").attr("disabled", true);
           
         }
+        else if($('#src_database').val()=='')
+        {
+            alert('Select database');
+        }
         else
         {
             getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val())
@@ -366,6 +372,9 @@
             $("#src_pre").attr("disabled", true);
 
         }
+        else if ($('#src_database').val() == '') {
+            alert('Select database');
+        }
         else {
             getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val())
         }
@@ -376,6 +385,9 @@
         if (ID2 == 0) {
             $("#des_pre").attr("disabled", true);
 
+        }
+        else if ($('#des_database').val() == '') {
+            alert('Select database');
         }
         else {
             getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val())
@@ -388,6 +400,9 @@
 
             $("#des_next").attr("disabled", true);
 
+        }
+        else if ($('#des_database').val() == '') {
+            alert('Select database');
         }
         else {
             getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val())
