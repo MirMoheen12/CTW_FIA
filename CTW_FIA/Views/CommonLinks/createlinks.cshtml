@@ -184,7 +184,7 @@
                     </div>
                     <br>
                     <button type="button" class="btn btn-primary btn-fw ml-5" id="Create_Link">Create Link</button>
-                    <button type="button" class="btn btn-secondary btn-fw ml-5">Exit</button>
+            
 
                 </form>
             </div>
@@ -193,7 +193,7 @@
 </div>
 <br>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
+@*
 <div class="row">
 
     <div class="col">
@@ -228,10 +228,12 @@
 
 
     </div>
-</div>
+</div>*@
 <script>
     var ID=1;
     var ID2 = 1;
+    var SrcStrURn="";
+    var DestStrUrn="";
     $(document).ready(function () {
         $.ajax({
 
@@ -276,7 +278,7 @@
         else 
         {
             ID=1;
-            getdata('#table1body', ID, $(this).val(), $('#src_searchText').val())
+            getdata('#table1body', ID, $(this).val(), $('#src_searchText').val(),"Left")
         }
     });
     $('#des_database').change(function () {
@@ -286,12 +288,12 @@
         }
         else {
             ID2=1;
-            getdata('#table2body', ID2, $(this).val(), null)
+            getdata('#table2body', ID2, $(this).val(), null,"Right")
         }
     });
 
 
-    function getdata(tableid,Count,Tabname,Searchrec)
+    function getdata(tableid,Count,Tabname,Searchrec,callby)
     {
         $.ajax({
 
@@ -302,7 +304,15 @@
             success: function (response) {
                 console.log(response)
                 $(tableid).empty();
-                for (var i = 0; i < response.length; i++) {
+                for (var i = 0; i < response.length; i++) 
+                {
+                    if (response[i].propertName == "strURN" && callby=="Left")
+                    {
+                        SrcStrURn = response[i].propertValue;
+                    }
+                    else if (response[i].propertName == "strURN" && callby == "Right") {
+                        DestStrUrn = response[i].propertValue;
+                    }
 
                     $(tableid).append("<tr style='text-aling:left'><td>" + response[i].propertName + "</b></td>><td>" + response[i].propertValue + "</td></tr>");
 
@@ -326,7 +336,7 @@
         else
         {
             ID = 1;
-            getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val())
+            getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val(),"Left")
         }
       
         
@@ -337,7 +347,7 @@
         }
         else {
             ID2 = 1;
-            getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val())
+            getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(),"Right")
         }
 
 
@@ -361,7 +371,7 @@
         }
         else
         {
-            getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val())
+            getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val(),"Left")
         }
     });
     $("#src_next").click(function () {
@@ -376,7 +386,7 @@
             alert('Select database');
         }
         else {
-            getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val())
+            getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val(),"Left")
         }
     });
     //Next
@@ -390,7 +400,7 @@
             alert('Select database');
         }
         else {
-            getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val())
+            getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(),"Right")
         }
     });
     $("#des_next").click(function () {
@@ -405,9 +415,48 @@
             alert('Select database');
         }
         else {
-            getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val())
+            getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(),"Right")
         }
     });
+
+
+    $("#Create_Link").click(function () {
+        if ($('#src_database').val() != '' && $('#des_database').val() != '' && SrcStrURn != "" && DestStrUrn != "") {
+            $('.spinner').css('display', 'block');
+            $.ajax({
+
+                url: '/CommonLinks/AddLink',
+                type: 'GET',
+                data: { SrcTab: $('#src_database').val(), Desttab: $('#des_database').val(), srcStrn: SrcStrURn, deststrn: DestStrUrn, SE: $('#src_evaluation').val(), RE: $('#info_evaluation').val(), RL: $('#reason_link').val(), BI: $('#isBidirectional').val() },
+                contentType: 'application/json',
+                success: function (response) {
+     
+                    $('.spinner').css('display', 'none');
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Record Successfully added',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                     location.reload();
+                }
+            });
+            
+            
+          
+          
+        }
+        else
+        {
+            alert("Please select all Entries");
+        }
+       
+   
+
+
+    });
+
 
 </script>
 

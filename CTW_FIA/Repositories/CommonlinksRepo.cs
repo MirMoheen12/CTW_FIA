@@ -16,7 +16,7 @@ namespace CTW_FIA.Repositories
 
         }
 
-        public bool CreateCommonlinks(string srcSTRURN, string dstSTRURN, string DbSrc, string DbDest, string linkType,string textsearch)
+        public bool CreateCommonlinks(string srcSTRURN, string dstSTRURN, string DbSrc, string DbDest, string linkType,string textsearch, string SE = "", string RE = "", string RL="", string BI="")
         {
             try
             {
