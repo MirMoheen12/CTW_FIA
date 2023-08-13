@@ -61,5 +61,18 @@ namespace CTW_FIA.Repositories
             }
             return list.FirstOrDefault();
         }
+
+        public void DeleteEquipment(string sTRUN)
+        {
+            var data = appDbContext.Person.Where(x => x.strURN == sTRUN).FirstOrDefault();
+            data.IsDeleted = true;
+            appDbContext.Person.Update(data);
+            appDbContext.SaveChanges();
+        }
+
+        public void EditEquipment(string sTRUN)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
 using CTW_FIA.Models.LocalModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace CTW_FIA.Repositories
 {
@@ -49,6 +50,11 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
+        public void EditExplosives(string sTRUN)
+        {
+            throw new NotImplementedException();
+        }
+
         public QuickSearchExplosives_sel_Result GetExplosiveByStrurn(string Strurn)
         {
             var dat = new
@@ -63,6 +69,14 @@ namespace CTW_FIA.Repositories
                 list.Add((QuickSearchExplosives_sel_Result)item);
             }
             return list.FirstOrDefault();
+        }
+
+        void IExplosive.DeleteExplosives(string sTRUN)
+        {
+            var data = appDbContext.Person.Where(x => x.strURN == sTRUN).FirstOrDefault();
+            data.IsDeleted = true;
+            appDbContext.Person.Update(data);
+            appDbContext.SaveChanges();
         }
     }
 }

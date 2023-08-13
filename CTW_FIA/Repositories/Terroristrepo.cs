@@ -264,5 +264,31 @@ namespace CTW_FIA.Repositories
             }
 
         }
+
+        public void DeletePerson(string StrURN)
+        {
+            var data = dbContext.Person.Where(x=> x.strURN == StrURN).FirstOrDefault();
+            data.IsDeleted = true;
+            dbContext.Person.Update(data);
+            dbContext.SaveChanges();
+        }
+
+        public void DeleteTerroristGroup(string StrURN)
+        {
+            var data = dbContext.Person.Where(x => x.strURN == StrURN).FirstOrDefault();
+            data.IsDeleted = true;
+            dbContext.Person.Update(data);
+            dbContext.SaveChanges();
+        }
+
+        public void EditPerson(string sTRUN)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void EditTerroristGroup(string sTRUN)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

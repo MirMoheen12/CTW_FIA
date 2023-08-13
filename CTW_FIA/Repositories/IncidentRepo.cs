@@ -3,6 +3,7 @@ using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
 using CTW_FIA.Models.LocalModels;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace CTW_FIA.Repositories
@@ -37,6 +38,19 @@ namespace CTW_FIA.Repositories
 
             }
 
+        }
+
+        public void DeleteIncident(string sTRUN)
+        {
+            var data = appDbContext.Person.Where(x => x.strURN == sTRUN).FirstOrDefault();
+            data.IsDeleted = true;
+            appDbContext.Person.Update(data);
+            appDbContext.SaveChanges();
+        }
+
+        public void EditIncident(string sTRUN)
+        {
+            throw new NotImplementedException();
         }
 
         public PreviewIncidentByStrUrn getIncidentID(string STRURN)

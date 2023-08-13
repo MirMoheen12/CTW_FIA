@@ -8,5 +8,7 @@ namespace CTW_FIA.Interface
         public List<PreviewIncident> getIncidentProvincewiese(string Province);
         public PreviewIncidentByStrUrn getIncidentID(string STRURN);
         public bool AddNewIncident(Incident incident);
+        void DeleteIncident(string sTRUN);
+        void EditIncident(string sTRUN);
     }
 }

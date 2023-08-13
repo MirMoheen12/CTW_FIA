@@ -10,7 +10,7 @@ namespace CTW_FIA.Models.Dto
         [Display(Name = "Person ID")]
         public string? PersonID { get; set; }
 
-        [Display(Name = "Person String URN")]
+        [Display(Name = "Str URN")]
         public string? PersonStrUrn { get; set; }
 
         [Display(Name = "Address ID")]

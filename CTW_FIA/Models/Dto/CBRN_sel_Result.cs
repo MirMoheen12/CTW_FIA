@@ -6,7 +6,7 @@ namespace CTW_FIA.Models.Dto
         [Display(Name = "Serial No")]
         public string? SerialNo { get; set; }
 
-        [Display(Name = "URN")]
+        [Display(Name = "Str URN")]
         public string? strURN { get; set; }
 
         [Display(Name = "ID")]

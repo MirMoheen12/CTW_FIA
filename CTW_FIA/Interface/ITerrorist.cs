@@ -16,6 +16,9 @@ namespace CTW_FIA.Interface
         public QuickSearchGroups_sel_Result GetGroupsByStrurn(string Strurn);
         public List<PoliceStation> AllPliceStation();
         public bool AddNewGroup(Group group);
-
+        public void DeletePerson(string StrURN);
+        public void DeleteTerroristGroup(string StrURN);
+        void EditPerson(string sTRUN);
+        void EditTerroristGroup(string sTRUN);
     }
 }

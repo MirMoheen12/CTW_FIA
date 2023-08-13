@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<CTW_FIA.Models.LocalModels.DisplayModel>
 @{
-    
+    string STRUN="99";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -36,6 +36,10 @@
                             <tr>
                                 <td>
                                     @item.PropertName
+                                    @if (item.PropertName == "Str URN")
+                                    {
+                                        STRUN = item.PropertValue;
+                                    }
                                 </td>
 
                                 <td>
@@ -57,10 +61,30 @@
 
 
 </div>
+<style>
+    .floating-buttons {
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+<div class="floating-buttons">
+    @Html.ActionLink("Edit", "Edit", "Record", new { STRUN = STRUN, name = ViewData["Title"] }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Delete", "Delete", "Record", new { STRUN = STRUN, name = ViewData["Title"] }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this record?');" })
+</div>
 
 
-
-
+@if (!string.IsNullOrEmpty(ViewBag.RedirectUrl))
+{
+    <script>
+        // Show a dialog box with the success message
+        alert('Update was successful!');
+        // Redirect after user acknowledgment
+        window.location.href = '@ViewBag.RedirectUrl';
+    </script>
+}
 
 
 
@@ -101,7 +125,7 @@
             info: false, // Display information about the table (e.g., "Showing x to y of z entries")
             lengthChange: true, // Allow users to change the number of rows per page
             dom: 'Bfrtip', // Enable DataTables Buttons extension
-            buttons: ['copy', 'csv', 'excel', 'pdf', 'print','delete'], // Available export formats
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'delete'], // Available export formats
             responsive: true, // Enable responsive design for different screen sizes
             columnDefs: [
                 { responsivePriority: 1, targets: 0 }, // Example: Define responsive priorities for columns

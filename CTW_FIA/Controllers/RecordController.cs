@@ -4,7 +4,7 @@ using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.LocalModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
+using System;
 
 namespace CTW_FIA.Controllers
 {
@@ -184,80 +184,179 @@ namespace CTW_FIA.Controllers
 
 
 
-        public IActionResult Delete(string STRUN, string modelname)
+        public IActionResult Delete(string STRUN, string name)
         {
-            List<DisplayModel> lis = new List<DisplayModel>();
-            switch (modelname)
+            switch (name)
             {
                 case "Person":
                     {
-
+                        terrorist.DeletePerson(STRUN);
+                        break;
                     }
                 case "Incident":
                     {
-
+                        incident.DeleteIncident(STRUN);
+                        break;
                     }
                 case "Terrorist Groups":
                     {
-
+                        terrorist.DeleteTerroristGroup(STRUN);
+                        break;
                     }
                 case "Explosives":
                     {
-
+                        explosive.DeleteExplosives(STRUN);
+                        break;
                     }
                 case "Vehicles":
                     {
-
+                        vehicle.DeleteVehicles(STRUN);
+                        break;
                     }
                 case "Power Source":
                     {
-
+                        powerSource.DeletePowerSource(STRUN);
+                        break;
                     }
                 case "Communication":
                     {
-
+                        communication.DeleteCommunication(STRUN);
+                        break;
                     }
                 case "Ordinance":
                     {
-
+                        ordinance.DeleteOrdinance(STRUN);
+                        break;
                     }
                 case "Equipment":
                     {
-
+                        equipments.DeleteEquipment(STRUN);
+                        break;
                     }
                 case "Initiation System":
                     {
-
+                        intianSystem.DeleteInitiationSystem(STRUN);
+                        break;
                     }
                 case "Components":
                     {
-
+                        components.DeleteComponents(STRUN);
+                        break;
                     }
                 case "CBRN":
                     {
-                        
+                        cBRN.DeleteCBRN(STRUN);
+                        break;
                     }
                 case "Firearms":
                     {
-                        
+                        fearams.DeleteFirearms(STRUN);
+                        break;
                     }
                 case "Chemicals":
                     {
-                        
+                        chemical.DeleteChemicals(STRUN);
+                        break;
                     }
                 case "Detonators":
                     {
-                        
+                        detonators.DeleteDetonators(STRUN);
+                        break;
                     }
                 default:
                     break;
             }
-            ViewData["Title"] = modelname;
+            ViewData["Title"] = name;
             ViewBag.link = commonlinks.getAlllinksCount(STRUN);
-
-            return View(lis);
+            return RedirectToAction("Index", "Dashboard");
         }
-
+        public IActionResult Edit(string STRUN, string name)
+        {
+            switch (name)
+            {
+                case "Person":
+                    {
+                        terrorist.EditPerson(STRUN);
+                        break;
+                    }
+                case "Incident":
+                    {
+                        incident.EditIncident(STRUN);
+                        break;
+                    }
+                case "Terrorist Groups":
+                    {
+                        terrorist.EditTerroristGroup(STRUN);
+                        break;
+                    }
+                case "Explosives":
+                    {
+                        explosive.EditExplosives(STRUN);
+                        break;
+                    }
+                case "Vehicles":
+                    {
+                        vehicle.EditVehicles(STRUN);
+                        break;
+                    }
+                case "Power Source":
+                    {
+                        powerSource.EditPowerSource(STRUN);
+                        break;
+                    }
+                case "Communication":
+                    {
+                        communication.EditCommunication(STRUN);
+                        break;
+                    }
+                case "Ordinance":
+                    {
+                        ordinance.EditOrdinance(STRUN);
+                        break;
+                    }
+                case "Equipment":
+                    {
+                        equipments.EditEquipment(STRUN);
+                        break;
+                    }
+                case "Initiation System":
+                    {
+                        intianSystem.EditInitiationSystem(STRUN);
+                        break;
+                    }
+                case "Components":
+                    {
+                        return RedirectToAction("EditComponent", "Components", new { sTRUN = STRUN});
+                        components.EditComponents(STRUN);
+                        break;
+                    }
+                case "CBRN":
+                    {
+                        cBRN.EditCBRN(STRUN);
+                        break;
+                    }
+                case "Firearms":
+                    {
+                        fearams.EditFirearms(STRUN);
+                        break;
+                    }
+                case "Chemicals":
+                    {
+                        chemical.EditChemicals(STRUN);
+                        break;
+                    }
+                case "Detonators":
+                    {
+                        detonators.EditDetonators(STRUN);
+                        break;
+                    }
+                default:
+                    break;
+            }
+            ViewData["Title"] = name;
+            ViewBag.link = commonlinks.getAlllinksCount(STRUN);
+            return RedirectToAction("Index", "Dashboard");
+        }
     }
 
 }

@@ -1,10 +1,11 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
+using System.ComponentModel;
 
 namespace CTW_FIA.Repositories
 {
-    public class Componentsrepo:IComponents
+    public class Componentsrepo : IComponents
     {
 
         private readonly IConfiguration configuration;
@@ -48,6 +49,19 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
+        public void DeleteComponents(string sTRUN)
+        {
+            var data = appDbContext.Person.Where(x => x.strURN == sTRUN).FirstOrDefault();
+            data.IsDeleted = true;
+            appDbContext.Person.Update(data);
+            appDbContext.SaveChanges();
+        }
+
+        public void EditComponents(string sTRUN)
+        {
+            throw new NotImplementedException();
+        }
+
         public QuickSearchComponents_sel_Result GetComponByStrurn(string sTRUN)
         {
             var dat = new
@@ -64,6 +78,26 @@ namespace CTW_FIA.Repositories
             return list.FirstOrDefault();
         }
 
-  
+        public Components GetEditComponent(string sTRUN)
+        {
+            return (appDbContext.Components.Where(x => x.strURN == sTRUN).FirstOrDefault());
+        }
+
+        public bool PostEditComponent(Components c)
+        {
+            try
+            {
+
+                appDbContext.Components.Update(c);
+                appDbContext.SaveChanges();
+                return true;
+
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

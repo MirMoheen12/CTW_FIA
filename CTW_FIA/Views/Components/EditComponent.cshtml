@@ -1,0 +1,118 @@
+﻿@model CTW_FIA.Models.DatabaseModels.Components
+@{
+    //Layout = null;
+}
+
+<div class="row no-gutters">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h5>Components Form</h5>
+
+                <form class="forms-sample" method="post" asp-action="EditComponent" asp-controller="Components">
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px">
+                            Components Details
+                        </legend>
+                        <div class="form-group row">
+                            <label for="Type" class="col-sm-2 col-form-label" style="font-size: 12px">Type</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Type" name="Type" placeholder="" />
+                                <input type="text" hidden class="form-control" id="Type" name="strURN" placeholder="" />
+                            </div>
+                            <label for="CountryOrigin" class="col-sm-2 col-form-label" style="font-size: 13px">Country of Origin</label>
+                            <div class="col-sm-4">
+                                <select id="CountryOrigin" name="CountryOrigin" class="form-control"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Material" class="col-sm-2 col-form-label" style="font-size: 13px">Material</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Material" name="Material" placeholder="" />
+                            </div>
+
+                            <label for="Manufacturer" class="col-sm-2 col-form-label" style="font-size: 13px">Manufacturer</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Manufacturer" name="Manufacturer" placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Description" class="col-sm-2 col-form-label" style="font-size: 13px">Description</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Description" name="Description" placeholder="" />
+                            </div>
+                            <label for="MethodDelivery" class="col-sm-2 col-form-label" style="font-size: 13px">Method of Delivery</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="MethodDelivery" name="MethodDelivery" placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="QuantityWeight" class="col-sm-2 col-form-label" style="font-size: 13px">Quantity Weight</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="QuantityWeight" name="QuantityWeight" placeholder="" />
+                            </div>
+                            <label for="QuantityNo" class="col-sm-2 col-form-label" style="font-size: 13px">Quantity Number</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="QuantityNo" name="QuantityNo" placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="CountryRecovered" class="col-sm-2 col-form-label" style="font-size: 13px">Country of Recovery</label>
+                            <div class="col-sm-4">
+                                <select id="CountryRecovered" name="CountryRecovered" class="form-control"></select>
+                            </div>
+                            <label for="Length" class="col-sm-2 col-form-label" style="font-size: 13px">Length</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Length" name="Length" placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Width" class="col-sm-2 col-form-label" style="font-size: 13px">Width</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Width" name="Width" placeholder="" />
+                            </div>
+                            <label for="Height" class="col-sm-2 col-form-label" style="font-size: 13px">Height</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Height" name="Height" placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Diameter" class="col-sm-2 col-form-label" style="font-size: 13px">Diameter</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Diameter" name="Diameter" placeholder="" />
+                            </div>
+                            <label for="Colour" class="col-sm-2 col-form-label" style="font-size: 13px">Color</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Colour" name="Colour" placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Markings" class="col-sm-2 col-form-label" style="font-size: 13px">Markings</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="Markings" name="Markings" placeholder="" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="border p-3">
+                        <br />
+                        <div class="form-group row">
+                            <label for="memRemarks" class="col-sm-2 col-form-label" style="font-size: 13px">Remarks</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="memRemarks" name="memRemarks" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                    <button class="btn btn-dark">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

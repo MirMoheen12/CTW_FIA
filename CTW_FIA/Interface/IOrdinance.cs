@@ -8,5 +8,7 @@ namespace CTW_FIA.Interface
         public List<Ordinance_sel_Result> AllOrdinance();
         public bool AddNewOrdinance(Ordnance ordinance);
         public QuickSearchOrdinance_sel_Result OrdinanceDetails(string Strurn);
+        void DeleteOrdinance(string sTRUN);
+        void EditOrdinance(string sTRUN);
     }
 }

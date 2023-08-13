@@ -46,6 +46,19 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
+        public void DeleteInitiationSystem(string sTRUN)
+        {
+            var data = appDbContext.Person.Where(x => x.strURN == sTRUN).FirstOrDefault();
+            data.IsDeleted = true;
+            appDbContext.Person.Update(data);
+            appDbContext.SaveChanges();
+        }
+
+        public void EditInitiationSystem(string sTRUN)
+        {
+            throw new NotImplementedException();
+        }
+
         public QuickSearchInitiationSystems_sel_Result GetIntianDystmByStrurn(string sTRUN)
         {
             var dat = new
