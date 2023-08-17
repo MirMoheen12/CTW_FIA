@@ -62,5 +62,24 @@ namespace CTW_FIA.Controllers
             ViewBag.Agencies = terrorist.AllAgencies();
             return RedirectToAction("AddRecord", "Record", new { pagname="Incidents", pagestatus="Updated" });
         }
+
+
+
+
+        [HttpGet]
+        public IActionResult EditIncident(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = incident.getIncidentID(StrURN);
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult EditIncident(Incident i)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            incident.PostEditIncident(i);
+            return RedirectToAction("index", "Dashboard");
+        }
     }
 }

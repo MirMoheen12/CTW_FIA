@@ -276,79 +276,63 @@ namespace CTW_FIA.Controllers
             {
                 case "Person":
                     {
-                        terrorist.EditPerson(STRUN);
-                        break;
+                        return RedirectToAction("EditPerson", "Person", new { StrURN = STRUN });
                     }
                 case "Incident":
                     {
-                        incident.EditIncident(STRUN);
-                        break;
+                        return RedirectToAction("EditIncident", "Incidents", new { StrURN = STRUN });
                     }
                 case "Terrorist Groups":
                     {
-                        terrorist.EditTerroristGroup(STRUN);
-                        break;
+                        return RedirectToAction("EditTerroristGroup", "TerroristGroups", new { StrURN = STRUN });
                     }
                 case "Explosives":
                     {
-                        explosive.EditExplosives(STRUN);
-                        break;
+                        return RedirectToAction("EditExplosive", "Explosives", new { StrURN = STRUN });
                     }
                 case "Vehicles":
                     {
-                        vehicle.EditVehicles(STRUN);
-                        break;
+                        return RedirectToAction("EditVehicle", "Vehicle", new { StrURN = STRUN });
                     }
                 case "Power Source":
                     {
-                        powerSource.EditPowerSource(STRUN);
-                        break;
+                        return RedirectToAction("EditPowerSource", "PowerSource", new { StrURN = STRUN });
                     }
                 case "Communication":
                     {
-                        communication.EditCommunication(STRUN);
-                        break;
+                        return RedirectToAction("EditCommunication", "Communication", new { StrURN = STRUN });
                     }
                 case "Ordinance":
                     {
-                        ordinance.EditOrdinance(STRUN);
-                        break;
+                        return RedirectToAction("EditOrdinance", "Ordinance", new { StrURN = STRUN });
                     }
                 case "Equipment":
                     {
-                        equipments.EditEquipment(STRUN);
-                        break;
+                        return RedirectToAction("EditEquipment", "Equipment", new { StrURN = STRUN });
                     }
                 case "Initiation System":
                     {
-                        intianSystem.EditInitiationSystem(STRUN);
-                        break;
+                        return RedirectToAction("EditInitiationSystem", "InitiationSystem", new { StrURN = STRUN });
                     }
                 case "Components":
                     {
-                        return RedirectToAction("EditComponent", "Components", new { sTRUN = STRUN});
-                        components.EditComponents(STRUN);
-                        break;
+                        return RedirectToAction("EditComponent", "Components", new { StrURN = STRUN});
                     }
                 case "CBRN":
                     {
-                        cBRN.EditCBRN(STRUN);
-                        break;
+                        return RedirectToAction("EditCBRN", "Components", new { StrURN = STRUN });
                     }
                 case "Firearms":
                     {
-                        fearams.EditFirearms(STRUN);
-                        break;
+                        return RedirectToAction("EditFiearm", "Fiearms", new { StrURN = STRUN });
                     }
                 case "Chemicals":
                     {
-                        chemical.EditChemicals(STRUN);
-                        break;
+                        return RedirectToAction("EditChemical", "Chemicals", new { StrURN = STRUN });
                     }
                 case "Detonators":
                     {
-                        detonators.EditDetonators(STRUN);
-                        break;
+                        return RedirectToAction("EditDetonator", "Detonators", new { StrURN = STRUN });
                     }
                 default:
                     break;

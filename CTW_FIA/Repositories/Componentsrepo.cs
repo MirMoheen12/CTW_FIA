@@ -38,8 +38,8 @@ namespace CTW_FIA.Repositories
 
         public List<Components_sel_Result> AllComponents()
         {
-            
-            var dat = databaseRepo.ExecuteProc( "Components_sel", null);
+
+            var dat = databaseRepo.ExecuteProc("Components_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(Components_sel_Result));
             var list = new List<Components_sel_Result>();
             foreach (var item in res)
@@ -55,11 +55,6 @@ namespace CTW_FIA.Repositories
             data.IsDeleted = true;
             appDbContext.Person.Update(data);
             appDbContext.SaveChanges();
-        }
-
-        public void EditComponents(string sTRUN)
-        {
-            throw new NotImplementedException();
         }
 
         public QuickSearchComponents_sel_Result GetComponByStrurn(string sTRUN)
@@ -80,24 +75,13 @@ namespace CTW_FIA.Repositories
 
         public Components GetEditComponent(string sTRUN)
         {
-            return (appDbContext.Components.Where(x => x.strURN == sTRUN).FirstOrDefault());
+            return appDbContext.Components.Where(x => x.strURN == sTRUN).FirstOrDefault();
         }
 
-        public bool PostEditComponent(Components c)
+        public void PostEditComponent(Components c)
         {
-            try
-            {
-
-                appDbContext.Components.Update(c);
-                appDbContext.SaveChanges();
-                return true;
-
-            }
-            catch(Exception ex)
-            {
-                return false;
-            }
+            appDbContext.Components.Update(c);
+            appDbContext.SaveChanges();
         }
-
     }
 }

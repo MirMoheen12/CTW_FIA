@@ -1,0 +1,576 @@
+﻿@model CTW_FIA.Models.DatabaseModels.Incident
+@{
+    Layout = null;
+}
+
+<div class="row no-gutters" style="">
+
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+
+                <h5>Main Incident</h5>
+
+                <form class="forms-sample" method="post" asp-action="EditIncident" asp-controller="Incidents">
+                    <div class="form-group row">
+
+                        <label for="OperationName" class="col-sm-2 col-form-label" style="font-size: 13px;">Subject</label>
+                        <div class="col-sm-10">
+                            <input type="text" hidden class="form-control" id="strURN" name="strURN" asp-for="strURN" />
+                            <input type="text" class="form-control" required id="OperationName" asp-for="strOperationName">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+
+                        <label for="FirString" class="col-sm-2 col-form-label" style="font-size: 13px;">FIR # </label>
+                        <div class="col-sm-10">
+                            <label type="text" class="col-form-label" id="FirString"></label>
+                        </div>
+                    </div>
+                    <fieldset class="border p-3">
+
+                        <legend class="float-none w-auto p-2" style="font-size:12px">FIR Details </legend>
+                        <div class="form-group row">
+
+                            <label for="FirNo" class="col-sm-2 col-form-label" style="font-size: 13px;">FIR No </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" disabled asp-for="FirNo" id="FirNo" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="Description" class="col-sm-2 col-form-label" style="font-size: 13px;">Reg Year</label>
+                            <div class="col-sm-4">
+                                <input type="number" required min="2000" max="2050" class="form-control" asp-for="RegYear" id="RegYear" />
+                            </div>
+
+
+                            <label for="Police" class="col-sm-2 col-form-label" style="font-size: 13px;">U/S</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" required asp-for="US" id="US" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="IncidentCountryList" class="col-sm-2 col-form-label" style="font-size: 13px;">Country</label>
+                            <div class="col-sm-4">
+                                <select asp-for="Country" required id="selectedcountry" class="form-control">
+                                    <option>Select Country</option>
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option>@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <label for="IncidentProvinceList" class="col-sm-2 col-form-label" style="font-size: 13px;">Province </label>
+                            <div class="col-sm-4">
+                                <select id="personprovince" asp-for="Province" class="form-control">
+                                    <option>Select the Province</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <label for="IncidentDistrictList" class="col-sm-2 col-form-label" style="font-size: 13px;">District</label>
+                            <div class="col-sm-4">
+
+                                <select asp-for="District" id="ProvinceDistrict" class="form-control">
+                                    <option value="">Select the District</option>
+
+                                </select>
+                            </div>
+
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="PoliceStation" class="col-sm-2 col-form-label" style="font-size: 13px;">Police Station</label>
+
+                            <div class="col-sm-4">
+
+                                <select class="form-control" required id="PoliceStation" asp-for="PoliceStation" onchange="selectPolice()">
+                                    <option value="">Select Police Station</option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm-2">
+
+                                @*<button class="btn btn-primary mr-2" style="font-size: 11px;" >Add</button>*@
+
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+
+                            <label for="IncidentPostalZip" class="col-sm-2 col-form-label" style="font-size: 13px;">Postal Zip</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="PostalZip" id="IncidentPostalZip" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+
+                            <label for="IncidentPostalZip" class="col-sm-2 col-form-label" style="font-size: 13px;">Longitude</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" id="IncidentLongitude" asp-for="Longitude" class="form-control" />
+                            </div>
+                            <label for="IncidentPostalZip" class="col-sm-2 col-form-label" style="font-size: 13px;">Latitude</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="Latitude" id="IncidentLatitude" class="form-control" />
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+
+                            <label for="IncidentAddress" class="col-sm-2 col-form-label" style="font-size: 13px;">Address</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" asp-for="Address" id="IncidentAddress" rows="4"></textarea>
+
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px">Incident Details</legend>
+
+                        <div class="form-group row">
+                            <label for="IncidentDate" class="col-sm-2 col-form-label" style="font-size: 13px;">Incident Date</label>
+
+                            <div class="col-sm-4">
+
+                                <input type="date" required asp-for="IncidentDate" class="form-control" id="IncidentDate" />
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="IncidentTime" class="col-sm-2 col-form-label" style="font-size: 13px;">Incident Time</label>
+
+                            <div class="col-sm-4">
+
+                                <input type="time" required asp-for="IncidentTime" class="form-control" id="IncidentTime" />
+
+                            </div>
+                            <label for="IncidentTimeEnd" class="col-sm-2 col-form-label" style="font-size: 13px;">Incident End Time</label>
+
+                            <div class="col-sm-4">
+                                <input type="time" required asp-for="IncidentTimeEnd" class="form-control" id="IncidentTimeEnd" />
+
+
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="PreIncidentThread" class="col-sm-2 col-form-label" style="font-size: 13px;">Pre Incident Threat </label>
+                            <div class="col-sm-4">
+                                <select class="form-control" asp-for="PreIncidentThread" id="PreIncidentThread">
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="EMAIL">EMAIL</option>
+                                    <option value="OTHER">OTHER</option>
+                                    <option value="TELEPHONE">TELEPHONE</option>
+                                    <option value="WRITTEN NOTE">WRITTEN NOTE</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px">Casualties</legend>
+
+                        <div class="form-group row">
+
+                            <label for="Killed" class="col-sm-2 col-form-label" style="font-size: 13px;">Number Killed</label>
+
+                            <div class="col-sm-4">
+
+                                <input type="number" asp-for="NumberKilled" class="form-control" id="NumberKilled" />
+
+                            </div>
+
+                            @* <label for="NumberInjured" class="col-sm-2 col-form-label" style="font-size: 13px;">Number Injured</label>
+                            <div class="col-sm-4">
+                            <input type="number"  class="form-control"  id="NumberInjured"/>
+
+                            </div>*@
+                        </div>
+                        <div class="form-group row">
+
+                            <label for="KilledNames" class="col-sm-2 col-form-label" style="font-size: 13px;">Names of Killed Person</label>
+                            <div class="col-sm-10">
+                                @*<input type="text"  class="form-control"  id="KilledNames"/>*@
+                                <textarea class="form-control" asp-for="CasualtiesNames" id="KilledNames" rows="4"></textarea>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+
+
+                            <label for="NumberInjured" class="col-sm-2 col-form-label" style="font-size: 13px;">Number Injured</label>
+                            <div class="col-sm-4">
+                                <input type="number" asp-for="NumberInjured" class="form-control" id="NumberInjured" />
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+
+                            <label for="InjuredName" class="col-sm-2 col-form-label" style="font-size: 13px;">Names of Injured Person</label>
+                            <div class="col-sm-10">
+                                @*  <input type="text"  class="form-control" id="InjuredName" />*@
+                                <textarea class="form-control" asp-for="InjuredName" id="InjuredName" rows="4"></textarea>
+
+                            </div>
+                        </div>
+
+
+                    </fieldset>
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px;"> </legend>
+                        <div class="form-group row">
+                            <label for="Weapon" class="col-sm-2 col-form-label" style="font-size: 13px;">Weapon</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" required asp-for="Weapon" id="Weapon">
+                                    <option value="" disabled selected>Select</option>
+                                    <option>Automatic Weapon</option>
+                                    <option>Hand Grenade</option>
+                                    <option>IED</option>
+                                    <option>Inflammable</option>
+                                    <option>Landmine</option>
+                                    <option>Mortar</option>
+                                    <option>Multiple Weapons</option>
+                                    <option>Planted Bomb</option>
+                                    <option>Remote Control IED</option>
+                                    <option>Rocket</option>
+                                    <option>RPG</option>
+                                    <option>Multiple Weapons Assault</option>
+                                    <option>HBIED</option>
+                                    <option>VBIED</option>
+                                    @* <option>Suicide Bomber</option>*@
+                                    <option>Time Bomb</option>
+                                    <option>Other</option>
+
+                                </select>
+                            </div>
+                            <div class="col-sm-1"></div>
+                            <label for="IncidentTarget" class="col-sm-1 col-form-label" style="font-size: 13px;">Target</label>
+
+                            <div class="col-sm-2">
+                                <select class="form-control" required asp-for="Target" id="IncidentTarget">
+                                    <option value="" disabled selected>Select</option>
+                                    <option>Airport/Aeroplane</option>
+                                    <option>Bridge/Road</option>
+                                    <option>Educational Institution</option>
+                                    <option>Electric Tower</option>
+                                    <option>Ethnic (Punjabi)</option>
+                                    <option>FC/security Force</option>
+                                    <option>FC/Security</option>
+                                    <option>Foreign Diplomat</option>
+                                    <option>Gas Pipeline</option>
+                                    <option>Gen. Public</option>
+                                    <option>Govt Employee</option>
+                                    <option>Govt Office/Building</option>
+                                    <option>Govt Vehicle</option>
+                                    <option>Intelligence Depts</option>
+                                    <option>Minority (Christains)</option>
+                                    <option>Minority (Hindus)</option>
+                                    <option>Minority (Others)</option>
+                                    <option>Minority (Qadianis)</option>
+                                    <option>Minority (Sikhs)</option>
+                                    <option>Multi-National/Foreign Mission</option>
+                                    <option>NATO</option>
+                                    <option>NGO</option>
+                                    <option>Police</option>
+                                    <option>Police Station/Check Post</option>
+                                    <option>Public Place</option>
+                                    <option>Public Property</option>
+                                    <option>Railway Track/Train</option>
+                                    <option>Religious Leader</option>
+                                    <option>Sectarian (Shia Sect)</option>
+                                    <option>Sectarian (Sunni Sect)</option>
+                                    <option>Telephone Tower</option>
+                                    <option>TV Booster/Radio Station</option>
+                                    <option>Water Utility</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            @*  </div>
+                            <div class="form-group row">*@  <div class="col-sm-1"></div>
+                            <label for="Motive" class="col-sm-1 col-form-label" style="font-size: 13px;">Motive </label>
+
+                            <div class="col-sm-2">
+
+                                <select required class="form-control" asp-for="Motive" id="Motive">
+                                    <option value="" disabled selected>Select</option>
+                                    <option>Ethinic</option>
+                                    <option>Religious Millitants</option>
+                                    <option>Sectarian</option>
+                                    <option>Sub Nationalist</option>
+                                    <option>Unknown</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        @*      <div class="form-group row">
+
+                        <label for="ModusofOperandi" class="col-sm-2 col-form-label" style="font-size: 13px;">Modus operandi</label>
+                        <div class="col-sm-10">
+
+                        <textarea  class="form-control" asp-for="ModusofOperand" id="ModusofOperandi" rows="4"></textarea>
+
+                        </div>
+                        </div>*@
+                    </fieldset>
+
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px;">Case Details and Progress</legend>
+
+                        <div class="form-group row">
+
+
+                            <label for="CrimeSceneRecoveries" class="col-sm-2 col-form-label" style="font-size: 13px;">Recoveries from Crime Scene Premises</label>
+                            <div class="col-sm-10">
+                                <input type="text" asp-for="CrimeSceneRecoveries" id="CrimeSceneRecoveries" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+
+                            <label for="Recoveries" class="col-sm-2 col-form-label" style="font-size: 13px;">Recoveries</label>
+                            <div class="col-sm-10">
+                                <input type="text" asp-for="Recoveries" id="Recoveries" class="form-control" />
+                            </div>
+                        </div>
+                        @* <div class="form-group row">
+
+
+                        <label for="CrimeSceneRecoveries" class="col-sm-2 col-form-label" style="font-size: 13px;">Recoveries after Incident</label>
+                        <div class="col-sm-10">
+                        <input type="text" id="RecoveriesafterIncident" class="form-control" />
+                        </div>
+                        </div>*@
+                        <div class="form-group row">
+
+                            <label for="CaseProgress" class="col-sm-2 col-form-label" style="font-size: 13px;">Case Progress</label>
+                            <div class="col-sm-10">
+                                <input type="text" asp-for="strCaseProgress" id="CaseProgress" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+
+                            <label for="NumberArrested" class="col-sm-2 col-form-label" style="font-size: 13px;">Number Arrested</label>
+                            <div class="col-sm-4">
+                                <input type="number" asp-for="NumberArrested" class="form-control" id="NumberArrested" placeholder="">
+                            </div>
+                            <label for="Reportedby" class="col-sm-2 col-form-label" style="font-size: 13px;">Reported by </label>
+
+                            <div class="col-sm-4">
+
+                                <select class="form-control" asp-for="Reportedby" id="Reportedby">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+
+                            <label for="CaseStatus" class="col-sm-2 col-form-label" style="font-size: 13px;">Description</label>
+                            <div class="col-sm-10">
+
+                                <textarea class="form-control" id="CaseStatus" asp-for="CaseStatus" rows="4"></textarea>
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+                    <fieldset class="border p-3">
+
+                        <br>
+                        @*  <div class="form-group row">
+                        <label for="RoleOfCTW" class="col-sm-2 col-form-label" style="font-size: 13px;">Role of CTW</label>
+
+                        <div class="col-sm-10">
+                        <input type="text" id"RoleOfCTW" class="form-control" />
+                        </div>
+                        </div>*@
+                        <div class="form-group row">
+
+                            <label for="IncidentmemRemarks" class="col-sm-2 col-form-label" style="font-size: 13px">CTW Remarks</label>
+                            <div class="col-sm-10">
+                                <textarea asp-for="CTWRemarks" class="form-control" id="IncidentmemRemarks" rows="4"></textarea>
+
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                    <br>
+                    <input type="text" id="asgstr" hidden asp-for="strURN" />
+                    <input type="submit" id="IncidentBtn" class="btn btn-primary mr-2" value="Save">
+                    <button class="btn btn-dark">Cancel</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    @*<div class="col-md-3 grid-margin stretch-card">
+    <div class="card">
+    <div class="card-body">
+    <h4 class="card-title">Selected Records</h4>
+    <p class="card-description" style="font-size: 12px;"> No data found </p>
+
+
+    </div>
+
+    </div>
+    </div>*@
+</div>
+
+<script type="text/javascript">
+
+    $("#RegYear").on("input", function () {
+        $('#FirNo').val('');
+        FirString = "";
+        FirString = "FIR#" + $('#FirNo').val();
+        FirString = FirString + "/" + $('#RegYear').val() + " ";
+        FirString = FirString + "U/S:" + $('#US').val() + " ";
+        FirString = FirString + "P.S:" + $('#PoliceStation').val() + " ,";
+        FirString = FirString + "District:" + $('#ProvinceDistrict').val() + " ";
+        $('#FirNo').val(FirString);
+        //  alert(FirString);
+    });
+    $("#ProvinceDistrict").change(function () {
+        $('#FirNo').val('');
+        FirString = "";
+        FirString = "FIR#" + $('#FirNo').val();
+        FirString = FirString + "/" + $('#RegYear').val() + " ";
+        FirString = FirString + "U/S:" + $('#US').val() + " ";
+        FirString = FirString + "P.S:" + $('#PoliceStation').val() + " ,";
+        FirString = FirString + "District:" + $('#ProvinceDistrict').val() + " ";
+        $('#FirNo').val(FirString);
+        //  alert(FirString);
+    });
+    $(document).ready(function () {
+        getAllpoliceStation();
+        $('#selectedcountry').change(function () {
+            if ($(this).val() == "" || $(this).val() != "Pakistan") {
+
+                $("#personprovince").empty();
+            }
+            else {
+                $('.spinner').css('display', 'block');
+                $.ajax({
+
+                    url: '/Jsonside/GetAllProvince',
+                    type: 'GET',
+                    data: { country: $(this).val() },
+                    contentType: 'application/json',
+                    success: function (response) {
+
+                        $("#personprovince").empty();
+                        $("#personprovince").append(`<option value="">Select Province</option>`);
+                        for (var i = 0; i < response.length; i++) {
+
+                            addOption(response[i].strProvince, response[i].strProvince, '#personprovince')
+
+
+                        }
+                        if (response.length == 0) {
+                            $('.spinner').css('display', 'none');
+                            $("#personprovince").empty();
+
+                        }
+                        else {
+                            $('.spinner').css('display', 'none');
+                        }
+
+
+                    }
+                });
+            }
+
+
+
+        });
+        $('#personprovince').change(function () {
+            if ($(this).val() == "") {
+
+                $("#ProvinceDistrict").empty();
+            }
+            else {
+
+                $('.spinner').css('display', 'block');
+                $.ajax({
+
+                    url: '/Jsonside/GetDistrictByProvince',
+                    type: 'GET',
+                    data: { Province: $(this).val() },
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log(response);
+                        $("#ProvinceDistrict").empty();
+                        $("#ProvinceDistrict").append(`<option value="">Select District</option>`);
+                        for (var i = 0; i < response.length; i++) {
+
+                            addOption(response[i].strDistrict, response[i].strDistrict, '#ProvinceDistrict')
+
+
+                        }
+                        if (response.length == 0) {
+                            $("#ProvinceDistrict").empty();
+                            $('.spinner').css('display', 'none');
+
+                        }
+                        else {
+                            $('.spinner').css('display', 'none');
+                        }
+
+
+                    }
+                });
+            }
+
+
+
+        });
+    });
+    function getAllpoliceStation() {
+        $.ajax({
+
+            url: '/Jsonside/GetAllPoliceStation',
+            type: 'GET',
+            data: {},
+            contentType: 'application/json',
+            success: function (response) {
+                console.log(response);
+                $("#PoliceStation").empty();
+                $("#PoliceStation").append(`<option value="">Select Police Station</option>`);
+
+                for (var i = 0; i < response.length; i++) {
+
+                    addOption(response[i].strPoliceStation, response[i].strPoliceStation, '#PoliceStation')
+
+
+                }
+                if (response.length == 0) {
+                    $("#PoliceStation").empty();
+                    $('.spinner').css('display', 'none');
+
+                }
+                else {
+                    $('.spinner').css('display', 'none');
+                }
+
+
+            }
+        });
+    }
+    function addOption(value, text, userid) {
+        $(userid).append(`<option value="${value}">${text}</option>`);
+    }
+</script>
+

@@ -8,7 +8,7 @@ using System.Data;
 
 namespace CTW_FIA.Repositories
 {
-    public class IncidentRepo:IIncident
+    public class IncidentRepo : IIncident
     {
         private readonly IConfiguration configuration;
         private readonly IDatabaseRepo databaseRepo;
@@ -48,9 +48,9 @@ namespace CTW_FIA.Repositories
             appDbContext.SaveChanges();
         }
 
-        public void EditIncident(string sTRUN)
+        public Incident GetEditComponent(string sTRUN)
         {
-            throw new NotImplementedException();
+            return appDbContext.Incident.Where(x => x.strURN == sTRUN).FirstOrDefault();
         }
 
         public PreviewIncidentByStrUrn getIncidentID(string STRURN)
@@ -81,5 +81,16 @@ namespace CTW_FIA.Repositories
             return (list);
         }
 
+
+        public Incident GetEditIncident(string sTRUN)
+        {
+            return appDbContext.Incident.Where(x => x.strURN == sTRUN).FirstOrDefault();
+        }
+
+        public void PostEditIncident(Incident c)
+        {
+            appDbContext.Incident.Update(c);
+            appDbContext.SaveChanges();
+        }
     }
 }

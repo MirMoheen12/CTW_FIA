@@ -8,10 +8,9 @@ namespace CTW_FIA.Interface
          public bool AddNewComponent(Components c);
          public List<Components_sel_Result> AllComponents();
         void DeleteComponents(string sTRUN);
-        void EditComponents(string sTRUN);
 
         public Components GetEditComponent(string sTRUN);
-        public bool PostEditComponent(Components c);
+        public void PostEditComponent(Components c);
         public QuickSearchComponents_sel_Result GetComponByStrurn(string sTRUN);
     }
 }
