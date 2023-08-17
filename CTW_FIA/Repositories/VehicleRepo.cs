@@ -57,12 +57,6 @@ namespace CTW_FIA.Repositories
             appDbContext.Person.Update(data);
             appDbContext.SaveChanges();
         }
-
-        public void EditVehicles(string sTRUN)
-        {
-            throw new NotImplementedException();
-        }
-
         public QuickSearchVehicles_sel_Result GetVehcileByStrurn(string Strurn)
         {
             var dat = new
@@ -78,6 +72,12 @@ namespace CTW_FIA.Repositories
             }
             return list.FirstOrDefault();
 
+        }
+
+        public void PostEditVehicle(Vehicle c)
+        {
+            appDbContext.Vehicle.Update(c);
+            appDbContext.SaveChanges();
         }
     }
 }

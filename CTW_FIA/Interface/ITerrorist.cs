@@ -20,5 +20,6 @@ namespace CTW_FIA.Interface
         public void DeleteTerroristGroup(string StrURN);
         void EditPerson(string sTRUN);
         void EditTerroristGroup(string sTRUN);
+        void PostEditGroup(TerroristGroup_Records c);
     }
 }

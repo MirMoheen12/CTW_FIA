@@ -1,5 +1,6 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
+using CTW_FIA.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -55,7 +56,21 @@ namespace CTW_FIA.Controllers
             ViewBag.Agencies = terrorist.AllAgencies();
             return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
         }
+        [HttpGet]
+        public IActionResult EditTerroristGroup(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = terrorist.GetGroupsByStrurn(StrURN);
+            return View(data);
+        }
 
 
+        [HttpPost]
+        public IActionResult EditTerroristGroup(TerroristGroup_Records c)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            terrorist.PostEditGroup(c);
+            return RedirectToAction("index", "Dashboard");
+        }
     }
 }

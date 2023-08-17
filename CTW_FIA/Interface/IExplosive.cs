@@ -10,5 +10,6 @@ namespace CTW_FIA.Interface
         public QuickSearchExplosives_sel_Result GetExplosiveByStrurn(String STRURN);
         void DeleteExplosives(string sTRUN);
         void EditExplosives(string sTRUN);
+        void PostEditExplosive(Explosive c);
     }
 }

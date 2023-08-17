@@ -9,6 +9,6 @@ namespace CTW_FIA.Interface
         public bool AddNewVehicle(Vehicle vehicle);
         public QuickSearchVehicles_sel_Result GetVehcileByStrurn(string STRURN);
         void DeleteVehicles(string sTRUN);
-        void EditVehicles(string sTRUN);
+        void PostEditVehicle(Vehicle c);
     }
 }

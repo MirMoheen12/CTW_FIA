@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CTW_FIA.Repositories
 {
-    public class ExplosiveRepo:IExplosive
+    public class ExplosiveRepo : IExplosive
     {
         private readonly AppDbContext appDbContext;
         private readonly IDatabaseRepo databaseRepo;
@@ -69,6 +69,12 @@ namespace CTW_FIA.Repositories
                 list.Add((QuickSearchExplosives_sel_Result)item);
             }
             return list.FirstOrDefault();
+        }
+
+        public void PostEditExplosive(Explosive c)
+        {
+            appDbContext.Explosive.Update(c);
+            appDbContext.SaveChanges();
         }
 
         void IExplosive.DeleteExplosives(string sTRUN)
