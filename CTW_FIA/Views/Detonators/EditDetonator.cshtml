@@ -1,0 +1,372 @@
+﻿@model CTW_FIA.Models.DatabaseModels.Detonator
+@{
+    ViewData["Title"] = "AddDetonators";
+    Layout = null;
+}
+
+<div class="row no-gutters">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h5>Detonators Form</h5>
+                <form class="forms-sample" method="post" asp-action="EditDetonators" asp-controller="Detonators">
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px">
+                            Detonators Details
+                        </legend>
+                        <div class="form-group row">
+                            <label for="Category"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Category
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="text" hidden class="form-control" id="strURN" name="strURN" asp-for="strURN" />
+                                <select id="Category" asp-for="Category" class="form-control">
+                                    <option value="">
+                                        Select
+                                    </option>
+                                    <option>Electric</option>
+                                    <option>Electronic</option>
+                                    <option>Shock Tube</option>
+                                    <option>IMPROVISED</option>
+                                    <option>Non-Electric</option>
+                                </select>
+                            </div>
+                            <label for="Type"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Type</label>
+                            <div class="col-sm-4">
+                                <select id="Type" class="form-control" asp-for="Type">
+                                    <option value="">
+                                        Select
+                                    </option>
+                                    <option>Electric</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Other"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Other</label>
+                            <div class="col-sm-10">
+                                <input type="text" asp-for="Other"
+                                       class="form-control"
+                                       id="detOther"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Quantity"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Quantity</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="Quantity"
+                                       class="form-control"
+                                       id="Quantity"
+                                       placeholder="" />
+                            </div>
+                            <label for="Manufacturer"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Manufacturer</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="Manufacturer"
+                                       class="form-control"
+                                       id="detManufacturer"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Country of Origin</label>
+                            <div class="col-sm-4">
+                                <select id="deCountryofOrigin" asp-for="CountryOfOrigin" class="form-control">
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option>@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+
+                                </select>
+
+                            </div>
+                            <label class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Country of Recovery</label>
+                            <div class="col-sm-4">
+                                <select id="deCountryofRecovery" asp-for="CountryOfRecovery" class="form-control">
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option>@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Brand"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Brand</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="Brand"
+                                       class="form-control"
+                                       id="detBrand"
+                                       placeholder="" />
+                            </div>
+                            <label for="Model"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Model</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="Model"
+                                       class="form-control"
+                                       id="Model"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="CapMaterial"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Cap Material</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="CapMaterial"
+                                       class="form-control"
+                                       id="CapMaterial"
+                                       placeholder="" />
+                            </div>
+                            <label for="CapColor"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Cap Color</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       class="form-control"
+                                       id="CapColor"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="CapLength"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Cap Length</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="CapLength"
+                                       class="form-control"
+                                       id="CapLength"
+                                       placeholder="" />
+                            </div>
+                            <label for="CapDiameter"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Cap Diameter</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="CapDiameter"
+                                       class="form-control"
+                                       id="CapDiameter"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Crimp"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Crimp</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="Crimp"
+                                       class="form-control"
+                                       id="Crimp"
+                                       placeholder="" />
+                            </div>
+                            <label for="CrimpType"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Crimp Type</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="CrimpType"
+                                       class="form-control"
+                                       id="CrimpType"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="PlugColour"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Plug Color</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="PlugColor"
+                                       class="form-control"
+                                       id="PlugColor"
+                                       placeholder="" />
+                            </div>
+                            <label for="PlugMaterial"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Plug Material</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="PlugMaterial"
+                                       class="form-control"
+                                       id="PlugMaterial"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="WireColor"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Wire Colour</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="WireColor"
+                                       class="form-control"
+                                       id="WireColor"
+                                       placeholder="" />
+                            </div>
+                            <label for="WireColour2"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Wire Color2</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="WireColor2"
+                                       class="form-control"
+                                       id="WireColor2"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="WireDiameter"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Wire Diameter</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="WireDiameter"
+                                       class="form-control"
+                                       id="WireDiameter"
+                                       placeholder="" />
+                            </div>
+                            <label for="WireMaterial"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Wire Material</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="WireMaterial"
+                                       class="form-control"
+                                       id="WireMaterial"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="CaseTubeMaterial"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Case Tube Material</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="CaseTubeMaterial"
+                                       class="form-control"
+                                       id="CaseTubeMaterial"
+                                       placeholder="" />
+                            </div>
+                            <label for="CaseTubeColor"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Case Tube Colour</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="CaseTubeColor"
+                                       class="form-control"
+                                       id="CaseTubeColor"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="CaseTubeLength"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Case Tube Length</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="CaseTubeLength"
+                                       class="form-control"
+                                       id="CaseTubeLength"
+                                       placeholder="" />
+                            </div>
+                            <label for="CaseTubeDiameter"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Case Tube Diameter</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="CaseTubeDiameter"
+                                       class="form-control"
+                                       id="CaseTubeDiameter"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="BaseShape"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Base Shape</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="BaseShape"
+                                       class="form-control"
+                                       id="BaseShape"
+                                       placeholder="" />
+                            </div>
+                            <label for="BaseMarking"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Base Markings</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       asp-for="BaseMarking"
+                                       class="form-control"
+                                       id="BaseMarking"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="BatchCode"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Batch Codes</label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       asp-for="BatchCode"
+                                       class="form-control"
+                                       id="BatchCode"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="border p-3">
+                        <br />
+                        <div class="form-group row">
+                            <label for="Remarks"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Remarks</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" asp-for="MemRemarks" id="Remarks" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                    <button class="btn btn-dark">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

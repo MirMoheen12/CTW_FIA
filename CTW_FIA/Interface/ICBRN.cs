@@ -10,5 +10,6 @@ namespace CTW_FIA.Interface
         void DeleteCBRN(string sTRUN);
         void EditCBRN(string sTRUN);
         public QuickSearchCBRN_sel_Result getCBRNByStrurn(string sTRUN);
+        void PostEditCBRN(CBRN c);
     }
 }

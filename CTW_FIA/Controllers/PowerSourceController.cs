@@ -56,5 +56,21 @@ namespace CTW_FIA.Controllers
         //    //var data = powerSource.GetGroupsByStrurn(STRURN);
         //    return View(data);
         //}
+
+        [HttpGet]
+        public IActionResult EditPowerSource(string StrURN)
+        {
+            var data = powerSource.GetPowerSourceByStrurn(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditPowerSource(PowerSource c)
+        {
+            powerSource.PostEditPowerSource(c);
+            return RedirectToAction("index", "Dashboard");
+        }
+
     }
 }

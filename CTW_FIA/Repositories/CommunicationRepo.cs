@@ -90,9 +90,10 @@ namespace CTW_FIA.Repositories
             appDbContext.SaveChanges();
         }
 
-        public void EditCommunication(string sTRUN)
+        public void PostEditCommunication(Communications c)
         {
-            throw new NotImplementedException();
+            appDbContext.Communications.Update(c);
+            appDbContext.SaveChanges();
         }
     }
 }

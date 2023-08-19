@@ -9,6 +9,6 @@ namespace CTW_FIA.Interface
         public bool AddDetonators(Detonator D);
          public DetonatorDetails_sel_Result GetDetonatorsByStrurn(string sTRUN);
         void DeleteDetonators(string sTRUN);
-        void EditDetonators(string sTRUN);
+        void PostEditComponent(Detonator c);
     }
 }

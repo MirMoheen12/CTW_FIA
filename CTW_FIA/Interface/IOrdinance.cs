@@ -10,5 +10,6 @@ namespace CTW_FIA.Interface
         public QuickSearchOrdinance_sel_Result OrdinanceDetails(string Strurn);
         void DeleteOrdinance(string sTRUN);
         void EditOrdinance(string sTRUN);
+        void PostEditOrdance(Ordnance c);
     }
 }

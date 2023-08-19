@@ -69,10 +69,10 @@ namespace CTW_FIA.Repositories
             appDbContext.Person.Update(data);
             appDbContext.SaveChanges();
         }
-
-        public void EditEquipment(string sTRUN)
+        public void PostEditEquipment(Equipment c)
         {
-            throw new NotImplementedException();
+            appDbContext.Equipment.Update(c);
+            appDbContext.SaveChanges();
         }
     }
 }

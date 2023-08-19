@@ -34,5 +34,23 @@ namespace CTW_FIA.Controllers
             var res = communication.AddNewcommunication(c);
             return RedirectToAction("AddRecord", "Record", new { pagname = "Communication", pagestatus = "Updated" });
         }
+
+        [HttpGet]
+        public IActionResult EditCommunication(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = communication.GetCommunicationByStrurn(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditCommunication(Communications c)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            communication.PostEditCommunication(c);
+            return RedirectToAction("index", "Dashboard");
+        }
+
     }
 }

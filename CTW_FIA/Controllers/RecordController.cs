@@ -320,7 +320,7 @@ namespace CTW_FIA.Controllers
                     }
                 case "CBRN":
                     {
-                        return RedirectToAction("EditCBRN", "Components", new { StrURN = STRUN });
+                        return RedirectToAction("EditCBRN", "CBRN", new { StrURN = STRUN });
                     }
                 case "Firearms":
                     {

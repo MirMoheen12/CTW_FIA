@@ -9,6 +9,6 @@ namespace CTW_FIA.Interface
         public bool AddNewcommunication(Communications c);
          public QuickSearchCommunications_sel_Result GetCommunicationByStrurn(string sTRUN);
         void DeleteCommunication(string sTRUN);
-        void EditCommunication(string sTRUN);
+        void PostEditCommunication(Communications c);
     }
 }

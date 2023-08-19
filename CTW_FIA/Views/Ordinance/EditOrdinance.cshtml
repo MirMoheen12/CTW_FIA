@@ -1,0 +1,269 @@
+﻿@model CTW_FIA.Models.DatabaseModels.Ordnance
+@{
+    //Layout = null;
+}
+
+<div class="row no-gutters">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="float-none w-auto p-2">Ordnance Form</h5>
+
+                <form class="forms-sample" method="post" asp-action="EditOrdinance" asp-controller="Ordinance">
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px">
+                            Ordnance Details
+                        </legend>
+
+                        <div class="form-group row">
+                            <label for="Category"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Category
+                            </label>
+                            <div class="col-sm-4">
+
+                                <input type="text" hidden class="form-control" id="strURN" name="strURN" asp-for="strURN" />
+                                <select asp-for="Category" id="orCategory" class="form-control">
+                                    <option>
+                                        Select
+                                    </option>
+                                    <option>Commercial</option>
+                                    <option>Military</option>
+                                    <option>Unknown</option>
+                                </select>
+                            </div>
+                            <label for="Type"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Type
+                            </label>
+                            <div class="col-sm-4">
+                                <select id="orType" asp-for="Type" class="form-control">
+                                    <option>
+                                        Select
+                                    </option>
+                                    <option>Mortar</option>
+                                    <option>Grenade</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Other"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Other</label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       asp-for="Other"
+                                       class="form-control"
+                                       id="orOther"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Manufacturer"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Manufacturer</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="Manufacturer"
+                                       class="form-control"
+                                       id="orManufacturer"
+                                       placeholder="" />
+                            </div>
+                            <label for="BrandName"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Brand Name
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="BrandName"
+                                       class="form-control"
+                                       id="orBrandName"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Country"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Country of Origin</label>
+                            <div class="col-sm-4">
+                                <select id="orCountryOrigin" asp-for="CountryOrigin" class="form-control">
+                                    <option>Select country</option>
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option>@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+                                </select>
+                            </div>
+                            <label for="Country"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Country of Recovery</label>
+                            <div class="col-sm-4">
+                                <select id="orCountryRecovery" asp-for="CountryRecovered" class="form-control">
+                                    <option>Select country</option>
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option>@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+                                </select>
+
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="ExplosiveWeight"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Explosive Weight</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="ExplosiveWeight"
+                                       class="form-control"
+                                       id="orExplosiveWeight"
+                                       placeholder="" />
+                            </div>
+                            <label for="Markings"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Markings</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="memMarkings"
+                                       class="form-control"
+                                       id="orMarkings"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="BatchCode"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Batch Code</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="BatchCode"
+                                       class="form-control"
+                                       id="orBatchCode"
+                                       placeholder="" />
+                            </div>
+                            <label for="SerialNumber"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Serial Number</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="SerialNumbers"
+                                       class="form-control"
+                                       id="orSerialNumber"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Colour"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Color</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="Colour"
+                                       class="form-control"
+                                       id="orColour"
+                                       placeholder="" />
+                            </div>
+                            <label for="Calibre"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Calibre</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="Calibre"
+                                       class="form-control"
+                                       id="orCalibre"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="HeadStamp"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Head Stamp</label>
+                            <div class="col-sm-4">
+                                <div class="form-check form-check-flat form-check-primary">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" id="headStamp" name="headstamp" class="form-check-input" />
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Length"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Length</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                       class="form-control"
+                                       id="orLength" asp-for="Length"
+                                       placeholder="" />
+                            </div>
+                            <label for="Width"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Width</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="Width"
+                                       class="form-control"
+                                       id="orWidth"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Depth"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Depth</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="Depth"
+                                       class="form-control"
+                                       id="orDepth"
+                                       placeholder="" />
+                            </div>
+                            <label for="Diameter"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Diameter</label>
+                            <div class="col-sm-4">
+                                <input type="text" asp-for="Diameter"
+                                       class="form-control"
+                                       id="orDiameter"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="NumberRecovered"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Number Recovered</label>
+                            <div class="col-sm-10">
+                                <input type="text" asp-for="NumberRecovered"
+                                       class="form-control"
+                                       id="orNumberRecovered"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="border p-3">
+                        <br />
+                        <div class="form-group row">
+                            <label for="Remarks"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Remarks</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" id="orRemarks" asp-for="Remarks" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                    <button type="submit" class="btn btn-primary mr-2">Save</button>
+                    <button class="btn btn-dark">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

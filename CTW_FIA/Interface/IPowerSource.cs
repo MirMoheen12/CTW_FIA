@@ -11,6 +11,6 @@ namespace CTW_FIA.Interface
 
         public QuickSearchPowerSource_sel_Result GetPowerSourceByStrurn(String STRURN);
         void DeletePowerSource(string sTRUN);
-        void EditPowerSource(string sTRUN);
+        void PostEditPowerSource(PowerSource c);
     }
 }

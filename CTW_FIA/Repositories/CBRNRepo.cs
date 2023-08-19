@@ -76,5 +76,11 @@ namespace CTW_FIA.Repositories
             }
             return list.FirstOrDefault();
         }
+
+        public void PostEditCBRN(CBRN c)
+        {
+            aappDbContext.CBRNs.Update(c);
+            aappDbContext.SaveChanges();
+        }
     }
 }

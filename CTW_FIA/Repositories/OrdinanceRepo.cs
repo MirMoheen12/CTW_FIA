@@ -5,7 +5,7 @@ using System;
 
 namespace CTW_FIA.Repositories
 {
-    public class OrdinanceRepo:IOrdinance
+    public class OrdinanceRepo : IOrdinance
     {
         private readonly IConfiguration configuration;
         private readonly IDatabaseRepo databaseRepo;
@@ -92,6 +92,12 @@ namespace CTW_FIA.Repositories
                 list.Add((QuickSearchOrdinance_sel_Result)item);
             }
             return list.FirstOrDefault();
+        }
+
+        public void PostEditOrdance(Ordnance c)
+        {
+            appDbContext.Ordinance.Update(c);
+            appDbContext.SaveChanges();
         }
     }
 }

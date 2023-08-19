@@ -91,5 +91,11 @@ namespace CTW_FIA.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public void PostEditPowerSource(PowerSource c)
+        {
+            appDbContext.PowerSource.Update(c);
+            appDbContext.SaveChanges();
+        }
     }
 }

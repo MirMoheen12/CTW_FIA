@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h5>Communication Form</h5>
 
-                <form class="forms-sample" method="post">
+                <form class="forms-sample" method="post" asp-action="EditCommunication" asp-controller="Communications">
                     <fieldset class="border p-3">
                         <legend class="float-none w-auto p-2" style="font-size: 12px">
                             Communication Form
@@ -23,6 +23,7 @@
                                 Communications Type
                             </label>
                             <div class="col-sm-9">
+                                <input type="text" hidden class="form-control" id="strURN" name="strURN" asp-for="strURN" />
                                 <select id="commType" asp-for="CommType" class="form-control">
                                     <option value="" disabled selected>
                                         Select the Communications Type
@@ -42,7 +43,7 @@
                             </label>
                             <div class="col-sm-9">
                                 <input type="text"
-                                    asp-for="CommDescription"
+                                       asp-for="CommDescription"
                                        class="form-control"
                                        id="commDescription"
                                        placeholder="" />
@@ -56,7 +57,7 @@
                             </label>
                             <div class="col-sm-9">
                                 <input type="text"
-                                    asp-for="CommName"
+                                       asp-for="CommName"
                                        class="form-control"
                                        id="commName"
                                        placeholder="" />
@@ -68,7 +69,7 @@
                                    style="font-size: 13px">Other</label>
                             <div class="col-sm-9">
                                 <input type="text"
-                                    asp-for="Other"
+                                       asp-for="Other"
                                        class="form-control"
                                        id="other"
                                        placeholder="" />
@@ -92,7 +93,7 @@
                                    style="font-size: 13px">Number</label>
                             <div class="col-sm-9">
                                 <input type="text"
-                                    asp-for="Number"
+                                       asp-for="Number"
                                        class="form-control"
                                        id="number"
                                        placeholder="" />
@@ -104,7 +105,7 @@
                                    style="font-size: 13px">Service Provider</label>
                             <div class="col-sm-9">
                                 <input type="text"
-                                    asp-for="ServiceProvider"
+                                       asp-for="ServiceProvider"
                                        class="form-control"
                                        id="serviceProvider"
                                        placeholder="" />
@@ -123,7 +124,7 @@
                                 </select>
                             </div>
 
-               
+
                         </div>
                     </fieldset>
 
@@ -143,8 +144,7 @@
                     </fieldset>
                     <br />
                     <button type="submit"
-                            class="btn btn-primary mr-2"
-                       >
+                            class="btn btn-primary mr-2">
                         Save
                     </button>
                     <button class="btn btn-dark">Cancel</button>
@@ -154,5 +154,3 @@
     </div>
 
 </div>
-
-
