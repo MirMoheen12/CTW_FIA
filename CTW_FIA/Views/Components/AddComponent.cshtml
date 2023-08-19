@@ -68,8 +68,7 @@
                             <label for="CountryRecovered" class="col-sm-2 col-form-label" style="font-size: 13px">Country of Recovery</label>
                             <div class="col-sm-4">
                                 <select id="CountryRecovered" asp-for="CountryRecovered" class="form-control">
-
-                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                     @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
                                     {
                                         <option value="@ViewBag.Allcountries[i].strCountry">@ViewBag.Allcountries[i].strCountry</option>
                                     }
