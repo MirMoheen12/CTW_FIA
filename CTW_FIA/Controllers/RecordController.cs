@@ -4,7 +4,7 @@ using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.LocalModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
+using System;
 
 namespace CTW_FIA.Controllers
 {
@@ -135,13 +135,13 @@ namespace CTW_FIA.Controllers
                     }
                 case "Initiation System":
                     {
-                       var dat = intianSystem.GetIntianDystmByStrurn(STRUN);
-                       lis = converterModel.getModel(dat);
+                        var dat = intianSystem.GetIntianDystmByStrurn(STRUN);
+                        lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Components":
                     {
-                       var dat = components.GetComponByStrurn(STRUN);
+                        var dat = components.GetComponByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
@@ -153,8 +153,8 @@ namespace CTW_FIA.Controllers
                     }
                 case "Firearms":
                     {
-                       var dat = fearams.GetFiremsByStrurn(STRUN);
-                       lis = converterModel.getModel(dat);
+                        var dat = fearams.GetFiremsByStrurn(STRUN);
+                        lis = converterModel.getModel(dat);
                         break;
                     }
                 case "Chemicals":
@@ -166,7 +166,7 @@ namespace CTW_FIA.Controllers
                 case "Detonators":
                     {
                         var dat = detonators.GetDetonatorsByStrurn(STRUN);
-                       lis = converterModel.getModel(dat);
+                        lis = converterModel.getModel(dat);
                         break;
                     }
                 default:
@@ -178,6 +178,169 @@ namespace CTW_FIA.Controllers
             return View(lis);
         }
 
+
+
+
+
+
+
+        public IActionResult Delete(string STRUN, string name)
+        {
+            switch (name)
+            {
+                case "Person":
+                    {
+                        terrorist.DeletePerson(STRUN);
+                        break;
+                    }
+                case "Incident":
+                    {
+                        incident.DeleteIncident(STRUN);
+                        break;
+                    }
+                case "Terrorist Groups":
+                    {
+                        terrorist.DeleteTerroristGroup(STRUN);
+                        break;
+                    }
+                case "Explosives":
+                    {
+                        explosive.DeleteExplosives(STRUN);
+                        break;
+                    }
+                case "Vehicles":
+                    {
+                        vehicle.DeleteVehicles(STRUN);
+                        break;
+                    }
+                case "Power Source":
+                    {
+                        powerSource.DeletePowerSource(STRUN);
+                        break;
+                    }
+                case "Communication":
+                    {
+                        communication.DeleteCommunication(STRUN);
+                        break;
+                    }
+                case "Ordinance":
+                    {
+                        ordinance.DeleteOrdinance(STRUN);
+                        break;
+                    }
+                case "Equipment":
+                    {
+                        equipments.DeleteEquipment(STRUN);
+                        break;
+                    }
+                case "Initiation System":
+                    {
+                        intianSystem.DeleteInitiationSystem(STRUN);
+                        break;
+                    }
+                case "Components":
+                    {
+                        components.DeleteComponents(STRUN);
+                        break;
+                    }
+                case "CBRN":
+                    {
+                        cBRN.DeleteCBRN(STRUN);
+                        break;
+                    }
+                case "Firearms":
+                    {
+                        fearams.DeleteFirearms(STRUN);
+                        break;
+                    }
+                case "Chemicals":
+                    {
+                        chemical.DeleteChemicals(STRUN);
+                        break;
+                    }
+                case "Detonators":
+                    {
+                        detonators.DeleteDetonators(STRUN);
+                        break;
+                    }
+                default:
+                    break;
+            }
+            ViewData["Title"] = name;
+            ViewBag.link = commonlinks.getAlllinksCount(STRUN);
+            return RedirectToAction("Index", "Dashboard");
+        }
+        public IActionResult Edit(string STRUN, string name)
+        {
+            switch (name)
+            {
+                case "Person":
+                    {
+                        return RedirectToAction("EditPerson", "Person", new { StrURN = STRUN });
+                    }
+                case "Incident":
+                    {
+                        return RedirectToAction("EditIncident", "Incidents", new { StrURN = STRUN });
+                    }
+                case "Terrorist Groups":
+                    {
+                        return RedirectToAction("EditTerroristGroup", "TerroristGroups", new { StrURN = STRUN });
+                    }
+                case "Explosives":
+                    {
+                        return RedirectToAction("EditExplosive", "Explosives", new { StrURN = STRUN });
+                    }
+                case "Vehicles":
+                    {
+                        return RedirectToAction("EditVehicle", "Vehicle", new { StrURN = STRUN });
+                    }
+                case "Power Source":
+                    {
+                        return RedirectToAction("EditPowerSource", "PowerSource", new { StrURN = STRUN });
+                    }
+                case "Communication":
+                    {
+                        return RedirectToAction("EditCommunication", "Communication", new { StrURN = STRUN });
+                    }
+                case "Ordinance":
+                    {
+                        return RedirectToAction("EditOrdinance", "Ordinance", new { StrURN = STRUN });
+                    }
+                case "Equipment":
+                    {
+                        return RedirectToAction("EditEquipment", "Equipment", new { StrURN = STRUN });
+                    }
+                case "Initiation System":
+                    {
+                        return RedirectToAction("EditInitiationSystem", "InitiationSystem", new { StrURN = STRUN });
+                    }
+                case "Components":
+                    {
+                        return RedirectToAction("EditComponent", "Components", new { StrURN = STRUN});
+                    }
+                case "CBRN":
+                    {
+                        return RedirectToAction("EditCBRN", "CBRN", new { StrURN = STRUN });
+                    }
+                case "Firearms":
+                    {
+                        return RedirectToAction("EditFiearm", "Fiearms", new { StrURN = STRUN });
+                    }
+                case "Chemicals":
+                    {
+                        return RedirectToAction("EditChemical", "Chemicals", new { StrURN = STRUN });
+                    }
+                case "Detonators":
+                    {
+                        return RedirectToAction("EditDetonator", "Detonators", new { StrURN = STRUN });
+                    }
+                default:
+                    break;
+            }
+            ViewData["Title"] = name;
+            ViewBag.link = commonlinks.getAlllinksCount(STRUN);
+            return RedirectToAction("Index", "Dashboard");
+        }
     }
 
 }

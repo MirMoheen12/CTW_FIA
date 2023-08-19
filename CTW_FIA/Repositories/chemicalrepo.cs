@@ -6,14 +6,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CTW_FIA.Repositories
 {
-    public class chemicalrepo:Ichemical
+    public class chemicalrepo : Ichemical
     {
         private readonly IDatabaseRepo databaseRepo;
         private readonly IConfiguration configuration;
-        public chemicalrepo(IDatabaseRepo databaseRepo, IConfiguration configuration)
+        private readonly AppDbContext dbContext;
+        public chemicalrepo(IDatabaseRepo databaseRepo, IConfiguration configuration,AppDbContext appDbContext)
         {
             this.databaseRepo = databaseRepo;
             this.configuration = configuration;
+            this.dbContext = appDbContext;
 
         }
 
@@ -45,6 +47,19 @@ namespace CTW_FIA.Repositories
                 list.Add((QuickSearchChemicals_sel_Result)item);
             }
             return list.FirstOrDefault();
+        }
+
+        public void DeleteChemicals(string sTRUN)
+        {
+            var data = dbContext.Person.Where(x => x.strURN == sTRUN).FirstOrDefault();
+            data.IsDeleted = true;
+            dbContext.Person.Update(data);
+            dbContext.SaveChanges();
+        }
+
+        public void EditChemicals(string sTRUN)
+        {
+            throw new NotImplementedException();
         }
     }
 }

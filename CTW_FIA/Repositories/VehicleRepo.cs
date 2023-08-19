@@ -50,6 +50,13 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
+        public void DeleteVehicles(string sTRUN)
+        {
+            var data = appDbContext.Person.Where(x => x.strURN == sTRUN).FirstOrDefault();
+            data.IsDeleted = true;
+            appDbContext.Person.Update(data);
+            appDbContext.SaveChanges();
+        }
         public QuickSearchVehicles_sel_Result GetVehcileByStrurn(string Strurn)
         {
             var dat = new
@@ -65,6 +72,12 @@ namespace CTW_FIA.Repositories
             }
             return list.FirstOrDefault();
 
+        }
+
+        public void PostEditVehicle(Vehicle c)
+        {
+            appDbContext.Vehicle.Update(c);
+            appDbContext.SaveChanges();
         }
     }
 }

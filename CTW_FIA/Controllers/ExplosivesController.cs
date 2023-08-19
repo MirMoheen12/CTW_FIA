@@ -57,5 +57,24 @@ namespace CTW_FIA.Controllers
         //    var data = explosive.GetGroupsByStrurn(STRURN);
         //    return View(data);
         //}
+
+
+        [HttpGet]
+        public IActionResult EditExplosive(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = explosive.GetExplosiveByStrurn(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditExplosive(Explosive c)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            explosive.PostEditExplosive(c);
+            return RedirectToAction("index", "Dashboard");
+        }
+
     }
 }

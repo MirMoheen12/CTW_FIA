@@ -1,12 +1,14 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
 
 namespace CTW_FIA.Repositories
 {
-    public class FireamsRepo:IFearams
+    public class FireamsRepo : IFearams
     {
         private readonly IDatabaseRepo databaseRepo;
         private readonly IConfiguration configuration;
+        private readonly AppDbContext appDbContext;
         public FireamsRepo(IDatabaseRepo databaseRepo, IConfiguration configuration)
         {
             this.databaseRepo = databaseRepo;
@@ -25,6 +27,19 @@ namespace CTW_FIA.Repositories
                 list.Add((Firearms_sel_Result)item);
             }
             return list;
+        }
+
+        public void DeleteFirearms(string sTRUN)
+        {
+            var data = appDbContext.Person.Where(x => x.strURN == sTRUN).FirstOrDefault();
+            data.IsDeleted = true;
+            appDbContext.Person.Update(data);
+            appDbContext.SaveChanges();
+        }
+
+        public void EditFirearms(string sTRUN)
+        {
+            throw new NotImplementedException();
         }
 
         public QuickSearchFirearms_sel_Result GetFiremsByStrurn(string sTRUN)

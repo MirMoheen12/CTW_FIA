@@ -7,6 +7,8 @@ namespace CTW_FIA.Interface
     {
        public bool AddNewEquipment(Equipment equ);
         public List<Equipment_sel_Result> AllEquipments();
+        void DeleteEquipment(string sTRUN);
         public QuickSearchEquipment_sel_Result GetEquByStrurn(string Strurn);
+        void PostEditEquipment(Equipment c);
     }
 }

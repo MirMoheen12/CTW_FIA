@@ -1,10 +1,11 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
+using System.ComponentModel;
 
 namespace CTW_FIA.Repositories
 {
-    public class Componentsrepo:IComponents
+    public class Componentsrepo : IComponents
     {
 
         private readonly IConfiguration configuration;
@@ -37,8 +38,8 @@ namespace CTW_FIA.Repositories
 
         public List<Components_sel_Result> AllComponents()
         {
-            
-            var dat = databaseRepo.ExecuteProc( "Components_sel", null);
+
+            var dat = databaseRepo.ExecuteProc("Components_sel", null);
             var res = databaseRepo.ConverttoObject(dat, typeof(Components_sel_Result));
             var list = new List<Components_sel_Result>();
             foreach (var item in res)
@@ -46,6 +47,14 @@ namespace CTW_FIA.Repositories
                 list.Add((Components_sel_Result)item);
             }
             return list;
+        }
+
+        public void DeleteComponents(string sTRUN)
+        {
+            var data = appDbContext.Person.Where(x => x.strURN == sTRUN).FirstOrDefault();
+            data.IsDeleted = true;
+            appDbContext.Person.Update(data);
+            appDbContext.SaveChanges();
         }
 
         public QuickSearchComponents_sel_Result GetComponByStrurn(string sTRUN)
@@ -64,6 +73,15 @@ namespace CTW_FIA.Repositories
             return list.FirstOrDefault();
         }
 
-  
+        public Components GetEditComponent(string sTRUN)
+        {
+            return appDbContext.Components.Where(x => x.strURN == sTRUN).FirstOrDefault();
+        }
+
+        public void PostEditComponent(Components c)
+        {
+            appDbContext.Components.Update(c);
+            appDbContext.SaveChanges();
+        }
     }
 }

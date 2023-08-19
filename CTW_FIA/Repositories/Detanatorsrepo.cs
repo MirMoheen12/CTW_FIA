@@ -46,6 +46,19 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
+        public void DeleteDetonators(string sTRUN)
+        {
+            var data = appDbContext.Person.Where(x => x.strURN == sTRUN).FirstOrDefault();
+            data.IsDeleted = true;
+            appDbContext.Person.Update(data);
+            appDbContext.SaveChanges();
+        }
+
+        public void EditDetonators(string sTRUN)
+        {
+            throw new NotImplementedException();
+        }
+
         public DetonatorDetails_sel_Result GetDetonatorsByStrurn(string sTRUN)
         {
             var dat = new
@@ -60,6 +73,12 @@ namespace CTW_FIA.Repositories
                 list.Add((DetonatorDetails_sel_Result)item);
             }
             return list.FirstOrDefault();
+        }
+
+        public void PostEditComponent(Detonator c)
+        {
+            appDbContext.Detonator.Update(c);
+            appDbContext.SaveChanges();
         }
     }
 }

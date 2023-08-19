@@ -1,0 +1,156 @@
+﻿@model CTW_FIA.Models.DatabaseModels.Communications
+@{
+    ViewData["Title"] = "AddCommunicaion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row no-gutters">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h5>Communication Form</h5>
+
+                <form class="forms-sample" method="post" asp-action="EditCommunication" asp-controller="Communications">
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px">
+                            Communication Form
+                        </legend>
+
+                        <div class="form-group row">
+                            <label for="CommunicationsType"
+                                   class="col-sm-3 col-form-label"
+                                   style="font-size: 13px">
+                                Communications Type
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" hidden class="form-control" id="strURN" name="strURN" asp-for="strURN" />
+                                <select id="commType" asp-for="CommType" class="form-control">
+                                    <option value="" disabled selected>
+                                        Select the Communications Type
+                                    </option>
+                                    <option>Mobile</option>
+                                    <option>Email Address</option>
+                                    <option>Phone</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Description"
+                                   class="col-sm-3 col-form-label"
+                                   style="font-size: 13px">
+                                Description
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       asp-for="CommDescription"
+                                       class="form-control"
+                                       id="commDescription"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="CommunicationsName"
+                                   class="col-sm-3 col-form-label"
+                                   style="font-size: 13px">
+                                Communications Name
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       asp-for="CommName"
+                                       class="form-control"
+                                       id="commName"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Other"
+                                   class="col-sm-3 col-form-label"
+                                   style="font-size: 13px">Other</label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       asp-for="Other"
+                                       class="form-control"
+                                       id="other"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Website / Email"
+                                   class="col-sm-3 col-form-label"
+                                   style="font-size: 13px">Website / Email</label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       class="form-control"
+                                       id="webValue"
+                                       asp-for="WebValue"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Number"
+                                   class="col-sm-3 col-form-label"
+                                   style="font-size: 13px">Number</label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       asp-for="Number"
+                                       class="form-control"
+                                       id="number"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="ServiceProvider"
+                                   class="col-sm-3 col-form-label"
+                                   style="font-size: 13px">Service Provider</label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       asp-for="ServiceProvider"
+                                       class="form-control"
+                                       id="serviceProvider"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="CountryofOrigin"
+                                   class="col-sm-3 col-form-label"
+                                   style="font-size: 13px">Country of Origin</label>
+                            <div class="col-sm-9">
+                                <select id="countryOrigin" asp-for="CountryOrigin" class="form-control">
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option>@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+                                </select>
+                            </div>
+
+
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="border p-3">
+                        <br />
+                        <div class="form-group row">
+                            <label for="Remarks"
+                                   class="col-sm-3 col-form-label"
+                                   style="font-size: 13px">Remarks</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control"
+                                          id="commRemarks"
+                                          asp-for="memRemarks"
+                                          rows="4"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+                    <button type="submit"
+                            class="btn btn-primary mr-2">
+                        Save
+                    </button>
+                    <button class="btn btn-dark">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

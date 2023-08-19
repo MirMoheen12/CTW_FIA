@@ -1,6 +1,5 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
-using Humanizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,8 +34,24 @@ namespace CTW_FIA.Controllers
            ordinance.AddNewOrdinance(ord);
             ViewBag.Allcountries = terrorist.AllCountry();
             return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
-
-
         }
+
+        [HttpGet]
+        public IActionResult EditOrdinance(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = ordinance.OrdinanceDetails(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditOrdinance(Ordnance c)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            ordinance.PostEditOrdance(c);
+            return RedirectToAction("index", "Dashboard");
+        }
+
     }
 }

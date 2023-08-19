@@ -35,5 +35,22 @@ namespace CTW_FIA.Controllers
             ViewBag.Allcountries = terrorist.AllCountry();
             return RedirectToAction("AddRecord", "Record", new { pagname = "CBRN", pagestatus = "Updated" });
         }
+
+        [HttpGet]
+        public IActionResult EditCBRN(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = cBRN.getCBRNByStrurn(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditCBRN(CBRN c)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            cBRN.PostEditCBRN(c);
+            return RedirectToAction("index", "Dashboard");
+        }
     }
 }

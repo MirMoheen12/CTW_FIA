@@ -6,5 +6,7 @@ namespace CTW_FIA.Interface
     {
         public List<Chemicals_sel_Result> allChemical();
        public QuickSearchChemicals_sel_Result ChemicalByStrurn(string sTRUN);
+        void DeleteChemicals(string sTRUN);
+        void EditChemicals(string sTRUN);
     }
 }

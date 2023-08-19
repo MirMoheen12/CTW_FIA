@@ -34,5 +34,22 @@ namespace CTW_FIA.Controllers
             return RedirectToAction("AddRecord", "Record", new { pagname = "Equipments", pagestatus = "Updated" });
 
         }
+        [HttpGet]
+        public IActionResult EditEquipment(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = equipments.GetEquByStrurn(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditEquipment(Equipment c)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            equipments.PostEditEquipment(c);
+            return RedirectToAction("index", "Dashboard");
+        }
+
     }
 }

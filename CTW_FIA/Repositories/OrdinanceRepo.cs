@@ -5,7 +5,7 @@ using System;
 
 namespace CTW_FIA.Repositories
 {
-    public class OrdinanceRepo:IOrdinance
+    public class OrdinanceRepo : IOrdinance
     {
         private readonly IConfiguration configuration;
         private readonly IDatabaseRepo databaseRepo;
@@ -49,6 +49,19 @@ namespace CTW_FIA.Repositories
             return list;
         }
 
+        public void DeleteOrdinance(string sTRUN)
+        {
+            var data = appDbContext.Person.Where(x => x.strURN == sTRUN).FirstOrDefault();
+            data.IsDeleted = true;
+            appDbContext.Person.Update(data);
+            appDbContext.SaveChanges();
+        }
+
+        public void EditOrdinance(string sTRUN)
+        {
+            throw new NotImplementedException();
+        }
+
         public QuickSearchOrdinance_sel_Result GetGroupsByStrurn(string Strurn)
         {
             var dat = new
@@ -79,6 +92,12 @@ namespace CTW_FIA.Repositories
                 list.Add((QuickSearchOrdinance_sel_Result)item);
             }
             return list.FirstOrDefault();
+        }
+
+        public void PostEditOrdance(Ordnance c)
+        {
+            appDbContext.Ordinance.Update(c);
+            appDbContext.SaveChanges();
         }
     }
 }

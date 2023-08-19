@@ -2,6 +2,7 @@
 using CTW_FIA.Models.DatabaseModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace CTW_FIA.Controllers
 {
@@ -37,5 +38,23 @@ namespace CTW_FIA.Controllers
 
 
         }
+
+        [HttpGet]
+        public IActionResult EditComponent(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = components.GetComponByStrurn(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditComponent(Components c)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            components.PostEditComponent(c);
+            return RedirectToAction("index", "Dashboard");
+        }
+
     }
 }

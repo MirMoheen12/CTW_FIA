@@ -33,5 +33,22 @@ namespace CTW_FIA.Controllers
             var res = detonators.AddDetonators(D);
             return RedirectToAction("AddRecord", "Record", new { pagname = "Detonators", pagestatus = "Updated" });
         }
+
+        [HttpGet]
+        public IActionResult EditDetonator(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = detonators.GetDetonatorsByStrurn(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditDetonator(Detonator c)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            detonators.PostEditComponent(c);
+            return RedirectToAction("index", "Dashboard");
+        }
     }
 }

@@ -1,8 +1,12 @@
-﻿namespace CTW_FIA.Models.Dto
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CTW_FIA.Models.Dto
 {
     public class Chemicals_sel_Result
     {
         public string? SerialNo { get; set; }
+
+        [Display(Name = "Str URN")]
         public string? strURN { get; set; }
         public string? intID { get; set; }
         public string? Name { get; set; }

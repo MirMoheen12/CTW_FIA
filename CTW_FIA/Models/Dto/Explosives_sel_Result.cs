@@ -22,7 +22,7 @@ namespace CTW_FIA.Models.Dto
         [Display(Name = "Created On")]
         public string? CreatedOn { get; set; }
 
-        [Display(Name = "URN")]
+        [Display(Name = "Str URN")]
         public string? strURN { get; set; }
 
         [Display(Name = "Measurement Unit")]

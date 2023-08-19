@@ -1,10 +1,15 @@
+using System.ComponentModel.DataAnnotations;
 namespace CTW_FIA.Models.Dto
+
 {
     using System;
-    
+    using System.ComponentModel;
+
     public class Components_sel_Result
     {
         public string? SerialNo { get; set; }
+
+        [DisplayName("Str URN")]
         public string? strURN { get; set; }
         public string? intID { get; set; }
         public string? Type { get; set; }

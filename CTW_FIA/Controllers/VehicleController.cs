@@ -45,5 +45,22 @@ namespace CTW_FIA.Controllers
         //    var data = vehicle.GetGroupsByStrurn(STRURN);
         //    return View(data);
         //}
+
+
+        [HttpGet]
+        public IActionResult EditVehicle(string StrURN)
+        {
+            var data = vehicle.GetVehcileByStrurn(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditVehicle(Vehicle c)
+        {
+            vehicle.PostEditVehicle(c);
+            return RedirectToAction("index", "Dashboard");
+        }
+
     }
 }
