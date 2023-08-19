@@ -1,7 +1,11 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class InitiationSystem
     {
+        [Key]
         public string strURN { get; set; }
         public string Category { get; set; }
         public bool Electric { get; set; }
@@ -24,6 +28,7 @@
         public string CountryRecovered { get; set; }
         public string memRemarks { get; set; }
         public DateTime dteSent { get; set; }
+        [NotMapped]
         public int intID { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }

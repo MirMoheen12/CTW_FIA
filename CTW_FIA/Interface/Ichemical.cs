@@ -1,4 +1,5 @@
-﻿using CTW_FIA.Models.Dto;
+﻿using CTW_FIA.Models.DatabaseModels;
+using CTW_FIA.Models.Dto;
 
 namespace CTW_FIA.Interface
 {
@@ -7,6 +8,6 @@ namespace CTW_FIA.Interface
         public List<Chemicals_sel_Result> allChemical();
        public QuickSearchChemicals_sel_Result ChemicalByStrurn(string sTRUN);
         void DeleteChemicals(string sTRUN);
-        void EditChemicals(string sTRUN);
+        void PostEditChemical(Chemical c);
     }
 }

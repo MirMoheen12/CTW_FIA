@@ -31,5 +31,22 @@ namespace CTW_FIA.Controllers
             return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
         }
 
+        [HttpGet]
+        public IActionResult EditInitiationSystem(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = intianSystem.GetIntianDystmByStrurn(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditInitiationSystem(InitiationSystem c)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            intianSystem.PostEditInitiationSystem(c);
+            return RedirectToAction("index", "Dashboard");
+        }
+
     }
 }

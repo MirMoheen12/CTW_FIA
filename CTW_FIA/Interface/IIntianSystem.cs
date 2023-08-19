@@ -10,5 +10,6 @@ namespace CTW_FIA.Interface
         void DeleteInitiationSystem(string sTRUN);
         void EditInitiationSystem(string sTRUN);
         public QuickSearchInitiationSystems_sel_Result GetIntianDystmByStrurn(string sTRUN);
+        void PostEditInitiationSystem(InitiationSystem c);
     }
 }

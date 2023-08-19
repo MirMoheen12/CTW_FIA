@@ -43,5 +43,28 @@ namespace CTW_FIA.Repositories
             }
             return list;
         }
+
+
+        public Evidence GetEvidenceByStrurn(string sTRUN)
+        {
+            var dat = new
+            {
+                textSearch = sTRUN
+            };
+            var dbres = databaseRepo.ExecuteProc("QuickSearchEvidence_sel", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(Evidence));
+            var list = new List<Evidence>();
+            foreach (var item in dt)
+            {
+                list.Add((Evidence)item);
+            }
+            return list.FirstOrDefault();
+        }
+
+        public void PostEditEvidence(Evidence c)
+        {
+            appDbContext.Evidence.Update(c);
+            appDbContext.SaveChanges();
+        }
     }
 }

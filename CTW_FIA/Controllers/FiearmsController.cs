@@ -21,7 +21,6 @@ namespace CTW_FIA.Controllers
             return View(data);
         }
 
-
         [HttpGet]
         public IActionResult AddFiearms()
         {

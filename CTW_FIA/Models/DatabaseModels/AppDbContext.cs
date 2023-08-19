@@ -28,9 +28,9 @@ namespace CTW_FIA.Models.DatabaseModels
         public DbSet<SocialMedia> SocialMedia { get; set; }
         public DbSet<MediaFile> MediaFile { get; set; }
         public DbSet<tblCNIC> tblCNIC { get; set; }
-        //public DbSet<Chemical> Chemicals { get; set; }
+        public DbSet<Chemical> Chemicals { get; set; }
         public DbSet<Components> Components { get; set; }
-        //public DbSet<InitiationSystem> InitiationSystems { get; set; }
+        public DbSet<InitiationSystem> InitiationSystems { get; set; }
         public DbSet<Vehicle> Vehicle { get; set; }
         public DbSet<PowerSource> PowerSource { get; set; }
         public DbSet<Person> Person { get; set; }

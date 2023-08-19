@@ -9,9 +9,11 @@ namespace CTW_FIA.Controllers
     public class ChemicalController : Controller
     {
         private readonly Ichemical chemical;
-        public ChemicalController(Ichemical chemical)
+        private readonly ITerrorist terrorist;
+        public ChemicalController(Ichemical chemical, ITerrorist terrorist)
         {
             this.chemical = chemical;
+            this.terrorist = terrorist;
         }
         public IActionResult Allcheimcal()
         {
@@ -19,8 +21,8 @@ namespace CTW_FIA.Controllers
             return View(data);
         }
 
-
-        public IActionResult AddCheimcal(PowerSource ps)
+        [HttpGet]
+        public IActionResult AddCheimcal(Chemical chemical)
         {
             String Name = @User.Identity.Name;
 
@@ -32,6 +34,24 @@ namespace CTW_FIA.Controllers
         {
 
             return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult EditChemical(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = chemical.ChemicalByStrurn(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditChemical(Chemical c)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            chemical.PostEditChemical(c);
+            return RedirectToAction("index", "Dashboard");
         }
     }
 }
