@@ -30,9 +30,9 @@ namespace CTW_FIA.Controllers
 
         [HttpPost]
         
-        public IActionResult AddComponent([Bind("strURN, Type, CountryOrigin, Material, Manufacturer, Description, MethodDelivery, QuantityWeight, QuantityNo, CountryRecovered, Length, Width, Height, Diameter, Colour, Markings, memRemarks")] Components c)
+        public IActionResult AddComponent( Components c)
         {
-        components.AddNewComponent(c);
+            components.AddNewComponent(c);
             ViewBag.Allcountries = terrorist.AllCountry();
             return RedirectToAction("AddRecord", "Record", new { pagname = "Components", pagestatus = "Updated" });
 

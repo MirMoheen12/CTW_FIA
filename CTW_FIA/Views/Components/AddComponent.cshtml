@@ -17,84 +17,97 @@
                         <div class="form-group row">
                             <label for="Type" class="col-sm-2 col-form-label" style="font-size: 12px">Type</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="Type" name="Type" placeholder="" />
+                                <input type="text" class="form-control" id="Type" asp-for="Type" placeholder="" />
                             </div>
                             <label for="CountryOrigin" class="col-sm-2 col-form-label" style="font-size: 13px">Country of Origin</label>
                             <div class="col-sm-4">
-                                <select id="CountryOrigin" name="CountryOrigin" class="form-control"></select>
+                                <select id="CountryOrigin" asp-for="CountryOrigin" class="form-control">
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option value="@ViewBag.Allcountries[i].strCountry">@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="Material" class="col-sm-2 col-form-label" style="font-size: 13px">Material</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="Material" name="Material" placeholder="" />
+                                <input type="text" class="form-control" id="Material" asp-for="Material" placeholder="" />
                             </div>
 
                             <label for="Manufacturer" class="col-sm-2 col-form-label" style="font-size: 13px">Manufacturer</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="Manufacturer" name="Manufacturer" placeholder="" />
+                                <input type="text" class="form-control" id="Manufacturer" asp-for="Manufacturer" placeholder="" />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="Description" class="col-sm-2 col-form-label" style="font-size: 13px">Description</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="Description" name="Description" placeholder="" />
+                                <input type="text" class="form-control" id="Description" asp-for="Description" placeholder="" />
                             </div>
                             <label for="MethodDelivery" class="col-sm-2 col-form-label" style="font-size: 13px">Method of Delivery</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="MethodDelivery" name="MethodDelivery" placeholder="" />
+                                <input type="text" class="form-control" id="MethodDelivery" asp-for="MethodDelivery" placeholder="" />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="QuantityWeight" class="col-sm-2 col-form-label" style="font-size: 13px">Quantity Weight</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="QuantityWeight" name="QuantityWeight" placeholder="" />
+                                <input type="text" class="form-control" id="QuantityWeight" asp-for="QuantityWeight" placeholder="" />
                             </div>
                             <label for="QuantityNo" class="col-sm-2 col-form-label" style="font-size: 13px">Quantity Number</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="QuantityNo" name="QuantityNo" placeholder="" />
+                                <input type="text" class="form-control" id="QuantityNo" asp-for="QuantityNo" placeholder="" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="CountryRecovered" class="col-sm-2 col-form-label" style="font-size: 13px">Country of Recovery</label>
                             <div class="col-sm-4">
-                                <select id="CountryRecovered" name="CountryRecovered" class="form-control"></select>
+                                <select id="CountryRecovered" asp-for="CountryRecovered" class="form-control">
+
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option value="@ViewBag.Allcountries[i].strCountry">@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+
+                                </select>
                             </div>
                             <label for="Length" class="col-sm-2 col-form-label" style="font-size: 13px">Length</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="Length" name="Length" placeholder="" />
+                                <input type="text" class="form-control" id="Length" asp-for="Length" placeholder="" />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="Width" class="col-sm-2 col-form-label" style="font-size: 13px">Width</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="Width" name="Width" placeholder="" />
+                                <input type="text" class="form-control" id="Width" asp-for="Width" placeholder="" />
                             </div>
                             <label for="Height" class="col-sm-2 col-form-label" style="font-size: 13px">Height</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="Height" name="Height" placeholder="" />
+                                <input type="text" class="form-control" id="Height" asp-for="Height" placeholder="" />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="Diameter" class="col-sm-2 col-form-label" style="font-size: 13px">Diameter</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="Diameter" name="Diameter" placeholder="" />
+                                <input type="text" class="form-control" id="Diameter" asp-for="Diameter" placeholder="" />
                             </div>
                             <label for="Colour" class="col-sm-2 col-form-label" style="font-size: 13px">Color</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="Colour" name="Colour" placeholder="" />
+                                <input type="text" class="form-control" id="Colour" asp-for="Colour" placeholder="" />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="Markings" class="col-sm-2 col-form-label" style="font-size: 13px">Markings</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="Markings" name="Markings" placeholder="" />
+                                <input type="text" class="form-control" id="Markings" asp-for="Markings" placeholder="" />
                             </div>
                         </div>
                     </fieldset>
@@ -103,7 +116,7 @@
                         <div class="form-group row">
                             <label for="memRemarks" class="col-sm-2 col-form-label" style="font-size: 13px">Remarks</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" id="memRemarks" name="memRemarks" rows="4"></textarea>
+                                <textarea class="form-control" id="memRemarks" asp-for="memRemarks" rows="4"></textarea>
                             </div>
                         </div>
                     </fieldset>

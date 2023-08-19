@@ -12,27 +12,27 @@ namespace CTW_FIA.Models.DatabaseModels
         public string Manufacturer { get; set; }
         public string Description { get; set; }
         public string MethodDelivery { get; set; }
-        public string QuantityWeight { get; set; }
-        public string QuantityNo { get; set; }
+        public Nullable<float> QuantityWeight { get; set; }
+        public Nullable<float> QuantityNo { get; set; }
         public string CountryRecovered { get; set; }
-        public string Length { get; set; }
-        public string Width { get; set; }
-        public string Height { get; set; }
-        public string Diameter { get; set; }
+        public Nullable<float> Length { get; set; }
+        public Nullable<float> Width { get; set; }
+        public Nullable<float> Height { get; set; }
+        public Nullable<float> Diameter { get; set; }
         public string Colour { get; set; }
         public string Markings { get; set; }
         public string memRemarks { get; set; }
-        public DateTime dteSent { get; set; }
+        public Nullable<System.DateTime> dteSent { get; set; }
         [NotMapped]
         public int intID { get; set; }
-        public DateTime CreatedOn { get; set; }
-        public DateTime UpdatedOn { get; set; }
+        public System.DateTime CreatedOn { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public bool IsDeleted { get; set; }
         public string textSearch { get; set; }
-        public string Status { get; set; }
-        public DateTime ApprovedOn { get; set; }
+        public Nullable<int> Status { get; set; }
+        public Nullable<System.DateTime> ApprovedOn { get; set; }
         public string ApprovedBy { get; set; }
     }
 
