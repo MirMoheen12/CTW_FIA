@@ -142,7 +142,7 @@
                     <div class="input-group">
                         <input class="form-control form-control-sidebar" type="search" placeholder="Search" id="query" aria-label="Search">
                         <div class="input-group-append">
-                            <button class="btn btn-sidebar" id="queryBtn">
+                            <button class="btn btn-sidebar" id="queryBtn" onclick="GetSearchdata()">
                                 <i class="fas fa-search fa-fw" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -164,6 +164,7 @@
                                 </p>
                             </a>
                         </li>
+                        <span id="leftnavbar">
                         <li class="nav-item" >
                             <a href="#" class="nav-link">
                                 <i class="fa-solid fa-chart-bar"></i>
@@ -216,6 +217,7 @@
 
                             </ul>
                         </li>
+                   
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fa-solid fa-database"></i>
@@ -520,272 +522,16 @@
                                 <p>Create Link</p>
                             </a>
                         </li>
-                 @*       
-                        
-
-
-                                @if (ViewBag.UserAccess[1].ReadAccess)
-                                {
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="fas fa-users" aria-hidden="true"></i>
-                                            <p>
-
-                                                Terrorists
-
-                                                <i class="fas fa-angle-left right" aria-hidden="true"></i>
-
-                                            </p>
-                                        </a>
-                                        <ul class="nav nav-treeview" role="button">
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="KHYBER-PAKHTUNKHWA People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>KPK</p>
-                                                    <span class="badge badge-info right" id="terroristgroup_count">@ViewBag.terror_pro_kpk_count</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="Punjab People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Punjab</p>
-                                                    <span class="badge badge-info right" id="terroristgroup_count">@ViewBag.terror_pro_Pun_count</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="Sindh People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Sindh</p>
-                                                    <span class="badge badge-info right" id="terroristgroup_count">@ViewBag.terror_pro_Sindh_count</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="Balochistan People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Balochistan</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.terror_pro_Bal_count</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="GB People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>GB</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.terror_pro_gb_count</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="ICT People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>ICT</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.terror_pro_ICT_count</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="AJK People" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>AJK</p>
-                                                    <span class="badge badge-info right" id="stgroup_count">@ViewBag.terror_pro_AJK_count</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                }
-                                <li class="nav-item">
-                                    <a class="nav-link" data-href="All Group" onclick="ClickIncPreview(this.data-href)">
-                                        <i class="fas fa-users" aria-hidden="true"></i>
-                                        <p role="button">
-                                            Terrorist Groups
-
-                                        </p>
-                                        <span class="badge badge-info right" id="terroristgroup_count">@ViewBag.groupCount</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-
-                                    <a href="#" class="nav-link">
-                                        <i class="fa fa-bomb" aria-hidden="true"></i>
-                                        <p>
-
-                                            Explosives
-
-                                            <i class="fas fa-angle-left right" aria-hidden="true"></i>
-
-                                        </p>
-                                    </a>
-
-                                    <ul class="nav nav-treeview" role="button">
-                                        @if (ViewBag.UserAccess[7].ReadAccess)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="All Explosives" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Explosives</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.exp_count</span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (ViewBag.UserAccess[4].ReadAccess)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="All Vehicles" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Vehicles</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.vehicle_count</span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (ViewBag.UserAccess[18].ReadAccess)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="All PowerSources" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Power Source</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.powerS_count</span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (ViewBag.UserAccess[5].ReadAccess)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="All Communications" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Communication</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.comm_count</span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (ViewBag.UserAccess[8].ReadAccess)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="All Ordinances" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Ordinance</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.Ord_count</span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (ViewBag.UserAccess[10].ReadAccess)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="All Equipments" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Equipment</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.equipment_count</span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (ViewBag.UserAccess[11].ReadAccess)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="All InitiationSystems" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Initiation System</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.initSys_count</span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (ViewBag.UserAccess[12].ReadAccess)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="All Components" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Components</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.comp_count</span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (ViewBag.UserAccess[13].ReadAccess)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="All CBRNs" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>CBRN</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.cBRN_count</span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (ViewBag.UserAccess[14].ReadAccess)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="All Firearms" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Firearms</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.firearms_count</span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (ViewBag.UserAccess[17].ReadAccess)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="All Chemicals" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Chemicals</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.chemical_count</span>
-                                                </a>
-                                            </li>
-                                        }
-                                        @if (ViewBag.UserAccess[6].ReadAccess)
-                                        {
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-href="All Detonators" onclick="ClickIncPreview(this.data-href)">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Detonators</p><span class="badge badge-info right" id="terroristgroup_count">@ViewBag.det_count</span>
-                                                </a>
-                                            </li>
-                                        }
-
-                                    </ul>
-                                </li>
-
-
-                            </ul>
-                        </li>
-
-                
-
-
-                            </ul>
-                        </li>
-
-                   *@
-
-                        @* <li class="nav-item">
-                        <a asp-area="admin" asp-action="GrapghManager" asp-controller="Records" class="nav-link @(ViewBag.Title == PageTitle.GrapghManager?"active" : "")">
-
-                        <i class="fa-solid fa-chart-pie"></i>
-                        <p> Graph Manager </p>
-                        </a>
-                        </li>*@
-                  @*      <li class="nav-item">
-                            <a class="nav-link @(ViewBag.Title == PageTitle.ReportDashboard?"active" : "")" href="#">
-                                <i class="fa-solid fa-file"></i>
-                                <p>
-                                    Reports
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview ">
-
-                                <li class="nav-item">
-                                    <a class="nav-link @(ViewBag.Title == PageTitle.IncidentReport?"active" : "")" href="/admin/Reports/Incidents">
-                                        <i class="fa fa-fire" aria-hidden="true"></i>
-                                        <p>
-                                            Incidents Reports
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link @(ViewBag.Title == PageTitle.IncidentReport?"active" : "")" href="/admin/Reports/Terrorists">
-                                        <i class="fa fa-fire" aria-hidden="true"></i>
-                                        <p>
-                                            Terrorist Reports
-                                        </p>
-                                    </a>
-                                </li>
-
-
-
-                            </ul>
-                        </li>*@
-                        @*<li class="nav-item">
-                        <a class="nav-link" href="/admin/Records/Details">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <p> i2 Charts </p>
-                        </a>
-                        </li>*@
-                @*        <li class="nav-item">
-                            <a class="nav-link @(ViewBag.Title == PageTitle.AdvanceSearch?"active" : "")" href="/admin/Records/CustomSearch">
+                                  <li class="nav-item">
+                            <a class="nav-link" href="/AdvanceSearch/Index">
                                 <i class="fa-brands fa-searchengin"></i>
                                 <p> Advance Search </p>
                             </a>
-                        </li>*@
-
+                        </li>
+                 
+                   
+            
+                             </span>
 
                     </ul>
 
@@ -795,19 +541,6 @@
             </div>
             <!-- /.sidebar -->
         </aside>
-
-        <!-- /.navbar -->
- @*       @if (ViewBag.sidebar == "SearchSideBar")
-        {
-            @await Component.InvokeAsync("SearchSideBar")
-        }
-        else
-        {
-            @await Component.InvokeAsync("SideBar")
-        }*@
-
-        <!-- Main Sidebar Container -->
-
     </header>
 
 
@@ -914,121 +647,9 @@
         $('.spinner').css('display', 'none');
    
     });
-
-    $(document).ajaxStop(function () {
-
-
-        //$('.spinner').css('display', 'none');
-    });
-
-    //$("#dbpreview a").click(function (event) {
-    //    event.preventDefault();
-    //    var prov = $(this).data("href");
-    //    // alert(prov);
-    //    $("." + prov).addClass("active");
-    //    //$(this).parents().addClass('active');
-    //    //$(this).parents('.treeview').addClass('active');
-    //    $(`.nav-link[data-href='${prov}']`).addClass('active').parents('li:first').addClass('active').parents('li:first').addClass('menu-open').children('a:first').addClass('active');
-
-
-    //    var array = prov.split(" ");
-    //    var pid = array[0];
-    //    var table = array[1];
-
-    //    window.location.href = "/Admin/Records/SearchDatabase?PreId=" + pid + "&PreTable=" + table;
-    //});
-    //function ClickIncPreview(prov)
-    //{
-    //    alert(prov);
-
-    //}
-
-
-    function SearchData() {
-
-        var src_limit = 0;
-        var des_limit = 0;
-        var srcArray = []
-        var desArray = []
-        var srcindex = 0;
-        var desIndex = 0;
-        var strURN = "";
-        var textsearch = "";
-        //textsearch=$("#searchInput").val();
-        //var url = "/api/Incidents/SearchIncident/" + textsearch;
-
-        //List DbList = { "Incidents", "Explosives"}; "CBRNs"
-        const DbList = ["Incidents", "People", "Group", "Explosives", "BankAccounts", "Address", "Chemicals"
-            , "Communications", "Components", "Detonators", "Equipments", "Evidence", "Firearms", "InitiationSystems",
-            "MediaFiles", "Ordinances", "Pipes", "PowerSources", "Properties", "Vehicles"];
-
-        let DLen = DbList.length;
-        //alert(url);
-        var q = { query: $("#searchInput").val() };
-        $("#searchtable tbody").empty();
-        for (let i = 0; i < DLen; i++) {
-            //var url = "/api/Incidents/SearchIncident";
-            var url = "/api/" + DbList[i] + "/SearchRecord";
-            $.ajax({
-                type: "POST",
-                url: url,
-                dataType: 'json',
-                data: JSON.stringify(q),
-                contentType: "application/json",
-                success: function (response) {
-                    $.each(response, function (k, v) {
-                        //console.log(propName, propVal);
-                        //$("#table1").append("<tr><td>" + v.textSearch + "</td></tr>");
-                        //$("#table1").append("<tr><td><button id="+ v.strURN +" onClick='ClickButton(this.id)'>" + v.textSearch + " </button></td></tr>");
-                        $("#searchtable").append("<tr><td><p  id='" + v.strURN + " " + DbList[i] + "' onClick='ClickButton(this.id)'>" + v.textSearch + " </p></td></tr>");
-
-                    });
-                }
-            });
-        }
-    }
-
-    function ClickButton(strURN) {
-        alert(strURN);
-        var array = strURN.split(" ");
-        var id = array[0];
-        var table = array[1];
-        //table = "Incidents";
-        //var id=strURN;
-        //var table = tableName;
-        //alert(strURN + tableName);
-        if (table == "Incidents") {
-            window.location.href = "/Admin/Records/PreviewIncidentRecord?id=" + id;
-        }
-        if (table == "Explosives") {
-            window.location.href = "/Admin/Records/PreviewExplosivesRecord?id=" + id;
-        }
-        if (table == "Group") {
-            window.location.href = "/Admin/Records/GroupPreview?id=" + id;
-        }
-        if (table == "People") {
-            window.location.href = "/Admin/Records/PreviewPersonRecord?id=" + id;
-        }
-        if (table == "BankAccounts") {
-            window.location.href = "/Admin/Records/PreviewBankAccount?id=" + id;
-        }
-        if (table == "Vehicles") {
-            window.location.href = "/Admin/Records/PreviewVehicleRecord?id=" + id;
-        }
-
-        if (table == "PersonInvolved") {
-            window.location.href = "/Admin/Records/PreviewPersonRecord?id=" + id;
-        }
-        if (table == "InitiationSystems") {
-            window.location.href = "/Admin/Records/PreviewInitiationRecord?id=" + id;
-
-        }
-    }
-
-
-
     function GetAllCount()
     {
+        $('#contr').append("<li class=nav-item> <button class='btn btn-default btn-block text-left' id='" + '122' + "' data-strURN='" + '3232' + "' data-ctrName='" + 'unders' + "' >" + 'sds' + "</button></li>")
         $.ajax({
             type: "GET",
             url: "/Jsonside/GetLeftsidesCounts",
@@ -1178,46 +799,55 @@
         });
 
     }
-    //function ViewLinks(param_x) {
-    //    var strURN = "";
-    //    var url = "/api/FindLinks/SearchLinks";
-    //    //alert(url);
-    //    var q = { query: param_x };
-    //    $.ajax({
-    //        type: "POST",
-    //        url: url,
-    //        dataType: 'json',
-    //        data: JSON.stringify(q),
-    //        contentType: "application/json",
-    //        success: function (response) {
-    //            console.log(response);
-    //            //$("#table2 tbody").empty();
-    //            //alert(JSON.stringify(response));
-    //            //var list = $("#link_ul_id").append('<ul></ul>').find('ul');
+    function GetSearchdata() {
+       
+        $.ajax({
+            type: "GET",
+            url: "/QuickSearch/GetRes",
+            data: {SearchVal:'Hashim'},
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response)
+            {
+            
+                var modelList = response;
+                var groupedByTableName = {};
+                if(response.length>0)
+                {
+                   
+                $.each(modelList, function (index, model) {
+                        var tableName = model.tableName;
+                        if (!groupedByTableName[tableName]) {
+                            groupedByTableName[tableName] = {
+                                count: 0,
+                                models: []
+                            };
+                        }
+                        groupedByTableName[tableName].count++;
+                        groupedByTableName[tableName].models.push(model);
+                    });
+                    $('#leftnavbar').hide();
+                    for (let tableName in groupedByTableName) {
+                        let tableGroup = groupedByTableName[tableName];
+                        $('.sidebar nav .nav-pills').append(
+                            '<li class="nav-item"> <a href="#" class="nav-link">   <span class="badge badge-info">' +
+                            tableGroup.count + '</span> &nbsp <p class="year">' + tableName +
+                            '  <i class="fas fa-angle-left right" aria-hidden="true"></i></p> </a> <ul class="nav nav-treeview" id="contr"></ul>');
+                    }
+                
+                }
+              
+            },
+            error: function (response) {
+                alert("error");
+            }
+        });
 
-
-    //            $.each(response, function (k, v) {
-
-    //                if (v.srcTableName == 'MediaFile' || v.desTableName == 'MediaFile') {
-    //                    $("#media_ul_id").append('<li class=nav-item><a href=' + v.strURNSource + ' class=nav-link>' + v.srcTableName + '</a>| <a href=' + v.strURNDest + ' class=nav-link>' + v.desTableName + '</a></li>');
-
-    //                }
-    //                else {
-    //                    $("#link_ul_id").append('<li class=nav-item><a href=' + v.strURNSource + ' class=nav-link>' + v.srcTableName + '</a>| <a href=' + v.strURNDest + ' class=nav-link>' + v.desTableName + '</a></li>');
-
-    //                }
-
-
-    //                //$("#table2").append("<tr><td><p>" + v.item3 + " </p></td><td><p id=" + v.item1 + " onClick=''>" + v.item2 + " </p></td></tr>");
-
-
-    //            });
-    //        }
-    //    });
-
-    //}
+    }
 
     function clearSearch() {
         $("#searchtable tbody").empty();
         $("#searchdiv").hide;
-    }</script>
+    }
+    
+                    </script>
