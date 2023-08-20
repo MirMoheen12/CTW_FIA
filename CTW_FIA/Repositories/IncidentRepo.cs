@@ -48,10 +48,7 @@ namespace CTW_FIA.Repositories
             appDbContext.SaveChanges();
         }
 
-        public Incident GetEditComponent(string sTRUN)
-        {
-            return appDbContext.Incident.Where(x => x.strURN == sTRUN).FirstOrDefault();
-        }
+
 
         public PreviewIncidentByStrUrn getIncidentID(string STRURN)
         {
@@ -84,7 +81,8 @@ namespace CTW_FIA.Repositories
 
         public Incident GetEditIncident(string sTRUN)
         {
-            return appDbContext.Incident.Where(x => x.strURN == sTRUN).FirstOrDefault();
+            var data = appDbContext.Incident.Where(x => x.strURN == sTRUN).ToList();
+            return  data.FirstOrDefault();
         }
 
         public void PostEditIncident(Incident c)

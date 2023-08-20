@@ -11,5 +11,6 @@ namespace CTW_FIA.Interface
         void DeleteIncident(string sTRUN);
         public Incident GetEditIncident(string sTRUN);
         public void PostEditIncident(Incident i);
+    
     }
 }

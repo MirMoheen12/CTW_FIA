@@ -70,7 +70,7 @@ namespace CTW_FIA.Controllers
         public IActionResult EditIncident(string StrURN)
         {
             ViewBag.Allcountries = terrorist.AllCountry();
-            var data = incident.getIncidentID(StrURN);
+            var data = incident.GetEditIncident(StrURN);
             return View(data);
         }
 
