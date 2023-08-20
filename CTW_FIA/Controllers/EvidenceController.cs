@@ -20,7 +20,7 @@ namespace CTW_FIA.Controllers
         public IActionResult AllEvidence()
         {
            var dat = evidence.AllEvidence();
-            return View();
+            return View(dat);
         }
         [HttpGet]
         public IActionResult AddEvidence()

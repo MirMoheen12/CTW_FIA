@@ -5,7 +5,7 @@ namespace CTW_FIA.Interface
 {
     public interface IEvidence
     {
-        public List<Evidence> AllEvidence();
+        public List<Evidence_sel_Result> AllEvidence();
         public bool AddNewEvidence(Evidence evd);
 
         public Evidence GetEvidenceByStrurn(string sTRUN);
