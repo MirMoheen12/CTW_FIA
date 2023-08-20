@@ -1,6 +1,7 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
+using System.ComponentModel;
 
 namespace CTW_FIA.Repositories
 {
@@ -14,6 +15,23 @@ namespace CTW_FIA.Repositories
             this.databaseRepo = databaseRepo;
             this.configuration = configuration;
 
+        }
+
+        public bool AddNewFiearms(Firearms firearms)
+        {
+            try
+            {
+                firearms.strURN = databaseRepo.ExecuteProc("GetCompSTRURN", null).Rows[0][0].ToString();
+                firearms.textSearch = firearms.strURN + "  " + firearms.memRemarks;
+                firearms.CreatedOn = DateTime.Now;
+                appDbContext.Firearms.Add(firearms);
+                appDbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public List<Firearms_sel_Result> allfearms()

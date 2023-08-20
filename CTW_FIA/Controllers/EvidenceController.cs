@@ -37,8 +37,24 @@ namespace CTW_FIA.Controllers
             evidence.AddNewEvidence(evd);
             ViewBag.Allcountries = terrorist.AllCountry();
             return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
+        }
 
 
+        [HttpGet]
+        public IActionResult EditEvidence(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = evidence.GetEvidenceByStrurn(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditEvidence(Evidence c)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            evidence.PostEditEvidence(c);
+            return RedirectToAction("index", "Dashboard");
         }
     }
 }

@@ -1,7 +1,11 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CTW_FIA.Models.DatabaseModels
 {
     public class Chemical
     {
+        [Key]
         public string strURN { get; set; }
         public string Name { get; set; }
         public string OtherNames { get; set; }
@@ -51,6 +55,7 @@
         public string EnvironmentalData { get; set; }
         public string memRemarks { get; set; }
         public DateTime dteSent { get; set; }
+        [NotMapped]
         public int intID { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }

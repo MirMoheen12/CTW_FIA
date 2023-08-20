@@ -7,5 +7,8 @@ namespace CTW_FIA.Interface
     {
         public List<Evidence> AllEvidence();
         public bool AddNewEvidence(Evidence evd);
+
+        public Evidence GetEvidenceByStrurn(string sTRUN);
+        void PostEditEvidence(Evidence c);
     }
 }

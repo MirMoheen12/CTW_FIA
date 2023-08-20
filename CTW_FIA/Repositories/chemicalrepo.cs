@@ -3,6 +3,7 @@ using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CTW_FIA.Repositories
 {
@@ -56,10 +57,10 @@ namespace CTW_FIA.Repositories
             dbContext.Person.Update(data);
             dbContext.SaveChanges();
         }
-
-        public void EditChemicals(string sTRUN)
+        public void PostEditChemical(Chemical c)
         {
-            throw new NotImplementedException();
+            dbContext.Chemicals.Update(c);
+            dbContext.SaveChanges();
         }
     }
 }

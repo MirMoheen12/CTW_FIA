@@ -74,5 +74,11 @@ namespace CTW_FIA.Repositories
             }
             return list.FirstOrDefault();
         }
+
+        public void PostEditInitiationSystem(InitiationSystem c)
+        {
+            appDbContext.InitiationSystems.Update(c);
+            appDbContext.SaveChanges();
+        }
     }
 }

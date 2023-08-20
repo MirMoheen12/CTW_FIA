@@ -36,5 +36,22 @@ namespace CTW_FIA.Controllers
             return View(data);
         }
 
+        [HttpGet]
+        public IActionResult EditInitiationSystem(string StrURN)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = intianSystem.GetIntianDystmByStrurn(StrURN);
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult EditInitiationSystem(InitiationSystem c)
+        {
+            ViewBag.Allcountries = terrorist.AllCountry();
+            intianSystem.PostEditInitiationSystem(c);
+            return RedirectToAction("index", "Dashboard");
+        }
+
     }
 }

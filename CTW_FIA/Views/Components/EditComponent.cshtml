@@ -19,7 +19,12 @@
                             </div>
                             <label for="CountryOrigin" class="col-sm-2 col-form-label" style="font-size: 13px">Country of Origin</label>
                             <div class="col-sm-4">
-                                <select id="CountryOrigin" name="CountryOrigin" asp-for="CountryOrigin" class="form-control"></select>
+                                <select id="CountryOrigin" name="CountryOrigin" asp-for="CountryOrigin" class="form-control">
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option value="@ViewBag.Allcountries[i].strCountry">@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+                                </select>
                             </div>
                         </div>
 
@@ -59,7 +64,12 @@
                         <div class="form-group row">
                             <label for="CountryRecovered" class="col-sm-2 col-form-label" style="font-size: 13px">Country of Recovery</label>
                             <div class="col-sm-4">
-                                <select id="CountryRecovered" name="CountryRecovered" asp-for="CountryRecovered" class="form-control"></select>
+                                <select id="CountryRecovered" name="CountryRecovered" asp-for="CountryRecovered" class="form-control">
+                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    {
+                                        <option value="@ViewBag.Allcountries[i].strCountry">@ViewBag.Allcountries[i].strCountry</option>
+                                    }
+                                </select>
                             </div>
                             <label for="Length" class="col-sm-2 col-form-label" style="font-size: 13px">Length</label>
                             <div class="col-sm-4">

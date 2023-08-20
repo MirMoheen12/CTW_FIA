@@ -10,7 +10,7 @@ namespace CTW_FIA.Interface
         void DeleteComponents(string sTRUN);
 
         public Components GetEditComponent(string sTRUN);
-        public void PostEditComponent(Components c);
         public QuickSearchComponents_sel_Result GetComponByStrurn(string sTRUN);
+        void PostEditComponent(Components c);
     }
 }
