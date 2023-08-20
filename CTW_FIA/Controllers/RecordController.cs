@@ -133,7 +133,12 @@ namespace CTW_FIA.Controllers
                 case "Equipment":
                     {
                         var dat = equipments.GetEquByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+
+                        }
+                     
                         break;
                     }
                 case "Initiation System":
@@ -182,6 +187,7 @@ namespace CTW_FIA.Controllers
                     break;
             }
             ViewData["Title"] = modelname;
+            ViewData["strurn"] = STRUN;
             ViewBag.link = commonlinks.getAlllinksCount(STRUN);
 
             return View(lis);
@@ -293,7 +299,7 @@ namespace CTW_FIA.Controllers
                     }
                 case "Terrorist Groups":
                     {
-                        return RedirectToAction("EditTerroristGroup", "TerroristGroups", new { StrURN = STRUN });
+                        return RedirectToAction("EditTerroristGroup", "TerroristsGroups", new { StrURN = STRUN });
                     }
                 case "Explosives":
                     {
@@ -309,7 +315,7 @@ namespace CTW_FIA.Controllers
                     }
                 case "Communication":
                     {
-                        return RedirectToAction("EditCommunication", "Communication", new { StrURN = STRUN });
+                        return RedirectToAction("EditCommunication", "Communications", new { StrURN = STRUN });
                     }
                 case "Ordinance":
                     {
