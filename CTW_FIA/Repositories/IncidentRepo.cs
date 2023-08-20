@@ -79,10 +79,15 @@ namespace CTW_FIA.Repositories
         }
 
 
-        public Incident GetEditIncident(string sTRUN)
+        public QuickSearchIncident_sel_Result GetEditIncident(string sTRUN)
         {
-            var data = appDbContext.Incident.Where(x => x.strURN == sTRUN).ToList();
-            return  data.FirstOrDefault();
+            var dat = new
+            {
+                strURN = sTRUN
+            };
+            var dbres = databaseRepo.ExecuteProc("LinkedRecordIncident_sel", databaseRepo.returnSppram(dat));
+            var rec = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchIncident_sel_Result)).Cast<QuickSearchIncident_sel_Result>().ToList();
+            return rec.FirstOrDefault();
         }
 
         public void PostEditIncident(Incident c)
