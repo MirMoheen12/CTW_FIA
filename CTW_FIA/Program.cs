@@ -40,9 +40,7 @@ builder.Services.AddControllersWithViews();
 ConfigurationManager configuration = builder.Configuration;
 
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-               options.UseSqlServer(
-                   configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AppDbContext>(options =>options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {

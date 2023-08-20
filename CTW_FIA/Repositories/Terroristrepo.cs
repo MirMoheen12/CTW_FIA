@@ -1,6 +1,7 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Data;
 using static System.Net.Mime.MediaTypeNames;
@@ -275,17 +276,30 @@ namespace CTW_FIA.Repositories
 
         public void DeleteTerroristGroup(string StrURN)
         {
-            var data = dbContext.Person.Where(x => x.strURN == StrURN).FirstOrDefault();
+            var data = dbContext.Person.Where(x => x.strURN == StrURN).DefaultIfEmpty().ToListAsync().Result.FirstOrDefault();
             data.IsDeleted = true;
             dbContext.Person.Update(data);
             dbContext.SaveChanges();
         }
 
-        public void EditPerson(string sTRUN)
+        public Person EditPerson(string sTRUN)
         {
-            throw new NotImplementedException();
+            var data = dbContext.Person.Where(x => x.strURN == sTRUN).DefaultIfEmpty().ToListAsync().Result;
+            return data.FirstOrDefault();
         }
-
+        public bool PostEditPerson(Person P)
+        {
+            try
+            {
+                dbContext.Person.Update(P);
+                dbContext.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         public void EditTerroristGroup(string sTRUN)
         {
             throw new NotImplementedException();

@@ -11,17 +11,17 @@ namespace CTW_FIA.Models.DatabaseModels
         public string Category { get; set; }
         public string CurrentStatus { get; set; }
         public string ReportingAgency { get; set; }
-        public string NHeadMoney { get; set; }
+        public Nullable<int> NHeadMoney { get; set; }
         public string AccusationStatus { get; set; }
         public string Name { get; set; }
         public string Aliases { get; set; }
         public string FatherName { get; set; }
         public string FamilyName { get; set; }
         public string Gender { get; set; }
-        public DateTime DOB { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
         public string PlaceOfBirth { get; set; }
         public string Tribe { get; set; }
-        public int CNIC { get; set; }
+        public Nullable<long> CNIC { get; set; }
         public string MaritalStatus { get; set; }
         public string Religion { get; set; }
         public string Occupation { get; set; }
@@ -32,8 +32,8 @@ namespace CTW_FIA.Models.DatabaseModels
         public string BodyBuild { get; set; }
         public string BeardColor { get; set; }
         public string BaldType { get; set; }
-        public float Height { get; set; }
-        public float HeightInFeet { get; set; }
+        public string Height { get; set; }
+        public string HeightInFeet { get; set; }
         public string Complexion { get; set; }
         public string IdentificationMark { get; set; }
         public string PermanentIdentificationMark { get; set; }
@@ -48,18 +48,34 @@ namespace CTW_FIA.Models.DatabaseModels
         public bool HairImplants { get; set; }
         public bool Wig { get; set; }
         public string CheekStructure { get; set; }
-        public string ContactLenses { get; set; }
+        public Nullable<bool> ContactLenses { get; set; }
         public string VFaceShape { get; set; }
         public string EarStructure { get; set; }
         public string EyeColor { get; set; }
         public string EyeLook { get; set; }
         public string Eyebrows { get; set; }
-        public string EyeGlasses { get; set; }
+        public Nullable<bool> EyeGlasses { get; set; }
         public string NoseStructure { get; set; }
         public string LipStucture { get; set; }
         public string Mustaches { get; set; }
         public string MustachesColor { get; set; }
         public string memRemarks { get; set; }
+        public System.DateTime CreatedOn { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
+        public bool IsDeleted { get; set; }
+        public string textSearch { get; set; }
+        public bool iSHeadMoney { get; set; }
+        public bool isActive { get; set; }
+        public string FirNo { get; set; }
+        public Nullable<int> Age { get; set; }
+        public string Sect { get; set; }
+        public string Affiliation { get; set; }
+        public string Languages { get; set; }
+        public Nullable<int> Status { get; set; }
+        public Nullable<System.DateTime> ApprovedOn { get; set; }
+        public string ApprovedBy { get; set; }
         [NotMapped]
         public int intID { get; set; }
         [NotMapped]
@@ -79,22 +95,6 @@ namespace CTW_FIA.Models.DatabaseModels
         [NotMapped]
         public string? PassPortNo { get; set; }
 
-        public DateTime CreatedOn { get; set; }
-        public DateTime UpdatedOn { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
-        public bool IsDeleted { get; set; }
-        public string textSearch { get; set; }
-        public bool iSHeadMoney { get; set; }
-        public bool isActive { get; set; }
-        public string FirNo { get; set; }
-        public int Age { get; set; }
-        public string Sect { get; set; }
-        public string Affiliation { get; set; }
-        public string Languages { get; set; }
-        public string Status { get; set; }
-        public DateTime ApprovedOn { get; set; }
-        public string ApprovedBy { get; set; }
     }
 
 }

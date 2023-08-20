@@ -18,7 +18,8 @@ namespace CTW_FIA.Interface
         public bool AddNewGroup(Group group);
         public void DeletePerson(string StrURN);
         public void DeleteTerroristGroup(string StrURN);
-        void EditPerson(string sTRUN);
+        public Person EditPerson(string sTRUN);
+        public bool PostEditPerson(Person P);
         void EditTerroristGroup(string sTRUN);
         void PostEditGroup(Group c);
     }

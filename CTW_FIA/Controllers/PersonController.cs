@@ -23,7 +23,16 @@ namespace CTW_FIA.Controllers
         {
             ViewBag.Agencies = terrorist.AllAgencies();
             ViewBag.Allcountries = terrorist.AllCountry();
+            
             return View();
+        }
+        [HttpGet]
+        public IActionResult EditPerson(string StrURN)
+        {
+            ViewBag.Agencies = terrorist.AllAgencies();
+            ViewBag.Allcountries = terrorist.AllCountry();
+            var data = terrorist.EditPerson(StrURN);
+            return View(data);
         }
         [HttpPost]
         public IActionResult AddPerson(Person P,IFormFile file)
