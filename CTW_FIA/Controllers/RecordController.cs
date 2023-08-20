@@ -29,7 +29,9 @@ namespace CTW_FIA.Controllers
         private readonly IFearams fearams;
         private readonly Ichemical chemical;
         private readonly IDetonators detonators;
+        private readonly IEvidence evidence;
         public RecordController(
+        IEvidence evidence,
         IRecord record,
         ICommonlinks commonlinks,
         ConverterModel converterModel,
@@ -48,6 +50,7 @@ namespace CTW_FIA.Controllers
         Ichemical chemical,
         IDetonators detonators)
         {
+            this.evidence = evidence;
             this.record = record;
             this.commonlinks = commonlinks;
             this.converterModel = converterModel;
@@ -166,6 +169,12 @@ namespace CTW_FIA.Controllers
                 case "Detonators":
                     {
                         var dat = detonators.GetDetonatorsByStrurn(STRUN);
+                        lis = converterModel.getModel(dat);
+                        break;
+                    }
+                case "Evidence":
+                    {
+                        var dat = evidence.GetEvidenceByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
                         break;
                     }
