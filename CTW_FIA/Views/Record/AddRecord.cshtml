@@ -16,20 +16,7 @@
                         <label for="ForwardLocking" class="col-sm-3 col-form-label">Select Databases</label>
                         <div class="col-sm-5">
                             <select class="form-control" id="database">
-                      @*          @if (ViewBag.data.Count != 0)
-                                {
-                                    <option value="Select">Select</option>
-                                }
-
-                                @for (var i = 0; i < ViewBag.data.Count; i++)
-                                {
-                                    <option value="@ViewBag.data[i].TableName">@ViewBag.data[i].TableName</option>
-                                }
-                                @if (ViewBag.data.Count == 0)
-                                {
-                                    <option selected value="Select">You have no access to Add Record</option>
-                                }*@
-
+              
                                 <option value="Select">Select</option>
                                 <option value="MainIncident">Terrorist Incident</option>
                                 <option value="PersonInvolved">Terrorist Involved</option>
@@ -109,7 +96,7 @@
                             $('.spinner').css('display', 'none');
                             break;
                         case "Addresses":
-                            $("#DivContainerForCustForm").load("@Url.Action("Add_Person_Address","Record")");
+                            $("#DivContainerForCustForm").load("@Url.Action("NewAddrees","Address")");
                              $('.spinner').css('display', 'none');
                             break;
                         case "Vehicle":

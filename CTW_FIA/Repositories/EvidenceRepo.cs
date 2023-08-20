@@ -31,15 +31,15 @@ namespace CTW_FIA.Repositories
             }
         }
 
-        public List<Evidence> AllEvidence()
+        public List<Evidence_sel_Result> AllEvidence()
         {
 
-            var dat = databaseRepo.ExecuteProc("Ordinance_sel", null);
-            var res = databaseRepo.ConverttoObject(dat, typeof(Evidence));
-            var list = new List<Evidence>();
+            var dat = databaseRepo.ExecuteProc("Evidence_sel", null);
+            var res = databaseRepo.ConverttoObject(dat, typeof(Evidence_sel_Result));
+            var list = new List<Evidence_sel_Result>();
             foreach (var item in res)
             {
-                list.Add((Evidence)item);
+                list.Add((Evidence_sel_Result)item);
             }
             return list;
         }
