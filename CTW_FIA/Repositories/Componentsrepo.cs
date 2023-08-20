@@ -26,6 +26,7 @@ namespace CTW_FIA.Repositories
                 component.strURN = databaseRepo.ExecuteProc("GetCompSTRURN", null).Rows[0][0].ToString();
                 component.textSearch = component.strURN + "  " + component.Manufacturer;
                 component.CreatedOn = DateTime.Now;
+                component.IsDeleted = false;
                 appDbContext.Components.Add(component);
                 appDbContext.SaveChanges();
                 return true;

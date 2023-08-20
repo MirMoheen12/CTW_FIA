@@ -30,6 +30,11 @@ namespace CTW_FIA.Controllers
             ViewBag.Allcountries = terrorist.AllCountry();
             return RedirectToAction("AddRecord", "Record", new { pagname = "P", pagestatus = "Updated" });
         }
+        public IActionResult AllIntianSystem()
+        {
+            var data = intianSystem.AllSystem();
+            return View(data);
+        }
 
     }
 }
