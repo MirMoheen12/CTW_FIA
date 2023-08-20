@@ -291,9 +291,9 @@ namespace CTW_FIA.Repositories
             throw new NotImplementedException();
         }
 
-        public void PostEditGroup(TerroristGroup_Records terroristGroup_)
+        public void PostEditGroup(Group terroristGroup_)
         {
-          // dbContext..Update(terroristGroup_);
+            dbContext.Group.Update(terroristGroup_);
             dbContext.SaveChanges();
         }
     }

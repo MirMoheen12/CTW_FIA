@@ -1,4 +1,4 @@
-﻿@model CTW_FIA.Models.DatabaseModels.Group
+﻿@model CTW_FIA.Models.Dto.QuickSearchGroups_sel_Result
 @{
     ViewData["Title"] = "AddTerroristGroup";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,7 +20,8 @@
                         <div class="form-group row">
                             <label for="groupname" class="col-sm-2 col-form-label" style="font-size: 13px;">Group Name </label>
                             <div class="col-sm-10">
-                                <input type="text" asp-for="GroupName" class="form-control" id="groupname" placeholder="">
+                                <input type="text" hidden class="form-control" id="strURN" name="strURN" asp-for="strURN" />
+                                <input type="text" asp-for="dgvGroupName" name="GroupName" class="form-control" id="groupname" placeholder="">
                                 <input type="text" hidden class="form-control" id="strURN" name="strURN" asp-for="strURN" />
                             </div>
                         </div>
@@ -120,7 +121,7 @@
                         <div class="form-group row">
                             <label for="GroupCountry" class="col-sm-2 col-form-label" style="font-size: 13px;">Country Origin</label>
                             <div class="col-sm-10">
-                                <select class="form-control" asp-for="CountryOrigin" id="GroupCountry">
+                                <select class="form-control" asp-for="dgvCountry" name="CountryOrigin" id="GroupCountry">
                                 </select>
                             </div>
                         </div>
@@ -134,7 +135,7 @@
                         <div class="form-group row">
                             <label for="GroupCountryList" class="col-sm-2 col-form-label" style="font-size: 13px;">Country</label>
                             <div class="col-sm-4">
-                                <select class="form-control" asp-for="Country" id="selectedcountry">
+                                <select class="form-control" asp-for="dgvCountryOrigin" name="Country"  id="selectedcountry">
                                     <option>Select Country</option>
                                     @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
                                     {
@@ -147,7 +148,7 @@
                         <div class="form-group row">
                             <label for="GroupProvinceList" class="col-sm-2 col-form-label" style="font-size: 13px;">Province </label>
                             <div class="col-sm-4">
-                                <select class="form-control" asp-for="Province" id="personprovince">
+                                <select class="form-control" asp-for="dgvProvince" name="Province" id="personprovince">
                                     <option>Select the Province</option>
                                 </select>
                             </div>

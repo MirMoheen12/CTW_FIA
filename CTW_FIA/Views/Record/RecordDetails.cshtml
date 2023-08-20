@@ -71,7 +71,7 @@
 </style>
 
 <div class="floating-buttons">
-    @Html.ActionLink("Edit", "Edit", "Record", new { STRUN = STRUN, name = ViewData["Title"] }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Edit", "Edit", "Record", new { STRUN =   ViewData["strurn"], name = ViewData["Title"] }, new { @class = "btn btn-success" })
     @Html.ActionLink("Delete", "Delete", "Record", new { STRUN = STRUN, name = ViewData["Title"] }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this record?');" })
 </div>
 

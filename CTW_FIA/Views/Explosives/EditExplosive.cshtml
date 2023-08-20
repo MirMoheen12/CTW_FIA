@@ -1,4 +1,4 @@
-﻿@model CTW_FIA.Models.DatabaseModels.Explosive
+﻿@model CTW_FIA.Models.Dto.QuickSearchExplosives_sel_Result
 @{
 
 }
@@ -7,7 +7,7 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <form class="forms-sample" method="post" asp-action="AddExplosive" asp-controller="Explosives">
+                <form class="forms-sample" method="post" asp-action="EditExplosive" asp-controller="Explosives">
                     <h5 class="float-none w-auto p-2">Explosives Form</h5>
 
                     <fieldset class="border p-3">
@@ -24,7 +24,7 @@
                             <div class="col-sm-4">
 
                                 <input type="text" hidden class="form-control" id="strURN" name="strURN" asp-for="strURN" />
-                                <select id="expCategory" asp-for="Category" class="form-control">
+                                <select id="expCategory" asp-for="dgvCategory" name="Category" class="form-control">
                                     <option>
                                         Select
                                     </option>
@@ -40,7 +40,7 @@
                                 Type
                             </label>
                             <div class="col-sm-4">
-                                <select id="expType" asp-for="Type" class="form-control">
+                                <select id="expType" asp-for="dgvType" name"="Type" class="form-control">
                                     <option>
                                         Select
                                     </option>
@@ -75,7 +75,7 @@
                                 Quantity
                             </label>
                             <div class="col-sm-4">
-                                <input asp-for="Quantity"
+                                <input asp-for="dgvQuantity" name="Quantity"
                                        type="text"
                                        class="form-control"
                                        id="expQuantity"

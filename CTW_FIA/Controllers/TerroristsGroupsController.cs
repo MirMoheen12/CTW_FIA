@@ -66,7 +66,7 @@ namespace CTW_FIA.Controllers
 
 
         [HttpPost]
-        public IActionResult EditTerroristGroup(TerroristGroup_Records c)
+        public IActionResult EditTerroristGroup(Group c)
         {
             ViewBag.Allcountries = terrorist.AllCountry();
             terrorist.PostEditGroup(c);
