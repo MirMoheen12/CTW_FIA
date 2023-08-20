@@ -807,48 +807,21 @@
 
     }
     function GetSearchdata() {
-       
-        $.ajax({
-            type: "GET",
-            url: "/QuickSearch/GetRes",
-            data: {SearchVal:'Hashim'},
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            success: function (response)
-            {
-            
-                var modelList = response;
-                var groupedByTableName = {};
-                if(response.length>0)
-                {
-                   
-                $.each(modelList, function (index, model) {
-                        var tableName = model.tableName;
-                        if (!groupedByTableName[tableName]) {
-                            groupedByTableName[tableName] = {
-                                count: 0,
-                                models: []
-                            };
-                        }
-                        groupedByTableName[tableName].count++;
-                        groupedByTableName[tableName].models.push(model);
-                    });
-                    $('#leftnavbar').hide();
-                    for (let tableName in groupedByTableName) {
-                        let tableGroup = groupedByTableName[tableName];
-                        $('.sidebar nav .nav-pills').append(
-                            '<li class="nav-item"> <a href="#" class="nav-link">   <span class="badge badge-info">' +
-                            tableGroup.count + '</span> &nbsp <p class="year">' + tableName +
-                            '  <i class="fas fa-angle-left right" aria-hidden="true"></i></p> </a> <ul class="nav nav-treeview" id="contr"></ul>');
-                    }
-                
-                }
-              
-            },
-            error: function (response) {
-                alert("error");
-            }
-        });
+       var data=$('#query').val();
+       if(data!='')
+       {
+         
+            var url = `/${'QuickSearch'}/${'SearchRec'}?searchval=${data}`;
+
+            // Navigate to the generated URL
+            window.location.href = url;
+       }
+       else
+       {
+            alert("Please Enter value");
+       }
+
+      
 
     }
 

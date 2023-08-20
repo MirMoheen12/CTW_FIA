@@ -11,6 +11,12 @@ namespace CTW_FIA.Controllers
         {
             this.quickSearch = quickSearch;
         }
+        public IActionResult SearchRec(string searchval)
+        {
+            var res = quickSearch.getSearchdata(searchval);
+            ViewBag.searchval = searchval;
+            return View();
+        }
 
         public JsonResult GetRes(string SearchVal)
         {
