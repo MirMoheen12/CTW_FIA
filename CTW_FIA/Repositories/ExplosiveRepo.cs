@@ -61,7 +61,7 @@ namespace CTW_FIA.Repositories
             {
                 textSearch = Strurn
             };
-            var dbres = databaseRepo.ExecuteProc("QuickSearchExplosives_sel", databaseRepo.returnSppram(dat));
+            var dbres = databaseRepo.ExecuteProc("QuickSearchExplosives_sel_web", databaseRepo.returnSppram(dat));
             var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchExplosives_sel_Result));
             var list = new List<QuickSearchExplosives_sel_Result>();
             foreach (var item in dt)
