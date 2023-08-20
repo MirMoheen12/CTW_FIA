@@ -1,4 +1,4 @@
-﻿@model CTW_FIA.Models.DatabaseModels.Evidence
+﻿@model CTW_FIA.Models.Dto.QuickSearchEvidence_sel_Result
 @{
     //Layout = null;
 }
@@ -14,38 +14,38 @@
             <label for="evItem" class="col-sm-2 col-form-label" style="font-size: 13px">Item</label>
             <div class="col-sm-10">
                 <input type="text" hidden class="form-control" id="strURN" name="strURN" asp-for="strURN" />
-                <input type="text" class="form-control" id="evItem" name="Item" placeholder="" />
+                <input type="text" class="form-control" id="evItem" asp-for="Item" placeholder="" />
             </div>
         </div>
 
         <div class="form-group row">
             <label for="evQuantity" class="col-sm-2 col-form-label" style="font-size: 13px">Quantity</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="evQuantity" name="Quantity" placeholder="" />
+                <input type="text" class="form-control" id="evQuantity" asp-for="Quantity" placeholder="" />
             </div>
 
             <label for="evDate" class="col-sm-2 col-form-label" style="font-size: 13px">Date</label>
             <div class="col-sm-4">
-                <input type="date" class="form-control" id="evDate" name="Date" placeholder="" />
+                <input type="date" class="form-control" id="evDate" asp-for="Date" placeholder="" />
             </div>
         </div>
 
         <div class="form-group row">
             <label for="evTime" class="col-sm-2 col-form-label" style="font-size: 13px">Time</label>
             <div class="col-sm-4">
-                <input type="time" class="form-control" id="evTime" name="Time" placeholder="" />
+                <input type="time" class="form-control" id="evTime" asp-for="Time" placeholder="" />
             </div>
 
             <label for="evSeizedby" class="col-sm-2 col-form-label" style="font-size: 13px">Seized by / Collected by</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="evSeizedby" name="SeizedBy" placeholder="" />
+                <input type="text" class="form-control" id="evSeizedby"  name="SeizedBy" placeholder="" />
             </div>
         </div>
 
         <div class="form-group row">
             <label for="evLocation" class="col-sm-2 col-form-label" style="font-size: 13px">Location</label>
             <div class="col-sm-4">
-                <select id="evLocation" class="form-control" name="Location">
+                <select id="evLocation" class="form-control" asp-for="Location">
                     <option>Select</option>
                     <option>From Crime Scene Premises</option>
                     <option>From Accused</option>
@@ -58,9 +58,9 @@
         <br />
         <div class="form-group row">
             <label for="evRemarks" class="col-sm-2 col-form-label" style="font-size: 13px">Remarks</label>
-
+            <input hidden asp-for="textSearch" />
             <div class="col-sm-10">
-                <textarea class="form-control" id="evRemarks" name="Remarks" rows="4"></textarea>
+                <textarea class="form-control" id="evRemarks" asp-for="memRemarks" name="Remarks" rows="4"></textarea>
             </div>
         </div>
     </fieldset>

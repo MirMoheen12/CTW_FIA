@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace FIA_Business.FIA_Models
+namespace CTW_FIA.Models.Dto
 {
     public partial class QuickSearchEvidence_sel_Result
     {

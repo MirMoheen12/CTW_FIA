@@ -1,7 +1,5 @@
 ﻿using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
-using FIA_Business.FIA_Models;
-
 namespace CTW_FIA.Interface
 {
     public interface IEvidence
