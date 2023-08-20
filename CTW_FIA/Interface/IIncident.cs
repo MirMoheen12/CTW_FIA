@@ -9,7 +9,7 @@ namespace CTW_FIA.Interface
         public PreviewIncidentByStrUrn getIncidentID(string STRURN);
         public bool AddNewIncident(Incident incident);
         void DeleteIncident(string sTRUN);
-        public Incident GetEditIncident(string sTRUN);
+        public QuickSearchIncident_sel_Result GetEditIncident(string sTRUN);
         public void PostEditIncident(Incident i);
     
     }
