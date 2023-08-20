@@ -1,6 +1,7 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
+using FIA_Business.FIA_Models;
 
 namespace CTW_FIA.Repositories
 {
@@ -45,18 +46,18 @@ namespace CTW_FIA.Repositories
         }
 
 
-        public Evidence GetEvidenceByStrurn(string sTRUN)
+        public QuickSearchEvidence_sel_Result GetEvidenceByStrurn(string sTRUN)
         {
             var dat = new
             {
                 textSearch = sTRUN
             };
             var dbres = databaseRepo.ExecuteProc("QuickSearchEvidence_sel", databaseRepo.returnSppram(dat));
-            var dt = databaseRepo.ConverttoObject(dbres, typeof(Evidence));
-            var list = new List<Evidence>();
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchEvidence_sel_Result));
+            var list = new List<QuickSearchEvidence_sel_Result>();
             foreach (var item in dt)
             {
-                list.Add((Evidence)item);
+                list.Add((QuickSearchEvidence_sel_Result)item);
             }
             return list.FirstOrDefault();
         }

@@ -343,6 +343,10 @@ namespace CTW_FIA.Controllers
                     {
                         return RedirectToAction("EditDetonator", "Detonators", new { StrURN = STRUN });
                     }
+                case "Evidence":
+                    {
+                        return RedirectToAction("EditEvidence", "Evidence", new { StrURN = STRUN });
+                    }
                 default:
                     break;
             }
