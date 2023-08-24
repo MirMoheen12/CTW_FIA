@@ -1,9 +1,10 @@
 ﻿using CTW_FIA.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CTW_FIA.Controllers
 {
-    
+    [AllowAnonymous]
     public class QuickSearchController : Controller
     {
         private readonly IQuickSearch quickSearch;
@@ -15,7 +16,7 @@ namespace CTW_FIA.Controllers
         {
             var res = quickSearch.getSearchdata(searchval);
             ViewBag.searchval = searchval;
-            return View();
+            return View(res);
         }
 
         public JsonResult GetRes(string SearchVal)

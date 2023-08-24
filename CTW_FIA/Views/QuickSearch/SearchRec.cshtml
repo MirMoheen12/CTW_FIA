@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<CTW_FIA.Models.Dto.QuickSearchModel>
 @{
     string STRUN = "99";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,32 +23,15 @@
 
                 <div class="d-flex p-2 bg-gradient-primary justify-content-center"><b>@ViewData["Title"]</b></div>
                 <br />
-                <table id="SearchGenericTable" class="table table-bordered text-dark">
+                <table id="SearchGenericTable" class="table table-bordered text-dark"> 
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Value</th>
                         </tr>
                     </thead>
-                    <tbody id="SearchIncTbody">
-                @*        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @item.PropertName
-                                    @if (item.PropertName == "Str URN")
-                                    {
-                                        STRUN = item.PropertValue;
-                                    }
-                                </td>
-
-                                <td>
-                                    @item.PropertValue
-                                </td>
-
-
-                            </tr>
-                        }*@
+                    <tbody id="Tblbody">
+   
                     </tbody>
                 </table>
 
@@ -69,13 +52,6 @@
         transform: translate(-50%, -50%);
     }
 </style>
-
-<div class="floating-buttons">
-    @Html.ActionLink("Edit", "Edit", "Record", new { STRUN = STRUN, name = ViewData["Title"] }, new { @class = "btn btn-success" })
-    @Html.ActionLink("Delete", "Delete", "Record", new { STRUN = STRUN, name = ViewData["Title"] }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this record?');" })
-</div>
-
-
 @if (!string.IsNullOrEmpty(ViewBag.RedirectUrl))
 {
     <script>
@@ -117,65 +93,79 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 <script>
     // Initialize DataTable
+    var sourcearray = @Html.Raw(Json.Serialize(Model));
     $(document).ready(function () {
-        searchrec();
-        $('#SearchGenericTable').DataTable({
-            paging: false, // Enable pagination
-            searching: true, // Enable global search
-            ordering: false, // Enable column sorting
-            info: false, // Display information about the table (e.g., "Showing x to y of z entries")
-            lengthChange: true, // Allow users to change the number of rows per page
-            dom: 'Bfrtip', // Enable DataTables Buttons extension
-            buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'delete'], // Available export formats
-            responsive: true, // Enable responsive design for different screen sizes
-            columnDefs: [
-                { responsivePriority: 1, targets: 0 }, // Example: Define responsive priorities for columns
-            ],
-            language: {
-                url: '' // Load language file
-            }
-        });
+   
+         searchrec();
     });
     function searchrec()
     {
-        $.ajax({
+
+
+
+        var modelList = sourcearray;
+        var groupedByTableName = {};
+        if (sourcearray.length > 0) {
+
+            $.each(modelList, function (index, model) {
+                var tableName = model.tableName;
+                if (!groupedByTableName[tableName]) {
+                    groupedByTableName[tableName] = {
+                        count: 0,
+                        models: []
+                    };
+                }
+                groupedByTableName[tableName].count++;
+                groupedByTableName[tableName].models.push(model);
+            });
+            $('#leftnavbar').hide();
+
+            for (let tableName in groupedByTableName) {
+                let tableGroup = groupedByTableName[tableName];
+                $('.sidebar nav .nav-pills').append(
+                    '<li class="nav-item"> <a href="#" class="nav-link">   <span class="badge badge-info">' +
+                    tableGroup.count + '</span> &nbsp <p class="year">' + tableName +
+                    '<i class="fas fa-angle-left right" aria-hidden="true"></i></p> </a> <ul class="nav nav-treeview" id="' + tableName + '"></ul>');
+                for (var x = 0; x < tableGroup.models.length; x++) {
+                    if (tableGroup.models[x].tableName == tableName)
+                        $('#' + tableName).append("<li class='nav-item'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + tableGroup.models[x].strUrn + "\")'>" + tableGroup.models[x].strUrn + "</button></li>");
+
+                }
+
+
+
+
+            }
+
+        }
+
+    }
+    function yourFunction(tableName, strUrn) {
+        $('.spinner').css('display', 'block');
+        $('#Tblbody').empty();
+          $.ajax({
             type: "GET",
-            url: "/QuickSearch/GetRes",
-            data: { SearchVal: $('#searchval').val() },
+            url: "/Record/RecordDetailsforQuick",
+            data: { STRUN: strUrn, modelname: tableName },
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             success: function (response) 
             {
-                var modelList = response;
-                var groupedByTableName = {};
-                if (response.length > 0) {
-
-                    $.each(modelList, function (index, model) {
-                        var tableName = model.tableName;
-                        if (!groupedByTableName[tableName]) {
-                            groupedByTableName[tableName] = {
-                                count: 0,
-                                models: []
-                            };
-                        }
-                        groupedByTableName[tableName].count++;
-                        groupedByTableName[tableName].models.push(model);
-                    });
-                    $('#leftnavbar').hide();
-                    for (let tableName in groupedByTableName) {
-                        let tableGroup = groupedByTableName[tableName];
-                        $('.sidebar nav .nav-pills').append(
-                            '<li class="nav-item"> <a href="#" class="nav-link">   <span class="badge badge-info">' +
-                            tableGroup.count + '</span> &nbsp <p class="year">' + tableName +
-                            '  <i class="fas fa-angle-left right" aria-hidden="true"></i></p> </a> <ul class="nav nav-treeview" id="contr"></ul>');
-                    }
+                
+                for(var i=0;i<response.length;i++)
+                {
+                    $('#Tblbody').append('<tr><td>' + response[i].propertName + '</td><td>' + response[i].propertValue + '</td></tr>');
 
                 }
+                $('.spinner').css('display', 'none');
+         
             },
             error: function (response) {
                 alert("error");
             }
         });
+
+
     }
 
 </script>
