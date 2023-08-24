@@ -16,7 +16,7 @@
 
 
 <div class="row no-gutters">
-    <div class="col-md-9 grid-margin stretch-card">
+    <div class="col-md-12 grid-margin stretch-card">
         <div class="card ">
             <input id="searchval" value="@ViewBag.searchval" hidden />
             <div id="exptopdf" class="pdfpage" style="background: #FFFFFF;">
@@ -141,6 +141,24 @@
 
     }
     function yourFunction(tableName, strUrn) {
+        var dataTable = $('#SearchGenericTable').DataTable(
+        {
+                paging: false, // Enable pagination
+                searching: true, // Enable global search
+                ordering: false, // Enable column sorting
+                info: false, // Display information about the table (e.g., "Showing x to y of z entries")
+                lengthChange: true, // Allow users to change the number of rows per page
+                dom: 'Bfrtip', // Enable DataTables Buttons extension
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'delete'], // Available export formats
+                responsive: true, // Enable responsive design for different screen sizes
+                columnDefs: [
+                    { responsivePriority: 1, targets: 0 }, // Example: Define responsive priorities for columns
+                ],
+                language: {
+                    url: '' // Load language file
+                }
+        }
+        );
         $('.spinner').css('display', 'block');
         $('#Tblbody').empty();
           $.ajax({
@@ -154,7 +172,14 @@
                 
                 for(var i=0;i<response.length;i++)
                 {
-                    $('#Tblbody').append('<tr><td>' + response[i].propertName + '</td><td>' + response[i].propertValue + '</td></tr>');
+                    var rowData = [
+                        response[i].propertName,
+                        response[i].propertValue
+         
+                    ];
+                    dataTable.row.add(rowData).draw();
+
+                   // $('#Tblbody').html('<tr><td>' + response[i].propertName + '</td><td>' + response[i].propertValue + '</td></tr>');
 
                 }
                 $('.spinner').css('display', 'none');
@@ -167,7 +192,11 @@
 
 
     }
+    $(document).ready(function () {
+        //$('#SearchGenericTable').DataTable({
 
+        //});
+    });
 </script>
 
 

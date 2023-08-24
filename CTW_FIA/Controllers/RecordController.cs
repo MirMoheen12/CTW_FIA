@@ -212,7 +212,7 @@ namespace CTW_FIA.Controllers
                         lis = converterModel.getModel(dat);
                         break;
                     }
-                case "Terrorist Groups":
+                case "Group":
                     {
                         var dat = terrorist.GetGroupsByStrurn(STRUN);
                         lis = converterModel.getModel(dat);
