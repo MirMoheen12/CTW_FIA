@@ -203,49 +203,74 @@ namespace CTW_FIA.Controllers
                     {
 
                         var dat = terrorist.GetPeronByID(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
+                     
                         break;
                     }
                 case "Incident":
                     {
                         var dat = incident.getIncidentID(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "Group":
                     {
                         var dat = terrorist.GetGroupsByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "Explosive":
                     {
                         var dat = explosive.GetExplosiveByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "Vehicles":
                     {
                         var dat = vehicle.GetVehcileByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "Power Source":
                     {
                         var dat = powerSource.GetPowerSourceByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "Communication":
                     {
                         var dat = communication.GetCommunicationByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "Ordinance":
                     {
                         var dat = ordinance.OrdinanceDetails(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "Equipment":
@@ -253,7 +278,10 @@ namespace CTW_FIA.Controllers
                         var dat = equipments.GetEquByStrurn(STRUN);
                         if (dat != null)
                         {
-                            lis = converterModel.getModel(dat);
+                            if (dat != null)
+                            {
+                                lis = converterModel.getModel(dat);
+                            }
 
                         }
 
@@ -262,43 +290,64 @@ namespace CTW_FIA.Controllers
                 case "Initiation System":
                     {
                         var dat = intianSystem.GetIntianDystmByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "Components":
                     {
                         var dat = components.GetComponByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "CBRN":
                     {
                         var dat = cBRN.getCBRNByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "Firearms":
                     {
                         var dat = fearams.GetFiremsByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "Chemicals":
                     {
                         var dat = chemical.ChemicalByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "Detonators":
                     {
                         var dat = detonators.GetDetonatorsByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 case "Evidence":
                     {
                         var dat = evidence.GetEvidenceByStrurn(STRUN);
-                        lis = converterModel.getModel(dat);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
                         break;
                     }
                 default:
