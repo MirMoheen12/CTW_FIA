@@ -117,7 +117,7 @@
     });
     function searchrec()
     {
-
+        var m = 0;
 
 
         var modelList = sourcearray;
@@ -136,7 +136,7 @@
                 groupedByTableName[tableName].models.push(model);
             });
             $('#leftnavbar').hide();
-
+           
             for (let tableName in groupedByTableName) {
                 let tableGroup = groupedByTableName[tableName];
                 $('.sidebar nav .nav-pills').append(
@@ -145,7 +145,14 @@
                     '<i class="fas fa-angle-left right" aria-hidden="true"></i></p> </a> <ul class="nav nav-treeview" id="' + tableName + '"></ul>');
                 for (var x = 0; x < tableGroup.models.length; x++) {
                     if (tableGroup.models[x].tableName == tableName)
+                    {
                         $('#' + tableName).append("<li class='nav-item'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + tableGroup.models[x].strUrn + "\")'>" + tableGroup.models[x].strUrn + "</button></li>");
+                    }
+                    if(m==1)
+                    {
+                        yourFunction(tableName, tableGroup.models[1].strUrn)
+                    }
+                    m=m+1;
 
                 }
 
