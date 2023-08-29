@@ -23,7 +23,7 @@
 
                 <div class="d-flex p-2 bg-gradient-primary justify-content-center"><b>@ViewData["Title"]</b></div>
                 <br />
-                <table id="SearchGenericTable" class="table table-bordered text-dark"> 
+                <table id="SearchGenericTable" class="table table-bordered text-dark">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -31,7 +31,6 @@
                         </tr>
                     </thead>
                     <tbody id="Tblbody">
-   
                     </tbody>
                 </table>
 
@@ -39,7 +38,7 @@
             </div>
         </div>
     </div>
-  @*  @Html.Partial("DisplayLinksRecord")*@
+    @*  @Html.Partial("DisplayLinksRecord")*@
 
 
 
@@ -95,7 +94,7 @@
     var dataTable = $('#SearchGenericTable2').DataTable();
     // Initialize DataTable
     var sourcearray = @Html.Raw(Json.Serialize(Model));
- 
+
     $(document).ready(function () {
         dataTable = $('#SearchGenericTable').DataTable({
             paging: false, // Enable pagination
@@ -113,10 +112,9 @@
                 url: '' // Load language file
             }
         });
-         searchrec();
+        searchrec();
     });
-    function searchrec()
-    {
+    function searchrec() {
         var m = 0;
 
 
@@ -136,7 +134,7 @@
                 groupedByTableName[tableName].models.push(model);
             });
             $('#leftnavbar').hide();
-           
+
             for (let tableName in groupedByTableName) {
                 let tableGroup = groupedByTableName[tableName];
                 $('.sidebar nav .nav-pills').append(
@@ -144,15 +142,13 @@
                     tableGroup.count + '</span> &nbsp <p class="year">' + tableName +
                     '<i class="fas fa-angle-left right" aria-hidden="true"></i></p> </a> <ul class="nav nav-treeview" id="' + tableName + '"></ul>');
                 for (var x = 0; x < tableGroup.models.length; x++) {
-                    if (tableGroup.models[x].tableName == tableName)
-                    {
-                        $('#' + tableName).append("<li class='nav-item'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + tableGroup.models[x].strUrn + "\")'>" + tableGroup.models[x].strUrn + "</button></li>");
+                    if (tableGroup.models[x].tableName == tableName) {
+                        $('#' + tableName).append("<li class='nav-item'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + tableGroup.models[x].strUrn + "\")'>" + tableGroup.models[x].textSearch + "</button></li>");
                     }
-                    if(m==1)
-                    {
+                    if (m == 1) {
                         yourFunction(tableName, tableGroup.models[1].strUrn)
                     }
-                    m=m+1;
+                    m = m + 1;
 
                 }
 
@@ -168,33 +164,31 @@
 
         dataTable.clear().draw();
         $('.spinner').css('display', 'block');
-      
 
-          $.ajax({
+
+        $.ajax({
             type: "GET",
             url: "/Record/RecordDetailsforQuick",
             data: { STRUN: strUrn, modelname: tableName },
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
-            success: function (response) 
-            {
-              
-                
-                for(var i=0;i<response.length;i++)
-                {
+            success: function (response) {
+
+
+                for (var i = 0; i < response.length; i++) {
                     var rowData = [
                         response[i].propertName,
                         response[i].propertValue
-         
+
                     ];
                     dataTable.row.add(rowData).draw();
 
-                   // $('#Tblbody').html('<tr><td>' + response[i].propertName + '</td><td>' + response[i].propertValue + '</td></tr>');
+                    // $('#Tblbody').html('<tr><td>' + response[i].propertName + '</td><td>' + response[i].propertValue + '</td></tr>');
 
                 }
                 $('.spinner').css('display', 'none');
 
-            
+
 
             },
             error: function (response) {

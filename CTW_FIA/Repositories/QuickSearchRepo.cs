@@ -17,9 +17,9 @@ namespace CTW_FIA.Repositories
         {
             var dat = new
             {
-                SearchValue = SearchValue
+                textSearch = SearchValue
             };
-            var dbres = databaseRepo.ExecuteProc("QuickSearch", databaseRepo.returnSppram(dat));
+            var dbres = databaseRepo.ExecuteProc("QuickSearch_sel_web", databaseRepo.returnSppram(dat));
             var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchModel));
             return(dt.Cast<QuickSearchModel>().ToList());
            
