@@ -3,460 +3,515 @@
    
 
 }
-<style>
-    .table-responsive {
-        max-height: 650px;
-    }
 
-        .table-responsive tbody {
-            width: 100%;
-            display: table;
+
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
         }
-</style>
-<div class="row no-gutters">
-    <div class="col-md-6 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h5>Source</h5>
 
-                <form class="forms-sample">
+        .portion-box {
+            flex: 1;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-right: 10px;
+        }
 
-                    <div class="form-group row text-dark">
-                        <div class="row">
-                            <label for="ForwardLocking" class="col-sm-3 col-form-label">Databases</label>
-                            <div class="col-sm-5">
+            .portion-box:last-child {
+                margin-right: 0;
+            }
 
-                                <select class="form-control" id="src_database">
-                                </select>
-                                <br />
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" id="src_searchText" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-sm btn-primary" type="button" id="src_searchBtn">Search</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            .portion-box label,
+            .portion-box select,
+            .portion-box input {
+                width: 100%;
+                box-sizing: border-box;
+                margin-bottom: 10px; /* Add vertical margin */
+            }
 
-                </form>
+        .portion-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .portion-buttons-text {
+            flex: 1;
+        }
+
+        .portion-buttons button {
+            margin-left: 5px;
+        }
+
+        .table-container {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+            .table-container table {
+                border-collapse: collapse;
+                width: 100%;
+                border: 1px solid #ccc;
+            }
+
+            .table-container th, .table-container td {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: center;
+            }
+
+        .MainHeading {
+            margin-left: 30px;
+        }
+
+        .horizontal-box {
+            margin-left: 30px;
+            position: absolute;
+            right: auto;
+            border: 1px solid #ccc;
+            height: 220px;
+            width: 84%;
+        }
+
+        .flexbox2 {
+            display: flex;
+        }
+
+        .flexbox-item {
+            width: 200px;
+        }
+
+        .extra-linking {
+            display: flex;
+        }
+
+        .linkitems {
+            flex: 1;
+            margin-top: 20px;
+            margin-left: 60px;
+        }
+
+        .Mainflex {
+            display: flex;
+        }
+
+        .Rightside {
+            display: flex;
+        }
+    </style>
+
+
+    <h2 class="MainHeading">Create Links</h2>
+
+    <div class="container">
+        <div class="portion-box">
+            <h4>Source</h4>
+            <label for="sourceDatabaseSelect">Database:</label>
+            <select id="sourceDatabaseSelect" name="SourceSelectedDatabase">
+                <option value="select">Select</option>
+                <option value="table1">Table1</option>
+                <!-- Add more options as needed -->
+            </select>
+            <label for="sourceKeywordSearch">Province</label>
+            <select id="selectprovince" name="SelectProvince">
+                <option value="select">Select</option>
+                <option value="select">Value1</option>
+                <option value="select">Value2</option>
+            </select>
+            <label for="sourceKeywordSearch">Search any Keyword:</label>
+            <input type="text" id="sourceKeywordSearch" name="SourceKeyword" />
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Select</th>
+                        <th>Dynamic Column 1</th>
+                        <th>Dynamic Column 2</th>
+                        <th>Dynamic Column 3</th>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="SourceRadio" value="radio1" /></td>
+                        <td>Value 1</td>
+                        <td>Value 2</td>
+                        <td>Value 3</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="SourceRadio" value="radio1" /></td>
+                        <td>Value 1</td>
+                        <td>Value 2</td>
+                        <td>Value 3</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="SourceRadio" value="radio1" /></td>
+                        <td>Value 1</td>
+                        <td>Value 2</td>
+                        <td>Value 3</td>
+                    </tr>
+                </table>
             </div>
-        </div>
-    </div>
-
-    <div class="col-md-6 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h5>Destination</h5>
-
-
-                <form class="forms-sample">
-
-                    <div class="form-group row text-dark">
-                        <div class="row">
-                            <label for="ForwardLocking" class="col-sm-3 col-form-label">Databases</label>
-                            <div class="col-sm-5">
-
-                                <select class="form-control" id="des_database">
-                                </select>
-                                <br />
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="des_searchText" placeholder="" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-sm btn-primary" type="button" id="des_searchBtn">Search</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<div class="row no-gutters">
-    <div class="col-md-6 grid-margin stretch-card">
-        <div class="card panel-body" style="max-height:400PX">
-
-            <div class="d-flex p-2 bg-gradient-primary justify-content-center text-white" id="source_table_name"><b>Source Table</b></div>
-            <br />
-            <div class="container" style="text-align:center">
-                <button class="btn btn-primary mr-2" href="#" id="src_pre"><</button>
-                <button class="btn btn-primary mr-2" href="#" id="src_next">></button>
-            </div>
-            <br/>
-            <table class="table text-dark  table-responsive" id="table1">
-
-                <tbody style="text-align:center" id="table1body">
-                
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="col-md-6 grid-margin stretch-card">
-        <div class="card panel-body" style="max-height:400PX">
-
-            <div class="d-flex p-2 bg-gradient-primary justify-content-center text-white" id="destination_table_name"><b>Destination Table</b></div>
-            <br>
-            <div class="container" style="text-align:center">
-                <button class="btn btn-primary mr-2" href="#" id="des_pre"><</button>
-                <button class="btn btn-primary mr-2" href="#" id="des_next">></button>
-            </div>
-            <br />
-            <table class="table text-dark  table-responsive" id="table2">
-
-                <tbody style="text-align:center" id="table2body">
-                   
-                </tbody>
-            </table>
-
-        </div>
-
-    </div>
-</div>
-<br />
-<div class="row">
-    <div class="col-12 grid-margin">
-        <div class="card text-dark">
-            <div class="card-body">
-                <h5>Linking</h5>
-                <form class="form-sample">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Source Evaluation</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" id="src_evaluation">
-                                        <option disabled>Select</option>
-                                        <option value="1">A - Always Reliable</option>
-                                        <option value="2">B - Mostly Reliable</option>
-                                        <option value="3">C - Sometimes Relibale</option>
-                                        <option value="4">D - Unreliable</option>
-                                        <option value="5">E - Untested Source</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Information Evaluation</label>
-                                <div class="col-sm-9">
-                                    @*<input type="text" class="form-control" id="info_evaluation">*@
-                                    <select class="form-control" id="info_evaluation">
-                                        <option disabled>Select</option>
-                                        <option value="1">A - Always Reliable</option>
-                                        <option value="2">B - Mostly Reliable</option>
-                                        <option value="3">C - Sometimes Relibale</option>
-                                        <option value="4">D - Unreliable</option>
-                                        <option value="5">E - Untested Source</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Reason for Linking</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="reason_link">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" id="isBidirectional" value="false"> Is link bi-directional? <i class="input-helper"></i>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                    </div>
-                    <br>
-                    <button type="button" class="btn btn-primary btn-fw ml-5" id="Create_Link">Create Link</button>
-            
-
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<br>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-@*
-<div class="row">
-
-    <div class="col">
-
-        <div class="row text-dark">
-            <div class="col">
-                <div class="e-panel card">
-                    <div class="card-body">
-                        <div class="card-title">
-                        </div>
-
-                        <table id="commonLinkTable" class="table table-bordered text-dark">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th class="max-width">Source Name</th>
-                                    <th class="max-width">Destination Name</th>
-                                    <th class="max-width">Creation Date</th>
-                                    <th class="max-width">Reason</th>
-                                    <th class="max-width">Actions </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-
-                    </div>
+            <div class="portion-buttons">
+                <div class="portion-buttons-text">Showing x entries</div>
+                <div class="portion-buttons-buttons">
+                    <button>Previous</button>
+                    <button>Next</button>
                 </div>
             </div>
-
         </div>
 
+        <div class="portion-box">
+            <h4>Destination</h4>
+            <label for="destinationDatabaseSelect">Database:</label>
+            <select id="destinationDatabaseSelect" name="DestinationSelectedDatabase">
+                <option value="select">Select</option>
+                <option value="table1">Table1</option>
+                <!-- Add more options as needed -->
+            </select>
+            <label for="sourceKeywordSearch">Province</label>
+            <select id="selectprovince" name="SelectProvince">
+                <option value="select">Select</option>
+                <option value="select">Value1</option>
+                <option value="select">Value2</option>
+            </select>
+            <label for="destinationKeywordSearch">Search any Keyword:</label>
+            <input type="text" id="destinationKeywordSearch" name="DestinationKeyword" />
+            <div class="table-container">
+                <table>
 
+                    <tr>
+                        <th>Select</th>
+                        <th>Dynamic Column 1</th>
+                        <th>Dynamic Column 2</th>
+                        <th>Dynamic Column 3</th>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="destinationRadio" value="radio1" /></td>
+                        <td>Value 1</td>
+                        <td>Value 2</td>
+                        <td>Value 3</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="destinationRadio" value="radio1" /></td>
+                        <td>Value 1</td>
+                        <td>Value 2</td>
+                        <td>Value 3</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="destinationRadio" value="radio1" /></td>
+                        <td>Value 1</td>
+                        <td>Value 2</td>
+                        <td>Value 3</td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="portion-buttons">
+                <div class="portion-buttons-text">Showing x entries</div>
+                <div class="portion-buttons-buttons">
+                    <button>Previous</button>
+                    <button>Next</button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>*@
-<script>
-    var ID=1;
-    var ID2 = 1;
-    var SrcStrURn="";
-    var DestStrUrn="";
-    $(document).ready(function () {
-        $.ajax({
 
-            url: '/Jsonside/GetAllDatabaselist',
-            type: 'GET',
-            data: {},
-            contentType: 'application/json',
-            success: function (response) {
-               // console.log(response)
-                $("#src_database").empty();
-                $("#src_database").append(`<option value="">Select Database</option>`);
-                $("#des_database").empty();
-                $("#des_database").append(`<option value="">Select Database</option>`);
-                for (var i = 0; i < response.length; i++) {
 
-                    addOption(response[i].strTable, response[i].strTable, '#src_database')
-                    addOption(response[i].strTable, response[i].strTable, '#des_database')
 
-                }
-                if (response.length == 0) {
-                    $("#src_database").empty();
+    <div class="horizontal-box">
+        <h4 style="margin-left: 10px; margin-top: 10px;">Linking</h4>
+
+        <div class="Mainflex">
+            <div class="flexbox2">
+                <h6 style="margin-left: 10px; margin-top: 10px;" class="flexbox-item"> Source Evaluation</h6>
+                <select id="sourceEvaluationSelect" name="SourceEvaluation" class="flexbox-item">
+                    <option value="select">--Select--</option>
+                    <option value="value1">Value</option>
+                </select>
+            </div>
+
+            <div class="flexbox2">
+                <h6 style="margin-left: 210px; margin-top: 10px;" class="flexbox-item"> Information Evaluation</h6>
+                <select id="informationEvaluationSelect" name="InformationEvaluation" class="flexbox-item">
+                    <option value="select">--Select--</option>
+                    <option value="value1">Value</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="extra-linking">
+            <h6 style="margin-left: 10px; margin-top: 22px;"> Reason For Linking</h6>
+            <div class="linkitems">
+                <input style="width: 200px" type="text" />
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content:center;margin-left:140px; align-items: center;">
+            <input type="checkbox" name="biDirectionalCheckbox" />
+            <label style="margin-left: 15px;">Is link bi-directional:</label>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button>Create Link</button>
+        </div>
+    </div>
+
+
+    <div style="margin-top:280px;margin-left:30px; ">
+        <div style="margin-top: 30px;">
+            <table class="table-container" style="width:100%">
+                <tr>
+                    <th>S.No</th>
+                    <th>Source Name</th>
+                    <th>Destination Name</th>
+                    <th>Create On</th>
+                    <th>Created By</th>
+                    <th>Reason</th>
+                    <th>Edit</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Source 1</td>
+                    <td>Destination 1</td>
+                    <td>2023-08-18</td>
+                    <td>User 1</td>
+                    <td>Reason 1</td>
+                    <td><a href="#">Edit</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Source 2</td>
+                    <td>Destination 2</td>
+                    <td>2023-08-19</td>
+                    <td>User 2</td>
+                    <td>Reason 2</td>
+                    <td><a href="#">Edit</a></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <script>
+        var ID = 1;
+        var ID2 = 1;
+        var SrcStrURn = "";
+        var DestStrUrn = "";
+        $(document).ready(function () {
+            $.ajax({
+
+                url: '/Jsonside/GetAllDatabaselist',
+                type: 'GET',
+                data: {},
+                contentType: 'application/json',
+                success: function (response) {
+                    // console.log(response)
+                    $("#sourceDatabaseSelect").empty();
+                    $("#sourceDatabaseSelect").append(`<option value="">Select Database</option>`);
                     $("#des_database").empty();
+                    $("#des_database").append(`<option value="">Select Database</option>`);
+                    for (var i = 0; i < response.length; i++) {
+
+                        addOption(response[i].strTable, response[i].strTable, '#sourceDatabaseSelect')
+                        addOption(response[i].strTable, response[i].strTable, '#des_database')
+
+                    }
+                    if (response.length == 0) {
+                        $("#sourceDatabaseSelect").empty();
+                        $("#des_database").empty();
+
+                    }
+                    else {
+                        $('.spinner').css('display', 'none');
+                    }
+
 
                 }
-                else {
-                    $('.spinner').css('display', 'none');
-                }
-
-
-            }
-        });
+            });
         });
         function addOption(value, text, userid) {
             $(userid).append(`<option value="${value}">${text}</option>`);
         }
 
-    $('#src_database').change(function () {
-        if ($(this).val() == "") {
-       
-            $("#table1body").empty();
-        }
-        else 
-        {
-            ID=1;
-            getdata('#table1body', ID, $(this).val(), $('#src_searchText').val(),"Left")
-        }
-    });
-    $('#des_database').change(function () {
-        if ($(this).val() == "") {
+        $('#sourceDatabaseSelect').change(function () {
+            if ($(this).val() == "") {
 
-            $("#table2body").empty();
-        }
-        else {
-            ID2=1;
-            getdata('#table2body', ID2, $(this).val(), null,"Right")
-        }
-    });
+                $("#table1body").empty();
+            }
+            else {
+                ID = 1;
+                getdata('#table1body', ID, $(this).val(), $('#src_searchText').val(), "Left")
+            }
+        });
+        $('#des_database').change(function () {
+            if ($(this).val() == "") {
+
+                $("#table2body").empty();
+            }
+            else {
+                ID2 = 1;
+                getdata('#table2body', ID2, $(this).val(), null, "Right")
+            }
+        });
 
 
-    function getdata(tableid,Count,Tabname,Searchrec,callby)
-    {
-        $.ajax({
+        function getdata(tableid, Count, Tabname, Searchrec, callby) {
+            $.ajax({
 
-            url: '/Jsonside/GetSingleRec',
-            type: 'GET',
-            data: { ID: Count, TableName: Tabname, Search: Searchrec },
-            contentType: 'application/json',
-            success: function (response) {
-                console.log(response)
-                $(tableid).empty();
-                for (var i = 0; i < response.length; i++) 
-                {
-                    if (response[i].propertName == "strURN" && callby=="Left")
-                    {
-                        SrcStrURn = response[i].propertValue;
+                url: '/Jsonside/GetSingleRec',
+                type: 'GET',
+                data: { ID: Count, TableName: Tabname, Search: Searchrec },
+                contentType: 'application/json',
+                success: function (response) {
+                    console.log(response)
+                    $(tableid).empty();
+                    for (var i = 0; i < response.length; i++) {
+                        if (response[i].propertName == "strURN" && callby == "Left") {
+                            SrcStrURn = response[i].propertValue;
+                        }
+                        else if (response[i].propertName == "strURN" && callby == "Right") {
+                            DestStrUrn = response[i].propertValue;
+                        }
+
+                        $(tableid).append("<tr style='text-aling:left'><td>" + response[i].propertName + "</b></td>><td>" + response[i].propertValue + "</td></tr>");
+
                     }
-                    else if (response[i].propertName == "strURN" && callby == "Right") {
-                        DestStrUrn = response[i].propertValue;
-                    }
 
-                    $(tableid).append("<tr style='text-aling:left'><td>" + response[i].propertName + "</b></td>><td>" + response[i].propertValue + "</td></tr>");
+
+
 
                 }
+            });
+        }
+
+        ///Prevous
+
+
+        $("#src_searchBtn").click(function () {
+            if ($('#sourceDatabaseSelect').val() == '') {
+                alert('Select database');
+            }
+            else {
+                ID = 1;
+                getdata('#table1body', ID, $('#sourceDatabaseSelect').val(), $('#src_searchText').val(), "Left")
+            }
+
+
+        });
+        $("#des_searchBtn").click(function () {
+            if ($('#des_database').val() == '') {
+                alert('Select database');
+            }
+            else {
+                ID2 = 1;
+                getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(), "Right")
+            }
+
+
+
+
+
+        });
+
+
+
+        $("#src_pre").click(function () {
+            ID = ID - 1;
+            if (ID == 0) {
+                $("#src_pre").attr("disabled", true);
+
+            }
+            else if ($('#sourceDatabaseSelect').val() == '') {
+                alert('Select database');
+            }
+            else {
+                getdata('#table1body', ID, $('#sourceDatabaseSelect').val(), $('#src_searchText').val(), "Left")
+            }
+        });
+        $("#src_next").click(function () {
+            ID = ID + 1;
+            $("#src_pre").attr("disabled", false);
+            if (ID == 0) {
+
+                $("#src_pre").attr("disabled", true);
+
+            }
+            else if ($('#sourceDatabaseSelect').val() == '') {
+                alert('Select database');
+            }
+            else {
+                getdata('#table1body', ID, $('#sourceDatabaseSelect').val(), $('#src_searchText').val(), "Left")
+            }
+        });
+        //Next
+        $("#des_pre").click(function () {
+            ID2 = ID2 - 1;
+            if (ID2 == 0) {
+                $("#des_pre").attr("disabled", true);
+
+            }
+            else if ($('#des_database').val() == '') {
+                alert('Select database');
+            }
+            else {
+                getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(), "Right")
+            }
+        });
+        $("#des_next").click(function () {
+            ID2 = ID2 + 1;
+            $("#des_pre").attr("disabled", false);
+            if (ID2 == 0) {
+
+                $("#des_next").attr("disabled", true);
+
+            }
+            else if ($('#des_database').val() == '') {
+                alert('Select database');
+            }
+            else {
+                getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(), "Right")
+            }
+        });
+
+
+        $("#Create_Link").click(function () {
+            if ($('#sourceDatabaseSelect').val() != '' && $('#des_database').val() != '' && SrcStrURn != "" && DestStrUrn != "") {
+                $('.spinner').css('display', 'block');
+                $.ajax({
+
+                    url: '/CommonLinks/AddLink',
+                    type: 'GET',
+                    data: { SrcTab: $('#sourceDatabaseSelect').val(), Desttab: $('#des_database').val(), srcStrn: SrcStrURn, deststrn: DestStrUrn, SE: $('#src_evaluation').val(), RE: $('#info_evaluation').val(), RL: $('#reason_link').val(), BI: $('#isBidirectional').val() },
+                    contentType: 'application/json',
+                    success: function (response) {
+
+                        $('.spinner').css('display', 'none');
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Record Successfully added',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        location.reload();
+                    }
+                });
 
 
 
 
             }
+            else {
+                alert("Please select all Entries");
+            }
+
+
+
+
         });
-    }
-   
-    ///Prevous
-    
-
-    $("#src_searchBtn").click(function () {
-        if($('#src_database').val()=='')
-        {
-            alert('Select database');
-        }
-        else
-        {
-            ID = 1;
-            getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val(),"Left")
-        }
-      
-        
-    });
-    $("#des_searchBtn").click(function () {
-        if ($('#des_database').val() == '') {
-            alert('Select database');
-        }
-        else {
-            ID2 = 1;
-            getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(),"Right")
-        }
 
 
-
-      
-
-    });
-
-    
-
-    $("#src_pre").click(function () {
-        ID=ID-1;
-        if(ID==0)
-        {
-            $("#src_pre").attr("disabled", true);
-          
-        }
-        else if($('#src_database').val()=='')
-        {
-            alert('Select database');
-        }
-        else
-        {
-            getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val(),"Left")
-        }
-    });
-    $("#src_next").click(function () {
-        ID = ID + 1;
-        $("#src_pre").attr("disabled", false);
-        if (ID == 0) {
-
-            $("#src_pre").attr("disabled", true);
-
-        }
-        else if ($('#src_database').val() == '') {
-            alert('Select database');
-        }
-        else {
-            getdata('#table1body', ID, $('#src_database').val(), $('#src_searchText').val(),"Left")
-        }
-    });
-    //Next
-    $("#des_pre").click(function () {
-        ID2 = ID2 - 1;
-        if (ID2 == 0) {
-            $("#des_pre").attr("disabled", true);
-
-        }
-        else if ($('#des_database').val() == '') {
-            alert('Select database');
-        }
-        else {
-            getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(),"Right")
-        }
-    });
-    $("#des_next").click(function () {
-        ID2 = ID2 + 1;
-        $("#des_pre").attr("disabled", false);
-        if (ID2 == 0) {
-
-            $("#des_next").attr("disabled", true);
-
-        }
-        else if ($('#des_database').val() == '') {
-            alert('Select database');
-        }
-        else {
-            getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(),"Right")
-        }
-    });
-
-
-    $("#Create_Link").click(function () {
-        if ($('#src_database').val() != '' && $('#des_database').val() != '' && SrcStrURn != "" && DestStrUrn != "") {
-            $('.spinner').css('display', 'block');
-            $.ajax({
-
-                url: '/CommonLinks/AddLink',
-                type: 'GET',
-                data: { SrcTab: $('#src_database').val(), Desttab: $('#des_database').val(), srcStrn: SrcStrURn, deststrn: DestStrUrn, SE: $('#src_evaluation').val(), RE: $('#info_evaluation').val(), RL: $('#reason_link').val(), BI: $('#isBidirectional').val() },
-                contentType: 'application/json',
-                success: function (response) {
-     
-                    $('.spinner').css('display', 'none');
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Record Successfully added',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                     location.reload();
-                }
-            });
-            
-            
-          
-          
-        }
-        else
-        {
-            alert("Please select all Entries");
-        }
-       
-   
-
-
-    });
-
-
-</script>
-
+    </script>
