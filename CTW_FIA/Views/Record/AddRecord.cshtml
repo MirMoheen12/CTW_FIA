@@ -104,7 +104,8 @@
                             $('.spinner').css('display', 'none');
                             break;
                         case "Communication":
-                            $("#DivContainerForCustForm").load("@Url.Action("Communications","Record")");
+                            $("#DivContainerForCustForm").load("@Url.Action("AddCommunicaion","Communications")");
+                            $('.spinner').css('display', 'none');
                             break;
                         case "Detonators":
                             $("#DivContainerForCustForm").load("@Url.Action("AddDetonators","Detonators")");
