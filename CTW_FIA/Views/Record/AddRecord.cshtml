@@ -92,7 +92,7 @@
                             $('.spinner').css('display', 'none');
                             break;
                         case "Groups":
-                            $("#DivContainerForCustForm").load("@Url.Action("AddTerroristGroup","TerroristsGroupsController")");
+                            $("#DivContainerForCustForm").load("@Url.Action("AddTerroristGroup","TerroristsGroups")");
                             $('.spinner').css('display', 'none');
                             break;
                         case "Addresses":
@@ -112,11 +112,11 @@
                             $('.spinner').css('display', 'none');
                             break;
                         case "Explosives":
-                            $("#DivContainerForCustForm").load("@Url.Action("Explosives","Explosives")");
+                            $("#DivContainerForCustForm").load("@Url.Action("AddExplosive","Explosives")");
                             $('.spinner').css('display', 'none');
                             break;
                         case "Ordinance":
-                            $("#DivContainerForCustForm").load("@Url.Action("Ordinance","Record")");
+                            $("#DivContainerForCustForm").load("@Url.Action("AddOrdinance","Ordinance")");
                             $('.spinner').css('display', 'none');
                             break;
                         case "Evidence":
@@ -124,11 +124,11 @@
                             $('.spinner').css('display', 'none');
                             break;
                         case "Equipment":
-                            $("#DivContainerForCustForm").load("@Url.Action("Equipment","Record")");
+                            $("#DivContainerForCustForm").load("@Url.Action("AddEquipment","Equipment")");
                             $('.spinner').css('display', 'none');
                             break;
                         case "InitiationSystem":
-                            $("#DivContainerForCustForm").load("@Url.Action("InitiationSystem","Record")");
+                            $("#DivContainerForCustForm").load("@Url.Action("AddInitiationSystem","InitiationSystem")");
                             $('.spinner').css('display', 'none');
                             break;
                         case "Components":
@@ -136,7 +136,7 @@
                             $('.spinner').css('display', 'none');
                             break;
                         case "CBRN":
-                            $("#DivContainerForCustForm").load("@Url.Action("CBRN","Record")");
+                            $("#DivContainerForCustForm").load("@Url.Action("AddCBRN","CBRN")");
                             $('.spinner').css('display', 'none');
                             break;
                         case "Property":
