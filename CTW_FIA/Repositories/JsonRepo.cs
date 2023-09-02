@@ -28,13 +28,14 @@ namespace CTW_FIA.Repositories
             var data = appDbContext.ReportingAgency.ToList();
             return data;
         }
-        public DataTable GetRecordData(string TableName,string SearchRec,int RowNumber)
+        public DataTable GetRecordData(string TableName, string SearchRec, int SRowNumber, int ERowNumber)
         {
             var data = new
             {
                 TableName = TableName,
                 SearchRec = SearchRec,
-                RowNumber = RowNumber
+                StartRowNumber = SRowNumber,
+                EndRowNumber=ERowNumber
             };
             var dat = databaseRepo.ExecuteProc("GetRecords", databaseRepo.returnSppram(data));
             return dat;

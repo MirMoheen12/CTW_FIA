@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
+using Newtonsoft.Json;
 
 namespace CTW_FIA.Controllers
 {
@@ -85,17 +86,18 @@ namespace CTW_FIA.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetSingleRec(int ID,string TableName,string Search)
+        public JsonResult GetSingleRec(int SID,int EID,string TableName,string Search)
         {
             if (TableName == null)
             {
                 return null;
             }
             //var data = dashboard.getCtwdashboardsIncidentwise().Where(X => X.tablename == "PW").ToList(); 
-            var data = jsn.GetRecordData(TableName,Search,ID);
-        
-            var data2 = converterModel.GetModelFromDataTable(data);
-            return Json(data2);
+            var data = jsn.GetRecordData(TableName,Search,SID,EID);
+            string JSONString = string.Empty;
+            JSONString = JsonConvert.SerializeObject(data);
+          // var data2 = converterModel.GetModelFromDataTable(data);
+            return Json(JSONString);
         }
 
     }
