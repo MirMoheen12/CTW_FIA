@@ -7,8 +7,26 @@
     .table-responsive {
         max-height: 650px;
     }
+
+    .smaller-icon {
+        font-size: 0.9em; 
+    }
+
+    .menu-icon {
+        margin-right: 5px; 
+    }
+
 </style>
 <style>
+    .card-grey  {
+        background-color: #d3d3d3; 
+        
+    }
+
+    .nav-link
+    {
+        color: black;
+    }
     .table-responsive {
         max-height: 650px;
     }
@@ -21,7 +39,7 @@
             <input id="searchval" value="@ViewBag.searchval" hidden />
             <div id="exptopdf" class="pdfpage" style="background: #FFFFFF;">
 
-                <div class="d-flex p-2 bg-gradient-primary justify-content-center"><b>@ViewData["Title"]</b></div>
+                <div class="d-flex p-2  justify-content-center"><b>@ViewData["Title"]</b></div>
                 <br />
                 <table id="SearchGenericTable" class="table table-bordered text-dark">
                     <thead>
@@ -38,16 +56,18 @@
             </div>
         </div>
     </div>
-    <div class="row no-gutters col-md-3">
+    <div class="row no-gutters col-md-3" style="max-height:300px;">
 
-
+        <div class="col-md-12 d-flex justify-content-center" >
+            <img src="https://localhost:7136/Content/assets/images/logo.png" alt="Logo" style="max-height:250px;">
+        </div>
 
         <div class="col-md-12">
-            <div class="card card-primary card-tabs">
+            <div class="card card-tabs" style="margin-top:25px;">
                 <div class="card-header p-0 pt-1" id="tabs">
-                    <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
+                    <ul class="nav nav-tabs card-grey" id="custom-tabs-two-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-two-home-tab" data-toggle="pill" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true">Link</a>
+                            <a class="nav-link" id="custom-tabs-two-home-tab" data-toggle="pill" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true">Link Record</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false">Media</a>
@@ -70,12 +90,6 @@
                                 </nav>
 
                             </div>
-
-
-
-
-
-
 
 
 
@@ -146,6 +160,7 @@
 
 <!-- Include DataTables Responsive CSS and JavaScript -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 <script>
     var dataTable = $('#SearchGenericTable2').DataTable();
@@ -195,24 +210,21 @@
             for (let tableName in groupedByTableName) {
                 let tableGroup = groupedByTableName[tableName];
                 $('.sidebar nav .nav-pills').append(
-                    '<li class="nav-item"> <a href="#" class="nav-link">   <span class="badge badge-info">' +
-                    tableGroup.count + '</span> &nbsp <p class="year">' + tableName +
-                    '<i class="fas fa-angle-left right" aria-hidden="true"></i></p> </a> <ul class="nav nav-treeview" id="' + tableName + '"></ul>');
+                    '<li class="nav-item"> <a href="#" class="nav-link"> <span class="menu-icon"><i class="fas fa-plus smaller-icon"></i></span>' + tableName +
+                    '<span class="badge badge-info">' + tableGroup.count + '</span></a> <ul class="nav nav-treeview" id="' + tableName + '"></ul>');
+
+
                 for (var x = 0; x < tableGroup.models.length; x++) {
                     if (tableGroup.models[x].tableName == tableName) {
                         $('#' + tableName).append("<li class='nav-item'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + tableGroup.models[x].strUrn + "\")'>" + tableGroup.models[x].textSearch + "</button></li>");
                     }
                     if (m == 1) {
-                        yourFunction(tableName, tableGroup.models[1].strUrn)
+                        yourFunction(tableName, tableGroup.models[1].strUrn);
                     }
                     m = m + 1;
-
                 }
-
-
-
-
             }
+
 
         }
 
@@ -260,6 +272,21 @@
 
         //});
     });
+    $(document).ready(function () {
+        $('.sidebar .nav-link').click(function () {
+            var icon = $(this).find('.menu-icon i');
+            var subMenu = $(this).next('.nav-treeview');
+
+            subMenu.slideToggle();
+
+            if (icon.hasClass('fa-plus')) {
+                icon.removeClass('fa-plus').addClass('fa-minus');
+            } else {
+                icon.removeClass('fa-minus').addClass('fa-plus');
+            }
+        });
+    });
+
 </script>
 
 
