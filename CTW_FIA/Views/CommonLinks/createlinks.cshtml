@@ -116,12 +116,12 @@
                 <option value="table1">Table1</option>
                 <!-- Add more options as needed -->
             </select>
-            <label for="sourceKeywordSearch">Province</label>
+       @*     <label for="sourceKeywordSearch">Province</label>
             <select id="selectprovince" name="SelectProvince">
                 <option value="select">Select</option>
                 <option value="select">Value1</option>
                 <option value="select">Value2</option>
-            </select>
+            </select>*@
             <label for="sourceKeywordSearch">Search any Keyword:</label>
             <input type="text" id="sourceKeywordSearch" name="SourceKeyword" />
             <div class="table-container">
@@ -169,12 +169,12 @@
                 <option value="table1">Table1</option>
                 <!-- Add more options as needed -->
             </select>
-            <label for="sourceKeywordSearch">Province</label>
+       @*     <label for="sourceKeywordSearch">Province</label>
             <select id="selectprovince" name="SelectProvince">
                 <option value="select">Select</option>
                 <option value="select">Value1</option>
                 <option value="select">Value2</option>
-            </select>
+            </select>*@
             <label for="destinationKeywordSearch">Search any Keyword:</label>
             <input type="text" id="destinationKeywordSearch" name="DestinationKeyword" />
             <div class="table-container">
@@ -311,17 +311,17 @@
                     // console.log(response)
                     $("#sourceDatabaseSelect").empty();
                     $("#sourceDatabaseSelect").append(`<option value="">Select Database</option>`);
-                    $("#des_database").empty();
-                    $("#des_database").append(`<option value="">Select Database</option>`);
+                    $("#destinationDatabaseSelect").empty();
+                    $("#destinationDatabaseSelect").append(`<option value="">Select Database</option>`);
                     for (var i = 0; i < response.length; i++) {
 
                         addOption(response[i].strTable, response[i].strTable, '#sourceDatabaseSelect')
-                        addOption(response[i].strTable, response[i].strTable, '#des_database')
+                        addOption(response[i].strTable, response[i].strTable, '#destinationDatabaseSelect')
 
                     }
                     if (response.length == 0) {
                         $("#sourceDatabaseSelect").empty();
-                        $("#des_database").empty();
+                        $("#destinationDatabaseSelect").empty();
 
                     }
                     else {
@@ -346,7 +346,7 @@
                 getdata('#table1body', ID, $(this).val(), $('#src_searchText').val(), "Left")
             }
         });
-        $('#des_database').change(function () {
+        $('#destinationDatabaseSelect').change(function () {
             if ($(this).val() == "") {
 
                 $("#table2body").empty();
@@ -402,12 +402,12 @@
 
         });
         $("#des_searchBtn").click(function () {
-            if ($('#des_database').val() == '') {
+            if ($('#destinationDatabaseSelect').val() == '') {
                 alert('Select database');
             }
             else {
                 ID2 = 1;
-                getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(), "Right")
+                getdata('#table2body', ID2, $('#destinationDatabaseSelect').val(), $('#des_searchText').val(), "Right")
             }
 
 
@@ -453,11 +453,11 @@
                 $("#des_pre").attr("disabled", true);
 
             }
-            else if ($('#des_database').val() == '') {
+            else if ($('#destinationDatabaseSelect').val() == '') {
                 alert('Select database');
             }
             else {
-                getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(), "Right")
+                getdata('#table2body', ID2, $('#destinationDatabaseSelect').val(), $('#des_searchText').val(), "Right")
             }
         });
         $("#des_next").click(function () {
@@ -468,23 +468,23 @@
                 $("#des_next").attr("disabled", true);
 
             }
-            else if ($('#des_database').val() == '') {
+            else if ($('#destinationDatabaseSelect').val() == '') {
                 alert('Select database');
             }
             else {
-                getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(), "Right")
+                getdata('#table2body', ID2, $('#destinationDatabaseSelect').val(), $('#des_searchText').val(), "Right")
             }
         });
 
 
         $("#Create_Link").click(function () {
-            if ($('#sourceDatabaseSelect').val() != '' && $('#des_database').val() != '' && SrcStrURn != "" && DestStrUrn != "") {
+            if ($('#sourceDatabaseSelect').val() != '' && $('#destinationDatabaseSelect').val() != '' && SrcStrURn != "" && DestStrUrn != "") {
                 $('.spinner').css('display', 'block');
                 $.ajax({
 
                     url: '/CommonLinks/AddLink',
                     type: 'GET',
-                    data: { SrcTab: $('#sourceDatabaseSelect').val(), Desttab: $('#des_database').val(), srcStrn: SrcStrURn, deststrn: DestStrUrn, SE: $('#src_evaluation').val(), RE: $('#info_evaluation').val(), RL: $('#reason_link').val(), BI: $('#isBidirectional').val() },
+                    data: { SrcTab: $('#sourceDatabaseSelect').val(), Desttab: $('#destinationDatabaseSelect').val(), srcStrn: SrcStrURn, deststrn: DestStrUrn, SE: $('#src_evaluation').val(), RE: $('#info_evaluation').val(), RL: $('#reason_link').val(), BI: $('#isBidirectional').val() },
                     contentType: 'application/json',
                     success: function (response) {
 
