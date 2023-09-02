@@ -116,40 +116,24 @@
                 <option value="table1">Table1</option>
                 <!-- Add more options as needed -->
             </select>
-            <label for="sourceKeywordSearch">Province</label>
+       @*     <label for="sourceKeywordSearch">Province</label>
             <select id="selectprovince" name="SelectProvince">
                 <option value="select">Select</option>
                 <option value="select">Value1</option>
                 <option value="select">Value2</option>
-            </select>
+            </select>*@
             <label for="sourceKeywordSearch">Search any Keyword:</label>
             <input type="text" id="sourceKeywordSearch" name="SourceKeyword" />
             <div class="table-container">
                 <table>
-                    <tr>
-                        <th>Select</th>
-                        <th>Dynamic Column 1</th>
-                        <th>Dynamic Column 2</th>
-                        <th>Dynamic Column 3</th>
-                    </tr>
-                    <tr>
-                        <td><input type="radio" name="SourceRadio" value="radio1" /></td>
-                        <td>Value 1</td>
-                        <td>Value 2</td>
-                        <td>Value 3</td>
-                    </tr>
-                    <tr>
-                        <td><input type="radio" name="SourceRadio" value="radio1" /></td>
-                        <td>Value 1</td>
-                        <td>Value 2</td>
-                        <td>Value 3</td>
-                    </tr>
-                    <tr>
-                        <td><input type="radio" name="SourceRadio" value="radio1" /></td>
-                        <td>Value 1</td>
-                        <td>Value 2</td>
-                        <td>Value 3</td>
-                    </tr>
+                    <thead id="tblheadr">
+                    </thead>
+                    <tbody id="tblbody">
+
+                    </tbody>
+              
+             
+        
                 </table>
             </div>
             <div class="portion-buttons">
@@ -169,41 +153,26 @@
                 <option value="table1">Table1</option>
                 <!-- Add more options as needed -->
             </select>
-            <label for="sourceKeywordSearch">Province</label>
+       @*     <label for="sourceKeywordSearch">Province</label>
             <select id="selectprovince" name="SelectProvince">
                 <option value="select">Select</option>
                 <option value="select">Value1</option>
                 <option value="select">Value2</option>
-            </select>
+            </select>*@
             <label for="destinationKeywordSearch">Search any Keyword:</label>
             <input type="text" id="destinationKeywordSearch" name="DestinationKeyword" />
             <div class="table-container">
                 <table>
+           
 
-                    <tr>
-                        <th>Select</th>
-                        <th>Dynamic Column 1</th>
-                        <th>Dynamic Column 2</th>
-                        <th>Dynamic Column 3</th>
-                    </tr>
+              
                     <tr>
                         <td><input type="radio" name="destinationRadio" value="radio1" /></td>
                         <td>Value 1</td>
                         <td>Value 2</td>
                         <td>Value 3</td>
                     </tr>
-                    <tr>
-                        <td><input type="radio" name="destinationRadio" value="radio1" /></td>
-                        <td>Value 1</td>
-                        <td>Value 2</td>
-                        <td>Value 3</td>
-                    </tr>
-                    <tr>
-                        <td><input type="radio" name="destinationRadio" value="radio1" /></td>
-                        <td>Value 1</td>
-                        <td>Value 2</td>
-                        <td>Value 3</td>
-                    </tr>
+           
 
                 </table>
             </div>
@@ -296,7 +265,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <script>
-        var ID = 1;
+        var LSID = 1;
+        var LEID = 3;
         var ID2 = 1;
         var SrcStrURn = "";
         var DestStrUrn = "";
@@ -311,17 +281,17 @@
                     // console.log(response)
                     $("#sourceDatabaseSelect").empty();
                     $("#sourceDatabaseSelect").append(`<option value="">Select Database</option>`);
-                    $("#des_database").empty();
-                    $("#des_database").append(`<option value="">Select Database</option>`);
+                    $("#destinationDatabaseSelect").empty();
+                    $("#destinationDatabaseSelect").append(`<option value="">Select Database</option>`);
                     for (var i = 0; i < response.length; i++) {
 
                         addOption(response[i].strTable, response[i].strTable, '#sourceDatabaseSelect')
-                        addOption(response[i].strTable, response[i].strTable, '#des_database')
+                        addOption(response[i].strTable, response[i].strTable, '#destinationDatabaseSelect')
 
                     }
                     if (response.length == 0) {
                         $("#sourceDatabaseSelect").empty();
-                        $("#des_database").empty();
+                        $("#destinationDatabaseSelect").empty();
 
                     }
                     else {
@@ -342,43 +312,69 @@
                 $("#table1body").empty();
             }
             else {
-                ID = 1;
-                getdata('#table1body', ID, $(this).val(), $('#src_searchText').val(), "Left")
+                LSID = 1;
+                LEID=3;
+                //alert(LSID+' dd'+LEID);
+                getdata('#table1body', LSID,LEID, $(this).val(), $('#src_searchText').val(), "Left")
             }
         });
-        $('#des_database').change(function () {
+        $('#destinationDatabaseSelect').change(function () {
             if ($(this).val() == "") {
 
                 $("#table2body").empty();
             }
             else {
                 ID2 = 1;
-                getdata('#table2body', ID2, $(this).val(), null, "Right")
+               // getdata('#table2body', ID2, $(this).val(), null, "Right")
             }
         });
 
 
-        function getdata(tableid, Count, Tabname, Searchrec, callby) {
+        function getdata(tableid, startcount,EndCount, Tabname, Searchrec, callby) {
             $.ajax({
 
                 url: '/Jsonside/GetSingleRec',
                 type: 'GET',
-                data: { ID: Count, TableName: Tabname, Search: Searchrec },
+            data: { SID: startcount, EID:EndCount, TableName: Tabname, Search: Searchrec },
                 contentType: 'application/json',
                 success: function (response) {
-                    console.log(response)
-                    $(tableid).empty();
-                    for (var i = 0; i < response.length; i++) {
-                        if (response[i].propertName == "strURN" && callby == "Left") {
-                            SrcStrURn = response[i].propertValue;
-                        }
-                        else if (response[i].propertName == "strURN" && callby == "Right") {
-                            DestStrUrn = response[i].propertValue;
-                        }
+                var jsonObject = JSON.parse(response);
+                  var newRow='';
+                console.log(jsonObject);
 
-                        $(tableid).append("<tr style='text-aling:left'><td>" + response[i].propertName + "</b></td>><td>" + response[i].propertValue + "</td></tr>");
+                switch (Tabname) {
+                    case 'Person':
+                    {
+                            $("#tblheadr").empty();
+                            $("#tblbody").empty();
+                                $("#tblheadr").append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) 
+                            {
+                                $("#tblbody").append('<tr><td><input type="radio" name="SourceRadio" value=' + jsonObject[i].strURN + '/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                             }
+                            break;
 
                     }
+                    default:
+                        $("#tblheadr").empty();
+                        $("#tblbody").empty();
+
+
+                }
+
+                    $(tableid).empty();
+                    //for (var i = 0; i < response.length; i++) 
+                    //{
+                    //    if (response[i].propertName == "strURN" && callby == "Left") {
+                    //        SrcStrURn = response[i].propertValue;
+                    //    }
+                    //    else if (response[i].propertName == "strURN" && callby == "Right") {
+                    //        DestStrUrn = response[i].propertValue;
+                    //    }
+
+                    //    $(tableid).append("<tr style='text-aling:left'><td>" + response[i].propertName + "</b></td>><td>" + response[i].propertValue + "</td></tr>");
+
+                    //}
 
 
 
@@ -396,18 +392,18 @@
             }
             else {
                 ID = 1;
-                getdata('#table1body', ID, $('#sourceDatabaseSelect').val(), $('#src_searchText').val(), "Left")
+                //getdata('#table1body', ID, $('#sourceDatabaseSelect').val(), $('#src_searchText').val(), "Left")
             }
 
 
         });
         $("#des_searchBtn").click(function () {
-            if ($('#des_database').val() == '') {
+            if ($('#destinationDatabaseSelect').val() == '') {
                 alert('Select database');
             }
             else {
                 ID2 = 1;
-                getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(), "Right")
+              //  getdata('#table2body', ID2, $('#destinationDatabaseSelect').val(), $('#des_searchText').val(), "Right")
             }
 
 
@@ -428,7 +424,7 @@
                 alert('Select database');
             }
             else {
-                getdata('#table1body', ID, $('#sourceDatabaseSelect').val(), $('#src_searchText').val(), "Left")
+              //  getdata('#table1body', ID, $('#sourceDatabaseSelect').val(), $('#src_searchText').val(), "Left")
             }
         });
         $("#src_next").click(function () {
@@ -443,7 +439,7 @@
                 alert('Select database');
             }
             else {
-                getdata('#table1body', ID, $('#sourceDatabaseSelect').val(), $('#src_searchText').val(), "Left")
+              //  getdata('#table1body', ID, $('#sourceDatabaseSelect').val(), $('#src_searchText').val(), "Left")
             }
         });
         //Next
@@ -453,11 +449,11 @@
                 $("#des_pre").attr("disabled", true);
 
             }
-            else if ($('#des_database').val() == '') {
+            else if ($('#destinationDatabaseSelect').val() == '') {
                 alert('Select database');
             }
             else {
-                getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(), "Right")
+               // getdata('#table2body', ID2, $('#destinationDatabaseSelect').val(), $('#des_searchText').val(), "Right")
             }
         });
         $("#des_next").click(function () {
@@ -468,23 +464,23 @@
                 $("#des_next").attr("disabled", true);
 
             }
-            else if ($('#des_database').val() == '') {
+            else if ($('#destinationDatabaseSelect').val() == '') {
                 alert('Select database');
             }
             else {
-                getdata('#table2body', ID2, $('#des_database').val(), $('#des_searchText').val(), "Right")
+               // getdata('#table2body', ID2, $('#destinationDatabaseSelect').val(), $('#des_searchText').val(), "Right")
             }
         });
 
 
         $("#Create_Link").click(function () {
-            if ($('#sourceDatabaseSelect').val() != '' && $('#des_database').val() != '' && SrcStrURn != "" && DestStrUrn != "") {
+            if ($('#sourceDatabaseSelect').val() != '' && $('#destinationDatabaseSelect').val() != '' && SrcStrURn != "" && DestStrUrn != "") {
                 $('.spinner').css('display', 'block');
                 $.ajax({
 
                     url: '/CommonLinks/AddLink',
                     type: 'GET',
-                    data: { SrcTab: $('#sourceDatabaseSelect').val(), Desttab: $('#des_database').val(), srcStrn: SrcStrURn, deststrn: DestStrUrn, SE: $('#src_evaluation').val(), RE: $('#info_evaluation').val(), RL: $('#reason_link').val(), BI: $('#isBidirectional').val() },
+                    data: { SrcTab: $('#sourceDatabaseSelect').val(), Desttab: $('#destinationDatabaseSelect').val(), srcStrn: SrcStrURn, deststrn: DestStrUrn, SE: $('#src_evaluation').val(), RE: $('#info_evaluation').val(), RL: $('#reason_link').val(), BI: $('#isBidirectional').val() },
                     contentType: 'application/json',
                     success: function (response) {
 

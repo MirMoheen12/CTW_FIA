@@ -8,6 +8,6 @@ namespace CTW_FIA.Interface
     {
         public List<ReportingAgency> GetReportingAgencies();
         public List<DatabaseList_sel_Result> databaseLists();
-        public DataTable GetRecordData(string TableName, string SearchRec, int RowNumber);
+        public DataTable GetRecordData(string TableName, string SearchRec, int SRowNumber,int ERowNumber);
     }
 }
