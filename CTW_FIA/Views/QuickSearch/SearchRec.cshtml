@@ -4,30 +4,71 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
-    .table-responsive {
+    .table-responsive 
+    {
         max-height: 650px;
     }
-
-    .smaller-icon {
-        font-size: 0.9em; 
+    /* Closed folder icon */
+    .closed-folder-icon {
+        color: #000; /* Change to the color of your closed folder icon */
     }
 
-    .menu-icon {
-        margin-right: 5px; 
+    /* Open folder icon */
+    .open-folder-icon {
+        color: #00F; /* Change to the color of your open folder icon */
+    }
+
+    .open-link {
+        color: blue; /* Set the desired blue color for open links */
+    }
+
+    .open-color {
+        color:blue; /* Replace with your desired color */
+    }
+
+    .smaller-icon
+    {
+        font-size: 0.9em;
+        margin-right: 5px;
+    }
+
+    .menu-icon 
+    {
+        margin-right: 2px; 
     }
 
 </style>
 <style>
-    .card-grey  {
+    .card-grey  
+    {
+
         background-color: #d3d3d3; 
         
+    }
+
+    .open-icon {
+        color: green; /* Color for open icon */
+    }
+
+    .closed-icon {
+        color: red; /* Color for closed icon */
+    }
+
+    /* Add custom styles for open tables */
+    .open-table {
+        background-color: yellow; /* Background color for open tables */
+    }
+    .nav-link i
+    {
+        margin-right: 5px; 
     }
 
     .nav-link
     {
         color: black;
     }
-    .table-responsive {
+    .table-responsive
+    {
         max-height: 650px;
     }
 </style>
@@ -59,7 +100,7 @@
     <div class="row no-gutters col-md-3" style="max-height:300px;">
 
         <div class="col-md-12 d-flex justify-content-center" >
-            <img src="https://localhost:7136/Content/assets/images/logo.png" alt="Logo" style="max-height:250px;">
+            <img src="https://localhost:7136/Content/assets/images/logo.png" alt="Logo" style="max-height:250px; margin-top:10px;">
         </div>
 
         <div class="col-md-12">
@@ -131,24 +172,6 @@
         window.location.href = '@ViewBag.RedirectUrl';
     </script>
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
@@ -160,8 +183,11 @@
 
 <!-- Include DataTables Responsive CSS and JavaScript -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <script>
     var dataTable = $('#SearchGenericTable2').DataTable();
     // Initialize DataTable
@@ -209,9 +235,24 @@
 
             for (let tableName in groupedByTableName) {
                 let tableGroup = groupedByTableName[tableName];
+                var tableIcons = {
+                    'Explosive': 'fas fa-fire',
+                    'Group': 'fas fa-users',
+                    'Incident': 'fas fa-exclamation-triangle',
+                    'Person': 'fas fa-user'
+                };
+
+                // Use the appropriate icon class based on the table name
+                var iconClass = tableIcons[tableName] || 'fas fa-question'; // Default icon if not found
+
                 $('.sidebar nav .nav-pills').append(
-                    '<li class="nav-item"> <a href="#" class="nav-link"> <span class="menu-icon"><i class="fas fa-plus smaller-icon"></i></span>' + tableName +
+                    '<li class="nav-item"> <a href="#" class="nav-link"> <span class="menu-icon"><i class="fas fa-plus smaller-icon"></i></span><i class="fas fa-folder"></i> ' + tableName +
                     '<span class="badge badge-info">' + tableGroup.count + '</span></a> <ul class="nav nav-treeview" id="' + tableName + '"></ul>');
+
+
+
+
+
 
 
                 for (var x = 0; x < tableGroup.models.length; x++) {
@@ -229,7 +270,8 @@
         }
 
     }
-    function yourFunction(tableName, strUrn) {
+    function yourFunction(tableName, strUrn) 
+    {
 
         dataTable.clear().draw();
         $('.spinner').css('display', 'block');
@@ -267,25 +309,59 @@
 
 
     }
-    $(document).ready(function () {
+
+    $(document).ready(function () 
+    {
         //$('#SearchGenericTable').DataTable({
 
         //});
     });
     $(document).ready(function () {
-        $('.sidebar .nav-link').click(function () {
-            var icon = $(this).find('.menu-icon i');
-            var subMenu = $(this).next('.nav-treeview');
+        // Add click event handler to the "+" icons on the left side
+        $('.sidebar .menu-icon i').click(function () {
+            var icon = $(this);
+            var link = icon.closest('a'); // Get the <a> element
+            var elementsToColor = link.find('.menu-icon i, .fas.fa-folder, .table-name, .badge.badge-info');
 
-            subMenu.slideToggle();
-
+            // Check if the icon has the "fa-plus" class
             if (icon.hasClass('fa-plus')) {
-                icon.removeClass('fa-plus').addClass('fa-minus');
+                icon.removeClass('fa-plus closed-folder-icon').addClass('fa-minus open-folder-icon');
+                elementsToColor.addClass('open-color'); // Add the open-color class to change the text color
+
+                // Change the color of .badge-info to red
+                var badgeInfo = link.find('.badge.badge-info');
+                badgeInfo.css('color', 'red');
+
+                // Change the color of unencapsulated text directly
+                var unencapsulatedText = link.contents().filter(function () {
+                    return this.nodeType === 3; // Filter out text nodes
+                });
+                unencapsulatedText.css('color', 'red');
             } else {
-                icon.removeClass('fa-minus').addClass('fa-plus');
+                icon.removeClass('fa-minus open-folder-icon').addClass('fa-plus closed-folder-icon');
+                elementsToColor.removeClass('open-color'); // Remove the open-color class to reset the text color
+
+                // Reset the color of .badge-info to its default value (e.g., black)
+                var badgeInfo = link.find('.badge.badge-info');
+                badgeInfo.css('color', ''); // Remove the inline color style to reset it to default
+
+                // Reset the color of unencapsulated text to its default value (e.g., black)
+                var unencapsulatedText = link.contents().filter(function () {
+                    return this.nodeType === 3; // Filter out text nodes
+                });
+                unencapsulatedText.css('color', ''); // Remove the inline color style to reset it to default
             }
         });
     });
+
+
+
+
+
+   
+
+
+
 
 </script>
 
