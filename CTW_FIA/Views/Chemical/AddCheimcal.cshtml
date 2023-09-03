@@ -1,5 +1,7 @@
-﻿@*@model YourNamespace.Chemical
-
+﻿@model CTW_FIA.Models.DatabaseModels.Chemical
+@{
+    Layout = null;
+}
 <div class="row no-gutters">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
@@ -25,11 +27,11 @@
                         <div class="form-group row">
                             <label for="Time" class="col-sm-2 col-form-label" style="font-size: 13px">Molecular Mass</label>
                             <div class="col-sm-4">
-                                <input asp-for="MolecularMass" class="form-control" />
+                                <input  class="form-control" />
                             </div>
                             <label for="Time" class="col-sm-2 col-form-label" style="font-size: 13px">Atomic Mass</label>
                             <div class="col-sm-4">
-                                <input asp-for="AtomicMass" class="form-control" />
+                                <input  class="form-control" />
                             </div>
                         </div>
 
@@ -104,7 +106,7 @@
                         <div class="form-group row">
                             <label for="Time" class="col-sm-2 col-form-label" style="font-size: 13px">Melting Point (low)</label>
                             <div class="col-sm-4">
-                                <input asp-for="MeltingPointLow" class="form-control" />
+                                <input  class="form-control" />
                             </div>
                             <label for="Time" class="col-sm-2 col-form-label" style="font-size: 13px">Melting Point (high)</label>
                             <div class="col-sm-4">
@@ -152,7 +154,7 @@
                             </div>
                             <label for="Time" class="col-sm-2 col-form-label" style="font-size: 13px">Relative Density of the vapour/ Air-mi</label>
                             <div class="col-sm-4">
-                                <input asp-for="VapourDensity" class="form-control" />
+                                <input class="form-control" />
                             </div>
                         </div>
 
@@ -225,113 +227,14 @@
                         <div class="form-group row">
                             <label for="Remarks" class="col-sm-2 col-form-label" style="font-size: 13px">Hazardous Reactions and Polymerization</label>
                             <div class="col-sm-10">
-                                <textarea asp-for="HazardousReactions" class="form-control" rows="4"></textarea>
+                                <textarea class="form-control" rows="4"></textarea>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="Remarks" class="col-sm-2 col-form-label" style="font-size: 13px">Remarks</label>
-                            <div class="col-sm-10">
-                                <textarea asp-for="memRemarks" class="form-control" rows="4"></textarea>
-                            </div>
-                        </div>
+               
 
-                        <div class="form-group row">
-                            <label for="CreatedBy" class="col-sm-2 col-form-label" style="font-size: 13px">Created By</label>
-                            <div class="col-sm-4">
-                                <input asp-for="CreatedBy" class="form-control" />
-                            </div>
-                            <label for="UpdatedBy" class="col-sm-2 col-form-label" style="font-size: 13px">Updated By</label>
-                            <div class="col-sm-4">
-                                <input asp-for="UpdatedBy" class="form-control" />
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="CreatedOn" class="col-sm-2 col-form-label" style="font-size: 13px">Created On</label>
-                            <div class="col-sm-4">
-                                <input asp-for="CreatedOn" class="form-control" />
-                            </div>
-                            <label for="UpdatedOn" class="col-sm-2 col-form-label" style="font-size: 13px">Updated On</label>
-                            <div class="col-sm-4">
-                                <input asp-for="UpdatedOn" class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="IsDeleted" class="col-sm-2 col-form-label" style="font-size: 13px">Is Deleted</label>
-                            <div class="col-sm-4">
-                                <input asp-for="IsDeleted" type="checkbox" class="form-check-input" />
-                            </div>
-                            <label for="Status" class="col-sm-2 col-form-label" style="font-size: 13px">Status</label>
-                            <div class="col-sm-4">
-                                <input asp-for="Status" class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="ApprovedBy" class="col-sm-2 col-form-label" style="font-size: 13px">Approved By</label>
-                            <div class="col-sm-4">
-                                <input asp-for="ApprovedBy" class="form-control" />
-                            </div>
-                            <label for="ApprovedOn" class="col-sm-2 col-form-label" style="font-size: 13px">Approved On</label>
-                            <div class="col-sm-4">
-                                <input asp-for="ApprovedOn" class="form-control" />
-                            </div>
-                        </div>
-                        <!-- ... (previous code) ... -->
-
-                        <div class="form-group row">
-                            <label for="dteSent" class="col-sm-2 col-form-label" style="font-size: 13px">Date Sent</label>
-                            <div class="col-sm-4">
-                                <input asp-for="dteSent" class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="intID" class="col-sm-2 col-form-label" style="font-size: 13px">ID</label>
-                            <div class="col-sm-4">
-                                <input asp-for="intID" class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="textSearch" class="col-sm-2 col-form-label" style="font-size: 13px">Text Search</label>
-                            <div class="col-sm-10">
-                                <input asp-for="textSearch" class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="intID" class="col-sm-2 col-form-label" style="font-size: 13px">ID</label>
-                            <div class="col-sm-4">
-                                <input asp-for="intID" class="form-control" />
-                            </div>
-                        </div>
-                        <!-- ... (previous code) ... -->
-
-                        <div class="form-group row">
-                            <label for="strURN" class="col-sm-2 col-form-label" style="font-size: 13px">URN</label>
-                            <div class="col-sm-4">
-                                <input asp-for="strURN" class="form-control" />
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="ApprovedOn" class="col-sm-2 col-form-label" style="font-size: 13px">Approved On</label>
-                            <div class="col-sm-4">
-                                <input asp-for="ApprovedOn" class="form-control" />
-                            </div>
-                        </div>
-
-                        <!-- Save and Cancel buttons -->
-                        <div class="form-group row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-10">
-                                <button type="button" class="btn btn-primary mr-2" onclick="ChemicalClick()">Save</button>
-                                <button class="btn btn-dark">Cancel</button>
-                            </div>
-                        </div>
+                     
 
                         <!-- ... (next code) ... -->
                         <!-- ... (next code) ... -->
@@ -359,4 +262,3 @@
         </div>
     </div>
 </div>
-*@

@@ -22,11 +22,11 @@ namespace CTW_FIA.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddCheimcal(Chemical chemical)
+        public IActionResult AddCheimcal()
         {
             String Name = @User.Identity.Name;
 
-            return RedirectToAction("AddRecord", "Record", new { pagname = "Chemical", pagestatus = "Updated" });
+            return View();
 
         }
 
