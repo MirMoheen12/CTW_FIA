@@ -123,12 +123,14 @@
                 <option value="select">Value2</option>
             </select>*@
             <label for="sourceKeywordSearch">Search any Keyword:</label>
+
             <input type="text" id="sourceKeywordSearch" name="SourceKeyword" />
+        <button class="btn btn-sm btn-primary" type="button" id="src_searchBtn">Search</button>
             <div class="table-container">
-                <table>
-                    <thead id="tblheadr">
+            <table id="table1body">
+                    <thead id="tbllefthdr">
                     </thead>
-                    <tbody id="tblbody">
+                    <tbody id="tblleftbody">
 
                     </tbody>
               
@@ -137,10 +139,10 @@
                 </table>
             </div>
             <div class="portion-buttons">
-                <div class="portion-buttons-text">Showing x entries</div>
+           
                 <div class="portion-buttons-buttons">
-                    <button>Previous</button>
-                    <button>Next</button>
+                <button id="src_pre">Previous</button>
+                <button id="src_next">Next</button>
                 </div>
             </div>
         </div>
@@ -161,26 +163,24 @@
             </select>*@
             <label for="destinationKeywordSearch">Search any Keyword:</label>
             <input type="text" id="destinationKeywordSearch" name="DestinationKeyword" />
-            <div class="table-container">
-                <table>
-           
+        <button class="btn btn-sm btn-primary" type="button" id="des_searchBtn">Search</button>
 
-              
-                    <tr>
-                        <td><input type="radio" name="destinationRadio" value="radio1" /></td>
-                        <td>Value 1</td>
-                        <td>Value 2</td>
-                        <td>Value 3</td>
-                    </tr>
+            <div class="table-container">
+            <table id="table2body">
+                <thead id="tblrightthdr">
+                </thead>
+                <tbody id="tblrighttbody">
+                </tbody>
+
            
 
                 </table>
             </div>
             <div class="portion-buttons">
-                <div class="portion-buttons-text">Showing x entries</div>
+            
                 <div class="portion-buttons-buttons">
-                    <button>Previous</button>
-                    <button>Next</button>
+                <button id="des_pre">Previous</button>
+                <button id="des_next">Next</button>
                 </div>
             </div>
         </div>
@@ -194,17 +194,25 @@
         <div class="Mainflex">
             <div class="flexbox2">
                 <h6 style="margin-left: 10px; margin-top: 10px;" class="flexbox-item"> Source Evaluation</h6>
-                <select id="sourceEvaluationSelect" name="SourceEvaluation" class="flexbox-item">
-                    <option value="select">--Select--</option>
-                    <option value="value1">Value</option>
+            <select id="src_evaluation" name="SourceEvaluation" class="flexbox-item">
+                <option disabled>Select</option>
+                <option value="1">A - Always Reliable</option>
+                <option value="2">B - Mostly Reliable</option>
+                <option value="3">C - Sometimes Relibale</option>
+                <option value="4">D - Unreliable</option>
+                <option value="5">E - Untested Source</option>
                 </select>
             </div>
 
             <div class="flexbox2">
                 <h6 style="margin-left: 210px; margin-top: 10px;" class="flexbox-item"> Information Evaluation</h6>
-                <select id="informationEvaluationSelect" name="InformationEvaluation" class="flexbox-item">
-                    <option value="select">--Select--</option>
-                    <option value="value1">Value</option>
+            <select id="info_evaluation" name="InformationEvaluation" class="flexbox-item">
+                <option disabled>Select</option>
+                <option value="1">A - Always Reliable</option>
+                <option value="2">B - Mostly Reliable</option>
+                <option value="3">C - Sometimes Relibale</option>
+                <option value="4">D - Unreliable</option>
+                <option value="5">E - Untested Source</option>
                 </select>
             </div>
         </div>
@@ -212,17 +220,17 @@
         <div class="extra-linking">
             <h6 style="margin-left: 10px; margin-top: 22px;"> Reason For Linking</h6>
             <div class="linkitems">
-                <input style="width: 200px" type="text" />
+            <input style="width: 200px" id="reason_link" type="text" />
             </div>
         </div>
 
         <div style="display: flex; justify-content:center;margin-left:140px; align-items: center;">
-            <input type="checkbox" name="biDirectionalCheckbox" />
+        <input type="checkbox" name="biDirectionalCheckbox" id="isBidirectional" value="false"/>
             <label style="margin-left: 15px;">Is link bi-directional:</label>
         </div>
 
         <div style="text-align: center; margin-top: 30px;">
-            <button>Create Link</button>
+        <button  id="Create_Link">Create Link</button>
         </div>
     </div>
 
@@ -267,7 +275,8 @@
     <script>
         var LSID = 1;
         var LEID = 3;
-        var ID2 = 1;
+        var RSID2 = 1;
+        var REID2 = 3;
         var SrcStrURn = "";
         var DestStrUrn = "";
         $(document).ready(function () {
@@ -315,7 +324,7 @@
                 LSID = 1;
                 LEID=3;
                 //alert(LSID+' dd'+LEID);
-                getdata('#table1body', LSID,LEID, $(this).val(), $('#src_searchText').val(), "Left")
+                getdata('#table1body', LSID,LEID, $(this).val(), $('#sourceKeywordSearch').val(), "Left")
             }
         });
         $('#destinationDatabaseSelect').change(function () {
@@ -324,8 +333,11 @@
                 $("#table2body").empty();
             }
             else {
-                ID2 = 1;
-               // getdata('#table2body', ID2, $(this).val(), null, "Right")
+            RSID2 = 1;
+            REID2 = 3;
+            
+            getdata('#table2body', RSID2, REID2, $(this).val(), $('#destinationKeywordSearch').val(), "Right")
+           
             }
         });
 
@@ -345,24 +357,23 @@
                 switch (Tabname) {
                     case 'Person':
                     {
-                            $("#tblheadr").empty();
-                            $("#tblbody").empty();
-                                $("#tblheadr").append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
-                            for (var i = 0; i < jsonObject.length; i++) 
-                            {
-                                $("#tblbody").append('<tr><td><input type="radio" name="SourceRadio" value=' + jsonObject[i].strURN + '/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
-                             }
+                        
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
                             break;
 
                     }
                     default:
-                        $("#tblheadr").empty();
-                        $("#tblbody").empty();
-
+                        $(tableid).find('thead').empty();
+                        $(tableid).find('tbody').empty();
 
                 }
-
-                    $(tableid).empty();
+             
+                   // $(tableid).empty();
                     //for (var i = 0; i < response.length; i++) 
                     //{
                     //    if (response[i].propertName == "strURN" && callby == "Left") {
@@ -385,14 +396,27 @@
 
         ///Prevous
 
+    function assignval(callby,strUrn) 
+    {
+        if(callby=='Left')
+        {
+            SrcStrURn=strUrn;
+        }
+        else if(callby == 'Right')
+        {
+            DestStrUrn=strUrn;
+        }
+       
 
+    }
         $("#src_searchBtn").click(function () {
             if ($('#sourceDatabaseSelect').val() == '') {
                 alert('Select database');
             }
             else {
-                ID = 1;
-                //getdata('#table1body', ID, $('#sourceDatabaseSelect').val(), $('#src_searchText').val(), "Left")
+            LSID = 1;
+            LEID = 3;
+            getdata('#table1body', LSID, LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left")
             }
 
 
@@ -402,8 +426,9 @@
                 alert('Select database');
             }
             else {
-                ID2 = 1;
-              //  getdata('#table2body', ID2, $('#destinationDatabaseSelect').val(), $('#des_searchText').val(), "Right")
+            RSID2 = 1;
+            REID2 = 3;
+            getdata('#table2body', RSID2, REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right")
             }
 
 
@@ -415,8 +440,9 @@
 
 
         $("#src_pre").click(function () {
-            ID = ID - 1;
-            if (ID == 0) {
+        LSID = LSID - 3;
+        LEID=LEID-3;
+        if (LSID <= 0) {
                 $("#src_pre").attr("disabled", true);
 
             }
@@ -424,13 +450,14 @@
                 alert('Select database');
             }
             else {
-              //  getdata('#table1body', ID, $('#sourceDatabaseSelect').val(), $('#src_searchText').val(), "Left")
+                getdata('#table1body', LSID,LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left")
             }
         });
         $("#src_next").click(function () {
-            ID = ID + 1;
+        LSID = LSID + 3;
+        LEID = LEID + 3;
             $("#src_pre").attr("disabled", false);
-            if (ID == 0) {
+        if (LSID == 0) {
 
                 $("#src_pre").attr("disabled", true);
 
@@ -439,13 +466,15 @@
                 alert('Select database');
             }
             else {
-              //  getdata('#table1body', ID, $('#sourceDatabaseSelect').val(), $('#src_searchText').val(), "Left")
+                getdata('#table1body', LSID,LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left")
             }
         });
         //Next
         $("#des_pre").click(function () {
-            ID2 = ID2 - 1;
-            if (ID2 == 0) {
+        RSID2 = RSID2 - 3;
+        REID2 = REID2 - 3;
+
+        if (RSID2 <= 0) {
                 $("#des_pre").attr("disabled", true);
 
             }
@@ -453,13 +482,14 @@
                 alert('Select database');
             }
             else {
-               // getdata('#table2body', ID2, $('#destinationDatabaseSelect').val(), $('#des_searchText').val(), "Right")
+                getdata('#table2body', RSID2,REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right")
             }
         });
         $("#des_next").click(function () {
-            ID2 = ID2 + 1;
+        RSID2 = RSID2 - 3;
+        REID2 = REID2 - 3;
             $("#des_pre").attr("disabled", false);
-            if (ID2 == 0) {
+        if (RSID2 == 0) {
 
                 $("#des_next").attr("disabled", true);
 
@@ -468,8 +498,8 @@
                 alert('Select database');
             }
             else {
-               // getdata('#table2body', ID2, $('#destinationDatabaseSelect').val(), $('#des_searchText').val(), "Right")
-            }
+            getdata('#table2body', RSID2, REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right")
+        }
         });
 
 
