@@ -28,7 +28,7 @@
 
     .smaller-icon
     {
-        font-size: 0.9em;
+        font-size: 0.7em;
         margin-right: 5px;
     }
 
@@ -263,13 +263,14 @@
 
                     for (var x = 0; x < tableGroup.models.length; x++) {
                         if (tableGroup.models[x].tableName == tableName) {
-                            $('#' + tableName).append("<li class='nav-item'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + tableGroup.models[x].strUrn + "\")'>" + tableGroup.models[x].textSearch + "</button></li>");
+                            $('#' + tableName).append("<li class='nav-item'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + tableGroup.models[x].strUrn + "\")'> <i class='fas fa-caret-right' style='font-size: smaller; margin-right: 4px;';></i>" + tableGroup.models[x].textSearch + "</button></li>");
                         }
                         if (m == 1) {
                             yourFunction(tableName, tableGroup.models[1].strUrn);
                         }
                         m = m + 1;
                     }
+
                 }
             }
         }
