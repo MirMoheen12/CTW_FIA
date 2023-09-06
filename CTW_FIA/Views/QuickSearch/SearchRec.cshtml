@@ -28,13 +28,18 @@
 
     .smaller-icon
     {
-        font-size: 0.9em;
+        font-size: 0.7em;
         margin-right: 5px;
     }
 
     .menu-icon 
     {
         margin-right: 2px; 
+    }
+
+    .badge-info {
+        border-radius: 12px; /* Adjust the radius as needed for the desired roundness */
+        margin-left: 5px;
     }
 
 </style>
@@ -193,7 +198,8 @@
     // Initialize DataTable
     var sourcearray = @Html.Raw(Json.Serialize(Model));
 
-    $(document).ready(function () {
+    $(document).ready(function () 
+    {
         dataTable = $('#SearchGenericTable').DataTable({
             paging: false, // Enable pagination
             searching: true, // Enable global search
@@ -214,12 +220,10 @@
     });
     function searchrec() {
         var m = 0;
-
-
         var modelList = sourcearray;
         var groupedByTableName = {};
-        if (sourcearray.length > 0) {
 
+        if (sourcearray.length > 0) {
             $.each(modelList, function (index, model) {
                 var tableName = model.tableName;
                 if (!groupedByTableName[tableName]) {
@@ -231,52 +235,52 @@
                 groupedByTableName[tableName].count++;
                 groupedByTableName[tableName].models.push(model);
             });
+
             $('#leftnavbar').hide();
 
-            for (let tableName in groupedByTableName) {
-                let tableGroup = groupedByTableName[tableName];
-                var tableIcons = {
-                    'Explosive': 'fas fa-fire',
-                    'Group': 'fas fa-users',
-                    'Incident': 'fas fa-exclamation-triangle',
-                    'Person': 'fas fa-user'
-                };
+            // Define the desired table order
+            var desiredTableOrder = ["Incident", "Person", "Group", "Explosive"];
 
-                // Use the appropriate icon class based on the table name
-                var iconClass = tableIcons[tableName] || 'fas fa-question'; // Default icon if not found
+            // Iterate over the desired table order and append the tables accordingly
+            for (var i = 0; i < desiredTableOrder.length; i++) {
+                var tableName = desiredTableOrder[i];
+                var tableGroup = groupedByTableName[tableName];
 
-                $('.sidebar nav .nav-pills').append(
-                    '<li class="nav-item"> <a href="#" class="nav-link"> <span class="menu-icon"><i class="fas fa-plus smaller-icon"></i></span><i class="fas fa-folder"></i> ' + tableName +
-                    '<span class="badge badge-info">' + tableGroup.count + '</span></a> <ul class="nav nav-treeview" id="' + tableName + '"></ul>');
+                if (tableGroup) {
+                    var tableIcons = {
+                        'Explosive': 'fas fa-fire',
+                        'Group': 'fas fa-users',
+                        'Incident': 'fas fa-exclamation-triangle',
+                        'Person': 'fas fa-user'
+                    };
 
+                    // Use the appropriate icon class based on the table name
+                    var iconClass = tableIcons[tableName] || 'fas fa-question'; // Default icon if not found
 
+                    $('.sidebar nav .nav-pills').append(
+                        '<li class="nav-item"> <a href="#" class="nav-link"> <span class="menu-icon"><i class="fas fa-plus smaller-icon"></i></span><i class="fas fa-folder"></i> ' + tableName +
+                        '<span class="badge badge-info">' + tableGroup.count + '</span></a> <ul class="nav nav-treeview" id="' + tableName + '"></ul>');
 
-
-
-
-
-                for (var x = 0; x < tableGroup.models.length; x++) {
-                    if (tableGroup.models[x].tableName == tableName) {
-                        $('#' + tableName).append("<li class='nav-item'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + tableGroup.models[x].strUrn + "\")'>" + tableGroup.models[x].textSearch + "</button></li>");
+                    for (var x = 0; x < tableGroup.models.length; x++) {
+                        if (tableGroup.models[x].tableName == tableName) {
+                            $('#' + tableName).append("<li class='nav-item'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + tableGroup.models[x].strUrn + "\")'> <i class='fas fa-caret-right' style='font-size: smaller; margin-right: 4px;';></i>" + tableGroup.models[x].textSearch + "</button></li>");
+                        }
+                        if (m == 1) {
+                            yourFunction(tableName, tableGroup.models[1].strUrn);
+                        }
+                        m = m + 1;
                     }
-                    if (m == 1) {
-                        yourFunction(tableName, tableGroup.models[1].strUrn);
-                    }
-                    m = m + 1;
+
                 }
             }
-
-
         }
-
     }
+
     function yourFunction(tableName, strUrn) 
     {
 
         dataTable.clear().draw();
         $('.spinner').css('display', 'block');
-
-
         $.ajax({
             type: "GET",
             url: "/Record/RecordDetailsforQuick",
@@ -330,38 +334,25 @@
 
                 // Change the color of .badge-info to red
                 var badgeInfo = link.find('.badge.badge-info');
-                badgeInfo.css('color', 'red');
+                badgeInfo.css('background-color', 'blue');
+                badgeInfo.css('color', 'white');
+                
 
-                // Change the color of unencapsulated text directly
-                var unencapsulatedText = link.contents().filter(function () {
-                    return this.nodeType === 3; // Filter out text nodes
-                });
-                unencapsulatedText.css('color', 'red');
+                // Reset the color of unencapsulated text to its original color
+                link.css('color', 'blue'); // Reset the color of unencapsulated text inside <a>
             } else {
                 icon.removeClass('fa-minus open-folder-icon').addClass('fa-plus closed-folder-icon');
                 elementsToColor.removeClass('open-color'); // Remove the open-color class to reset the text color
 
                 // Reset the color of .badge-info to its default value (e.g., black)
                 var badgeInfo = link.find('.badge.badge-info');
-                badgeInfo.css('color', ''); // Remove the inline color style to reset it to default
+                badgeInfo.css('background-color', ''); // Remove the inline color style to reset it to default
 
-                // Reset the color of unencapsulated text to its default value (e.g., black)
-                var unencapsulatedText = link.contents().filter(function () {
-                    return this.nodeType === 3; // Filter out text nodes
-                });
-                unencapsulatedText.css('color', ''); // Remove the inline color style to reset it to default
+                // Reset the color of unencapsulated text to its original color
+                link.css('color', ''); // Reset the color of unencapsulated text inside <a>
             }
         });
     });
-
-
-
-
-
-   
-
-
-
 
 </script>
 
