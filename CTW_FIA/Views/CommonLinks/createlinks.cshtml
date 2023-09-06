@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<CTW_FIA.Models.DatabaseModels.CommonLinks>
 @{
    
 
@@ -236,38 +236,41 @@
 
 
     <div style="margin-top:280px;margin-left:30px; ">
-        <div style="margin-top: 30px;">
-            <table class="table-container" style="width:100%">
-                <tr>
-                    <th>S.No</th>
-                    <th>Source Name</th>
-                    <th>Destination Name</th>
-                    <th>Create On</th>
-                    <th>Created By</th>
-                    <th>Reason</th>
-                    <th>Edit</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Source 1</td>
-                    <td>Destination 1</td>
-                    <td>2023-08-18</td>
-                    <td>User 1</td>
-                    <td>Reason 1</td>
-                    <td><a href="#">Edit</a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Source 2</td>
-                    <td>Destination 2</td>
-                    <td>2023-08-19</td>
-                    <td>User 2</td>
-                    <td>Reason 2</td>
-                    <td><a href="#">Edit</a></td>
-                </tr>
+    <div class="row">
 
-            </table>
+        <div class="col">
+
+            <div class="row text-dark">
+                <div class="col">
+                    <div class="e-panel card">
+                        <div class="card-body">
+                            <div class="card-title">
+                            </div>
+
+                            <table id="commonLinkTable" class="table table-bordered text-dark">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="max-width">Source Name</th>
+                                        <th class="max-width">Destination Name</th>
+                                        <th class="max-width">Creation Date</th>
+                                        <th class="max-width">Reason</th>
+                                        <th class="max-width">Actions </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
         </div>
+    </div>
     </div>
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">

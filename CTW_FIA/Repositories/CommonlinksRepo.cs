@@ -42,6 +42,11 @@ namespace CTW_FIA.Repositories
 
 
         }
+        public List<CommonLinks> GetallLinks()
+        {
+            var dat=appDbContext.CommonLinks.Take(100).ToList();
+            return dat;
+        }
         private void AddErrorLog(string Msg)
         {
             var dat = new
