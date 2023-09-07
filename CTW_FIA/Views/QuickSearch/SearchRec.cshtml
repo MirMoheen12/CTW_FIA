@@ -322,7 +322,8 @@
     });
     $(document).ready(function () {
         // Add click event handler to the "+" icons on the left side
-        $('.sidebar .menu-icon i').click(function () {
+        $('.sidebar .menu-icon i.fa-plus').click(function (e) {
+            e.stopPropagation(); // Prevent the click event from propagating to the parent <a> element
             var icon = $(this);
             var link = icon.closest('a'); // Get the <a> element
             var elementsToColor = link.find('.menu-icon i, .fas.fa-folder, .table-name, .badge.badge-info');
@@ -336,11 +337,14 @@
                 var badgeInfo = link.find('.badge.badge-info');
                 badgeInfo.css('background-color', 'blue');
                 badgeInfo.css('color', 'white');
-                
 
                 // Reset the color of unencapsulated text to its original color
                 link.css('color', 'blue'); // Reset the color of unencapsulated text inside <a>
+
+                // Show the sublist
+                link.next('ul').show();
             } else {
+                // If the icon has the "fa-minus" class, close the sublist
                 icon.removeClass('fa-minus open-folder-icon').addClass('fa-plus closed-folder-icon');
                 elementsToColor.removeClass('open-color'); // Remove the open-color class to reset the text color
 
@@ -350,9 +354,15 @@
 
                 // Reset the color of unencapsulated text to its original color
                 link.css('color', ''); // Reset the color of unencapsulated text inside <a>
+
+                // Hide the sublist
+                link.next('ul').hide();
             }
         });
     });
+
+
+
 
 </script>
 
