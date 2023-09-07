@@ -258,7 +258,7 @@
                     var iconClass = tableIcons[tableName] || 'fas fa-question'; // Default icon if not found
 
                     $('.sidebar nav .nav-pills').append(
-                        '<li class="nav-item"> <a href="#" class="nav-link"> <span class="menu-icon"><i class="fas fa-plus smaller-icon"></i></span><i class="fas fa-folder"></i> ' + tableName +
+                        '<li class="nav-item"> <a href="#" class="nav-link"> <span class="menu-icon"><i class="fas fa-plus smaller-icon" data-clickable="true"></i></span><i class="fas fa-folder" data-clickable="false"></i> ' + tableName +
                         '<span class="badge badge-info">' + tableGroup.count + '</span></a> <ul class="nav nav-treeview" id="' + tableName + '"></ul>');
 
                     for (var x = 0; x < tableGroup.models.length; x++) {
@@ -320,6 +320,7 @@
 
         //});
     });
+    
     $(document).ready(function () {
         // Add click event handler to the "+" icons on the left side
         $('.sidebar .menu-icon i.fa-plus').click(function (e) {
@@ -360,10 +361,7 @@
             }
         });
     });
-
-
-
-
+    
 </script>
 
 

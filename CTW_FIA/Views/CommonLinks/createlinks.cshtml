@@ -370,6 +370,235 @@
                             break;
 
                     }
+                    case 'Incident':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                    case 'Address':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'Group':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'Vehicle':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'Detonator':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                    case 'Explosive':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'Ordinance':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'PowerSource':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }case 'InitiationSystem':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }case 'Firearms':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        } 
+                        case 'CBRN':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'Components':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'Address':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'Communications':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'Chemical':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'Evidence':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'Equipment':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                    case 'PoliceStation':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'BankAccount':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'Property':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
+                        case 'tblMedia':
+                        {
+
+                            $(tableid).find('thead').empty();
+                            $(tableid).find('tbody').empty();
+                            $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
+                            for (var i = 0; i < jsonObject.length; i++) {
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                            }
+                            break;
+                        }
                     default:
                         $(tableid).find('thead').empty();
                         $(tableid).find('tbody').empty();
