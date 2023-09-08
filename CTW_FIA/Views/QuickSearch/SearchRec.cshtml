@@ -28,7 +28,7 @@
 
     .smaller-icon
     {
-        font-size: 0.7em;
+        font-size: 0.6em;
         margin-right: 5px;
     }
 
@@ -258,7 +258,7 @@
                     var iconClass = tableIcons[tableName] || 'fas fa-question'; // Default icon if not found
 
                     $('.sidebar nav .nav-pills').append(
-                        '<li class="nav-item"> <a href="#" class="nav-link"> <span class="menu-icon"><i class="fas fa-plus smaller-icon"></i></span><i class="fas fa-folder"></i> ' + tableName +
+                        '<li class="nav-item"> <a href="#" class="nav-link"> <span class="menu-icon"><i class="fas fa-plus smaller-icon" data-clickable="true"></i></span><i class="fas fa-folder" data-clickable="false"></i> ' + tableName +
                         '<span class="badge badge-info">' + tableGroup.count + '</span></a> <ul class="nav nav-treeview" id="' + tableName + '"></ul>');
 
                     for (var x = 0; x < tableGroup.models.length; x++) {
@@ -320,9 +320,11 @@
 
         //});
     });
+    
     $(document).ready(function () {
         // Add click event handler to the "+" icons on the left side
-        $('.sidebar .menu-icon i').click(function () {
+        $('.sidebar .menu-icon i.fa-plus').click(function (e) {
+            e.stopPropagation(); // Prevent the click event from propagating to the parent <a> element
             var icon = $(this);
             var link = icon.closest('a'); // Get the <a> element
             var elementsToColor = link.find('.menu-icon i, .fas.fa-folder, .table-name, .badge.badge-info');
@@ -336,11 +338,14 @@
                 var badgeInfo = link.find('.badge.badge-info');
                 badgeInfo.css('background-color', 'blue');
                 badgeInfo.css('color', 'white');
-                
 
                 // Reset the color of unencapsulated text to its original color
                 link.css('color', 'blue'); // Reset the color of unencapsulated text inside <a>
+
+                // Show the sublist
+                link.next('ul').show();
             } else {
+                // If the icon has the "fa-minus" class, close the sublist
                 icon.removeClass('fa-minus open-folder-icon').addClass('fa-plus closed-folder-icon');
                 elementsToColor.removeClass('open-color'); // Remove the open-color class to reset the text color
 
@@ -350,10 +355,13 @@
 
                 // Reset the color of unencapsulated text to its original color
                 link.css('color', ''); // Reset the color of unencapsulated text inside <a>
+
+                // Hide the sublist
+                link.next('ul').hide();
             }
         });
     });
-
+    
 </script>
 
 
