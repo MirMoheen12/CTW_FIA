@@ -19,8 +19,8 @@ namespace CTW_FIA.Controllers
         }
         public IActionResult createlinks()
         {
-            var data = commonlinks.GetallLinks();
-            return View(data);
+            
+            return View();
         }
         public JsonResult AddLink(string Srctab,string Desttab,string srcStrn,string deststrn,string SE,string RE,string RL,string BI)
         {

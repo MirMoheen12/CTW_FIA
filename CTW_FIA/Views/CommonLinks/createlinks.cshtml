@@ -295,7 +295,8 @@
                     $("#sourceDatabaseSelect").append(`<option value="">Select Database</option>`);
                     $("#destinationDatabaseSelect").empty();
                     $("#destinationDatabaseSelect").append(`<option value="">Select Database</option>`);
-                    for (var i = 0; i < response.length; i++) {
+                    for (var i = 0; i < response.length; i++)
+                    {
 
                         addOption(response[i].strTable, response[i].strTable, '#sourceDatabaseSelect')
                         addOption(response[i].strTable, response[i].strTable, '#destinationDatabaseSelect')
@@ -347,8 +348,7 @@
 
         function getdata(tableid, startcount,EndCount, Tabname, Searchrec, callby) {
             $.ajax({
-
-                url: '/Jsonside/GetSingleRec',
+             url: '/Jsonside/GetSingleRec',
                 type: 'GET',
             data: { SID: startcount, EID:EndCount, TableName: Tabname, Search: Searchrec },
                 contentType: 'application/json',
@@ -359,7 +359,6 @@
                 switch (Tabname) {
                     case 'Person':
                     {
-                        
                             $(tableid).find('thead').empty();
                             $(tableid).find('tbody').empty();
                             $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
