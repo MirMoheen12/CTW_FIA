@@ -1,6 +1,6 @@
-﻿@model IEnumerable<CTW_FIA.Models.DatabaseModels.CommonLinks>
+﻿@model IEnumerable<CTW_FIA.Models.LocalModels.CommonlinksModel>
 @{
-   
+    int counter = 1;
 
 }
 
@@ -124,7 +124,7 @@
             </select>*@
             <label for="sourceKeywordSearch">Search any Keyword:</label>
 
-            <input type="text" id="sourceKeywordSearch" name="SourceKeyword" />
+         <input type="text" id="sourceKeywordSearch" name="SourceKeyword" />
         <button class="btn btn-sm btn-primary" type="button" id="src_searchBtn">Search</button>
             <div class="table-container">
             <table id="table1body">
@@ -255,10 +255,21 @@
                                         <th class="max-width">Destination Name</th>
                                         <th class="max-width">Creation Date</th>
                                         <th class="max-width">Reason</th>
-                                        <th class="max-width">Actions </th>
+                                
                                     </tr>
                                 </thead>
                                 <tbody>
+                                      @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@counter</td>
+                                            <td>@item.SourceTable</td>
+                                            <td>@item.DestTable</td>
+                                           <td>@DateTime.Parse(item.CreatedOn).ToString("MM/dd/yyyy")</td>
+                                           <td>@item.Reason</td>
+                                        </tr>
+                                        counter++;
+                                    }
                                 </tbody>
                             </table>
 
@@ -274,8 +285,16 @@
     </div>
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
     <script>
+
+    $("#commonLinkTable").DataTable({
+
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print"]
+    }).buttons().container().appendTo('#commonLinkTable .col-md-6:eq(0)');
+
         var LSID = 1;
         var LEID = 3;
         var RSID2 = 1;
@@ -707,8 +726,8 @@
             }
         });
         $("#des_next").click(function () {
-        RSID2 = RSID2 - 3;
-        REID2 = REID2 - 3;
+        RSID2 = RSID2 + 3;
+        REID2 = REID2 + 3;
             $("#des_pre").attr("disabled", false);
         if (RSID2 == 0) {
 
