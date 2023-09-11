@@ -1,0 +1,386 @@
+﻿
+@{
+	
+}
+
+<div class="no-gutters text-dark">
+<div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Add Media</h4>
+        <form class="form-sample">
+
+            <div class="col-md-6">
+                <div class="form-group row">
+                <div class="col-sm-4">
+                    <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" checked> Add Picture <i class="input-helper"></i></label>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2"> Add File <i class="input-helper"></i></label>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="radio" onclick="myFunction()" class="form-check-input" name="membershipRadios" id="membershipRadios3" value="option2"> Add Folder <i class="input-helper"></i></label>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+                <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" for="customFile">Image / File Upload</label>
+                        <div class="col-sm-9">
+                            <input type="file" id="image-input" class="btn btn-outline-primary btn-icon-text" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<p class="card-description text-dark"> Details </p>*@
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">File name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="txtFilename" >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Description</label>
+                <div class="col-sm-9">
+                  <textarea class="form-control" id="txtDescription" rows="4"></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+            <div id="display-image"></div>
+          <br/>
+           <button type="button" class="btn btn-primary btn-fw" onclick="SaveMediaData()"> Save </button>
+           <button type="button" class="btn btn-secondary btn-fw"  onclick="CancelTask()">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+    #display-image {
+        width: 350px;
+        height: 290px;
+        border: 2px solid #dddddd;
+        background-position: center;
+        background-size: cover;
+
+        margin-left: 40rem;
+        margin-top: -17rem;
+
+    }
+</style>
+<script type="text/javascript">
+     $(document).ready(function() {
+               $('.spinner').css('display', 'none');
+     });
+    // Loading and showing Image
+        const image_input = document.querySelector("#image-input");
+        image_input.addEventListener("change", function () {
+            const reader = new FileReader();
+            reader.addEventListener("load", () => {
+            const uploaded_image = reader.result;
+            document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+        });
+        reader.readAsDataURL(this.files[0]);
+            SaveFileData();
+        });
+        var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+        alert('The file has been uploaded successfully.');
+    };    
+    
+ function SaveMediaData()
+  {
+     var Filename = $("#txtFilename").val();
+     var Description = $("#txtDescription").val();
+     var Reason = "reason";
+       var settings = {
+          "url": "/api/MediaFiles1",
+          "method": "POST",
+          "timeout": 0,
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "data": JSON.stringify({
+            "intID": 0,
+            "strURN": "string",
+            "FileName": Filename,
+            "Description": Description,
+            "ContentType": Reason,
+            "FilePath": "\\Upload\\images\\"+Filename,
+            "createdBy": "admin",
+            "dteCreated": "2022-04-03T20:11:50.797Z",
+            "lastModifiedBy": "admin",
+            "lastModified": "2022-04-03T20:11:50.797Z"
+          }),
+        }; 
+
+        $.ajax(settings).done(function (response) {
+          alert("Media has been added successfully");
+               //localStorage.setItem("desstrURN", response.strURN);
+              
+        });
+     
+  }
+  function addLink()
+  {
+        var strSelected = localStorage.getItem("tableName");
+          
+        var desSelected = localStorage.getItem("destableName");
+       
+        var srcstrUrn =  localStorage.getItem("strURN");
+          
+        var desstrUrn = localStorage.getItem("desstrURN");
+       
+       // alert(strSelected + "\t" + desSelected + "\t" + srcstrUrn + "\t" + desstrUrn);
+        var src_eva = 0;
+        $("#src_evaluation option:selected").each(function () {
+            src_eva += parseInt($(this)[0].value);
+        });
+        var info_eva = 0;
+         $("#info_evaluation option:selected").each(function () {
+            info_eva += parseInt($(this)[0].value);
+        });
+         //alert("strSelected "+ strSelected +"desSelected "+ desSelected );
+        
+        //var   srcTableId= getIdbyName(strSelected);
+        // var   desTableId=  getIdbyName(desSelected);
+        
+       //alert("srcTableName "+ srcTableId +"desTableName "+ desTableId );
+        var commonLinksParams = {
+            intDbIdSource:0,
+            intDbIdDest:0,  
+            strURNSource : srcstrUrn,
+            strURNDest : desstrUrn,
+              srcTableName : strSelected,
+            desTableName : desSelected,
+            optBiDirectional : false,
+            strLink : $("#reason_link").val(),
+            SourceEvaluation :src_eva,
+            InformationEvaluation: info_eva
+        };
+        //alert(JSON.stringify(commonLinksParams));
+      
+        var url = "/api/CommonLinks/PostCommonLinkbyMedia";
+        //alert(url);
+        //var q = { query: $("#src_searchText").val() };
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json",
+            data: JSON.stringify(commonLinksParams),
+            
+            success: function (response) {
+                alert("Link has been generated Successfully.");
+               
+               var id=localStorage.getItem("strURN");
+               var tname = localStorage.getItem("tableName");
+                 //window.localStorage.clear();
+               if(tname == "Incident")
+               {
+                   window.location.href = "/Admin/Records/PreviewRecord?controller=Incidents&id="+id;
+         
+                // window.location.href = "/Admin/Records/PreviewIncidentRecord?id="+id;
+               } 
+
+              else if(tname == "Person")
+              {
+                    window.location.href = "/Admin/Records/PreviewRecord?controller=People&id="+id;
+        
+                 //window.localStorage.clear();
+               //  window.location.href = "/Admin/Records/PreviewPersonRecord?id="+id;
+              } 
+               else if(tname == "Group")
+              {
+                    window.location.href = "/Admin/Records/PreviewRecord?controller=Group&id="+id;
+         
+                 //window.localStorage.clear();
+                // window.location.href = "/Admin/Records/GroupPreview?id="+id;
+              } 
+               else if(tname == "Explosives")
+              {
+                 //window.localStorage.clear();
+                 //window.location.href = "/Admin/Records/PreviewExplosivesRecord?id="+id;
+                window.location.href = "/Admin/Records/PreviewRecord?controller=Explosives&id="+id;
+         
+              }
+               else if(tname == "BankAccounts")
+              {
+                   window.location.href = "/Admin/Records/PreviewRecord?controller=BankAccounts&id="+id;
+    
+                 //window.localStorage.clear();
+               //  window.location.href = "/Admin/Records/PreviewBankAccount?id="+id;
+              }
+                 else if(tname == "Vehicle")
+              {
+                    window.location.href = "/Admin/Records/PreviewRecord?controller=Vehicles&id="+id;
+         
+                 //window.localStorage.clear();
+                // window.location.href = "/Admin/Records/PreviewVehicleRecord?id="+id;
+              }
+               else if(tname == "Chemical")
+              {
+                 //window.localStorage.clear();
+                  window.location.href = "/Admin/Records/PreviewRecord?controller=Chemicals&id="+id;
+         
+                 // window.location.href = "/Admin/Records/PreviewChemicals?id="+id;
+              }
+                else if(tname == "Communications")
+              {
+                  window.location.href = "/Admin/Records/PreviewRecord?controller=Communications&id="+id;
+         
+                 //window.localStorage.clear();
+                // window.location.href = "/Admin/Records/PreviewCommunicationsRecord?id="+id;
+              } 
+                  else if(tname == "Components")
+              {
+                     window.location.href = "/Admin/Records/PreviewRecord?controller=Components&id="+id;
+                
+                 //window.localStorage.clear();
+               //  window.location.href = "/Admin/Records/PreviewComponentsRecord?id="+id;
+              } 
+                   else if(tname == "PowerSource")
+              {
+                   window.location.href = "/Admin/Records/PreviewRecord?controller=PowerSources&id="+id;
+        
+                 //window.localStorage.clear();
+               //window.location.href = "/Admin/Records/PreviewPowerSourceRecord?id="+id;
+              }      
+                   else if(tname == "Evidence")
+              {
+                    window.location.href = "/Admin/Records/PreviewRecord?controller=Evidence&id="+id;
+           
+                 //window.localStorage.clear();
+                // window.location.href = "/Admin/Records/PreviewEvidenceRecord?id="+id;
+              } 
+
+                   else if(tname == "CBRN")
+              {
+                    window.location.href = "/Admin/Records/PreviewRecord?controller=CBRNs&id="+id;
+                 
+                 //window.localStorage.clear();
+                 //window.location.href = "/Admin/Records/PreviewCBRNRecord?id="+id;
+              } 
+
+                else if(tname == "Address")
+              {
+                    window.location.href = "/Admin/Records/PreviewRecord?controller=Address&id="+id;
+                 
+                 //window.localStorage.clear();
+                // window.location.href = "/Admin/Records/PreviewAddressRecord?id="+id;
+              }
+              
+
+              else if(tname == "Ordinance")
+               {
+                   window.location.href = "/Admin/Records/PreviewRecord?controller=Ordinances&id="+id;
+         
+                   //window.localStorage.clear();
+                  // window.location.href = "/Admin/Records/Ordinancepreview?id=" + id;
+               }
+                  else if(tname == "InitiationSystem")
+              {
+                    window.location.href = "/Admin/Records/PreviewRecord?controller=InitiationSystems&id="+id;
+         
+                 //window.localStorage.clear();
+                // window.location.href = "/Admin/Records/PreviewInitiationRecord?id="+id;
+
+              } 
+                  else if(tname == "Firearms")
+              {
+                 //window.localStorage.clear();
+               //  window.location.href = "/Admin/Records/PreviewFirearmRecord?id="+id;
+                    window.location.href = "/Admin/Records/PreviewRecord?controller=Firearms&id="+id;
+         
+              }    else if(tname == "Equipment")
+              {
+                 //window.localStorage.clear();
+              //   window.location.href = "/Admin/Records/PreviewEquipmentRecord?id="+id;
+                window.location.href = "/Admin/Records/PreviewRecord?controller=Equipments&id="+id;
+                
+              }
+                else if(tname == "Detonator")
+              {
+                    window.location.href = "/Admin/Records/PreviewRecord?controller=Detonators&id="+id;
+         
+                 //window.localStorage.clear();
+                //  window.location.href = "/Admin/Records/PreviewDetonatorsRecord?id="+id;
+
+              }
+                else if(tname == "Property")
+              {
+                    window.location.href = "/Admin/Records/PreviewRecord?controller=Properties&id="+id;
+         
+                 //window.localStorage.clear();
+                 // window.location.href = "/Admin/Records/PropertyPreView?id="+id;
+              } 
+             
+                else 
+              {
+                 //window.localStorage.clear();
+                 window.location.href = "/Admin/Records/AddRecord";
+              } 
+
+              
+             }
+
+        });
+
+}
+
+
+function CancelTask()
+{            
+      
+}
+     function  SaveFileData()
+   {
+      var fdata = new FormData();
+        var fileInput = $("#image-input")[0];
+        var Imagefile = fileInput.files[0];
+        fdata.append("file", Imagefile);
+         $.ajax({
+             type: "POST",
+             url: "/api/UploadMedia/PostMedia/",
+             processData: false,
+             contentType: false,
+             data: fdata,
+             dataType: "text",
+             success: function(msg) {
+                 console.log(msg);
+                 $("#txtFilename").val(msg);
+                 //SaveMediaData();
+             },
+             error: function(msg) {
+                 console.log(msg);
+             }
+         });
+   }
+
+
+</script>

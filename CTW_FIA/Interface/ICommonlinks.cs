@@ -6,7 +6,7 @@ namespace CTW_FIA.Interface
     public interface ICommonlinks
     {
         public List<GraphDto> getAlllinksCount(string StrUrn);
-        public List<CommonLinks> GetallLinks();
+        public List<CommonlinksModel> GetallLinks();
         public bool CreateCommonlinks(string srcSTRURN, string dstSTRURN, string DbSrc, string DbDest, string linkType, string textsearch, string SE = "", string RE = "", string RL = "", string BI = "");
     }
 }

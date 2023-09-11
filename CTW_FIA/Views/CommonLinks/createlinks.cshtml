@@ -1,6 +1,6 @@
-﻿@model IEnumerable<CTW_FIA.Models.DatabaseModels.CommonLinks>
+﻿@model IEnumerable<CTW_FIA.Models.LocalModels.CommonlinksModel>
 @{
-   
+    int counter = 1;
 
 }
 
@@ -116,15 +116,15 @@
                 <option value="table1">Table1</option>
                 <!-- Add more options as needed -->
             </select>
-       @*     <label for="sourceKeywordSearch">Province</label>
-            <select id="selectprovince" name="SelectProvince">
-                <option value="select">Select</option>
-                <option value="select">Value1</option>
-                <option value="select">Value2</option>
-            </select>*@
+            <span id="leftprovince" style="display:none;">
+            <label for="sourceKeywordSearch">Province</label>
+        <select id="selectleftprovince" name="SelectProvince">
+             
+            </select>
+            </span>
             <label for="sourceKeywordSearch">Search any Keyword:</label>
 
-            <input type="text" id="sourceKeywordSearch" name="SourceKeyword" />
+         <input type="text" id="sourceKeywordSearch" name="SourceKeyword" />
         <button class="btn btn-sm btn-primary" type="button" id="src_searchBtn">Search</button>
             <div class="table-container">
             <table id="table1body">
@@ -155,12 +155,12 @@
                 <option value="table1">Table1</option>
                 <!-- Add more options as needed -->
             </select>
-       @*     <label for="sourceKeywordSearch">Province</label>
-            <select id="selectprovince" name="SelectProvince">
-                <option value="select">Select</option>
-                <option value="select">Value1</option>
-                <option value="select">Value2</option>
-            </select>*@
+            <span id="rightprovince" style="display:none;">
+            <label for="sourceKeywordSearch">Province</label>
+            <select id="selectRightprovince" name="SelectProvince">
+             
+            </select>
+            </span>
             <label for="destinationKeywordSearch">Search any Keyword:</label>
             <input type="text" id="destinationKeywordSearch" name="DestinationKeyword" />
         <button class="btn btn-sm btn-primary" type="button" id="des_searchBtn">Search</button>
@@ -255,10 +255,21 @@
                                         <th class="max-width">Destination Name</th>
                                         <th class="max-width">Creation Date</th>
                                         <th class="max-width">Reason</th>
-                                        <th class="max-width">Actions </th>
+                                
                                     </tr>
                                 </thead>
                                 <tbody>
+                                      @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@counter</td>
+                                            <td>@item.SourceTable</td>
+                                            <td>@item.DestTable</td>
+                                           <td>@DateTime.Parse(item.CreatedOn).ToString("MM/dd/yyyy")</td>
+                                           <td>@item.Reason</td>
+                                        </tr>
+                                        counter++;
+                                    }
                                 </tbody>
                             </table>
 
@@ -274,8 +285,49 @@
     </div>
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
     <script>
+    function getAllprovince()
+    {
+        $.ajax({
+
+            url: '/Jsonside/GetAllProvince',
+            type: 'GET',
+            data: { country: 'Pakistan' },
+            contentType: 'application/json',
+            success: function (response) {
+                $("#personprovince").empty();
+                $("#personprovince").append(`<option value="">Select Province</option>`);
+                for (var i = 0; i < response.length; i++) {
+                    
+                    addOption(response[i].strProvince, response[i].strProvince, '#selectleftprovince');
+                    addOption(response[i].strProvince, response[i].strProvince, '#selectRightprovince');
+
+
+                }
+                if (response.length == 0) {
+                    $("#personprovince").empty();
+
+                }
+                else {
+                    $('.spinner').css('display', 'none');
+                }
+
+
+            }
+        });
+    }
+      function addOption(value, text,userid) 
+    {
+        $(userid).append(`<option value="${value}">${text}</option>`);
+    }
+    $("#commonLinkTable").DataTable({
+
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print"]
+    }).buttons().container().appendTo('#commonLinkTable .col-md-6:eq(0)');
+
         var LSID = 1;
         var LEID = 3;
         var RSID2 = 1;
@@ -283,6 +335,7 @@
         var SrcStrURn = "";
         var DestStrUrn = "";
         $(document).ready(function () {
+            getAllprovince();
             $.ajax({
 
                 url: '/Jsonside/GetAllDatabaselist',
@@ -318,13 +371,27 @@
         function addOption(value, text, userid) {
             $(userid).append(`<option value="${value}">${text}</option>`);
         }
+        $('#selectleftprovince').change(function () 
+        {
+            alert($(this).val());
+        });
+        $('#sourceDatabaseSelect').change(function () 
+        {
 
-        $('#sourceDatabaseSelect').change(function () {
             if ($(this).val() == "") {
 
                 $("#table1body").empty();
             }
             else {
+            if ($(this).val() == "Person" || $(this).val() == "Incident")
+            {
+                 $("#leftprovince").show();
+                
+            }
+            else
+            {
+                $("#leftprovince").hide();
+            }
                 LSID = 1;
                 LEID=3;
                 //alert(LSID+' dd'+LEID);
@@ -337,6 +404,13 @@
                 $("#table2body").empty();
             }
             else {
+            if ($(this).val() == "Person" || $(this).val() == "Incident") {
+                $("#rightprovince").show();
+
+            }
+            else {
+                $("#rightprovince").hide();
+            }
             RSID2 = 1;
             REID2 = 3;
             
@@ -707,8 +781,8 @@
             }
         });
         $("#des_next").click(function () {
-        RSID2 = RSID2 - 3;
-        REID2 = REID2 - 3;
+        RSID2 = RSID2 + 3;
+        REID2 = REID2 + 3;
             $("#des_pre").attr("disabled", false);
         if (RSID2 == 0) {
 

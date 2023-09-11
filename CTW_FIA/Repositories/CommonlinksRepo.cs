@@ -22,7 +22,7 @@ namespace CTW_FIA.Repositories
             {
                 CommonLinks commonLinks = new CommonLinks();
                 commonLinks.strURN = databaseRepo.ExecuteProc("GetCommonlinksSTRURN", null).Rows[0][0].ToString();
-                commonLinks.strLink = linkType;
+                commonLinks.strLink = RE;
                 commonLinks.strURNSource = srcSTRURN;
                 commonLinks.strURNDest = dstSTRURN;
                 commonLinks.textSearch = textsearch;
@@ -47,19 +47,17 @@ namespace CTW_FIA.Repositories
         //    var dat=appDbContext.CommonLinks.Take(100).ToList();
         //    return dat;
         //}
-        public List<CommonLinks> GetallLinks()
+        public List<CommonlinksModel> GetallLinks()
         {
-            var data = appDbContext.CommonLinks
-                .Select(item => new CommonLinks
-                {
-                    strURNDest = item.strURNDest, 
-                    strURNSource = item.strURNSource
-                    
-                })
-                .Take(100)
-                .ToList();
+            var dbres = databaseRepo.ExecuteProc("getCommonlinksDetails", null);
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(CommonlinksModel));
+            var list = new List<CommonlinksModel>();
+            foreach (var item in dt)
+            {
+                list.Add((CommonlinksModel)item);
+            }
 
-            return data;
+            return list;
         }
 
 
