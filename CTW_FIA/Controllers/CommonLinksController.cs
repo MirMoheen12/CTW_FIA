@@ -17,10 +17,11 @@ namespace CTW_FIA.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult createlinks()
         {
-            
-            return View();
+            var data = commonlinks.GetallLinks();
+            return View(data);
         }
         public JsonResult AddLink(string Srctab,string Desttab,string srcStrn,string deststrn,string SE,string RE,string RL,string BI)
         {

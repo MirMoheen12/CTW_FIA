@@ -42,11 +42,27 @@ namespace CTW_FIA.Repositories
 
 
         }
+        //public List<CommonLinks> GetallLinks()
+        //{
+        //    var dat=appDbContext.CommonLinks.Take(100).ToList();
+        //    return dat;
+        //}
         public List<CommonLinks> GetallLinks()
         {
-            var dat=appDbContext.CommonLinks.Take(100).ToList();
-            return dat;
+            var data = appDbContext.CommonLinks
+                .Select(item => new CommonLinks
+                {
+                    strURNDest = item.strURNDest, 
+                    strURNSource = item.strURNSource
+                    
+                })
+                .Take(100)
+                .ToList();
+
+            return data;
         }
+
+
         private void AddErrorLog(string Msg)
         {
             var dat = new
