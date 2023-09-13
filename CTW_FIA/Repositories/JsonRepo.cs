@@ -1,6 +1,7 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Data;
 
 namespace CTW_FIA.Repositories
@@ -39,6 +40,18 @@ namespace CTW_FIA.Repositories
             };
             var dat = databaseRepo.ExecuteProc("GetRecords", databaseRepo.returnSppram(data));
             return dat;
+        }
+
+        public List<QuickSearchRSide> Displaylist(string strURN)
+        {
+            var data = new
+            {
+                StrURn = strURN
+            };
+            var dat = databaseRepo.ExecuteProc("getRightNavlink", databaseRepo.returnSppram(data));
+            var res = databaseRepo.ConverttoObject(dat, typeof(QuickSearchRSide));
+            return res.Cast<QuickSearchRSide>().ToList();
+            
         }
     }
 }
