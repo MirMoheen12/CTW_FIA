@@ -113,7 +113,7 @@
     <div class="row no-gutters col-md-3" style="max-height:300px;">
 
         <div class="col-md-12 d-flex justify-content-center" >
-            <img src="https://localhost:7136/Content/assets/images/logo.png" alt="Logo" style="max-height:250px; margin-top:10px;">
+            <img src="/Content/assets/images/logo.png" alt="Logo" style="max-height:250px; margin-top:10px;">
         </div>
 
         <div class="col-md-12">
@@ -134,7 +134,7 @@
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="custom-tabs-two-tabContent">
-                        <div class="tab-pane fade" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
+                        @*<div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
 
                             <div class="sidebar">
                                 <nav class="mt-1">
@@ -190,7 +190,55 @@
                                 </nav>
                             </div>
 
+                        </div>*@
+                        <div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
+                            <div class="sidebar">
+                                <nav class="mt-1">
+                                    <ul id="link_ul_id" class="flex-column nav-child-indent nav-compact" style="list-style-type:none" data-widget="treeview" role="list" data-accordion="false">
+                                        <li class="nav-item custom-li">
+                                            <a href="#" class="nav-link">
+                                                <span class="menu-icon">
+                                                    <i class="fas fa-plus smaller-icon" data-clickable="true"> </i>
+                                                </span>
+                                                <i class="fas fa-folder" data-clickable="false"></i>
+                                                Address
+                                            </a>
+                                            <ul id="address-list" class="nav flex-column collapse ml-5">
+                                                <li class="distance">Address Item 1</li>
+                                                <li class="distance">Address Item 2</li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item custom-li">
+                                            <a href="#" class="nav-link">
+                                                <span class="menu-icon">
+                                                    <i class="fas fa-plus smaller-icon" data-clickable="true"> </i>
+                                                </span>
+                                                <i class="fas fa-folder" data-clickable="false"></i>
+                                                Firearms
+                                            </a>
+                                            <ul id="firearms-list" class="nav flex-column collapse ml-5">
+                                                <li class="distance">Firearm Item 1</li>
+                                                <li class="distance">Firearm Item 2</li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item custom-li">
+                                            <a href="#" class="nav-link">
+                                                <span class="menu-icon">
+                                                    <i class="fas fa-plus smaller-icon" data-clickable="true"> </i>
+                                                </span>
+                                                <i class="fas fa-folder" data-clickable="false"></i>
+                                                Detonators
+                                            </a>
+                                            <ul id="detonators-list" class="nav flex-column collapse ml-5">
+                                                <li class="distance">Detonator Item 1</li>
+                                                <li class="distance">Detonator Item 2</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
+
                         <div class="tab-pane fade" id="custom-tabs-two-profile" role="tabpanel" aria-labelledby="custom-tabs-two-profile-tab">
                             <ul id="media_ul_id" class="nav flex-column"></ul>
                         </div>
@@ -292,7 +340,7 @@
 
             // Define the desired table order
             var desiredTableOrder = ["Incident", "Person", "Group", "Explosive"];
-            var desiredTableOrder2 = ["Incident", "Person", "Group", "Explosive","Address","Detonator","Vehicle","Firearm","CBRN"];
+            
 
             // Iterate over the desired table order and append the tables accordingly
             for (var i = 0; i < desiredTableOrder.length; i++) {
@@ -317,7 +365,7 @@
                     {
                         if (tableGroup.models[x].tableName == tableName) 
                         {
-                            $('#'+tableName).append("<li class='nav-item'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + tableGroup.models[x].strUrn + "\")'> <i class='fas fa-caret-right' style='font-size: smaller; margin-right: 4px;';></i>" + tableGroup.models[x].textSearch + "</button></li>");
+                            $('#'+tableName).append("<li class='nav-item'> <button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + tableGroup.models[x].strUrn + "\")'> <i class='fas fa-caret-right' style='font-size: smaller; margin-right: 4px;';></i>" + tableGroup.models[x].textSearch + "</button></li>");
                         }
                         if (m == 1)
                         {
@@ -366,8 +414,7 @@
         });
         callrightSide(strUrn);
     }
-    function callrightSide(strUrn)
-    {
+    function callrightSide(strUrn) {
         $.ajax({
             type: "GET",
             url: "/Jsonside/DisplayRightSide",
@@ -375,18 +422,61 @@
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             success: function (response) {
+                // Clear the list items in the specific tab's ul
+                var activeTabList = $('#custom-tabs-two-home ul'); // Get the ul of the specific tab
+                activeTabList.empty(); // Clear the container
 
-                console.log(response);
-                for (var i = 0; i < response.length; i++)
-                {
-                    
+                // Track unique table names
+                var uniqueTableNames = [];
 
-                    // $('#Tblbody').html('<tr><td>' + response[i].propertName + '</td><td>' + response[i].propertValue + '</td></tr>');
+                // Iterate through the API response
+                for (var i = 0; i < response.length; i++) {
+                    var tableName = response[i].tableName; // Make sure the property name matches the data
 
+                    // Check if the table name is unique
+                    if (!uniqueTableNames.includes(tableName)) {
+                        uniqueTableNames.push(tableName);
+
+                        // Create a new list item only if it's the first time for this table name
+                        var listItem = $('<li>').addClass('nav-item custom-li');
+
+                        // Create the anchor element with the desired structure, including icons
+                        var anchor = $('<a>').addClass('nav-link');
+
+                        // Add a click event handler to the anchor to toggle the sublist
+                        anchor.click(function () {
+                            var icon = anchor.find('.menu-icon i');
+                            var button = listItem.find('.button-sublist');
+
+                            if (icon.hasClass('fa-plus')) {
+                                icon.removeClass('fa-plus closed-folder-icon').addClass('fa-minus open-folder-icon');
+                                button.show();
+                            } else {
+                                icon.removeClass('fa-minus open-folder-icon').addClass('fa-plus closed-folder-icon');
+                                button.hide();
+                            }
+                        });
+
+                        anchor.append('<span class="menu-icon"><i class="fas fa-plus smaller-icon" data-clickable="true"> </i></span>');
+                        anchor.append('<i class="fas fa-folder" data-clickable="false"></i>');
+                        anchor.append(tableName); // Append the table name
+
+                        // Create a button sublist under the list item and hide it by default
+                        var buttonSublist = $('<ul>').addClass('nav flex-column ml-5 button-sublist').hide();
+
+                        // Append buttons to the sublist
+                        buttonSublist.append("<li class='distance'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + strUrn + "\")'> <i class='fas fa-caret-right' style='font-size: smaller; margin-right: 4px;';></i>Button Text</button></li>");
+
+                        // Append the anchor element to the list item
+                        listItem.append(anchor);
+
+                        // Append the button sublist to the list item
+                        listItem.append(buttonSublist);
+
+                        // Append the list item to the "custom-tabs-two-home" tab's ul
+                        activeTabList.append(listItem);
+                    }
                 }
-                $('.spinner').css('display', 'none');
-
-
 
             },
             error: function (response) {
@@ -394,11 +484,12 @@
             }
         });
     }
+
+   
     $(document).ready(function () 
     {
-        //$('#SearchGenericTable').DataTable({
-
-        //});
+        $('#custom-tabs-two-home-tab').addClass('active');
+        $('#custom-tabs-two-home').addClass('show active');
     });
         
     $(document).ready(function () {
@@ -443,19 +534,34 @@
         });
     });
 
-
+   
+    // Add an event listener to toggle the list item when clicking the "+" or "-" icon on the right side
     $(document).ready(function () {
-        // Event handler for the "+" icons
-        $('.menu-icon i[data-clickable="true"]').on('click', function () {
-            // Toggle the class to change the icon to "-" or "+"
-            $(this).toggleClass('fa-plus fa-minus');
+        // Add click event handler for the "+" icons on both sides
+        $(document).on('click', '.menu-icon i.smaller-icon', function (e) {
+            e.stopPropagation(); // Prevent the click event from propagating to the parent <a> element
+            var icon = $(this);
+            var link = icon.closest('a'); // Get the <a> element
+            var elementsToColor = link.find('.menu-icon i, .fas.fa-folder, .table-name, .badge.badge-info');
 
-            // Find the closest parent <li> and its sibling <ul>
-            var parentLi = $(this).closest('li');
-            var sublist = parentLi.find('ul');
-
-            // Toggle the visibility of the sibling <ul>
-            sublist.toggle();
+            if (icon.hasClass('fa-plus')) {
+                icon.removeClass('fa-plus closed-folder-icon').addClass('fa-minus open-folder-icon');
+                elementsToColor.addClass('open-color');
+                var badgeInfo = link.find('.badge.badge-info');
+                badgeInfo.css('background-color', 'blue');
+                badgeInfo.css('color', 'white');
+                link.css('color', 'blue');
+                link.next('ul').show();
+            } 
+            else
+            {
+                icon.removeClass('fa-minus open-folder-icon').addClass('fa-plus closed-folder-icon');
+                elementsToColor.removeClass('open-color');
+                var badgeInfo = link.find('.badge.badge-info');
+                badgeInfo.css('background-color', '');
+                link.css('color', '');
+                link.next('ul').hide();
+            }
         });
     });
 
