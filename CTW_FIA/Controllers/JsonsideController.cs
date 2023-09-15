@@ -99,6 +99,12 @@ namespace CTW_FIA.Controllers
           // var data2 = converterModel.GetModelFromDataTable(data);
             return Json(JSONString);
         }
+        [HttpGet]
+        public JsonResult DisplayRightSide(string strURN)
+        {
+            var data = jsn.Displaylist(strURN);
+            return Json(data);
+        }
 
     }
 }
