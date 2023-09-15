@@ -373,8 +373,13 @@
         }
         $('#selectleftprovince').change(function () 
         {
-            alert($(this).val());
+        getdata('#table1body', LSID, LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left", $('#selectleftprovince').val())
+           // alert($(this).val());
         });
+    $('#selectRightprovince').change(function () {
+        getdata('#table2body', RSID2, REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right", $('#selectRightprovince').val())
+
+    });
         $('#sourceDatabaseSelect').change(function () 
         {
 
@@ -395,7 +400,7 @@
                 LSID = 1;
                 LEID=3;
                 //alert(LSID+' dd'+LEID);
-                getdata('#table1body', LSID,LEID, $(this).val(), $('#sourceKeywordSearch').val(), "Left")
+                getdata('#table1body', LSID,LEID, $(this).val(), $('#sourceKeywordSearch').val(), "Left",null)
             }
         });
         $('#destinationDatabaseSelect').change(function () {
@@ -414,17 +419,17 @@
             RSID2 = 1;
             REID2 = 3;
             
-            getdata('#table2body', RSID2, REID2, $(this).val(), $('#destinationKeywordSearch').val(), "Right")
+            getdata('#table2body', RSID2, REID2, $(this).val(), $('#destinationKeywordSearch').val(), "Right",null)
            
             }
         });
 
 
-        function getdata(tableid, startcount,EndCount, Tabname, Searchrec, callby) {
+        function getdata(tableid, startcount,EndCount, Tabname, Searchrec, callby,Province) {
             $.ajax({
              url: '/Jsonside/GetSingleRec',
                 type: 'GET',
-            data: { SID: startcount, EID:EndCount, TableName: Tabname, Search: Searchrec },
+            data: { SID: startcount, EID: EndCount, TableName: Tabname, Search: Searchrec, Province: Province },
                 contentType: 'application/json',
                 success: function (response) {
                 var jsonObject = JSON.parse(response);
@@ -711,7 +716,7 @@
             else {
             LSID = 1;
             LEID = 3;
-            getdata('#table1body', LSID, LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left")
+            getdata('#table1body', LSID, LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left",null)
             }
 
 
@@ -723,7 +728,7 @@
             else {
             RSID2 = 1;
             REID2 = 3;
-            getdata('#table2body', RSID2, REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right")
+            getdata('#table2body', RSID2, REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right",null)
             }
 
 
@@ -745,7 +750,7 @@
                 alert('Select database');
             }
             else {
-                getdata('#table1body', LSID,LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left")
+                getdata('#table1body', LSID,LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left",null)
             }
         });
         $("#src_next").click(function () {
@@ -761,7 +766,7 @@
                 alert('Select database');
             }
             else {
-                getdata('#table1body', LSID,LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left")
+                getdata('#table1body', LSID,LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left",null)
             }
         });
         //Next
@@ -777,7 +782,7 @@
                 alert('Select database');
             }
             else {
-                getdata('#table2body', RSID2,REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right")
+                getdata('#table2body', RSID2,REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right",null)
             }
         });
         $("#des_next").click(function () {
@@ -793,7 +798,7 @@
                 alert('Select database');
             }
             else {
-            getdata('#table2body', RSID2, REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right")
+            getdata('#table2body', RSID2, REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right",null)
         }
         });
 

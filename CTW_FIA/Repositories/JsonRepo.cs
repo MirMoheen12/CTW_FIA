@@ -29,17 +29,33 @@ namespace CTW_FIA.Repositories
             var data = appDbContext.ReportingAgency.ToList();
             return data;
         }
-        public DataTable GetRecordData(string TableName, string SearchRec, int SRowNumber, int ERowNumber)
+        public DataTable GetRecordData(string TableName, string SearchRec, int SRowNumber, int ERowNumber, string? Province)
         {
-            var data = new
+            if (Province == null)
             {
-                TableName = TableName,
-                SearchRec = SearchRec,
-                StartRowNumber = SRowNumber,
-                EndRowNumber=ERowNumber
-            };
-            var dat = databaseRepo.ExecuteProc("GetRecords", databaseRepo.returnSppram(data));
-            return dat;
+                var data = new
+                {
+                    TableName = TableName,
+                    SearchRec = SearchRec,
+                    StartRowNumber = SRowNumber,
+                    EndRowNumber = ERowNumber
+                };
+                var dat = databaseRepo.ExecuteProc("GetRecords", databaseRepo.returnSppram(data));
+                return dat;
+            }
+            else
+            {
+                var data = new
+                {
+                    TableName = TableName,
+                    SearchRec = SearchRec,
+                    StartRowNumber = SRowNumber,
+                    EndRowNumber = ERowNumber,
+                    Province=Province
+                };
+                var dat = databaseRepo.ExecuteProc("GetRecordswihtProvince", databaseRepo.returnSppram(data));
+                return dat;
+            }
         }
 
         public List<QuickSearchRSide> Displaylist(string strURN)

@@ -86,14 +86,14 @@ namespace CTW_FIA.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetSingleRec(int SID,int EID,string TableName,string Search)
+        public JsonResult GetSingleRec(int SID,int EID,string TableName,string Search,string Province)
         {
             if (TableName == null)
             {
                 return null;
             }
             //var data = dashboard.getCtwdashboardsIncidentwise().Where(X => X.tablename == "PW").ToList(); 
-            var data = jsn.GetRecordData(TableName,Search,SID,EID);
+            var data = jsn.GetRecordData(TableName,Search,SID,EID,Province);
             string JSONString = string.Empty;
             JSONString = JsonConvert.SerializeObject(data);
           // var data2 = converterModel.GetModelFromDataTable(data);
