@@ -400,7 +400,7 @@
                 LSID = 1;
                 LEID=3;
                 //alert(LSID+' dd'+LEID);
-                getdata('#table1body', LSID,LEID, $(this).val(), $('#sourceKeywordSearch').val(), "Left",null)
+                getdata('#table1body', LSID,LEID, $(this).val(), $('#sourceKeywordSearch').val(), "Left",$('#selectleftprovince').val())
             }
         });
         $('#destinationDatabaseSelect').change(function () {
@@ -419,7 +419,7 @@
             RSID2 = 1;
             REID2 = 3;
             
-            getdata('#table2body', RSID2, REID2, $(this).val(), $('#destinationKeywordSearch').val(), "Right",null)
+            getdata('#table2body', RSID2, REID2, $(this).val(), $('#destinationKeywordSearch').val(), "Right", $('#selectRightprovince').val())
            
             }
         });
@@ -442,7 +442,7 @@
                             $(tableid).find('tbody').empty();
                             $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
                             for (var i = 0; i < jsonObject.length; i++) {
-                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strurn + '\')"  name="' + callby + '" value="' + jsonObject[i].strurn + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strurn + '</td><td>' + jsonObject[i].Name + '</td></tr>');
                             }
                             break;
 

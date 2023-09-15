@@ -45,16 +45,34 @@ namespace CTW_FIA.Repositories
             }
             else
             {
-                var data = new
+                if (TableName == "Incident")
                 {
-                    TableName = TableName,
-                    SearchRec = SearchRec,
-                    StartRowNumber = SRowNumber,
-                    EndRowNumber = ERowNumber,
-                    Province=Province
-                };
-                var dat = databaseRepo.ExecuteProc("GetRecordswihtProvince", databaseRepo.returnSppram(data));
-                return dat;
+                    var data = new
+                    {
+                        TableName = TableName,
+                        SearchRec = SearchRec,
+                        StartRowNumber = SRowNumber,
+                        EndRowNumber = ERowNumber,
+                        Province = Province
+                    };
+                    var dat = databaseRepo.ExecuteProc("GetRecordswihtProvince", databaseRepo.returnSppram(data));
+                    return dat;
+                }
+                else if (TableName == "Person")
+                {
+                    var data = new
+                    {
+                        TableName = TableName,
+                        SearchRec = SearchRec,
+                        StartRowNumber = SRowNumber,
+                        EndRowNumber = ERowNumber,
+                        Province = Province
+                    };
+                    var dat = databaseRepo.ExecuteProc("GetRecordswihtProvincePerson", databaseRepo.returnSppram(data));
+                    return dat;
+                }
+                return null;
+           
             }
         }
 
