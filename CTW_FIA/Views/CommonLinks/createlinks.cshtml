@@ -116,12 +116,12 @@
                 <option value="table1">Table1</option>
                 <!-- Add more options as needed -->
             </select>
-       @*     <label for="sourceKeywordSearch">Province</label>
-            <select id="selectprovince" name="SelectProvince">
-                <option value="select">Select</option>
-                <option value="select">Value1</option>
-                <option value="select">Value2</option>
-            </select>*@
+            <span id="leftprovince" style="display:none;">
+            <label for="sourceKeywordSearch">Province</label>
+        <select id="selectleftprovince" name="SelectProvince">
+             
+            </select>
+            </span>
             <label for="sourceKeywordSearch">Search any Keyword:</label>
 
          <input type="text" id="sourceKeywordSearch" name="SourceKeyword" />
@@ -155,12 +155,12 @@
                 <option value="table1">Table1</option>
                 <!-- Add more options as needed -->
             </select>
-       @*     <label for="sourceKeywordSearch">Province</label>
-            <select id="selectprovince" name="SelectProvince">
-                <option value="select">Select</option>
-                <option value="select">Value1</option>
-                <option value="select">Value2</option>
-            </select>*@
+            <span id="rightprovince" style="display:none;">
+            <label for="sourceKeywordSearch">Province</label>
+            <select id="selectRightprovince" name="SelectProvince">
+             
+            </select>
+            </span>
             <label for="destinationKeywordSearch">Search any Keyword:</label>
             <input type="text" id="destinationKeywordSearch" name="DestinationKeyword" />
         <button class="btn btn-sm btn-primary" type="button" id="des_searchBtn">Search</button>
@@ -288,7 +288,40 @@
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
     <script>
+    function getAllprovince()
+    {
+        $.ajax({
 
+            url: '/Jsonside/GetAllProvince',
+            type: 'GET',
+            data: { country: 'Pakistan' },
+            contentType: 'application/json',
+            success: function (response) {
+                $("#personprovince").empty();
+                $("#personprovince").append(`<option value="">Select Province</option>`);
+                for (var i = 0; i < response.length; i++) {
+                    
+                    addOption(response[i].strProvince, response[i].strProvince, '#selectleftprovince');
+                    addOption(response[i].strProvince, response[i].strProvince, '#selectRightprovince');
+
+
+                }
+                if (response.length == 0) {
+                    $("#personprovince").empty();
+
+                }
+                else {
+                    $('.spinner').css('display', 'none');
+                }
+
+
+            }
+        });
+    }
+      function addOption(value, text,userid) 
+    {
+        $(userid).append(`<option value="${value}">${text}</option>`);
+    }
     $("#commonLinkTable").DataTable({
 
         "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -302,6 +335,7 @@
         var SrcStrURn = "";
         var DestStrUrn = "";
         $(document).ready(function () {
+            getAllprovince();
             $.ajax({
 
                 url: '/Jsonside/GetAllDatabaselist',
@@ -337,17 +371,36 @@
         function addOption(value, text, userid) {
             $(userid).append(`<option value="${value}">${text}</option>`);
         }
+        $('#selectleftprovince').change(function () 
+        {
+        getdata('#table1body', LSID, LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left", $('#selectleftprovince').val())
+           // alert($(this).val());
+        });
+    $('#selectRightprovince').change(function () {
+        getdata('#table2body', RSID2, REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right", $('#selectRightprovince').val())
 
-        $('#sourceDatabaseSelect').change(function () {
+    });
+        $('#sourceDatabaseSelect').change(function () 
+        {
+
             if ($(this).val() == "") {
 
                 $("#table1body").empty();
             }
             else {
+            if ($(this).val() == "Person" || $(this).val() == "Incident")
+            {
+                 $("#leftprovince").show();
+                
+            }
+            else
+            {
+                $("#leftprovince").hide();
+            }
                 LSID = 1;
                 LEID=3;
                 //alert(LSID+' dd'+LEID);
-                getdata('#table1body', LSID,LEID, $(this).val(), $('#sourceKeywordSearch').val(), "Left")
+            getdata('#table1body', LSID, LEID, $(this).val(), $('#sourceKeywordSearch').val(), "Left", $('#selectleftprovince').val())
             }
         });
         $('#destinationDatabaseSelect').change(function () {
@@ -356,20 +409,27 @@
                 $("#table2body").empty();
             }
             else {
+            if ($(this).val() == "Person" || $(this).val() == "Incident") {
+                $("#rightprovince").show();
+
+            }
+            else {
+                $("#rightprovince").hide();
+            }
             RSID2 = 1;
             REID2 = 3;
             
-            getdata('#table2body', RSID2, REID2, $(this).val(), $('#destinationKeywordSearch').val(), "Right")
+            getdata('#table2body', RSID2, REID2, $(this).val(), $('#destinationKeywordSearch').val(), "Right", $('#selectRightprovince').val())
            
             }
         });
 
 
-        function getdata(tableid, startcount,EndCount, Tabname, Searchrec, callby) {
+        function getdata(tableid, startcount,EndCount, Tabname, Searchrec, callby,Province) {
             $.ajax({
              url: '/Jsonside/GetSingleRec',
                 type: 'GET',
-            data: { SID: startcount, EID:EndCount, TableName: Tabname, Search: Searchrec },
+            data: { SID: startcount, EID: EndCount, TableName: Tabname, Search: Searchrec, Province: Province },
                 contentType: 'application/json',
                 success: function (response) {
                 var jsonObject = JSON.parse(response);
@@ -382,7 +442,7 @@
                             $(tableid).find('tbody').empty();
                             $(tableid).find('thead').append("<tr><th>Select </th><th>S.No</th > <th>Str URn</th><th>Name</th> </tr>");
                             for (var i = 0; i < jsonObject.length; i++) {
-                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strURN + '\')"  name="' + callby + '" value="' + jsonObject[i].strURN + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strURN + '</td><td>' + jsonObject[i].Name + '</td></tr>');
+                                $(tableid).find('tbody').append('<tr><td><input type="radio" onclick="assignval(\'' + callby + '\', \'' + jsonObject[i].strurn + '\')"  name="' + callby + '" value="' + jsonObject[i].strurn + '"/></td><td>' + jsonObject[i].SerialNo + '</td><td>' + jsonObject[i].strurn + '</td><td>' + jsonObject[i].Name + '</td></tr>');
                             }
                             break;
 
@@ -656,7 +716,7 @@
             else {
             LSID = 1;
             LEID = 3;
-            getdata('#table1body', LSID, LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left")
+            getdata('#table1body', LSID, LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left",null)
             }
 
 
@@ -668,7 +728,7 @@
             else {
             RSID2 = 1;
             REID2 = 3;
-            getdata('#table2body', RSID2, REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right")
+            getdata('#table2body', RSID2, REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right",null)
             }
 
 
@@ -690,7 +750,7 @@
                 alert('Select database');
             }
             else {
-                getdata('#table1body', LSID,LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left")
+                getdata('#table1body', LSID,LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left",null)
             }
         });
         $("#src_next").click(function () {
@@ -706,7 +766,7 @@
                 alert('Select database');
             }
             else {
-                getdata('#table1body', LSID,LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left")
+                getdata('#table1body', LSID,LEID, $('#sourceDatabaseSelect').val(), $('#sourceKeywordSearch').val(), "Left",null)
             }
         });
         //Next
@@ -722,7 +782,7 @@
                 alert('Select database');
             }
             else {
-                getdata('#table2body', RSID2,REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right")
+                getdata('#table2body', RSID2,REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right",null)
             }
         });
         $("#des_next").click(function () {
@@ -738,7 +798,7 @@
                 alert('Select database');
             }
             else {
-            getdata('#table2body', RSID2, REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right")
+            getdata('#table2body', RSID2, REID2, $('#destinationDatabaseSelect').val(), $('#destinationKeywordSearch').val(), "Right",null)
         }
         });
 
