@@ -103,7 +103,8 @@ namespace CTW_FIA.Controllers
         public JsonResult DisplayRightSide(string strURN)
         {
             var data = jsn.Displaylist(strURN);
-            return Json(data);
+
+            return Json(data.Where(x=>x.LableName!="").ToList());
         }
 
     }

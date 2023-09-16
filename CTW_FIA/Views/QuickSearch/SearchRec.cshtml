@@ -381,6 +381,7 @@
 
     function yourFunction(tableName, strUrn) 
     {
+        alert(strUrn);
         dataTable.clear().draw();
         $('.spinner').css('display', 'block');
         $.ajax({
@@ -422,6 +423,7 @@
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             success: function (response) {
+                console.log(response);
                 // Clear the list items in the specific tab's ul
                 var activeTabList = $('#custom-tabs-two-home ul'); // Get the ul of the specific tab
                 activeTabList.empty(); // Clear the container
@@ -432,6 +434,8 @@
                 // Iterate through the API response
                 for (var i = 0; i < response.length; i++) {
                     var tableName = response[i].tableName; // Make sure the property name matches the data
+                    var rightstrURN=response[i].strURN;
+                    var lableName=response[i].lableName;
 
                     // Check if the table name is unique
                     if (!uniqueTableNames.includes(tableName)) {
@@ -465,7 +469,7 @@
                         var buttonSublist = $('<ul>').addClass('nav flex-column ml-5 button-sublist').hide();
 
                         // Append buttons to the sublist
-                        buttonSublist.append("<li class='distance'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + strUrn + "\")'> <i class='fas fa-caret-right' style='font-size: smaller; margin-right: 4px;';></i>Button Text</button></li>");
+                        buttonSublist.append("<li class='distance'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + rightstrURN + "\")'> <i class='fas fa-caret-right' style='font-size: smaller; margin-right: 4px;';></i>'" + lableName + "'</button></li>");
 
                         // Append the anchor element to the list item
                         listItem.append(anchor);
