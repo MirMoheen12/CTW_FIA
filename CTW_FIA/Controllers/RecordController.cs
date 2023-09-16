@@ -200,6 +200,7 @@ namespace CTW_FIA.Controllers
             switch (modelname)
             {
                 case "Person":
+                case "Persons Involved":
                     {
 
                         var dat = terrorist.GetPeronByID(STRUN);
@@ -220,6 +221,7 @@ namespace CTW_FIA.Controllers
                         break;
                     }
                 case "Group":
+                case "Groups":
                     {
                         var dat = terrorist.GetGroupsByStrurn(STRUN);
                         if (dat != null)
@@ -341,6 +343,7 @@ namespace CTW_FIA.Controllers
                         }
                         break;
                     }
+
                 case "Evidence":
                     {
                         var dat = evidence.GetEvidenceByStrurn(STRUN);
