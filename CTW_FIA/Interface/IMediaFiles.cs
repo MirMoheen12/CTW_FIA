@@ -5,6 +5,6 @@ namespace CTW_FIA.Interface
     public interface IMediaFiles
     {
        public string AddMedia(MediaFile mediaFile);
-        public string AddFileIntoServer(IFormFile Files);
+       public string AddFileIntoServer(IFormFile Files);
     }
 }
