@@ -1,5 +1,6 @@
 ﻿using CTW_FIA.Interface;
 using CTW_FIA.Models.DatabaseModels;
+using CTW_FIA.Models.Dto;
 
 namespace CTW_FIA.Repositories
 {
@@ -31,6 +32,22 @@ namespace CTW_FIA.Repositories
 
             }
          
+        }
+        public QuickSearchAddress_sel getAdrsByStrurn(string sTRUN)
+        {
+
+            var dat = new
+            {
+                textSearch = sTRUN
+            };
+            var dbres = databaseRepo.ExecuteProc("QuickSearchAddress_sel_web", databaseRepo.returnSppram(dat));
+            var dt = databaseRepo.ConverttoObject(dbres, typeof(QuickSearchAddress_sel));
+            var list = new List<QuickSearchAddress_sel>();
+            foreach (var item in dt)
+            {
+                list.Add((QuickSearchAddress_sel)item);
+            }
+            return list.FirstOrDefault();
         }
         private void AddErrorLog(string Msg)
         {

@@ -14,7 +14,7 @@ namespace CTW_FIA.Controllers
         private readonly IRecord record;
         private readonly ICommonlinks commonlinks;
         private readonly ConverterModel converterModel;
-
+        private readonly IAddress adrs;
         private readonly ITerrorist terrorist;
         private readonly IIncident incident;
         private readonly IExplosive explosive;
@@ -31,6 +31,7 @@ namespace CTW_FIA.Controllers
         private readonly IDetonators detonators;
         private readonly IEvidence evidence;
         public RecordController(
+             IAddress adrs,
         IEvidence evidence,
         IRecord record,
         ICommonlinks commonlinks,
@@ -68,6 +69,7 @@ namespace CTW_FIA.Controllers
             this.fearams = fearams;
             this.chemical = chemical;
             this.detonators = detonators;
+            this.adrs = adrs;
         }
 
         public IActionResult AddRecord(string pagname = "All", string pagestatus = "New")
@@ -214,6 +216,15 @@ namespace CTW_FIA.Controllers
                 case "Incident":
                     {
                         var dat = incident.getIncidentID(STRUN);
+                        if (dat != null)
+                        {
+                            lis = converterModel.getModel(dat);
+                        }
+                        break;
+                    }
+                case "Address":
+                    {
+                        var dat = adrs.getAdrsByStrurn(STRUN);
                         if (dat != null)
                         {
                             lis = converterModel.getModel(dat);
