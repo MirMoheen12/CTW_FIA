@@ -326,6 +326,7 @@
         if (sourcearray.length > 0) {
             $.each(modelList, function (index, model) { 
                 var tableName = model.tableName;
+                //alert(tableName);
                 if (!groupedByTableName[tableName]) {
                     groupedByTableName[tableName] = {
                         count: 0,

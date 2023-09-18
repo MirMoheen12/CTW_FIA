@@ -24,7 +24,7 @@ namespace CTW_FIA.Controllers
         [HttpGet]
         public IActionResult AddFirearms()
         {
-            ViewBag.Allcountries = terrorist.AllCountry();
+            //ViewBag.Allcountries = terrorist.AllCountry();
             return View();
         }
 
