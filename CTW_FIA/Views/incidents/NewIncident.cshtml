@@ -10,78 +10,89 @@
                     <div class="card-body">
 
                         <h5>Main Incident</h5>
-                  
-                       <form class="forms-sample" method="post" asp-action="NewIncident" asp-controller="Incidents">
+                <label class="card-description" style="font-size: 13px;"><span style="font:bold">Note:</span> Mandatory fields represented by (<span style="color:red">*</span> sign ) </label>
+                       <form class="forms-sample" id="incidentform" method="post" asp-action="NewIncident" asp-controller="Incidents">
                             <div class="form-group row">
 
-                                <label for="OperationName" class="col-sm-2 col-form-label" style="font-size: 13px;">Subject</label>
+                        <label class="col-sm-2 col-form-label" style="font-size: 13px;">Subject<span style="color:red">*</span></label>
                                 <div class="col-sm-10">
-                            <input type="text" class="form-control" required id="OperationName" asp-for="strOperationName">
+                            <input type="text" class="form-control" id="OperationName" asp-for="strOperationName">
                                 </div>
+                        <span id="SubjectValidation" style="margin-left:210px" class="text-danger"></span>
                             </div>
-                            <div class="form-group row">
-
-
+                    
+                           @* <div class="form-group row">
                                 <label for="FirString" class="col-sm-2 col-form-label" style="font-size: 13px;">FIR # </label>
                                 <div class="col-sm-10">
                                     <label type="text" class="col-form-label"  id="FirString"></label>
                                 </div>
-                            </div>
+                            </div>*@
                             <fieldset class="border p-3">
 
                                 <legend class="float-none w-auto p-2" style="font-size:12px">FIR Details </legend>
+                               
                                 <div class="form-group row">
 
-                                    <label for="FirNo" class="col-sm-2 col-form-label" style="font-size: 13px;">FIR No </label>
+                                    <label for="FirNo" class="col-sm-2 col-form-label" style="font-size: 13px;">FIR </label>
                                     <div class="col-sm-10">
                                 <input type="text" class="form-control"  disabled asp-for="FirNo" id="FirNo" />
                                     </div>
                                 </div>
 
-                              
-                                <div class="form-group row"> 
-                                 <label for="Description" class="col-sm-2 col-form-label" style="font-size: 13px;">Reg Year</label>
-                                    <div class="col-sm-4">
-                                        <input type="number" required min="2000" max="2050" class="form-control" asp-for="RegYear" id="RegYear"/>
-                                    </div>
+                        <div class="form-group row">
 
-
-                                    <label for="Police" class="col-sm-2 col-form-label" style="font-size: 13px;">U/S</label>
+                            <label for="FirNumber" class="col-sm-2 col-form-label" style="font-size: 13px;">FIR No </label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="FirNumber" />
+                            </div>
+                        </div>
+                                <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" style="font-size: 13px;">Reg Year<span style="color:red;display:none" class="danger">*</span></label>
                                     <div class="col-sm-4">
-                                        <input type="text" class="form-control" required asp-for="US" id="US" />
+                                        <input type="number"  min="2000" max="2050" class="form-control" asp-for="RegYear" id="RegYear"/>
                                     </div>
+                            
+
+                                    <label for="US" class="col-sm-2 col-form-label" style="font-size: 13px;">U/S</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" asp-for="US" id="US" />
+                                    </div>
+                                    <span id="RegYearValidation" style="margin-left:208px" class="text-danger"></span>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="IncidentCountryList" class="col-sm-2 col-form-label"  style="font-size: 13px;">Country</label>
+                            <label class="col-sm-2 col-form-label" style="font-size: 13px;">Country<span style="color:red;">*</span></label>
                                        <div class="col-sm-4">
-                                <select  asp-for="Country" required id="selectedcountry" class="form-control">
+                                <select  asp-for="Country"  id="selectedcountry" class="form-control">
                                     <option>Select Country</option>
-                                    @for (var i = 0; i < ViewBag.Allcountries.Count; i++)
+                                    <option value="Pakistan">Pakistan</option>
+                                    @*@for (var i = 0; i < ViewBag.Allcountries.Count; i++)
                                     {
                                         <option>@ViewBag.Allcountries[i].strCountry</option>
-                                    }
+                                    }*@
                                         </select>
+                                <span id="CountryValidation" class="text-danger"></span>
                                 </div>
 
-                                    <label for="IncidentProvinceList" class="col-sm-2 col-form-label" style="font-size: 13px;">Province </label>
+                            <label for="IncidentProvinceList" class="col-sm-2 col-form-label" style="font-size: 13px;">Province<span style="color:red;">*</span> </label>
                                     <div class="col-sm-4">
-                                 <select id="personprovince" asp-for="Province" class="form-control">
+                                 <select id="selectedprovince" asp-for="Province" class="form-control">
                                            <option>Select the Province</option>
                                     </select>
+                                <span id="ProvinceValidation" class="text-danger"></span>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group row">
-                                    
-                                    <label for="IncidentDistrictList" class="col-sm-2 col-form-label" style="font-size: 13px;">District</label>
+
+                            <label for="IncidentDistrictList" class="col-sm-2 col-form-label" style="font-size: 13px;">District<span class="danger" style="color:red;display:none">*</span></label>
                                     <div class="col-sm-4">
 
-                                <select asp-for="District" id="ProvinceDistrict" class="form-control">
+                                <select asp-for="District" id="selecteddistrict" class="form-control">
                                         <option value="">Select the District</option>
                                            
                                         </select>
                                     </div>
-
+                            <span id="DistrictValidation" class="text-danger"></span>
                                                                 
                                 </div>
                                  <div class="form-group row">
@@ -89,8 +100,8 @@
 
                                     <div class="col-sm-4">
                          
-                                   <select class="form-control" required id="PoliceStation" asp-for="PoliceStation" onchange="selectPolice()">
-                                            <option value="">Select Police Station</option>
+                                   <select class="form-control"  id="PoliceStation" asp-for="PoliceStation" onchange="selectPolice()">
+                                            <option value="Unknown">Select Police Station</option>
                                         </select>
                                     </div>
 
@@ -140,12 +151,12 @@
                             <legend class="float-none w-auto p-2" style="font-size: 12px">Incident Details</legend>
 
                             <div class="form-group row">
-                                <label for="IncidentDate" class="col-sm-2 col-form-label" style="font-size: 13px;">Incident Date</label>
+                            <label for="IncidentDate" class="col-sm-2 col-form-label" style="font-size: 13px;">Incident Date<span style="color:red">*</span></label>
 
                                 <div class="col-sm-4">
 
-                                    <input type="date" required asp-for="IncidentDate" class="form-control" id="IncidentDate"/>
-
+                                    <input type="date" asp-for="IncidentDate" class="form-control" id="IncidentDate"/>
+                                <span id="DateValidation" class="text-danger"></span>
                                     </div>
                             </div>
                             <div class="form-group row">
@@ -153,13 +164,13 @@
 
                                 <div class="col-sm-4">
 
-                                <input type="time" required asp-for="IncidentTime" class="form-control" id="IncidentTime" />
+                                <input type="time"  asp-for="IncidentTime" class="form-control" id="IncidentTime" />
 
                                 </div>
                                 <label for="IncidentTimeEnd" class="col-sm-2 col-form-label" style="font-size: 13px;">Incident End Time</label>
                                 
                             <div class="col-sm-4">
-                                <input type="time" required asp-for="IncidentTimeEnd" class="form-control" id="IncidentTimeEnd" />
+                                <input type="time"  asp-for="IncidentTimeEnd" class="form-control" id="IncidentTimeEnd" />
 
                                
                             </div>
@@ -169,7 +180,7 @@
                             <label for="PreIncidentThread" class="col-sm-2 col-form-label" style="font-size: 13px;">Pre Incident Threat </label>
                                     <div class="col-sm-4">
                                      <select class="form-control" asp-for="PreIncidentThread" id="PreIncidentThread">
-                                            <option value="" disabled selected>Select</option>
+                                            <option value="Unknown" disabled selected>Select</option>
                                            <option value="EMAIL">EMAIL</option>
                                            <option value="OTHER">OTHER</option>
                                            <option value="TELEPHONE">TELEPHONE</option>
@@ -233,9 +244,9 @@
                         <fieldset class="border p-3">
                             <legend class="float-none w-auto p-2" style="font-size: 12px;"> </legend>
                             <div class="form-group row">
-                                <label for="Weapon" class="col-sm-2 col-form-label" style="font-size: 13px;">Weapon</label>
+                            <label for="Weapon" class="col-sm-2 col-form-label" style="font-size: 13px;">Weapon<span style="color:red">*</span></label>
                                  <div class="col-sm-2">
-                                <select class="form-control" required asp-for="Weapon" id="Weapon">
+                                <select class="form-control" asp-for="Weapon" id="selectedweapon">
                                         <option value="" disabled selected>Select</option>
                                         <option>Automatic Weapon</option>
                                         <option>Hand Grenade</option>
@@ -256,12 +267,13 @@
                                          <option>Other</option>
                                  
                                     </select>
+                                <span id="WeaponValidation" class="text-danger"></span>
                                 </div>
                                   <div class="col-sm-1"></div>
-                                  <label for="IncidentTarget" class="col-sm-1 col-form-label" style="font-size: 13px;">Target</label>
+                            <label for="IncidentTarget" class="col-sm-1 col-form-label" style="font-size: 13px;">Target<span style="color:red">*</span></label>
                                
                                  <div class="col-sm-2">
-                                <select class="form-control" required asp-for="Target" id="IncidentTarget">
+                                <select class="form-control"  asp-for="Target" id="IncidentTarget">
                                         <option value="" disabled selected>Select</option>
                                         <option>Airport/Aeroplane</option>
                                         <option>Bridge/Road</option>
@@ -298,15 +310,16 @@
                                         <option>Water Utility</option>
                                          <option>Other</option>
                                     </select>
+                                    <span id="TargetValidation" class="text-danger"></span>
                                 </div>
-                          @*  </div>
-                              <div class="form-group row">*@  <div class="col-sm-1"></div>
-                            <label for="Motive"  class="col-sm-1 col-form-label" style="font-size: 13px;">Motive </label>
+                          @* </div>
+                              <div class="form-group row">*@
+                            <div class="col-sm-1"></div>
+                            <label for="Motive" class="col-sm-1 col-form-label" style="font-size: 13px;">Motive<span style="color:red">*</span> </label>
                                 
                                 <div class="col-sm-2">
-
-                                <select required class="form-control" asp-for="Motive" id="Motive">
-                                        <option value="" disabled selected>Select</option>
+                                <select class="form-control" asp-for="Motive" id="Motive">
+                                        <option value="">Select</option>
                                         <option>Ethinic</option>
                                         <option>Religious Millitants</option>
                                         <option>Sectarian</option>
@@ -314,6 +327,7 @@
                                         <option>Unknown</option>
                                         
                                     </select>
+                                <span id="MotiveValidation" class="text-danger"></span>
                                 </div>
                            </div>
                    @*      <div class="form-group row">
@@ -367,14 +381,19 @@
                                 <div class="col-sm-4">   
                                     <input type="number" asp-for="NumberArrested" class="form-control" id="NumberArrested" placeholder="" >
                                 </div>
-                                 <label for="Reportedby" class="col-sm-2 col-form-label" style="font-size: 13px;">Reported by </label>
+                            <label for="Reportedby" class="col-sm-2 col-form-label" style="font-size: 13px;">Reported by<span style="color:red">*</span> </label>
                                 
                                 <div class="col-sm-4">
 
                                 <select class="form-control" asp-for="Reportedby" id="Reportedby">
-                                     
+                                    <option>Select</option>
+                                    @foreach (var agency in ViewBag.Agencies)
+                                    {
+                                        <option value="@agency.ReportingAgencyTitle">@agency.ReportingAgencyTitle</option>
+                                    }
                                         
                                     </select>
+                                <span id="ReportedByValidation" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -410,6 +429,10 @@
                         </fieldset>
 
                         <br>
+                    <div id="validationMessage" style="color: lightgrey; font: bolder; font-size: medium; background: red; margin-bottom: 20px; height: 40px; display: none;text-align: center; align-items: center; justify-content: center;">
+                        <i class="fas fa-exclamation-triangle" style="margin-right: 5px;color:yellow;"></i>
+                        <span id="validationText" style="display: inline-block; vertical-align: middle;"></span>
+                    </div>
                     <input type="text" id="asgstr" hidden asp-for="strURN" />
                         <input type="submit" id="IncidentBtn"  class="btn btn-primary mr-2" value="Save">
                         <button class="btn btn-dark">Cancel</button>
@@ -432,36 +455,115 @@
         </div>
 
 <script type="text/javascript">
+   
+
+    $("#FirNumber").on("input", function ()
+    {
+        var firNumber = $(this).val();
+
+        if (firNumber.trim() !== "") {
+            // Show the asterisk (*) for mandatory fields
+            $(".danger").show();
+        } else {
+            // Hide the asterisk (*) for non-mandatory fields
+            $(".danger").hide();
+            $("#FirNo").val('');
+            $('#RegYear').val('');
+            $('#US').val('');
+            $('#selectedcountry').val('Select Country');
+            $('#selectedprovince').val('Select Province');
+            $('#selecteddistrict').val('Select District');
+            // Clear any existing validation messages
+            //$(".text-danger").text("").hide();
+        }
+        
+        $('#FirNo').val('');
+        FirString = "";
+        FirString = "FIR#";
+        FirString = FirString + "/" + $('#FirNumber').val() + "";
+        $('#FirNo').val(FirString);
+      //  alert(FirString);
+       if (firNumber.trim()== "") 
+       {
+            $('#FirNo').val('');
+       }
+    });
     
     $("#RegYear").on("input", function ()
     {
         $('#FirNo').val('');
         FirString = "";
-        FirString = "FIR#" + $('#FirNo').val();
+        FirString = "FIR#";
+        FirString = FirString + "/" + $('#FirNumber').val() + "";
         FirString = FirString + "/" + $('#RegYear').val() + " ";
         FirString = FirString + "U/S:" + $('#US').val() + " ";
         FirString = FirString + "P.S:" + $('#PoliceStation').val() + " ,";
-        FirString = FirString + "District:" + $('#ProvinceDistrict').val() + " ";
+        FirString = FirString + "District:" + $('#selecteddistrict').val() + " ";
         $('#FirNo').val(FirString);
       //  alert(FirString);
     });
-    $("#ProvinceDistrict").change(function () {
+    $("#selecteddistrict").change(function () {
         $('#FirNo').val('');
         FirString = "";
-        FirString = "FIR#" + $('#FirNo').val();
+        FirString = "FIR#";
+        FirString=FirString+ "/"+ $('#FirNumber').val()+"";  
         FirString = FirString + "/" + $('#RegYear').val() + " ";
         FirString = FirString + "U/S:" + $('#US').val() + " ";
         FirString = FirString + "P.S:" + $('#PoliceStation').val() + " ,";
-        FirString = FirString + "District:" + $('#ProvinceDistrict').val() + " ";
+        FirString = FirString + "District:" + $('#selecteddistrict').val() + " ";
         $('#FirNo').val(FirString);
         //  alert(FirString);
     });
+    $("#PoliceStation").change(function () {
+        $('#FirNo').val('');
+        FirString = "";
+        FirString = "FIR#";
+        FirString = FirString + "/" + $('#FirNumber').val() + "";
+        FirString = FirString + "/" + $('#RegYear').val() + " ";
+        FirString = FirString + "U/S:" + $('#US').val() + " ";
+        FirString = FirString + "P.S:" + $('#PoliceStation').val() + " ,";
+        FirString = FirString + "District:" + $('#selecteddistrict').val() + " ";
+        $('#FirNo').val(FirString);
+    });
+    function validateMandatoryFields() {
+        // Reset all validation messages
+        $(".text-danger").text("");
+
+        var hasValidationErrors = false;
+
+        var regyear = $("#RegYear").val();
+        if ($("#FirNumber").val().trim() !== "" && regyear === "") {
+            $("#RegYearValidation").text("Registration Year is mandatory.");
+            hasValidationErrors = true;
+        }
+
+        var selectedCountry = $("#selectedcountry").val();
+        if (selectedCountry === "Select Country" || selectedCountry === "") 
+        {
+            $("#CountryValidation").text("Country is mandatory.");
+            hasValidationErrors = true;
+        }
+
+        var selectedProvince = $("#selectedprovince").val();
+        if (selectedProvince === null || selectedProvince === "Select the Province" || selectedProvince === ""||selectedProvince === "Select Province") {
+            $("#ProvinceValidation").text("Province is mandatory.");
+            hasValidationErrors = true;
+        }
+
+        var selectedDistrict = $("#selecteddistrict").val();
+        if ($("#FirNumber").val().trim() !== "" &&(selectedDistrict === null|| selectedDistrict === "Select District" ||  selectedDistrict === "Select the District"  || selectedDistrict === "")) {
+            $("#DistrictValidation").text("District is mandatory.");
+            hasValidationErrors = true;
+        }
+
+        return !hasValidationErrors;
+    }
     $(document).ready(function () {
         getAllpoliceStation();
         $('#selectedcountry').change(function () {
             if ($(this).val() == "" || $(this).val() != "Pakistan") {
 
-                $("#personprovince").empty();
+                $("#selectedprovince").empty();
             }
             else {
                 $('.spinner').css('display', 'block');
@@ -473,17 +575,17 @@
                     contentType: 'application/json',
                     success: function (response) {
 
-                        $("#personprovince").empty();
-                        $("#personprovince").append(`<option value="">Select Province</option>`);
+                        $("#selectedprovince").empty();
+                        $("#selectedprovince").append(`<option value="">Select Province</option>`);
                         for (var i = 0; i < response.length; i++) {
 
-                            addOption(response[i].strProvince, response[i].strProvince, '#personprovince')
+                            addOption(response[i].strProvince, response[i].strProvince, '#selectedprovince')
 
 
                         }
                         if (response.length == 0) {
                             $('.spinner').css('display', 'none');
-                            $("#personprovince").empty();
+                            $("#selectedprovince").empty();
 
                         }
                         else {
@@ -498,10 +600,10 @@
 
 
         });
-        $('#personprovince').change(function () {
+        $('#selectedprovince').change(function () {
             if ($(this).val() == "") {
 
-                $("#ProvinceDistrict").empty();
+                $("#selecteddistrict").empty();
             }
             else {
 
@@ -513,17 +615,16 @@
                     data: { Province: $(this).val() },
                     contentType: 'application/json',
                     success: function (response) {
-                        console.log(response);
-                        $("#ProvinceDistrict").empty();
-                        $("#ProvinceDistrict").append(`<option value="">Select District</option>`);
+                        $("#selecteddistrict").empty();
+                        $("#selecteddistrict").append(`<option value="">Select District</option>`);
                         for (var i = 0; i < response.length; i++) {
 
-                            addOption(response[i].strDistrict, response[i].strDistrict, '#ProvinceDistrict')
+                            addOption(response[i].strDistrict, response[i].strDistrict, '#selecteddistrict')
 
 
                         }
                         if (response.length == 0) {
-                            $("#ProvinceDistrict").empty();
+                            $("#selecteddistrict").empty();
                             $('.spinner').css('display', 'none');
 
                         }
@@ -536,9 +637,125 @@
                 });
             }
 
+            //$(".text-danger").hide();
 
-
+            // Add an event listener to the "FirNumber" input field
+            
         });
+        $("#incidentform").on("submit", function (event) {
+            // Reset all validation messages
+            $(".text-danger").text("");
+
+            // Flag to check if there are validation errors
+            var hasValidationErrors = false;
+
+            //var subjectid = $("#OperationName").val();
+            //if (subjectid === "") {
+            //    event.preventDefault();
+            //    $("#SubjectValidation").text("Subject is mandatory.");
+            //    hasValidationErrors = true;
+            //}
+
+            if (!validateMandatoryFields()) {
+                // Prevent form submission if there are validation errors
+                event.preventDefault();
+
+                // Display a message above the save button
+                var validationMessage = "Record not saved! Please fill all Mandatory fields";
+                $("#validationText").text(validationMessage);
+                $("#validationMessage").css("display", "flex");
+            } else {
+                // Clear the validation message and allow form submission
+                $("#validationText").text("");
+                $("#validationMessage").css("display", "none");
+            }
+            //var regyear = $("#RegYear").val();
+            //if (regyear ==="") {
+            //    event.preventDefault();
+            //    $("#RegYearValidation").text("Registration Year is mandatory.");
+            //    hasValidationErrors = true;
+            //}
+
+            //var selectedCountry = $("#selectedcountry").val();
+            //if (selectedCountry === "Select Country" || selectedCountry === "") {
+            //    event.preventDefault();
+            //    $("#CountryValidation").text("Country is mandatory.");
+            //    hasValidationErrors = true;
+            //}
+
+            //var selectedProvince = $("#selectedprovince").val();
+            //if (selectedProvince === "Select the Province" || selectedProvince==="") {
+            //    event.preventDefault();
+            //    $("#ProvinceValidation").text("Province is mandatory.");
+            //    hasValidationErrors = true;
+            //}
+
+            //var selectedDistrict = $("#selecteddistrict").val();
+            //if (selectedDistrict === "Select the District" || selectedDistrict === "") {
+            //    event.preventDefault();
+            //    $("#DistrictValidation").text("District is mandatory.");
+            //    hasValidationErrors = true;
+            //}
+            var subjectid = $("#OperationName").val();
+            if (subjectid === "") {
+                event.preventDefault();
+                $("#SubjectValidation").text("Subject is mandatory.");
+                hasValidationErrors = true;
+            }
+            var IncidentDate = $("#IncidentDate").val();
+
+            if (IncidentDate === "mm/dd/yyyy"||IncidentDate==="") {
+                event.preventDefault();
+                $("#DateValidation").text("Date is mandatory.");
+                hasValidationErrors = true;
+            }
+            var weapon = $("#selectedweapon").val();
+            
+            if (weapon === "Select"||weapon===""||weapon===null) {
+                event.preventDefault();
+                $("#WeaponValidation").text("Weapon is mandatory.");
+                hasValidationErrors = true;
+            }
+            var target = $("#IncidentTarget").val();
+            
+            if (target === "Select"||target===""||target===null) {
+                event.preventDefault();
+                $("#TargetValidation").text("Target is mandatory.");
+                hasValidationErrors = true;
+            }
+            var motive = $("#Motive").val();
+            console.log(motive);
+            if (motive === "Select" || motive === ""||motive===null) {
+                event.preventDefault();
+                $("#MotiveValidation").text("Motive is mandatory.");
+                hasValidationErrors = true;
+            }
+            var reportedby = $("#Reportedby").val();
+            if (reportedby === "Select" || reportedby === ""||reportedby===null) {
+                event.preventDefault();
+                $("#ReportedByValidation").text("Reported By is mandatory.");
+                hasValidationErrors = true;
+            }
+
+
+
+
+            // Check if there are validation errors
+            if (hasValidationErrors) {
+                // Display a message above the save button
+                var validationMessage = "Record not saved! Please fill all Mandatory fields";
+                $("#validationText").text(validationMessage);
+                $("#validationMessage").css("display", "flex");
+            }
+            else {
+                $("#validationText").text("");
+                $("#validationMessage").css("display", "none");
+                
+            }
+        });
+
+
+
     });
     function getAllpoliceStation()
     {

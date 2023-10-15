@@ -1,10 +1,12 @@
-﻿namespace CTW_FIA.Models.DatabaseModels
+﻿using System.ComponentModel.DataAnnotations;
+namespace CTW_FIA.Models.DatabaseModels
 {
-    public class AccusationStatus
+    public class AccusationStatusList
     {
+        [Key]
         public int IntID { get; set; }
-        public int AccusationStatusID { get; set; }
-        public string AccusationStatusName { get; set; }
+        public int AccusationStatus_ID { get; set; }
+        public string AccusationStatus_Name { get; set; }
         public DateTime CreatedOn { get; set; }
         public string CreatedBy { get; set; }
         public DateTime UpdatedOn { get; set; }

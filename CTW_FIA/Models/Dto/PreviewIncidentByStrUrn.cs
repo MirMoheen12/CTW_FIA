@@ -31,7 +31,7 @@ namespace CTW_FIA.Models.Dto
         [Display(Name = "Registration Year")]
         public string? RegYear { get; set; }
 
-        [Display(Name = "United States")]
+        [Display(Name = "Under Section")]
         public string? US { get; set; }
 
         [Display(Name = "Country")]

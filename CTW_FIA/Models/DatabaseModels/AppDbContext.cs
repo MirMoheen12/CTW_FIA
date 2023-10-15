@@ -1,11 +1,14 @@
 ﻿using CTW_FIA.Interface;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Numerics;
 
 
+
 namespace CTW_FIA.Models.DatabaseModels
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -41,6 +44,8 @@ namespace CTW_FIA.Models.DatabaseModels
         //public DbSet<Pipe> Pipes { get; set; }
         //public DbSet<Property> Properties { get; set; }
         public DbSet<CommonLinks> CommonLinks { get; set; }
+        public DbSet<AccusationStatusList> AccusationStatusList { get; set; }
+
         public DbSet<ReportingAgency> ReportingAgency { get; set; }
         public DbSet<Group> Group { get; set; }
         public DbSet<tblPassport> tblPassport { get; set; }

@@ -1,0 +1,244 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row no-gutters">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample">
+                    <h5 class="float-none w-auto p-2">Property Form</h5>
+
+
+                    <fieldset class="border p-3">
+                        <legend class="float-none w-auto p-2" style="font-size: 12px">
+                            Property Name
+                        </legend>
+
+                        <div class="form-group row">
+                            <label for="Description"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Property Name</label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       class="form-control"
+                                       id="propertyName"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Description"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Property Value</label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       class="form-control"
+                                       id="propertyValue"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="CommunicationsType"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Currency</label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       class="form-control"
+                                       id="Currency"
+                                       placeholder="" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Address Name"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">
+                                Address
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       class="form-control"
+                                       id="proAddress"
+                                       placeholder="" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="border p-3">
+                        <br />
+                        <div class="form-group row">
+                            <label for="Remarks"
+                                   class="col-sm-2 col-form-label"
+                                   style="font-size: 13px">Remarks</label>
+                            <div class="col-sm-10">
+
+                                <textarea class="form-control" id="proRemarks" rows="4"></textarea>
+
+                            </div>
+                        </div>
+                    </fieldset>
+                    <br />
+
+                    <button type="button" class="btn btn-primary mr-2" onclick="PropertyClick()">Save</button>
+
+                    <button class="btn btn-dark">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    @* <div class="col-md-3 grid-margin stretch-card">
+    <div class="card">
+    <div class="card-body">
+    <h4 class="card-title">Matched Records</h4>
+    <p class="card-description">No data to display</p>
+    </div>
+    </div>
+    </div>*@
+
+</div>
+
+<script type="text/javascript">
+    var vpage_name = "";
+    var vparam_x = "";
+    var vpage_status = "";
+    $(document).ready(function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const param_x = urlParams.get('id');
+        const page_status = urlParams.get('pageStatus');
+        const page_name = urlParams.get('pageName');
+        vpage_name = page_name;
+        vparam_x = param_x;
+        vpage_status = page_status;
+        if (page_status == "u" && param_x != "" && page_name == "propertyPreview") {
+            ViewPropertyById(param_x);
+
+        }
+    });
+    function PropertyClick() {
+        if (vpage_status == "u" && vparam_x != "" && vpage_name == "propertyPreview") {
+            PropertyUpdation(vparam_x);
+        }
+        else {
+            PropertyPost();
+        }
+
+    }
+    function PropertyPost() {
+        var propertyName = $("#propertyName").val();
+        var propertyValue = $("#propertyValue").val();
+
+        var Currency = $("#Currency").val();
+
+        var proAddress = $("#proAddress").val();
+
+        var proRemarks = $("#proRemarks").val();
+
+        var settings = {
+            "url": "/api/Properties",
+            "method": "Post",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "intID": 0,
+                "strURN": "strid",
+                "propertyName": propertyName,
+                "propertyValue": propertyValue,
+                "currency": Currency,
+                "addresses": proAddress,
+                "memRemarks": proRemarks,
+                "strCreatedBy": "admin",
+                "dateCreated": "2022-04-05T06:16:48.067Z",
+                "dateLastModified": "2022-04-05T06:16:48.067Z",
+                "strLastModifiedBy": "admin",
+                "isDeleted": false
+            }),
+        };
+
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+
+            alert("Property has been added successfully");
+            if (confirm('Do you want to add Media File ?')) {
+
+                console.log("Media File.");
+                localStorage.setItem("strURN", response.strURN);
+                localStorage.setItem("tableName", "Property");
+                window.location.href = "/Admin/Records/AddMedia";
+            }
+            else {
+                localStorage.setItem("strURN", response.strURN);
+                localStorage.setItem("tableName", "Property");
+                var id = response.strURN;
+                window.location.href = "/Admin/Records/PreviewRecord?controller=Properties&id=" + id;
+
+                //window.location.href = "/Admin/Records/PropertyPreView?id="+id;
+            }
+        });
+
+    }
+    function ViewPropertyById(x) {
+        var url = "/api/Properties/GetPropertyById?id=" + x;
+        //alert(url)
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (response) {
+                alert(JSON.stringify(response));
+                alert((response.strURN.toString()));
+                $("#propertyName").val(response.propertyName);
+                $("#propertyValue").val(response.propertyValue);
+                $("#Currency").val(response.currency);
+                $("#proAddress").val(response.addresses);
+                $("#CreatedOnId").val(response.createdOn);
+                $("#CreatedById").val(response.createdBy);
+                $("#proRemarks").val(response.memRemarks);
+
+            },
+            error: function (response) {
+                alert("error");
+            }
+        });
+    }
+    function PropertyUpdation() {
+        var strid = vparam_x;
+        var propertyName = $("#propertyName").val();
+        var propertyValue = $("#propertyValue").val();
+        var Currency = $("#Currency").val();
+        var proAddress = $("#proAddress").val();
+        var proRemarks = $("#proRemarks").val();
+        var settings = {
+            "url": "/api/Properties/" + strid,
+            "method": "Put",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "intID": 0,
+                "strURN": strid,
+                "propertyName": propertyName,
+                "propertyValue": propertyValue,
+                "currency": Currency,
+                "addresses": proAddress,
+                "memRemarks": proRemarks,
+                "strCreatedBy": "string",
+                "dateCreated": "2022-04-05T06:16:48.067Z",
+                "dateLastModified": "2022-04-05T06:16:48.067Z",
+                "strLastModifiedBy": "admin",
+                "isDeleted": false
+            }),
+        };
+        $.ajax(settings).done(function (response) {
+            alert("Property has been Updated successfully");
+            // window.location.href = "/Admin/Records/PropertyPreView?id="+strid;
+            window.location.href = "/Admin/Records/PreviewRecord?controller=Properties&id=" + strid;
+
+        });
+    }
+
+</script>

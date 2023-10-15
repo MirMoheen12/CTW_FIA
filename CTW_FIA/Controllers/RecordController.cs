@@ -8,7 +8,7 @@ using System;
 
 namespace CTW_FIA.Controllers
 {
-    [AllowAnonymous]
+    
     public class RecordController : Controller
     {
         private readonly IRecord record;
@@ -71,7 +71,7 @@ namespace CTW_FIA.Controllers
             this.detonators = detonators;
             this.adrs = adrs;
         }
-
+        
         public IActionResult AddRecord(string pagname = "All", string pagestatus = "New")
         {
             ViewBag.pagename = pagname;
@@ -213,6 +213,7 @@ namespace CTW_FIA.Controllers
                      
                         break;
                     }
+                case "Main Incidents":
                 case "Incident":
                     {
                         var dat = incident.getIncidentID(STRUN);
@@ -222,7 +223,7 @@ namespace CTW_FIA.Controllers
                         }
                         break;
                     }
-                case "Address":
+                case "Addresses":
                     {
                         var dat = adrs.getAdrsByStrurn(STRUN);
                         if (dat != null)

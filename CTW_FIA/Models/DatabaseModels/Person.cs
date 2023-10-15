@@ -8,11 +8,17 @@ namespace CTW_FIA.Models.DatabaseModels
     {
         [Key]
         public string strURN { get; set; }
+
+        //[Required(ErrorMessage = "Category is required.")]
         public string Category { get; set; }
+       // [Required]
         public string CurrentStatus { get; set; }
+       // [Required]
         public string ReportingAgency { get; set; }
         public Nullable<int> NHeadMoney { get; set; }
+        //[Required]
         public string AccusationStatus { get; set; }
+       // [Required]
         public string Name { get; set; }
         public string Aliases { get; set; }
         public string FatherName { get; set; }

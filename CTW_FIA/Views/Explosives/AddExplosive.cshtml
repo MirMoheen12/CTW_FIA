@@ -6,7 +6,7 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <form class="forms-sample" method="post" asp-action="AddExplosive" asp-controller="Explosives">
+                <form  id="explosivesform" class="forms-sample" method="post" asp-action="AddExplosive" asp-controller="Explosives">
                     <h5 class="float-none w-auto p-2">Explosives Form</h5>
 
                     <fieldset class="border p-3">
@@ -18,7 +18,7 @@
                             <label for="Category"
                                    class="col-sm-2 col-form-label"
                                    style="font-size: 13px">
-                                Category
+                                Category<span style="color:red">*</span>
                             </label>
                             <div class="col-sm-4">
                                 <select id="expCategory" asp-for="Category" class="form-control">
@@ -30,11 +30,12 @@
                                     <option>IMPROVISED</option>
                                     <option>UNKNOWN</option>
                                 </select>
+                                <span id="categoryValidation" class="text-danger"></span>
                             </div>
                             <label for="Type"
                                    class="col-sm-2 col-form-label"
                                    style="font-size: 13px">
-                                Type
+                                Type<span style="color:red">*</span>
                             </label>
                             <div class="col-sm-4">
                                 <select id="expType" asp-for="Type" class="form-control">
@@ -62,6 +63,7 @@
                                     <option>Time Bomb</option>
                                     <option>VBIED</option>
                                 </select>
+                                <span id="TypeValidation" class="text-danger"></span>
                             </div>
                         </div>
 
@@ -250,14 +252,19 @@
                             <p for="Remarks"
                                class="col-sm-2 col-form-label"
                                style="font-size: 13px">
-                                Remarks
+                                Remarks<span style="color:red">*</span>
                             </p>
                             <div class="col-sm-10">
                                 <textarea asp-for="memRemarks" class="form-control" id="explosRemarks" rows="4"></textarea>
                             </div>
+                            <span id="RemarksValidation" class="text-danger" style="margin-left:200px;"></span>
                         </div>
                     </fieldset>
                     <br />
+                    <div id="validationMessage" style="color: lightgrey; font: bolder; font-size: medium; background: red; margin-bottom: 20px; height: 40px; display: none;text-align: center; align-items: center; justify-content: center;">
+                        <i class="fas fa-exclamation-triangle" style="margin-right: 5px;color:yellow;"></i>
+                        <span id="validationText" style="display: inline-block; vertical-align: middle;"></span>
+                    </div>
                     <button type="submit" class="btn btn-primary mr-2">Save</button>
                     <button class="btn btn-dark">Cancel</button>
                 </form>
@@ -614,4 +621,50 @@
             }
         });
     }
+    $(document).ready(function () {
+        $("#explosivesform").on("submit", function (event) {
+            // Reset all validation messages
+            $(".text-danger").text("");
+            // Flag to check if there are validation errors
+            var hasValidationErrors = false;
+
+           
+
+            var selectedCategory = $("#expCategory").val();
+            if (selectedCategory === "Select"||selectedCategory==="") {
+                event.preventDefault();
+                $("#categoryValidation").text("Category is mandatory.");
+                hasValidationErrors = true;
+            }
+
+            var selectedtype = $("#expType").val();
+            if (selectedtype === "Select"||selectedtype==="") {
+                event.preventDefault();
+                $("#TypeValidation").text("Explosives Type is mandatory.");
+                hasValidationErrors = true;
+            }
+
+            var selectedRemarks = $("#explosRemarks").val();
+            if (selectedRemarks === "") {
+                event.preventDefault();
+                $("#RemarksValidation").text("Remarks is mandatory.");
+                hasValidationErrors = true;
+            }
+
+            
+
+            // Check if there are validation errors
+            if (hasValidationErrors) {
+                // Display a message above the save button
+                var validationMessage = "Record not saved! Please fill all Mandatory fields";
+                $("#validationText").text(validationMessage);
+                $("#validationMessage").css("display", "flex");
+            }
+            else {
+                $("#validationText").text("");
+                $("#validationMessage").css("display", "none");
+                //document.getElementById("personform").reset();
+            }
+        });
+    });
 </script>

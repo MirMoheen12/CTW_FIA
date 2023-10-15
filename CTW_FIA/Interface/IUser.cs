@@ -8,5 +8,7 @@ namespace CTW_FIA.Interface
         public UserDto Login(string userName, string Password);
         public string GetLocalIPAddress();
         public string GetLocalMacAddress();
-    }
+        public bool IsMacAddressValid(string macaddress,int officeid, int depid);
+
+	}
 }

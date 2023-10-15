@@ -47,10 +47,10 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    options.AccessDeniedPath = new PathString("/Home/Accessdenied");
-});
+//builder.Services.ConfigureApplicationCookie(options =>
+//{
+//    options.AccessDeniedPath = new PathString("/Home/Login");
+//});
 builder.Services.AddTransient<IStoredProcedure, StoredProcedureRepo>();
 builder.Services.AddTransient<IDashboard, DashboardReopsitories>();
 builder.Services.AddTransient<IRecord, RecordReopsitorie>();
@@ -99,16 +99,36 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.Cookie.HttpOnly = true;
     options.ExpireTimeSpan = TimeSpan.FromMinutes(472);
 
-    options.LoginPath = "/Identity/Account/Login";
-    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.LoginPath = "/Accounts/Login";
+    options.AccessDeniedPath = "/Dashboard/Index";
     options.SlidingExpiration = true;
 });
 builder.Services.AddAuthorization(options =>
 {
-    var defaultAuthorizationPolicyBuilder = new AuthorizationPolicyBuilder(CookieAuthenticationDefaults.AuthenticationScheme);
-    defaultAuthorizationPolicyBuilder = defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
-    options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("SuperAdminPolicy", policy => policy.RequireRole("Super Admin"));
+    options.AddPolicy("SupervisorPolicy", policy => policy.RequireRole("Supervisor"));
+    options.AddPolicy("DataEntryOperatorPolicy", policy => policy.RequireRole("Data Entry Operator"));
+
 });
+builder.Services.AddDistributedMemoryCache(); // This is for using in-memory cache for sessions.
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(620); // Set the session timeout as needed
+    options.Cookie.HttpOnly = true;
+});
+//builder.Services.AddAuthorization(options =>
+//{
+//    var defaultAuthorizationPolicyBuilder = new AuthorizationPolicyBuilder(CookieAuthenticationDefaults.AuthenticationScheme);
+//    defaultAuthorizationPolicyBuilder = defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
+//    defaultAuthorizationPolicyBuilder = defaultAuthorizationPolicyBuilder.RequireRole("Admin"); // Adjust role name as needed
+
+//    options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
+//});
+//builder.Services.ConfigureApplicationCookie(options =>
+//{
+//    options.AccessDeniedPath = "/Home/AccessDenied"; // Customize the path
+//});
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.ForwardedHeaders =
@@ -134,6 +154,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();
 app.UseEasyQuery(options => {
     options.Endpoint = "/api/easyquery";
     options.UseDbContext<AppDbContext>();
@@ -172,7 +193,7 @@ app.UseEndpoints(endpoints =>
 });
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+    pattern: "{controller=Accounts}/{action=Login}/{id?}");
 
 app.MapRazorPages();
 

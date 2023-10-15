@@ -1,4 +1,5 @@
 ﻿using CTW_FIA.Interface;
+using CTW_FIA.Models;
 using CTW_FIA.Models.DatabaseModels;
 using CTW_FIA.Models.Dto;
 using Microsoft.AspNetCore.Identity;
@@ -10,6 +11,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Net.NetworkInformation;
 
+
 namespace CTW_FIA.Repositories
 {
     public class UserReopsitorie:IUser
@@ -17,16 +19,15 @@ namespace CTW_FIA.Repositories
         private readonly IDatabaseRepo databaseRepo;
 		private readonly AppDbContext context;
         private readonly IConfiguration configuration;
-
-        public UserReopsitorie(IDatabaseRepo databaseRepo, AppDbContext context,IConfiguration configuration)
+        private readonly UserManager<IdentityUser> userManager;
+        public UserReopsitorie(IDatabaseRepo databaseRepo, AppDbContext context,IConfiguration configuration, UserManager<IdentityUser> userManager)
         {
             this.configuration=configuration;
             this.databaseRepo = databaseRepo;
             this.context = context;
+            this.userManager = userManager;
         }
-
-
-		public UserDto Login(string userName, string Password)
+        public UserDto Login(string userName, string Password)
         {
             try
             {
@@ -35,17 +36,17 @@ namespace CTW_FIA.Repositories
                     UserName = userName,
                     Password = Password
                 };
-                var allpram=databaseRepo.returnSppram(Allsp);
-                var res = databaseRepo.ExecuteProc("GetUserByCredentials",allpram);
-                if(res!=null)
+                var allpram = databaseRepo.returnSppram(Allsp);
+                var res = databaseRepo.ExecuteProc("GetUserByCredentials", allpram);
+                if (res != null)
                 {
                     UserDto user = new UserDto();
-                    var data=databaseRepo.ConverttoObject(res,typeof(UserDto));
+                    var data = databaseRepo.ConverttoObject(res, typeof(UserDto));
                     user = (UserDto)data.FirstOrDefault();
                     return user;
                 }
-                
-                
+
+
                 return null;
             }
             catch (Exception)
@@ -72,8 +73,13 @@ namespace CTW_FIA.Repositories
             }
             return ipAddress;
         }
+		public bool IsMacAddressValid(string macaddress,int officeid, int depid)
+		{
+            bool maddress=context.MacAddress.Any(x=>x.MAC_Address==macaddress&&x.OfficeID==officeid&&x.DepartmentID==depid);
+			return maddress;
+		}
 
-        public string GetLocalMacAddress()
+		public string GetLocalMacAddress()
         {
 
             String macAddress = "";

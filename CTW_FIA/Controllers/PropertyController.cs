@@ -8,5 +8,10 @@ namespace CTW_FIA.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult AddProperty()
+        {
+            return View();
+        }
     }
 }

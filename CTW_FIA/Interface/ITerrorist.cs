@@ -9,6 +9,7 @@ namespace CTW_FIA.Interface
         public QuickSearchPerson_sel_Result GetPeronByID(string STRURN);
         public List<TerroristGroup_Records> GetAllTerrorist();
         public List<ReportingAgency> AllAgencies();
+        public List<string> Accusationlist();
         public List<CountryList> AllCountry();
         public List<DistrictList> GetAllDistrictByProvince(string Province);
         public List<ProvinceList> GetALlprovinceCountryWise(string Country);

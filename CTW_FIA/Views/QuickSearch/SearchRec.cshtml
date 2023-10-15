@@ -12,14 +12,32 @@
     {
     padding-top:10px;
     }
-    /* Closed folder icon */
+    /*Closed folder icon */
     .closed-folder-icon {
         color: #000; /* Change to the color of your closed folder icon */
     }
 
     .custom-li {
-        margin-left: -30px; /* Adjust this value as needed */
+        margin-left: -58px; /* Adjust this value as needed */
     }
+    /* Add this CSS to your stylesheet */
+    .custom-sublist {
+        margin-left: 10px; /* Adjust the margin-left value as needed */
+    }
+
+    .nav.flex-column li.distance {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 50ch; /* Adjust this value to your desired maximum width */
+        
+    }
+
+      
+
+
+
+
 
     /* Open folder icon */
     .open-folder-icon {
@@ -134,63 +152,6 @@
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="custom-tabs-two-tabContent">
-                        @*<div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
-
-                            <div class="sidebar">
-                                <nav class="mt-1">
-                                    <ul id="link_ul_id" class=" flex-column nav-child-indent nav-compact" style="list-style-type:none" data-widget="treeview" role="list" data-accordion="false">
-                                        <li class="nav-item custom-li">
-                                            <a href="#" class="nav-link">
-                                                <span class="menu-icon">
-                                                    <i class="fas fa-plus smaller-icon" data-clickable="true"> </i>
-                                                </span>
-                                                <i class="fas fa-folder" data-clickable="false">
-                                                </i>
-                                                Address
-                                            </a>
-                                            <ul id="address-list" class="nav flex-column collapse ml-5 ">
-                                                <li class="distance">Address Item 1</li>
-                                                <li class="distance">Address Item 2</li>
-                                                
-                                            </ul>
-
-                                        </li>
-                                        <li class="nav-item custom-li">
-                                            <a href="#" class="nav-link">
-                                                <span class="menu-icon">
-                                                    <i class="fas fa-plus smaller-icon" data-clickable="true"> </i>
-                                                </span>
-                                                <i class="fas fa-folder" data-clickable="false">
-                                                </i>
-                                                Firearms
-                                            </a>
-                                            <ul id="firearms-list" class="nav flex-column collapse ml-5 ">
-                                                <li class="distance">Firearm Item 1</li>
-                                                <li class="distance">Firearm Item 2</li>
-                                                <!-- Add your dummy list items here -->
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item custom-li">
-                                            <a href="#" class="nav-link">
-                                                <span class="menu-icon">
-                                                    <i class="fas fa-plus smaller-icon" data-clickable="true"> </i>
-                                                </span>
-                                                <i class="fas fa-folder">
-                                                </i>
-                                                Detonators
-                                            </a>
-                                            <ul id="detonators-list" class="nav flex-column collapse ml-5 ">
-                                                <li class="distance">Detonator Item 1</li>
-                                                <li class="distance">Detonator Item 2</li>
-                                                <!-- Add your dummy list items here -->
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-                                </nav>
-                            </div>
-
-                        </div>*@
                         <div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
                             <div class="sidebar">
                                 <nav class="mt-1">
@@ -288,7 +249,6 @@
 <!-- Include DataTables Responsive CSS and JavaScript -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -333,6 +293,7 @@
                         models: []
                     };
                 }
+                
                 groupedByTableName[tableName].count++;
                 groupedByTableName[tableName].models.push(model);
             });
@@ -431,12 +392,12 @@
 
                 // Track unique table names
                 var uniqueTableNames = [];
-
-                // Iterate through the API response
+                
                 for (var i = 0; i < response.length; i++) {
+                    debugger;
                     var tableName = response[i].tableName; // Make sure the property name matches the data
-                    var rightstrURN=response[i].strURN;
-                    var lableName=response[i].lableName;
+                    var rightstrURN = response[i].strURN;
+                    var lableName = response[i].lableName;
 
                     // Check if the table name is unique
                     if (!uniqueTableNames.includes(tableName)) {
@@ -467,7 +428,8 @@
                         anchor.append(tableName); // Append the table name
 
                         // Create a button sublist under the list item and hide it by default
-                        var buttonSublist = $('<ul>').addClass('nav flex-column ml-5 button-sublist').hide();
+
+                        var buttonSublist = $('<ul>').addClass('nav flex-column custom-sublist').hide();
 
                         // Append buttons to the sublist
                         buttonSublist.append("<li class='distance'><button class='btn btn-default btn-block text-left' onclick='yourFunction(\"" + tableName + "\", \"" + rightstrURN + "\")'> <i class='fas fa-caret-right' style='font-size: smaller; margin-right: 4px;';></i>'" + lableName + "'</button></li>");
@@ -483,12 +445,19 @@
                     }
                 }
 
+
+
             },
+
+            
+
             error: function (response) {
                 alert("error");
             }
         });
     }
+
+
 
    
     $(document).ready(function () 

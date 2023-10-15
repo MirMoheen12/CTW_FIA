@@ -20,6 +20,12 @@ namespace CTW_FIA.Repositories
 
                 address.strURN = databaseRepo.ExecuteProc("GetAddressSTRURN", null).Rows[0][0].ToString();
                 address.CreatedOn = DateTime.Now;
+                if (address.Country != "Pakistan")
+                {
+                    // Set Province and District to default values when not mandatory
+                    address.Province = "";   // You can change this to an appropriate default value
+                    address.District = "";   // You can change this to an appropriate default value
+                }
                 address.textSearch = address.strURN+" "+ address.Country.ToString() + " " + address.Province.ToString() + " " + address.District.ToString();
                 dbContext.Address.Add(address);
                 dbContext.SaveChanges();

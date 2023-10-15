@@ -36,8 +36,9 @@ namespace CTW_FIA.Repositories
                 address.Province = P.Province;
                 address.District = P.District;
                 address.PostalZip = P.Postelcode;
+                string addressDescription = P.AddressDescription?.ToString() ?? "";
                 string adrsUrn = _address.AddAddress(address);
-                var cl = commonlinks.CreateCommonlinks(pstrurn, adrsUrn, "Person", "Address", "Intial Insert", address.Country.ToString() + ' ' + address.AddressDescription.ToString());
+                var cl = commonlinks.CreateCommonlinks(pstrurn, adrsUrn, "Person", "Address", "Intial Insert", address.Country.ToString() + ' ' + addressDescription);
                     if(formFile!=null)
                 {
                  
@@ -50,7 +51,7 @@ namespace CTW_FIA.Repositories
                     media.textSearch = media.strURN + " " + P.Name; 
                     string medstrurn = _mediaFiles.AddMedia(media);
 
-                    commonlinks.CreateCommonlinks(pstrurn, medstrurn, "Person", "MediaFile", "Media File", address.Country.ToString() + ' ' + address.AddressDescription.ToString());
+                    commonlinks.CreateCommonlinks(pstrurn, medstrurn, "Person", "MediaFile", "Media File", address.Country.ToString() + ' ' + addressDescription);
 
                 }
                 if(P.SocialMediaAccounts!=null)
@@ -70,7 +71,7 @@ namespace CTW_FIA.Repositories
                     tblCNIC.excl_memTextSearch = tblCNIC.strURN+" "+ P.CNIC.ToString();
                     dbContext.tblCNIC.Add(tblCNIC);
                     dbContext.SaveChanges();
-                    commonlinks.CreateCommonlinks(pstrurn, tblCNIC.strURN, "Person", "tblCNIC", "CNIC", address.Country.ToString() + ' ' + address.AddressDescription.ToString());
+                    commonlinks.CreateCommonlinks(pstrurn, tblCNIC.strURN, "Person", "tblCNIC", "CNIC", address.Country.ToString() + ' ' + addressDescription);
                 }
                 if(P.PassPortNo!=null)
                 {
@@ -94,7 +95,7 @@ namespace CTW_FIA.Repositories
                     tblPassport.excl_memTextSearch = tblPassport.strURN+" "+P.PassPortNo;
                     dbContext.tblPassport.Add(tblPassport);
                     dbContext.SaveChanges();
-                    commonlinks.CreateCommonlinks(pstrurn, tblPassport.strURN, "Person", "tblPassport", "tblPassport", address.Country.ToString() + ' ' + address.AddressDescription.ToString());
+                    commonlinks.CreateCommonlinks(pstrurn, tblPassport.strURN, "Person", "tblPassport", "tblPassport", address.Country.ToString() + ' ' + addressDescription);
 
                 }
                 return true;
@@ -112,7 +113,11 @@ namespace CTW_FIA.Repositories
             var data = dbContext.ReportingAgency.ToList();
             return (data);
         }
-
+        public List<string> Accusationlist()
+        {
+            var data = dbContext.AccusationStatusList.Select(item=>item.AccusationStatus_Name).ToList();
+            return (data);
+        }
         public List<PoliceStation> AllPliceStation()
         {
             var dbres = databaseRepo.ExecuteProc("AllPolicestation", null);
@@ -208,19 +213,41 @@ namespace CTW_FIA.Repositories
             return (list);
            
         }
-
         private string AddNewTerrorist(Person P)
         {
-           
-                P.strURN = databaseRepo.ExecuteProc("GetPersonSTRURN", null).Rows[0][0].ToString();
-                var res = dbContext.Person.Add(P);
-                P.CreatedOn = DateTime.Now;
-                P.textSearch = P.Name + " " + P.strURN + " " + P.memRemarks + " " + P.CNIC.ToString();
-                dbContext.SaveChanges();
-                return P.strURN;
-     
-            
+            P.strURN = databaseRepo.ExecuteProc("GetPersonSTRURN", null).Rows[0][0].ToString();
+            P.CreatedOn = DateTime.Now;
+
+            // Check if the selected Country is not "Pakistan"
+            if (P.Country != "Pakistan")
+            {
+                // Set Province and District to default values when not mandatory
+                P.Province = "";   // You can change this to an appropriate default value
+                P.District = "";   // You can change this to an appropriate default value
+            }
+
+            // Construct the textSearch property
+            P.textSearch = P.Name + " " + P.strURN + " " + P.memRemarks + " " + P.CNIC.ToString();
+
+            // Add the Person to the database and save changes
+            var res = dbContext.Person.Add(P);
+            dbContext.SaveChanges();
+
+            return P.strURN;
         }
+
+        //private string AddNewTerrorist(Person P)
+        //{
+
+        //        P.strURN = databaseRepo.ExecuteProc("GetPersonSTRURN", null).Rows[0][0].ToString();
+        //        var res = dbContext.Person.Add(P);
+        //        P.CreatedOn = DateTime.Now;
+        //        P.textSearch = P.Name + " " + P.strURN + " " + P.memRemarks + " " + P.CNIC.ToString();
+        //        dbContext.SaveChanges();
+        //        return P.strURN;
+
+
+        //}
         private void AddErrorLog(string Msg)
         {
             var dat = new

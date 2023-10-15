@@ -8,7 +8,7 @@
   
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
-              <form class="forms-sample" method="post" asp-action="AddTerroristGroup" asp-controller="TerroristsGroups">
+              <form id="groupform" class="forms-sample" method="post" asp-action="AddTerroristGroup" asp-controller="TerroristsGroups">
             <div class="card-body">
                 <h5>Group Form</h5>
 
@@ -18,16 +18,18 @@
 
                     
                         <div class="form-group row">
-                            <label for="groupname" class="col-sm-2 col-form-label" style="font-size: 13px;">Group Name </label>
+                            <label for="groupname" class="col-sm-2 col-form-label" style="font-size: 13px;">Group Name<span style="color:red">*</span> </label>
                             <div class="col-sm-10">
                                 <input type="text" asp-for="GroupName" class="form-control" id="groupname" placeholder="">
                             </div>
+                            <span id="NameValidation" class="text-danger" style="margin-left:200px"></span>
                         </div>
                         <div class="form-group row">
-                            <label for="GroupCategory" class="col-sm-2 col-form-label" style="font-size: 13px;"> Category </label>
+                            <label for="GroupCategory" class="col-sm-2 col-form-label" style="font-size: 13px;"> Category<span style="color:red">*</span> </label>
                             <div class="col-sm-10">
                                 <input type="text" asp-for="SubCategory" class="form-control" id="GroupCategory" placeholder="">
                             </div>
+                            <span id="CategoryValidation" class="text-danger" style="margin-left:200px"></span>
                         </div>
                         @*  <div class="form-group row">
                         <label for="GCategory" class="col-sm-2 col-form-label" style="font-size: 13px;"> Category </label>
@@ -63,7 +65,7 @@
                         </div>*@
 
                         <div class="form-group row">
-                            <label for="GroupReportingAgency" class="col-sm-2 col-form-label" style="font-size: 13px;">Reporting Agency </label>
+                            <label for="GroupReportingAgency" class="col-sm-2 col-form-label" style="font-size: 13px;">Reporting Agency<span style="color:red">*</span> </label>
                             <div class="col-sm-10">
                                 <select class="form-control" asp-for="GroupReportingAgency" id="GroupReportingAgency">
                                     <option>Select</option>
@@ -78,6 +80,7 @@
                                     <option>CTD Balochistan</option>
                                     <option>CTD Sindh</option>
                                 </select>
+                                <span id="AgencyValidation" class="text-danger"></span>
                             </div>
                         </div>
                         @*  <div class="form-group row">
@@ -131,7 +134,7 @@
                     <br>
 
                     <div class="form-group row">
-                        <label for="GroupCountryList" class="col-sm-2 col-form-label" style="font-size: 13px;">Country</label>
+                        <label for="GroupCountryList" class="col-sm-2 col-form-label" style="font-size: 13px;">Country<span style="color:red">*</span></label>
                         <div class="col-sm-4">
                             <select class="form-control" asp-for="Country" id="selectedcountry">
                                 <option>Select Country</option>
@@ -140,6 +143,7 @@
                                     <option>@ViewBag.Allcountries[i].strCountry</option>
                                 }
                             </select>
+                                <span id="CountryValidation" class="text-danger"></span>
                         </div>
 
                     </div>
@@ -149,6 +153,7 @@
                             <select class="form-control" asp-for="Province" id="personprovince">
                                 <option>Select the Province</option>
                             </select>
+                                <span id="ProvinceValidation" class="text-danger"></span>
                         </div>
                         <label for="GroupCity" class="col-sm-2 col-form-label" style="font-size: 13px;">City</label>
                         <div class="col-sm-4">
@@ -156,6 +161,7 @@
                                 <option value="">Select The City</option>
 
                             </select>
+                                <span id="DistrictValidation" class="text-danger"></span>
                         </div>
                     </div>
 
@@ -181,6 +187,10 @@
                 </fieldset>
 
                 <br>
+                    <div id="validationMessage" style="color: lightgrey; font: bolder; font-size: medium; background: red; margin-bottom: 20px; height: 40px; display: none;text-align: center; align-items: center; justify-content: center;">
+                        <i class="fas fa-exclamation-triangle" style="margin-right: 5px;color:yellow;"></i>
+                        <span id="validationText" style="display: inline-block; vertical-align: middle;"></span>
+                    </div>
                 <button type="submit" class="btn btn-primary mr-2" id="GroupBtn" onclick="GroupClick()">Save</button>
                 <button class="btn btn-dark">Cancel</button>
 
@@ -321,6 +331,77 @@
     function addOption(value, text, userid) {
         $(userid).append(`<option value="${value}">${text}</option>`);
     }
+    $(document).ready(function () {
+        $("#groupform").on("submit", function (event) {
+            // Reset all validation messages
+            $(".text-danger").text("");
+            // Flag to check if there are validation errors
+            var hasValidationErrors = false;
+
+            var name = $("#groupname").val();
+            if (name === "") {
+                event.preventDefault();
+                $("#NameValidation").text("Group Name is mandatory.");
+                hasValidationErrors = true;
+            }
+
+
+            var group = $("#GroupCategory").val();
+            if (group === "") {
+                event.preventDefault();
+                $("#CategoryValidation").text("Category is mandatory.");
+                hasValidationErrors = true;
+            }
+
+            var selectedagency = $("#GroupReportingAgency").val();
+            if (selectedagency === "Select" || selectedagency === "") {
+                event.preventDefault();
+                $("#TypeValidation").text("Reporting Agency is mandatory.");
+                hasValidationErrors = true;
+            }
+
+            var selectedCountry = $("#selectedcountry").val();
+
+            if (selectedCountry === "Select Country") {
+                event.preventDefault();
+
+                $("#CountryValidation").text("Country is mandatory.");
+                hasValidationErrors = true;
+            }
+
+            if (selectedCountry === "Pakistan") {
+                var selectedprovince = $("#personprovince").val();
+
+                if (selectedprovince === "Select Province" || selectedprovince === "Select the Province" || selectedprovince === "") {
+                    event.preventDefault();
+
+                    $("#ProvinceValidation").text("Province is required.");
+                    hasValidationErrors = true;
+                }
+
+                var selecteddistrict = $("#ProvinceDistrict").val();
+                if (selecteddistrict === "Select the District" || selecteddistrict === "") {
+                    event.preventDefault();
+
+                    $("#DistrictValidation").text("District is mandatory.");
+                    hasValidationErrors = true;
+                }
+            }
+
+            // Check if there are validation errors
+            if (hasValidationErrors) {
+                // Display a message above the save button
+                var validationMessage = "Record not saved! Please fill all Mandatory fields";
+                $("#validationText").text(validationMessage);
+                $("#validationMessage").css("display", "flex");
+            }
+            else {
+                $("#validationText").text("");
+                $("#validationMessage").css("display", "none");
+                //document.getElementById("personform").reset();
+            }
+        });
+    });
 </script>
 
 

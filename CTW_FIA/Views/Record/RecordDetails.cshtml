@@ -3,6 +3,10 @@
     string STRUN="99";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using Microsoft.AspNetCore.Http
+@{
+    var userRole = Context.Session.GetString("UserRole");
+}
 <style>
     .table-responsive {
         max-height: 650px;
@@ -19,19 +23,24 @@
     }
 </style>
 <br />
+@if (!string.IsNullOrEmpty(userRole) && userRole != "Data Entry Operator" && userRole != "Monitoring")
+{
+    <div class="floating-buttons">
 
-<div class="floating-buttons">
-    @Html.ActionLink("Edit", "Edit", "Record", new { STRUN =   ViewData["strurn"], name = ViewData["Title"] }, new { @class = "btn btn-success" })
-    @Html.ActionLink("Add Media", "AddMedia", "MediaSide", new {  Table = ViewData["Title"], Strurn =   ViewData["strurn"] }, new { @class = "btn btn-primary" })
-    @Html.ActionLink("Delete", "Delete", "Record", new { STRUN = STRUN, name = ViewData["Title"] }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this record?');" })
-</div>
+        @Html.ActionLink("Edit", "Edit", "Record", new { STRUN =   ViewData["strurn"], name = ViewData["Title"] }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Add Media", "AddMedia", "MediaSide", new {  Table = ViewData["Title"], Strurn =   ViewData["strurn"] }, new { @class = "btn btn-primary" })
+        @if(userRole != "Supervisor")
+        {
+            @Html.ActionLink("Delete", "Delete", "Record", new { STRUN = STRUN, name = ViewData["Title"] }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this record?');" })
+        }
+    </div>
+}
 <br />
 <div class="row no-gutters">
     <div class="col-md-9 grid-margin stretch-card">
         <div class="card ">
 
             <div id="exptopdf" class="pdfpage" style="background: #FFFFFF;">
-
                 <div class="d-flex p-2 bg-gradient-primary justify-content-center"><b>@ViewData["Title"]</b></div>
                 <br />
                 <table id="SearchGenericTable" class="table table-bordered text-dark">

@@ -8,5 +8,11 @@ namespace CTW_FIA.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult AddBankAccount()
+        {
+            
+            return View();
+        }
     }
 }

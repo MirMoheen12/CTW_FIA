@@ -18,10 +18,10 @@
                             <select class="form-control" id="database">
               
                                 <option value="Select">Select</option>
-                                <option value="MainIncident">Terrorist Incident</option>
-                                <option value="PersonInvolved">Terrorist Involved</option>
+                                <option value="MainIncident">Main Incidents</option>
+                                <option value="PersonInvolved">Person Involved</option>
                                 <option value="Addresses">Addresses</option>
-                                <option value="Groups">Terrorist Groups</option>
+                                <option value="Groups">Groups</option>
                                 <option value="Vehicle">Vehicles</option>
                                 <option value="Communication">Communications</option>
                                 <option value="Detonators">Detonators</option>
@@ -140,11 +140,11 @@
                             $('.spinner').css('display', 'none');
                             break;
                         case "Property":
-                            $("#DivContainerForCustForm").load("@Url.Action("Property","Record")");
+                            $("#DivContainerForCustForm").load("@Url.Action("AddProperty","Property")");
                             $('.spinner').css('display', 'none');
                             break;
                         case "BankAccount":
-                            $("#DivContainerForCustForm").load("@Url.Action("BankAccount","Record")");
+                            $("#DivContainerForCustForm").load("@Url.Action("AddBankAccount","BankAccount")");
                             $('.spinner').css('display', 'none');
                             break;
                         case "Firearms":

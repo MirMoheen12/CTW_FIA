@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CTW_FIA.Controllers
 {
-    [AllowAnonymous]
+    
     public class incidentsController : Controller
     {
 
@@ -33,6 +33,7 @@ namespace CTW_FIA.Controllers
             var data = dashboard.getCtwdashboardsIncidentwise();
             return Json(data);
         }
+       
         public IActionResult IncidentProvincewise(string Provinsewise)
         {
             var data = incident.getIncidentProvincewiese(Provinsewise);
@@ -49,7 +50,7 @@ namespace CTW_FIA.Controllers
         public ActionResult NewIncident()
         {
 
-            //ViewBag.Allcountries = terrorist.AllCountry();
+            
             ViewBag.Allcountries = terrorist.AllCountry();
             ViewBag.Agencies = terrorist.AllAgencies();
             return View();

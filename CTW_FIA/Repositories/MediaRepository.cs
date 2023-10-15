@@ -17,21 +17,47 @@ namespace CTW_FIA.Repositories
       
         }
 
-        public string AddFileIntoServer(IFormFile Files)
-        {
-            string fileName = Guid.NewGuid().ToString();
-            string fileexten = Path.GetExtension(Files.FileName);
-            fileName = fileName + fileexten;
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\AllMedia\", fileName);
-            using (FileStream stream = new FileStream(filePath, FileMode.Create))
-            {
-                Files.CopyTo(stream);
+		//public string AddFileIntoServer(IFormFile Files)
+		//{
+		//	string fileName = Guid.NewGuid().ToString();
+		//	string fileexten = Path.GetExtension(Files.FileName);
+		//	fileName = fileName + fileexten;
+		//	var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\AllMedia\", fileName);
+		//	using (FileStream stream = new FileStream(filePath, FileMode.Create))
+		//	{
+		//		Files.CopyTo(stream);
 
-            }
-            return fileName;
-        }
+		//	}
+		//	return fileName;
+		//}
+		public string AddFileIntoServer(IFormFile Files)
+		{
+			try
+			{
+				string fileName = Guid.NewGuid().ToString();
+				string fileexten = Path.GetExtension(Files.FileName);
+				fileName = fileName + fileexten;
 
-        public string AddMedia(MediaFile mediaFile )
+				// Replace this with the UNC path to your server folder
+				string serverFolderPath = @"\\10.1.3.24\media";
+				string filePath = Path.Combine(serverFolderPath, fileName);
+
+				using (FileStream stream = new FileStream(filePath, FileMode.Create))
+				{
+					Files.CopyTo(stream);
+				}
+
+				// Return the file name or full UNC path if needed
+				return fileName;
+			}
+			catch (Exception ex)
+			{
+				// Handle any exceptions that may occur during the file upload process
+				return null;
+			}
+		}
+
+		public string AddMedia(MediaFile mediaFile )
         {
             try
             {

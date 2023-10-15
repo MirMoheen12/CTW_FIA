@@ -1,6 +1,6 @@
-﻿
+﻿@model CTW_FIA.Models.Login
 @{
-    Layout = null;
+	Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -66,20 +66,23 @@
 						Login to continue
 					</span>
 					
-					
+					<span asp-validation-for="UserName" style="color:red;"></span>
 					<div class="wrap-input100" >
 						<input class="input100" name="UserName">
 						<span @*asp-validation-for="Input.Username"*@ class="focus-input100"></span>
 						<span class="label-input100">Username</span>
+						<!-- Add a hidden input field to store the MAC address -->
+						<input type="hidden" id="macAddress" name="macAddress" value="" />
+
 					</div>
 					
-					
-					<div class="wrap-input100" >
-						<input class="input100" name="Password">
-						<span @*asp-validation-for="Input.Password"*@ class="focus-input100"></span>
+					<span asp-validation-for="Password" style="color:red;"></span>
+					<div class="wrap-input100"  style="margin-top:10px; margin-bottom:50px;">
+						<input class="input100" asp-for="Password" type="password">
+						<span @*asp-validation-for="Input.Username"*@ class="focus-input100"></span>
 						<span class="label-input100">Password</span>
 					</div>
-
+					
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div class="contact100-form-checkbox">
 							<input class="input-checkbox100" id="ckb1" type="checkbox" >
@@ -97,13 +100,14 @@
 			
 
 					<div class="container-login100-form-btn">
+						@*<span asp-validation-for="InvalidCredentials" class="text-danger"></span>*@
 						<button class="login100-form-btn" type="submit">
 							Login
 						</button>
 					</div>
 					<br />
 					<p class="text-danger text-center">This computer system is the property of the FIA CTW. It is for authorized use only. Unauthorized or improper use of this system may result in administrative disciplinary action, civil charges/criminal penalties, and/or other sanctions as set forth in the FIA. By continuing to use this system you indicate your awareness of and consent to these terms and conditions of use.</p>
-					<div asp-validation-summary="All" class="text-danger text-center"></div>
+					
 				</form>
 
 				<div class="login100-more" style="background-image: url(/images/f.jpg);">
@@ -111,7 +115,8 @@
 			</div>
 		</div>
 	</div>
-	
+</body>
+</html>
 <!--===============================================================================================-->
 	<script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -131,18 +136,21 @@
 	 
 	<script type="text/javascript">
         $(document).ready(function () {
-            $("#myModal").modal('show');
+            //$("#myModal").modal('show');
         });
 
 		// Login Spinner
 		
-		$(document).ready(function() {
+		$(document).ready(function()
+		{
   /*----------------------------------------------------------------------
 				add spinner icon to submit button
 			----------------------------------------------------------------------*/
-		  $('button[type="submit"], button.submit').on("click", function(e) {
-
-			if ($(this).find("span.submit-now").length !== 0) {
+		  $('button[type="submit"], button.submit').on("click", function(e)
+		  {
+            
+			if ($(this).find("span.submit-now").length !== 0) 
+			{
 			  e.preventDefault();
 			  e.stopPropagation();
 			  // $(this).find('span.submit-now').remove()
@@ -152,11 +160,22 @@
 			  );
 			}
 		  });
+
+		
+
+
+		// Usage example
+		var macAddress = getMacAddress();
+		if (macAddress) {
+			console.log("MAC Address: " + macAddress);
+		} else {
+			console.log("Unable to retrieve MAC address.");
+		}
+
 		});
 
     </script>
-</body>
-</html>
+
 @section Scripts {
 <partial name="_ValidationScriptsPartial" />
 }

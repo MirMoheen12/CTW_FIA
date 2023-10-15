@@ -1,4 +1,9 @@
 ﻿@*@using UserManagement.Areas.Admin.Models*@
+@using Microsoft.AspNetCore.Http
+@{
+    var userRole = Context.Session.GetString("UserRole");
+    var username = Context.Session.GetString("UserName");
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +44,7 @@
             background-color: Black;
             filter: alpha(opacity=60);
             opacity: 0.6;
-            -moz-opacity: 0.8;
+            moz-opacity: 0.8;
         }
 
         .loader {
@@ -89,8 +94,9 @@
     </style>
 
 </head>
-<body class="sidebar-mini" cz-shortcut-listen="true" style="height: auto;">
 
+<body class="sidebar-mini" cz-shortcut-listen="true" style="height: auto;">
+@if(!string.IsNullOrEmpty(userRole)) {
     <header>
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -101,19 +107,29 @@
                 </li>
 
             </ul>
+
             <!-- Right navbar links -->
+            <div class="ml-auto d-flex align-items-center">
+
+                <!-- Notifications Dropdown Menu -->
+                @if (username != "")
+                {
+                    <select id="my-dropdown" style="font-weight:bold;">
+                        <option selected> <span>Hello!</span> @username</option>
+                        <option value="signout">SignOut</option>
+                    </select>
+                }
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
+                
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
                         <i class="fas fa-user"></i>
                     </a>
                 </li>
-
-
-                <!-- Notifications Dropdown Menu -->
-
             </ul>
+
+            </div>
         </nav>
 
 
@@ -163,378 +179,386 @@
                             </a>
                         </li>
                         <span id="leftnavbar">
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link">
-                                <i class="fa-solid fa-chart-bar"></i>
-                                <p>
-                                    Graphs
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview ">
-                             
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="/incidents/index">
-                                            <i class="fa fa-fire" aria-hidden="true"></i>
-                                            <p> 
-                                            Terrorist Incidents 
-                                            <span class="badge badge-info right" id="incidents_count"></span>
-                                            </p>
-                                        </a>
-                                    </li>
-                                
-
-                                <li class="nav-item">
-                                    <a class="nav-link " href="/Terrorists/index">
-                                        <i class="fas fa-user" aria-hidden="true"></i>
+                           @* @if (!string.IsNullOrEmpty(userRole) && userRole == "Super Admin"||userRole=="Admin"||userRole=="Data Entry Operator"||userRole == "Supervisor")*@
+                            
+                                <li class="nav-item ">
+                                    <a href="#" class="nav-link">
+                                        <i class="fa-solid fa-chart-bar"></i>
                                         <p>
-                                            Person Involved
-                                            <span class="badge badge-info right" id="terrorists_count"></span>
+                                            Graphs
+                                            <i class="fas fa-angle-left right"></i>
                                         </p>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/TerroristsGroups/index">
-                                        <i class="fas fa-users" aria-hidden="true"></i>
-                                        <p>
-                                            Terrorist Groups
-                                            <span class="badge badge-info right" id="terroristgroup_count"></span>
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/Explosives/index">
-                                        <i class="fa fa-bomb" aria-hidden="true"></i>
-                                        <p>
-                                            Explosives
-                                            <span class="badge badge-info right" id="explosives_menu_count"></span>
-                                        </p>
-                                    </a>
-                                </li>
+                                    <ul class="nav nav-treeview ">
 
-
-                            </ul>
-                        </li>
-                   
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa-solid fa-database"></i>
-                                <p>
-
-                                    Data Entry
-                                    <i class="fas fa-angle-left right" aria-hidden="true"></i>
-
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview ">
-                                <li class="nav-item">
-                                    <a class="nav-link " href="/Record/AddRecord">
-                                        <i class="fa-solid fa-circle-plus"></i>
-                                        <p>   Add Record</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/MediaSide/Addmedia">
-                                        <i class="fa-solid fa-photo-film"></i>
-                                        <p> Add Media</p>
-                                    </a>
-                                </li>
-                                </ul>
-                                </li>
-
-                        <li class="nav-item" id="dbpreview">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                <p>
-
-                                    Databases Preview
-                                    <i class="fas fa-angle-left right" aria-hidden="true"></i>
-
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                              
-                                        <a href="#" class="nav-link">
-                                            <i class="fa fa-fire" aria-hidden="true"></i>
-                                            <p>
-
-                                                Incidents
-
-                                                <i class="fas fa-angle-left right"></i>
-
-                                            </p>
-                                        </a>
-
-                                        <ul class="nav nav-treeview">
-                                            <li class="nav-item">
-                                            <a class="nav-link" href="~/incidents/IncidentProvincewise?Provinsewise=Khyber Pakhtunkhwa">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>KPK</p>
-                                                    <span class="badge badge-info right" id="KPKcount">0</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                            <a class="nav-link" data-href="PUNJAB Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Punjab">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Punjab</p>
-                                                    <span class="badge badge-info right" id="Punjabcount">0</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                            <a class="nav-link" data-href="SINDH Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Sindh">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Sindh</p>
-                                                    <span class="badge badge-info right" id="sindhcount">0</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                            <a class="nav-link" data-href="BALOCHISTAN Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Balochistan">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Balochistan</p>
-                                                    <span class="badge badge-info right" id="BIcount">0</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                            <a class="nav-link" data-href="G.B Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Gilgit - Baltistan">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>GB</p>
-                                                    <span class="badge badge-info right" id="GBcount">0</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                            <a class="nav-link" data-href="ISLAMABAD Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Islamabad Capital Territory">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>ICT</p>
-                                                    <span class="badge badge-info right" id="ISBcount">0</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                            <a class="nav-link" data-href="AJK Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Azad Jammu and Kashmir">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>AJK</p>
-                                                    <span class="badge badge-info right" id="AJKcount">0</span>
-                                                </a>
-                                            </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-href="AJK Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Others">
-                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                <p>Others</p>
-                                                <span class="badge badge-info right" id="Otherscount">0</span>
+                                            <a class="nav-link" href="/incidents/index">
+                                                <i class="fa fa-fire" aria-hidden="true"></i>
+                                                <p> 
+                                                    Terrorist Incidents 
+                                                    <span class="badge badge-info right" id="incidents_count"></span>
+                                                </p>
                                             </a>
                                         </li>
-                                        </ul>
-                                    
 
+
+                                        <li class="nav-item">
+                                            <a class="nav-link " href="/Terrorists/index">
+                                                <i class="fas fa-user" aria-hidden="true"></i>
+                                                <p>
+                                                    Person Involved
+                                                    <span class="badge badge-info right" id="terrorists_count"></span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/TerroristsGroups/index">
+                                                <i class="fas fa-users" aria-hidden="true"></i>
+                                                <p>
+                                                    Terrorist Groups
+                                                    <span class="badge badge-info right" id="terroristgroup_count"></span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/Explosives/index">
+                                                <i class="fa fa-bomb" aria-hidden="true"></i>
+                                                <p>
+                                                    Explosives
+                                                    <span class="badge badge-info right" id="explosives_menu_count"></span>
+                                                </p>
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
                                 </li>
+                            
+
+                            @if (!string.IsNullOrEmpty(userRole) && userRole != "Supervisor"&& userRole != "Monitoring")
+                            {
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                        <i class="fas fa-users" aria-hidden="true"></i>
+                                        <i class="fa-solid fa-database"></i>
                                         <p>
 
-                                            Person Involved
-
+                                            Data Entry
                                             <i class="fas fa-angle-left right" aria-hidden="true"></i>
 
                                         </p>
                                     </a>
-                                    <ul class="nav nav-treeview" role="button">
+                                    <ul class="nav nav-treeview ">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Khyber Pakhtunkhwa">
-                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                <p>KPK</p>
-                                                <span class="badge badge-info right" id="kpkterprov">0</span>
+                                            <a class="nav-link " href="/Record/AddRecord">
+                                                <i class="fa-solid fa-circle-plus"></i>
+                                                <p>   Add Record</p>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Punjab">
-                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                <p>Punjab</p>
-                                                <span class="badge badge-info right" id="punjabterprov">0</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Sindh">
-                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                <p>Sindh</p>
-                                                <span class="badge badge-info right" id="sindhterprov">0</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Balochistan">
-                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                <p>Balochistan</p><span class="badge badge-info right" id="blchterprov">0</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Gilgit - Baltistan">
-                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                <p>GB</p><span class="badge badge-info right" id="gbterprov">0</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Islamabad Capital Territory">
-                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                <p>ICT</p><span class="badge badge-info right" id="ictterprov">0</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Azad Jammu and Kashmir">
-                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                <p>AJK</p>
-                                                <span class="badge badge-info right" id="ajkterprov">0</span>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Others">
-                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                <p>Others</p>
-                                                <span class="badge badge-info right" id="othersterprov">0</span>
+                                            <a class="nav-link" href="/MediaSide/Addmedia">
+                                                <i class="fa-solid fa-photo-film"></i>
+                                                <p> Add Media</p>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="~/TerroristsGroups/AllGroups">
-                                        <i class="fas fa-users" aria-hidden="true"></i>
-                                        <p role="button">
-                                            Terrorist Groups
-
-                                        </p>
-                                        <span class="badge badge-info right" id="terroristgroup_countdata">0</span>
-                                    </a>
-                                </li>
-
-
-                                
-                              
-                                <li class="nav-item">
-
+                            }
+                            <li class="nav-item" id="dbpreview">
                                     <a href="#" class="nav-link">
-                                        <i class="fa fa-bomb" aria-hidden="true"></i>
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
                                         <p>
 
-                                            IEDs & Others
-
+                                            Databases Preview
                                             <i class="fas fa-angle-left right" aria-hidden="true"></i>
 
                                         </p>
                                     </a>
-
-                                    <ul class="nav nav-treeview" role="button">
-                                
-                                            <li class="nav-item">
-                                            <a class="nav-link" href="/Explosives/AllExplosive">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Explosives</p><span class="badge badge-info right" id="explosive">0</span>
-                                                </a>
-                                            </li>
-                                 
-                                            <li class="nav-item">
-                                            <a class="nav-link" href="/Vehicle/AllVehicle">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Vehicles</p><span class="badge badge-info right" id="Vehicles">0</span>
-                                                </a>
-                                            </li>
-                                   
-                                            <li class="nav-item">
-                                            <a class="nav-link" href="/PowerSource/AllPowerSource">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Power Source</p><span class="badge badge-info right" id="Powersource">0</span>
-                                                </a>
-                                            </li>
-                              
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="/Communications/AllCommunications">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Communication</p><span class="badge badge-info right" id="comm">0</span>
-                                                </a>
-                                            </li>
-                                  
-                                            <li class="nav-item">
-                                            <a class="nav-link" href="/Ordinance/AllOrdinance">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Ordinance</p><span class="badge badge-info right" id="ord">0</span>
-                                                </a>
-                                            </li>
-                       
-                                            <li class="nav-item">
-                                            <a class="nav-link" href="/Equipment/AllEquipments">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Equipment</p><span class="badge badge-info right" id="equ">0</span>
-                                                </a>
-                                            </li>
-                          
-                                            <li class="nav-item">
-                                            <a class="nav-link" href="/InitiasSystem/AllIntianSystem">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Initiation System</p><span class="badge badge-info right" id="isys">0</span>
-                                                </a>
-                                            </li>
-                             
-                                            <li class="nav-item">
-                                            <a class="nav-link" href="/Components/AllComponenst">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Components</p><span class="badge badge-info right" id="comp">0</span>
-                                                </a>
-                                            </li>
-                  
-                                            <li class="nav-item">
-                                            <a class="nav-link" href="/CBRN/AllCbrn">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>CBRN</p><span class="badge badge-info right" id="cbrn">0</span>
-                                                </a>
-                                            </li>
-                              
-                                            <li class="nav-item">
-                                            <a class="nav-link" href="/Fiearms/allFiearms">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Firearms</p><span class="badge badge-info right" id="fir">0</span>
-                                                </a>
-                                            </li>
-                         
-                                            <li class="nav-item">
-                                            <a class="nav-link" href="/Chemical/Allcheimcal">
-                                                    <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                    <p>Chemicals</p><span class="badge badge-info right" id="chem">0</span>
-                                                </a>
-                                        </li>
-
+                                    <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/Detonators/Index">
-                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                <p>Detonators</p><span class="badge badge-info right" id="det">0</span>
+
+                                            <a href="#" class="nav-link">
+                                                <i class="fa fa-fire" aria-hidden="true"></i>
+                                                <p>
+
+                                                    Incidents
+
+                                                    <i class="fas fa-angle-left right"></i>
+
+                                                </p>
+                                            </a>
+
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="~/incidents/IncidentProvincewise?Provinsewise=Khyber Pakhtunkhwa">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>KPK</p>
+                                                        <span class="badge badge-info right" id="KPKcount">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-href="PUNJAB Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Punjab">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Punjab</p>
+                                                        <span class="badge badge-info right" id="Punjabcount">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-href="SINDH Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Sindh">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Sindh</p>
+                                                        <span class="badge badge-info right" id="sindhcount">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-href="BALOCHISTAN Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Balochistan">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Balochistan</p>
+                                                        <span class="badge badge-info right" id="BIcount">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-href="G.B Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Gilgit - Baltistan">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>GB</p>
+                                                        <span class="badge badge-info right" id="GBcount">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-href="ISLAMABAD Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Islamabad Capital Territory">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>ICT</p>
+                                                        <span class="badge badge-info right" id="ISBcount">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-href="AJK Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Azad Jammu and Kashmir">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>AJK</p>
+                                                        <span class="badge badge-info right" id="AJKcount">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-href="AJK Incidents" href="~/incidents/IncidentProvincewise?Provinsewise=Others">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Others</p>
+                                                        <span class="badge badge-info right" id="Otherscount">0</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+
+
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link">
+                                                <i class="fas fa-users" aria-hidden="true"></i>
+                                                <p>
+
+                                                    Person Involved
+
+                                                    <i class="fas fa-angle-left right" aria-hidden="true"></i>
+
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview" role="button">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Khyber Pakhtunkhwa">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>KPK</p>
+                                                        <span class="badge badge-info right" id="kpkterprov">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Punjab">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Punjab</p>
+                                                        <span class="badge badge-info right" id="punjabterprov">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Sindh">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Sindh</p>
+                                                        <span class="badge badge-info right" id="sindhterprov">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Balochistan">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Balochistan</p><span class="badge badge-info right" id="blchterprov">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Gilgit - Baltistan">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>GB</p><span class="badge badge-info right" id="gbterprov">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Islamabad Capital Territory">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>ICT</p><span class="badge badge-info right" id="ictterprov">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Azad Jammu and Kashmir">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>AJK</p>
+                                                        <span class="badge badge-info right" id="ajkterprov">0</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="~/Terrorists/PersonprovinseWise?Province=Others">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Others</p>
+                                                        <span class="badge badge-info right" id="othersterprov">0</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/TerroristsGroups/AllGroups">
+                                                <i class="fas fa-users" aria-hidden="true"></i>
+                                                <p role="button">
+                                                    Terrorist Groups
+
+                                                </p>
+                                                <span class="badge badge-info right" id="terroristgroup_countdata">0</span>
                                             </a>
                                         </li>
 
 
+
+
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/Evidence/AllEvidence">
-                                                <i class="far fa-circle nav-icon" aria-hidden="true"></i>
-                                                <p>Evidence</p><span class="badge badge-info right" id="evi">0</span>
+
+                                            <a href="#" class="nav-link">
+                                                <i class="fa fa-bomb" aria-hidden="true"></i>
+                                                <p>
+
+                                                    IEDs & Others
+
+                                                    <i class="fas fa-angle-left right" aria-hidden="true"></i>
+
+                                                </p>
                                             </a>
+
+                                            <ul class="nav nav-treeview" role="button">
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/Explosives/AllExplosive">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Explosives</p><span class="badge badge-info right" id="explosive">0</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/Vehicle/AllVehicle">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Vehicles</p><span class="badge badge-info right" id="Vehicles">0</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/PowerSource/AllPowerSource">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Power Source</p><span class="badge badge-info right" id="Powersource">0</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/Communications/AllCommunications">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Communication</p><span class="badge badge-info right" id="comm">0</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/Ordinance/AllOrdinance">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Ordinance</p><span class="badge badge-info right" id="ord">0</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/Equipment/AllEquipments">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Equipment</p><span class="badge badge-info right" id="equ">0</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/InitiasSystem/AllIntianSystem">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Initiation System</p><span class="badge badge-info right" id="isys">0</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/Components/AllComponenst">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Components</p><span class="badge badge-info right" id="comp">0</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/CBRN/AllCbrn">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>CBRN</p><span class="badge badge-info right" id="cbrn">0</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/Fiearms/allFiearms">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Firearms</p><span class="badge badge-info right" id="fir">0</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/Chemical/Allcheimcal">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Chemicals</p><span class="badge badge-info right" id="chem">0</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/Detonators/Index">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Detonators</p><span class="badge badge-info right" id="det">0</span>
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/Evidence/AllEvidence">
+                                                        <i class="far fa-circle nav-icon" aria-hidden="true"></i>
+                                                        <p>Evidence</p><span class="badge badge-info right" id="evi">0</span>
+                                                    </a>
+                                                </li>
+
+
+                                            </ul>
                                         </li>
-                                        
+
 
                                     </ul>
                                 </li>
-
-
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"  href="/Commonlinks/CreateLinks">
-                                <i class="fa-solid fa-bezier-curve"></i>
-                                <p>Create Link</p>
-                            </a>
-                        </li>
-                                  <li class="nav-item">
+                        @if (!string.IsNullOrEmpty(userRole) && userRole != "Supervisor" && userRole != "Monitoring")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link"  href="/Commonlinks/CreateLinks">
+                                    <i class="fa-solid fa-bezier-curve"></i>
+                                    <p>Create Link</p>
+                                </a>
+                            </li>
+                        }
+                        @*<li class="nav-item">
                             <a class="nav-link" href="/AdvanceSearch/Index">
                                 <i class="fa-brands fa-searchengin"></i>
                                 <p> Advance Search </p>
                             </a>
-                        </li>
-                             </span>
+                        </li>*@
+                     
 
                     </ul>
 
@@ -625,6 +649,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.1.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
     @RenderSection("Scripts", required: false)
+    }
 </body>
 </html>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -643,7 +668,14 @@
 
     $(document).ready(function () {
 
-       
+        const dropdown = document.querySelector('#my-dropdown');
+        dropdown.addEventListener('change', () => {
+            const selectedOption = dropdown.options[dropdown.selectedIndex].value;
+            if (selectedOption === 'signout') {
+                window.location.href = '/Accounts/Signout';
+            }
+           
+        });
         GetAllCount();
         $('.spinner').css('display', 'none');
    

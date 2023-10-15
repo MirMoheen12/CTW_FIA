@@ -11,6 +11,7 @@ namespace CTW_FIA.Models.DatabaseModels
         public string FirNo { get; set; }
         public string INC_FirNo { get; set; }
         public int RegYear { get; set; }
+        
         public string US { get; set; }
         public string Country { get; set; }
         public string Province { get; set; }

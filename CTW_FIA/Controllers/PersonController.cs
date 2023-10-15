@@ -23,7 +23,7 @@ namespace CTW_FIA.Controllers
         {
             ViewBag.Agencies = terrorist.AllAgencies();
             ViewBag.Allcountries = terrorist.AllCountry();
-            
+            ViewBag.AccusationList=terrorist.Accusationlist();
             return View();
         }
         [HttpGet]
@@ -37,6 +37,12 @@ namespace CTW_FIA.Controllers
         [HttpPost]
         public IActionResult AddPerson(Person P,IFormFile file)
         {
+            if (P.Country != "Pakistan")
+            {
+                // Set Province and District to default values when not mandatory
+                P.Province = "Unknown";   // You can change this to an appropriate default value
+                P.District = "Unknown";   // You can change this to an appropriate default value
+            }
             var res = terrorist.AddNewPerson(P,file);
             ViewBag.Agencies = terrorist.AllAgencies();
             ViewBag.Allcountries = terrorist.AllCountry();
